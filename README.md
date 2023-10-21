@@ -3,7 +3,7 @@
 [![Release](https://jitpack.io/v/MFlisar/ComposePreferences.svg)](https://jitpack.io/#MFlisar/ComposePreferences)
 ![License](https://img.shields.io/github/license/MFlisar/ComposePreferences)
 
-This library offers you simple setting screens for compose. Additionally it also supports my [KotPreferences](https://github.com/MFlisar/ComposePreferences) library which allows you to simply define preferences via delegates and simply use them as compose states.
+This library offers you simple setting screens for compose. Additionally it *optionally* also supports my [KotPreferences](https://github.com/MFlisar/ComposePreferences) library which allows you to simply define preferences via delegates and simply use them as compose states.
 
 Made for **Compose M3**.
 
@@ -31,16 +31,25 @@ repositories {
 ```groovy
 dependencies {
 
-  val debugDrawer = "<LATEST-VERSION>"
+    val composePreferences = "<LATEST-VERSION>"
 
-  // core module
-  implementation("com.github.MFlisar.ComposePreferences:core:$debugDrawer")
+    // core module
+    implementation("com.github.MFlisar.ComposePreferences:core:$composePreferences")
   
-  // modules
-  implementation("com.github.MFlisar.ComposePreferences:bool:$debugDrawer")
-  
-  // plugins for other libraries
-  implementation("com.github.MFlisar.ComposePreferences:kotpreferences:$debugDrawer")
+    // modules
+    implementation("com.github.MFlisar.ComposePreferences:core:$composePreferences")
+    implementation("com.github.MFlisar.ComposePreferences:screen-bool:$composePreferences")
+    implementation("com.github.MFlisar.ComposePreferences:screen-button:$composePreferences")
+    implementation("com.github.MFlisar.ComposePreferences:screen-input:$composePreferences")
+    implementation("com.github.MFlisar.ComposePreferences:screen-color:$composePreferences")
+    implementation("com.github.MFlisar.ComposePreferences:screen-date:$composePreferences")
+    implementation("com.github.MFlisar.ComposePreferences:screen-time:$composePreferences")
+    implementation("com.github.MFlisar.ComposePreferences:screen-list:$composePreferences")
+    implementation("com.github.MFlisar.ComposePreferences:screen-number:$composePreferences")
+
+    
+    // plugins for other libraries
+    implementation("com.github.MFlisar.ComposePreferences:extension-kotpreferences:$composePreferences")
 }
 ```
 
