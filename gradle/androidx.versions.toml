@@ -1,0 +1,6 @@
+[versions]
+datastore-preferences =             "1.0.0"
+
+[libraries]
+
+datastore-preferences = 		        { module = "androidx.datastore:datastore-preferences", 			    version.ref = "datastore-preferences" }

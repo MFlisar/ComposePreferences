@@ -1,0 +1,40 @@
+[versions]
+
+# mflisar
+lumberjack = 				"5.3.0"
+composedialogs =   		    "1.0.3"
+kotpreferences = 		    "0.3"
+desugar =                   "2.0.3"
+
+# ---------
+# libraries
+# ---------
+
+[libraries]
+
+# mflisar
+lumberjack =			        			{ module = "com.github.MFlisar.Lumberjack:lumberjack-library", 						version.ref = "lumberjack" }
+lumberjack-filelogger =	        			{ module = "com.github.MFlisar.Lumberjack:lumberjack-filelogger", 					version.ref = "lumberjack" }
+lumberjack-feedback =	        			{ module = "com.github.MFlisar.Lumberjack:lumberjack-feedback", 					version.ref = "lumberjack" }
+lumberjack-viewer =	            			{ module = "com.github.MFlisar.Lumberjack:lumberjack-viewer", 		    			version.ref = "lumberjack" }
+lumberjack-notification =       			{ module = "com.github.MFlisar.Lumberjack:lumberjack-notification", 				version.ref = "lumberjack" }
+kotpreferences-core =               		{ module = "com.github.MFlisar.KotPreferences:core", 							    version.ref = "kotpreferences" }
+kotpreferences-compose =               		{ module = "com.github.MFlisar.KotPreferences:compose", 							version.ref = "kotpreferences" }
+kotpreferences-datastore =     		        { module = "com.github.MFlisar.KotPreferences:datastore",      				        version.ref = "kotpreferences" }
+kotpreferences-encryption-aes =     	    { module = "com.github.MFlisar.KotPreferences:encryption-aes",      			    version.ref = "kotpreferences" }
+
+composedialogs-core =                       { module = "com.github.MFlisar.ComposeDialogs:core",      			                version.ref = "composedialogs" }
+composedialogs-dialog-info =                { module = "com.github.MFlisar.ComposeDialogs:dialog-info",      			        version.ref = "composedialogs" }
+composedialogs-dialog-input =               { module = "com.github.MFlisar.ComposeDialogs:dialog-input",      			        version.ref = "composedialogs" }
+composedialogs-dialog-number =              { module = "com.github.MFlisar.ComposeDialogs:dialog-number",      			        version.ref = "composedialogs" }
+composedialogs-dialog-list =                { module = "com.github.MFlisar.ComposeDialogs:dialog-list",      			        version.ref = "composedialogs" }
+composedialogs-dialog-progress =            { module = "com.github.MFlisar.ComposeDialogs:dialog-progress",      			    version.ref = "composedialogs" }
+composedialogs-dialog-time =                { module = "com.github.MFlisar.ComposeDialogs:dialog-time",      			        version.ref = "composedialogs" }
+composedialogs-dialog-date =                { module = "com.github.MFlisar.ComposeDialogs:dialog-date",      			        version.ref = "composedialogs" }
+composedialogs-dialog-color =               { module = "com.github.MFlisar.ComposeDialogs:dialog-color",      			        version.ref = "composedialogs" }
+
+desugar =			        			    { module = "com.android.tools:desugar_jdk_libs", 									version.ref = "desugar" }
+
+# -------
+# bundles
+# -------
