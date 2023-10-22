@@ -36,7 +36,7 @@ import com.michaelflisar.composepreferences.core.composables.PreviewPreference
 import com.michaelflisar.composepreferences.core.hierarchy.PreferenceScope
 
 /**
- * A color preference item - this item provides a color dialog to change this preference
+ * A list preference item - this item provides a list dialog or a dropdown to change this preference
  *
  * &nbsp;
  *
@@ -81,7 +81,7 @@ fun <T> PreferenceScope.PreferenceList(
 }
 
 /**
- * A color preference item - this item provides a color dialog to change this preference
+ * A list preference item - this item provides a list dialog or a dropdown to change this preference
  *
  * &nbsp;
  *

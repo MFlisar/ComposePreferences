@@ -71,10 +71,10 @@ It works as simple as following:
 
 ### Screenshots
 
-| [![Demo](screenshots/previews/info1.jpg?raw=true)](https://github.com/MFlisar/ComposePreferences#existing-preferences) | ![Demo](screenshots/previews/info1.jpg?raw=true "Preview") |
+| [![Preview](screenshots/previews/info1.jpg?raw=true)](https://github.com/MFlisar/ComposePreferences#existing-preferences) | ![Preview](screenshots/previews/info1.jpg?raw=true "Preview") |
 |:-:|:-:|
-| ![Demo](screenshots/previews/info1.jpg?raw=true "Preview") | ![Demo](screenshots/previews/info1.jpg?raw=true "Preview") |
-| ![Demo](screenshots/previews/info1.jpg?raw=true "Preview") | ![Demo](screenshots/previews/info1.jpg?raw=true "Preview") |
+| ![Preview](screenshots/previews/info1.jpg?raw=true "Preview") | ![Preview](screenshots/previews/info1.jpg?raw=true "Preview") |
+| ![Preview](screenshots/previews/info1.jpg?raw=true "Preview") | ![Preview](screenshots/previews/info1.jpg?raw=true "Preview") |
 
 ### Existing preferences
 
@@ -82,7 +82,7 @@ It works as simple as following:
 
 | Preview | Module |
 | :- | :- |
-| ![Demo](screenshots/previews/info1.jpg?raw=true "Preview") | `core` |
+| ![Preview](screenshots/previews/info1.jpg?raw=true "Preview") | `core` |
 
 https://github.com/MFlisar/ComposePreferences/blob/442acb459d36b739e8aa076e8ac92c3b265545b0/library/src/main/java/com/michaelflisar/composepreferences/core/PreferenceInfo.kt#L33-L45
 
@@ -90,7 +90,7 @@ https://github.com/MFlisar/ComposePreferences/blob/442acb459d36b739e8aa076e8ac92
 
 | Preview | Module |
 | :- | :- |
-| ![Demo](screenshots/previews/divider1.jpg?raw=true "Preview") | `core` |
+| ![Preview](screenshots/previews/divider1.jpg?raw=true "Preview") | `core` |
 
 https://github.com/MFlisar/ComposePreferences/blob/13344729f58591fe105537a742b0a5bddb9dbfb9/library/src/main/java/com/michaelflisar/composepreferences/core/PreferenceDivider.kt#L27-L32
 
@@ -98,7 +98,7 @@ https://github.com/MFlisar/ComposePreferences/blob/13344729f58591fe105537a742b0a
 
 | Preview | Module |
 | :- | :- |
-| ![Demo](screenshots/previews/header1.jpg?raw=true "Preview") | `core` |
+| ![Preview](screenshots/previews/header1.jpg?raw=true "Preview") | `core` |
 
 https://github.com/MFlisar/ComposePreferences/blob/13344729f58591fe105537a742b0a5bddb9dbfb9/library/src/main/java/com/michaelflisar/composepreferences/core/PreferenceSectionHeader.kt#L30-L39
 
@@ -106,6 +106,58 @@ https://github.com/MFlisar/ComposePreferences/blob/13344729f58591fe105537a742b0a
 
 | Preview | | Module |
 | :- | :- | :- |
-| ![Demo](screenshots/previews/bool1.jpg?raw=true "Preview") | ![Demo](screenshots/previews/bool2.jpg?raw=true "Preview") | `core` |
+| ![Preview](screenshots/previews/bool1.jpg?raw=true "Preview") | ![Preview](screenshots/previews/bool2.jpg?raw=true "Preview") | `bool` |
 
-https://github.com/MFlisar/ComposePreferences/blob/442acb459d36b739e8aa076e8ac92c3b265545b0/modules/screen/bool/src/main/java/com/michaelflisar/composepreferences/screen/bool/PreferenceBool.kt#L39-L50
+https://github.com/MFlisar/ComposePreferences/blob/442acb459d36b739e8aa076e8ac92c3b265545b0/modules/screen/bool/src/main/java/com/michaelflisar/composepreferences/screen/bool/PreferenceBool.kt#L76-L88
+
+##### Button Preference
+
+| Preview | Module |
+| :- | :- |
+| ![Preview](screenshots/previews/button1.jpg?raw=true "Preview") | `button` |
+
+https://github.com/MFlisar/ComposePreferences/blob/442acb459d36b739e8aa076e8ac92c3b265545b0/modules/screen/button/src/main/java/com/michaelflisar/composepreferences/screen/button/PreferenceButton.kt#L28-L38
+
+##### Color Preference
+
+| Preview | | Module |
+| :- | :- | :- |
+| ![Preview](screenshots/previews/color1.jpg?raw=true "Preview") | ![Preview](screenshots/previews/color2.jpg?raw=true "Preview") | `color` |
+
+https://github.com/MFlisar/ComposePreferences/blob/442acb459d36b739e8aa076e8ac92c3b265545b0/modules/screen/color/src/main/java/com/michaelflisar/composepreferences/screen/color/PreferenceColor.kt#L88-L100
+
+##### Date Preference
+
+| Preview | Module |
+| :- | :- |
+| ![Preview](screenshots/previews/date1.jpg?raw=true "Preview") | `date` |
+
+https://github.com/MFlisar/ComposePreferences/blob/442acb459d36b739e8aa076e8ac92c3b265545b0/modules/screen/date/src/main/java/com/michaelflisar/composepreferences/screen/date/PreferenceDate.kt#L85-L100
+
+##### Input Preference
+
+| Preview | | Module |
+| :- | :- | :- |
+| ![Preview](screenshots/previews/input-text1.jpg?raw=true "Preview") | | `input` |
+| ![Preview](screenshots/previews/input-number1.jpg?raw=true "Preview") | ![Preview](screenshots/previews/input-number2.jpg?raw=true "Preview") | `input` |
+
+https://github.com/MFlisar/ComposePreferences/blob/442acb459d36b739e8aa076e8ac92c3b265545b0/modules/screen/input/src/main/java/com/michaelflisar/composepreferences/screen/input/PreferenceInputText.kt#L67-L78
+
+https://github.com/MFlisar/ComposePreferences/blob/442acb459d36b739e8aa076e8ac92c3b265545b0/modules/screen/input/src/main/java/com/michaelflisar/composepreferences/screen/input/PreferenceInputNumber.kt#L70-L81
+
+##### List Preference
+
+| Preview | | Module |
+| :- | :- | :- |
+| ![Preview](screenshots/previews/list1.jpg?raw=true "Preview") | ![Preview](screenshots/previews/list2.jpg?raw=true "Preview") | `list` |
+| ![Preview](screenshots/previews/list-multi1.jpg?raw=true "Preview") | ![Preview](screenshots/previews/list-multi2.jpg?raw=true "Preview") | `list` |
+
+https://github.com/MFlisar/ComposePreferences/blob/442acb459d36b739e8aa076e8ac92c3b265545b0/modules/screen/list/src/main/java/com/michaelflisar/composepreferences/screen/list/PreferenceList.kt#L99-L114
+
+https://github.com/MFlisar/ComposePreferences/blob/442acb459d36b739e8aa076e8ac92c3b265545b0/modules/screen/list/src/main/java/com/michaelflisar/composepreferences/screen/list/PreferenceListMulti.kt#L85-L104
+
+##### Number Preference
+
+
+##### Time Preference
+
