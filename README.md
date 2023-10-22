@@ -150,7 +150,7 @@ https://github.com/MFlisar/ComposePreferences/blob/d7e2b8c986a0877412f37394741a9
 | Preview | | Module |
 | :- | :- | :- |
 | ![Preview](screenshots/previews/list1.jpg?raw=true "Preview") | ![Preview](screenshots/previews/list2.jpg?raw=true "Preview") | `list` |
-| ![Preview](screenshots/previews/list-multi1.jpg?raw=true "Preview") | ![Preview](screenshots/previews/list-multi2.jpg?raw=true "Preview") | `list` |
+| ![Preview](screenshots/previews/list-multi1.jpg?raw=true "Preview") | | `list` |
 
 https://github.com/MFlisar/ComposePreferences/blob/d7e2b8c986a0877412f37394741a924363bcb614/modules/screen/list/src/main/java/com/michaelflisar/composepreferences/screen/list/PreferenceList.kt#L99-L114
 
@@ -158,11 +158,11 @@ https://github.com/MFlisar/ComposePreferences/blob/d7e2b8c986a0877412f37394741a9
 
 ##### Number Preference
 
-| Preview | Module |
-| :- | :- |
-| ![Preview](screenshots/previews/number1.jpg?raw=true "Preview") | `number` |
+| Preview | | Module |
+| :- | :- | :- |
+| ![Preview](screenshots/previews/number1.jpg?raw=true "Preview") | ![Preview](screenshots/previews/number2.jpg?raw=true "Preview") | `number` |
 
-https://github.com/MFlisar/ComposePreferences/blob/d7e2b8c986a0877412f37394741a924363bcb614/modules/screen/date/src/main/java/com/michaelflisar/composepreferences/screen/date/PreferenceDate.kt#L95-L111
+https://github.com/MFlisar/ComposePreferences/blob/cb37539211d935dd60cb85c3fe542c0b02de4313/modules/screen/number/src/main/java/com/michaelflisar/composepreferences/screen/number/PreferenceNumber.kt#L95-L111
 
 ##### Time Preference
 
