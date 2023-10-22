@@ -9,7 +9,7 @@ Made for **Compose M3**.
 
 ### Overview
 
-![Overview](screenshots/overview.jpg?raw=true "Overview") |
+![Overview](screenshots/overview.jpg?raw=true "Overview")
 
 ### Dependencies
 
