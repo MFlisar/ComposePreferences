@@ -225,7 +225,7 @@ https://github.com/MFlisar/ComposePreferences/blob/880e28fdb71bb0c56840758ca7980
 | :- | :- | :- |
 | ![Preview](screenshots/previews/number1.jpg?raw=true "Preview") | ![Preview](screenshots/previews/number2.jpg?raw=true "Preview") | `number` |
 
-https://github.com/MFlisar/ComposePreferences/blob/cb37539211d935dd60cb85c3fe542c0b02de4313/library/modules/screen/number/src/main/java/com/michaelflisar/composepreferences/screen/number/PreferenceNumber.kt#L95-L111
+https://github.com/MFlisar/ComposePreferences/blob/880e28fdb71bb0c56840758ca79802e96e2a7e5b/library/modules/screen/number/src/main/java/com/michaelflisar/composepreferences/screen/number/PreferenceNumber.kt#L95-L111
 
 ##### Time Preference
 
