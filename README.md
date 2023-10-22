@@ -16,22 +16,13 @@ Made for **Compose M3**.
 
 ### Optional Dependencies
 
-#### Dialog based modules
+* Dialog based modules do depend on my [ComposeDialogs](https://github.com/MFlisar/ComposeDialogs) library
+* Extensions do depend on the appearant library...
 
-The `screen-input`, `screen-color`,`screen-date`,`screen-time`,`screen-list` do depend on my [ComposeDialogs](https://github.com/MFlisar/ComposeDialogs) library.
-
-| Dependency | Version |
-|:-|-:|
-| [ComposeDialogs](https://github.com/MFlisar/ComposeDialogs) | 1.0.3 |
-
-
-#### Extensions
-
-The `extension-kotpreferences` does depend on my [KotPreferences](https://github.com/MFlisar/KotPreferences) library which allows you to simply define preferences via delegates and simply use them as compose states.
-
-| Dependency | Version |
-|:-|-:|
-| [KotPreferences](https://github.com/MFlisar/KotPreferences) | 0.3 |
+| Modules | Dependency | Version |
+|:-|:-|-:|
+| `screen-input`, `screen-color`,`screen-date`,`screen-time`,`screen-list` | [ComposeDialogs](https://github.com/MFlisar/ComposeDialogs) | 1.0.3 |
+| `extension-kotpreferences` | [KotPreferences](https://github.com/MFlisar/KotPreferences) | 0.3 |
 
 ### Gradle (via [JitPack.io](https://jitpack.io/))
 
