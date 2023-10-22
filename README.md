@@ -86,48 +86,48 @@ PreferenceScreen(
         },
         title = { Text("Bool") }
         )
-		
-	// Sub Preference - all nested preferences will show if you click the sub preference (and all preferences from other levels will be hidden automatically)
-	// + back press + state saving will be handled automatically
-	PreferenceSubScreen(
+        
+    // Sub Preference - all nested preferences will show if you click the sub preference (and all preferences from other levels will be hidden automatically)
+    // + back press + state saving will be handled automatically
+    PreferenceSubScreen(
         title = { Text("Menu") }
     ) {
-	    // sub preferences must be placed here
-		// you can even nest another PreferenceSubScreen here - any nesting depth is supported!
-	}
-	
+        // sub preferences must be placed here
+        // you can even nest another PreferenceSubScreen here - any nesting depth is supported!
+    }
+    
     // IMPORTANT:
-	// don't place any non preference composables here, they won't be correctly shown/hidden and managed by the preference screen because they don't hold any hierarchical data!
-	// also gray out and enabled states won't work
-	// if you want to place some custom content wrap it inside a `BasePreference` (if you want the default title/subtitle/icon/content layout) 
-	// or inside a `BasePreferenceContainer` if you want to place plain content
-	
-	// Custom 1 - default button inside the content area wrapped as preference => this will work correctly even if used in sub preferences and it will automatically support enabled/disabling
-	BasePreference(
-		title = { Text("A custom preference") },
-		subtitle = { Text("Showing a button") },
-		icon = { Icon(Icons.Default.Android, null) }
-	) {
-		Button(onClick = {
-			// ...
-		}) {
-			Icon(Icons.Default.Android, null)
-		}
-	}
-	
-	// Custom 2 - completely free content => this will also work correctly even if used in sub preferences and it will automatically support enabled/disabling
-	// but it allows you to wrap ANY composable inside it
-	BasePreferenceContainer(
-		modifier = Modifier.padding(16.dp),
-		preferenceStyle = PreferenceStyleDefaults.item()
-	) { modifier ->
-		Button(
-			onClick = {
-				// ...
-		}) {
-			Text("Button")
-		}
-	}
+    // don't place any non preference composables here, they won't be correctly shown/hidden and managed by the preference screen because they don't hold any hierarchical data!
+    // also gray out and enabled states won't work
+    // if you want to place some custom content wrap it inside a `BasePreference` (if you want the default title/subtitle/icon/content layout) 
+    // or inside a `BasePreferenceContainer` if you want to place plain content
+    
+    // Custom 1 - default button inside the content area wrapped as preference => this will work correctly even if used in sub preferences and it will automatically support enabled/disabling
+    BasePreference(
+        title = { Text("A custom preference") },
+        subtitle = { Text("Showing a button") },
+        icon = { Icon(Icons.Default.Android, null) }
+    ) {
+        Button(onClick = {
+            // ...
+        }) {
+            Icon(Icons.Default.Android, null)
+        }
+    }
+    
+    // Custom 2 - completely free content => this will also work correctly even if used in sub preferences and it will automatically support enabled/disabling
+    // but it allows you to wrap ANY composable inside it
+    BasePreferenceContainer(
+        modifier = Modifier.padding(16.dp),
+        preferenceStyle = PreferenceStyleDefaults.item()
+    ) { modifier ->
+        Button(
+            onClick = {
+                // ...
+        }) {
+            Text("Button")
+        }
+    }
 }
 ```
 
