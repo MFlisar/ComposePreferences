@@ -14,14 +14,22 @@ Made for **Compose M3**.
 | [Compose BOM](https://developer.android.com/jetpack/compose/bom/bom) | `2023.10.00` | [Mapping](https://developer.android.com/jetpack/compose/bom/bom-mapping) |
 | Material3 | `1.1.2` | |
 
-### Optional Dependencies
+### Other Dependencies
 
 * Dialog based modules do depend on my [ComposeDialogs](https://github.com/MFlisar/ComposeDialogs) library
 * Extensions do depend on the respective library...
 
 | Modules | Dependency | Version |
 |:-|:-|-:|
-| `screen-input`, `screen-color`,`screen-date`,`screen-time`,`screen-list` | [ComposeDialogs](https://github.com/MFlisar/ComposeDialogs) | 1.0.3 |
+| `core` | no dependency |  |
+| `screen-bool` | no dependency |  |
+| `screen-button` | no dependency |  |
+| `screen-input` | [ComposeDialogs](https://github.com/MFlisar/ComposeDialogs) | 1.0.3 |
+| `screen-color` | [ComposeDialogs](https://github.com/MFlisar/ComposeDialogs) | 1.0.3 |
+| `screen-date` | [ComposeDialogs](https://github.com/MFlisar/ComposeDialogs) | 1.0.3 |
+| `screen-time` | [ComposeDialogs](https://github.com/MFlisar/ComposeDialogs) | 1.0.3 |
+| `screen-list` | [ComposeDialogs](https://github.com/MFlisar/ComposeDialogs) | 1.0.3 |
+| `screen-number` | [ComposeDialogs](https://github.com/MFlisar/ComposeDialogs) | 1.0.3 |
 | `extension-kotpreferences` | [KotPreferences](https://github.com/MFlisar/KotPreferences) | 0.3 |
 
 ### Gradle (via [JitPack.io](https://jitpack.io/))
