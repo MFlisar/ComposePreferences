@@ -25,6 +25,16 @@ import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetup
 import com.michaelflisar.composepreferences.core.composables.PreviewPreference
 import com.michaelflisar.composepreferences.core.hierarchy.PreferenceScope
 
+/**
+ * A bool preference item - this item shows a checkbox/switch which reflects the preference state
+ *
+ * &nbsp;
+ *
+ * **Basic Parameters:** all params not described here are derived from [com.michaelflisar.composepreferences.core.composables.BasePreference], check it out for more details
+ *
+ * @param style the [PreferenceBool.Style] of this item ([PreferenceBool.Style.Switch] or [PreferenceBool.Style.Checkbox])
+ * @param data the [PreferenceData] of this item
+ */
 @Composable
 fun PreferenceScope.PreferenceBool(
     style: PreferenceBool.Style = PreferenceBool.Style.Switch,
@@ -51,6 +61,17 @@ fun PreferenceScope.PreferenceBool(
     )
 }
 
+/**
+ * A bool preference item - this item shows a checkbox/switch which reflects the preference state
+ *
+ * &nbsp;
+ *
+ * **Basic Parameters:** all params not described here are derived from [com.michaelflisar.composepreferences.core.composables.BasePreference], check it out for more details
+ *
+ * @param style the [PreferenceBool.Style] of this item ([PreferenceBool.Style.Switch] or [PreferenceBool.Style.Checkbox])
+ * @param value the value of this item
+ * @param onValueChange the value changed callback of this item
+ */
 @Composable
 fun PreferenceScope.PreferenceBool(
     style: PreferenceBool.Style = PreferenceBool.Style.Switch,

@@ -35,6 +35,19 @@ import com.michaelflisar.composepreferences.core.composables.PreferenceContentTe
 import com.michaelflisar.composepreferences.core.composables.PreviewPreference
 import com.michaelflisar.composepreferences.core.hierarchy.PreferenceScope
 
+/**
+ * A color preference item - this item provides a color dialog to change this preference
+ *
+ * &nbsp;
+ *
+ * **Basic Parameters:** all params not described here are derived from [com.michaelflisar.composepreferences.core.composables.BasePreference], check it out for more details
+ *
+ * @param style the [PreferenceList.Style] of this item ([PreferenceList.Style.Dialog] or [PreferenceList.Style.Spinner])
+ * @param data the [PreferenceData] of this item
+ * @param items the list of items that this preference can select from
+ * @param itemTextProvider a converter to get the text of an item
+ * @param itemIconProvider a converter to provide an icon for an item
+ */
 @Composable
 fun <T> PreferenceScope.PreferenceList(
     style: PreferenceList.Style = PreferenceList.Style.Dialog,
@@ -67,6 +80,20 @@ fun <T> PreferenceScope.PreferenceList(
     )
 }
 
+/**
+ * A color preference item - this item provides a color dialog to change this preference
+ *
+ * &nbsp;
+ *
+ * **Basic Parameters:** all params not described here are derived from [com.michaelflisar.composepreferences.core.composables.BasePreference], check it out for more details
+ *
+ * @param style the [PreferenceList.Style] of this item ([PreferenceList.Style.Dialog] or [PreferenceList.Style.Spinner])
+ * @param value the value of this item
+ * @param onValueChange the value changed callback of this item
+ * @param items the list of items that this preference can select from
+ * @param itemTextProvider a converter to get the text of an item
+ * @param itemIconProvider a converter to provide an icon for an item
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun <T> PreferenceScope.PreferenceList(

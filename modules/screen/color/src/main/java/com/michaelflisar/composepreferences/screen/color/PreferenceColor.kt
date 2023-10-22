@@ -37,6 +37,16 @@ import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetup
 import com.michaelflisar.composepreferences.core.composables.PreviewPreference
 import com.michaelflisar.composepreferences.core.hierarchy.PreferenceScope
 
+/**
+ * A color preference item - this item provides a color dialog to change this preference
+ *
+ * &nbsp;
+ *
+ * **Basic Parameters:** all params not described here are derived from [com.michaelflisar.composepreferences.core.composables.BasePreference], check it out for more details
+ *
+ * @param data the [PreferenceData] of this item
+ * @param alphaSupported if true, this preference does support alpha values (ARGB) otherwise it doesn't (RGB only)
+ */
 @Composable
 fun PreferenceScope.PreferenceColor(
     // Special
@@ -63,6 +73,17 @@ fun PreferenceScope.PreferenceColor(
     )
 }
 
+/**
+ * A color preference item - this item provides a color dialog to change this preference
+ *
+ * &nbsp;
+ *
+ * **Basic Parameters:** all params not described here are derived from [com.michaelflisar.composepreferences.core.composables.BasePreference], check it out for more details
+ *
+ * @param value the value of this item
+ * @param onValueChange the value changed callback of this item
+ * @param alphaSupported if true, this preference does support alpha values (ARGB) otherwise it doesn't (RGB only)
+ */
 @Composable
 fun PreferenceScope.PreferenceColor(
     // Special

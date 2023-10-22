@@ -7,8 +7,29 @@ import androidx.compose.ui.unit.dp
 import com.michaelflisar.composepreferences.core.classes.Dependency
 import com.michaelflisar.composepreferences.core.classes.LocalPreferenceSettings
 import com.michaelflisar.composepreferences.core.classes.PreferenceStyle
+import com.michaelflisar.composepreferences.core.classes.PreferenceStyleDefaults
 import com.michaelflisar.composepreferences.core.hierarchy.PreferenceScope
 
+/**
+ * this is the default root composable that uses a [BasePreferenceContainer] and provides you with
+ * a common default layout that consists of an area for an icon, a title, a sub title and some content
+ *
+ * &nbsp;
+ *
+ * In most cases this should be the root container for any custom preference.
+ *
+ * @param modifier the [Modifier] for this composable
+ * @param enabled the [Dependency] that from which the enabled state is derived from
+ * @param visible the [Dependency] that from which the visibility state is derived from
+ * @param title the content of the title area
+ * @param subtitle the content of the subtitle area
+ * @param icon the content of the icon area
+ * @param onClick the optional click listener for this item
+ * @param onLongClick the optional long click listener for this item
+ * @param preferenceStyle the [PreferenceStyle] of this this item - use [PreferenceStyleDefaults.item] and all the predefined styles in [PreferenceStyleDefaults] to provide your own style
+ * @param setup the [PreferenceItemSetup] of this this item which allows you to influence some of the behaviour and style specifically for a special item type
+ * @param content the content of this composable
+ */
 @Composable
 fun PreferenceScope.BasePreference(
     modifier: Modifier = Modifier,

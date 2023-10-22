@@ -18,6 +18,14 @@ import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetup
 import com.michaelflisar.composepreferences.core.composables.PreviewPreference
 import com.michaelflisar.composepreferences.core.hierarchy.PreferenceScope
 
+/**
+ * A section header preference item
+ *
+ * &nbsp;
+ *
+ * **Basic Parameters:** all params not described here are derived from [com.michaelflisar.composepreferences.core.composables.BasePreference], check it out for more details
+ *
+ */
 @Composable
 fun PreferenceScope.PreferenceSectionHeader(
     // Special

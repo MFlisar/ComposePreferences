@@ -13,6 +13,9 @@ import androidx.compose.ui.unit.dp
 
 val LocalPreferenceSettings = compositionLocalOf { PreferenceSettings() }
 
+/**
+ * see [PreferenceSettingsDefaults.settings]
+ */
 data class PreferenceSettings internal constructor(
     val disabledStateAlpha: Float = .4f,
     val disabledStateGrayscale: Boolean = false,
@@ -34,6 +37,21 @@ data class PreferenceSettings internal constructor(
 
 object PreferenceSettingsDefaults {
 
+    /**
+     * use this function to create a [PreferenceSettings] object
+     *
+     * @param disabledStateAlpha this value should be between [0f, 1f] and defines the alpha value which which a disabled preference item is blended
+     * @param disabledStateGrayscale if true, a disabled preference will grayscale its content
+     * @param toggleBooleanOnItemClick if true, clicking a boolean preference will toggle its state, otherwise only clicks on the checkbox/switch will toggle it
+     * @param maxLinesValue the maximum lines of texts for the content area of a preference
+     * @param animationSpec a optional [AnimationSpec] that defines the animation for preferences on initial display - use [null] to disable the animation
+     * @param subScreenEndIndicator a optional [Composable] that defines a trailing indicator for sub screen preferences - use [null] to disable it
+     * @param itemStyle the default [PreferenceStyle] that should be used by all preferences - use [PreferenceStyleDefaults.item] or any of the other predefined styles inside [PreferenceStyleDefaults]
+     * @param forceNoIconInset enable this flag to inset items correctly to align with other items with icons
+     * @param minTextAreaWidth minimum width or the text area (the title/subtitle area)
+     * @param leadingContentEndPadding the padding between the leading content and the title/subtitle area
+     * @param trailingContentStartPadding the padding between the title/subtitle area and the trailing content area
+     */
     @Composable
     fun settings(
         disabledStateAlpha: Float = .4f,

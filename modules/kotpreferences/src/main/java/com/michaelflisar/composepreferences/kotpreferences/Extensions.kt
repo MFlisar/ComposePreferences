@@ -10,7 +10,7 @@ import com.michaelflisar.kotpreferences.core.interfaces.StorageSetting
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-/*
+/**
  * TODO:
  *  this uses caching (disabled by default) and a blocking read => not optimal
  * this is needed so that a preference screen does initially already know its visible and enabled states =>
@@ -25,7 +25,7 @@ fun <T> StorageSetting<T>.collectSetting(
     return flow.collectAsState(initial = initialValue)
 }
 
-/*
+/**
  simple extension function to plug in a setting as preference data provider and updater
  */
 @Composable
@@ -39,7 +39,7 @@ fun <T> StorageSetting<T>.asPreferenceData(): PreferenceData<T> {
     }
 }
 
-/*
+/**
  simple extension function to plug in a setting as a dependency
  */
 @Composable

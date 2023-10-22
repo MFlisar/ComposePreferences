@@ -11,6 +11,9 @@ import androidx.compose.ui.unit.dp
 import com.michaelflisar.composepreferences.core.composables.PreferenceItemColors
 import com.michaelflisar.composepreferences.core.composables.PreferenceItemDefaults
 
+/**
+ * see [PreferenceStyleDefaults.item]
+ */
 @Stable
 class PreferenceStyle internal constructor(
     val colors: PreferenceItemColors = PreferenceItemColors(),
@@ -24,6 +27,40 @@ object PreferenceStyleDefaults {
 
     private const val DEFAULT_ALPHA_VARIANT = .6f
 
+    /**
+     * this function returns a [PreferenceStyle] defining the style of a preference item
+     *
+     * check out the overload to find a background/foreground based function
+     *
+     * @param colors the [PreferenceItemColors] of this item
+     * @param shape the [Shape] of this item
+     * @param tonalElevation the tonal elevation of this item
+     * @param shadowElevation the shadow elevation of this item
+     *
+     * @return the [PreferenceStyle] holding the provided setup
+     */
+    @Composable
+    fun item(
+        colors: PreferenceItemColors = PreferenceItemDefaults.colors(),
+        shape: Shape = RectangleShape,
+        tonalElevation: Dp = 0.dp,
+        shadowElevation: Dp = 0.dp
+    ): PreferenceStyle = PreferenceStyle(colors, shape, tonalElevation, shadowElevation)
+
+    /**
+     * this function returns a [PreferenceStyle] defining the style of a preference item
+     *
+     * check out the overload to find a background/foreground based function
+     *
+     * @param colorBackground the background [Color] of this item
+     * @param colorForeground the foreground [Color] of this item
+     * @param alphaVariant the alpha value used to calculate the variant color from the provided colors
+     * @param shape the [Shape] of this item
+     * @param tonalElevation the tonal elevation of this item
+     * @param shadowElevation the shadow elevation of this item
+     *
+     * @return the [PreferenceStyle] holding the provided setup
+     */
     @Composable
     fun item(
         colorBackground: Color = MaterialTheme.colorScheme.surface,
@@ -45,18 +82,18 @@ object PreferenceStyleDefaults {
         shadowElevation
     )
 
-    @Composable
-    fun item(
-        colors: PreferenceItemColors = PreferenceItemDefaults.colors(),
-        shape: Shape = RectangleShape,
-        tonalElevation: Dp = 0.dp,
-        shadowElevation: Dp = 0.dp
-    ): PreferenceStyle = PreferenceStyle(colors, shape, tonalElevation, shadowElevation)
-
     // -----------------
     // PREDEFINID Styles
     // -----------------
 
+    /**
+     * this function returns a [PreferenceStyle] with primary background
+     *
+     * @param shape the [Shape] of this item
+     * @param alphaVariant the alpha value used to calculate the variant color from the provided colors
+     *
+     * @return the [PreferenceStyle] holding the provided setup
+     */
     @Composable
     fun primary(
         shape: Shape = RectangleShape,
@@ -68,6 +105,14 @@ object PreferenceStyleDefaults {
         shape = shape
     )
 
+    /**
+     * this function returns a [PreferenceStyle] with primary container background
+     *
+     * @param shape the [Shape] of this item
+     * @param alphaVariant the alpha value used to calculate the variant color from the provided colors
+     *
+     * @return the [PreferenceStyle] holding the provided setup
+     */
     @Composable
     fun primaryContainer(
         shape: Shape = RectangleShape,
@@ -79,6 +124,14 @@ object PreferenceStyleDefaults {
         shape = shape
     )
 
+    /**
+     * this function returns a [PreferenceStyle] with error background
+     *
+     * @param shape the [Shape] of this item
+     * @param alphaVariant the alpha value used to calculate the variant color from the provided colors
+     *
+     * @return the [PreferenceStyle] holding the provided setup
+     */
     @Composable
     fun error(
         shape: Shape = RectangleShape,
@@ -90,6 +143,14 @@ object PreferenceStyleDefaults {
         shape = shape
     )
 
+    /**
+     * this function returns a [PreferenceStyle] with error container background
+     *
+     * @param shape the [Shape] of this item
+     * @param alphaVariant the alpha value used to calculate the variant color from the provided colors
+     *
+     * @return the [PreferenceStyle] holding the provided setup
+     */
     @Composable
     fun errorContainer(
         shape: Shape = RectangleShape,
@@ -101,6 +162,14 @@ object PreferenceStyleDefaults {
         shape = shape
     )
 
+    /**
+     * this function returns a [PreferenceStyle] with surface variant background
+     *
+     * @param shape the [Shape] of this item
+     * @param alphaVariant the alpha value used to calculate the variant color from the provided colors
+     *
+     * @return the [PreferenceStyle] holding the provided setup
+     */
     @Composable
     fun surfaceVariant(
         shape: Shape = RectangleShape
@@ -115,6 +184,13 @@ object PreferenceStyleDefaults {
         shape
     )
 
+    /**
+     * this function returns a [PreferenceStyle] with a header style (surface background + primary foreground)
+     *
+     * @param alphaVariant the alpha value used to calculate the variant color from the provided colors
+     *
+     * @return the [PreferenceStyle] holding the provided setup
+     */
     @Composable
     fun header(
         alphaVariant: Float = DEFAULT_ALPHA_VARIANT

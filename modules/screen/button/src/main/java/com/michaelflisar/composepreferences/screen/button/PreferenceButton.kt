@@ -9,11 +9,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.michaelflisar.composepreferences.core.classes.Dependency
 import com.michaelflisar.composepreferences.core.classes.LocalPreferenceSettings
+import com.michaelflisar.composepreferences.core.classes.PreferenceData
 import com.michaelflisar.composepreferences.core.classes.PreferenceStyle
 import com.michaelflisar.composepreferences.core.composables.BasePreference
 import com.michaelflisar.composepreferences.core.composables.PreviewPreference
 import com.michaelflisar.composepreferences.core.hierarchy.PreferenceScope
 
+/**
+ * A button preference item - this item simply executes an action on click
+ *
+ * &nbsp;
+ *
+ * **Basic Parameters:** all params not described here are derived from [com.michaelflisar.composepreferences.core.composables.BasePreference], check it out for more details
+ *
+ * @param onClick the click callback of this item
+ */
 @Composable
 fun PreferenceScope.PreferenceButton(
     // Special

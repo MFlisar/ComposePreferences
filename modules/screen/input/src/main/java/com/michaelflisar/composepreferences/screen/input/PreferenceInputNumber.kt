@@ -23,6 +23,15 @@ import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetup
 import com.michaelflisar.composepreferences.core.composables.PreviewPreference
 import com.michaelflisar.composepreferences.core.hierarchy.PreferenceScope
 
+/**
+ * A color preference item - this item provides a input dialog to change this preference
+ *
+ * &nbsp;
+ *
+ * **Basic Parameters:** all params not described here are derived from [com.michaelflisar.composepreferences.core.composables.BasePreference], check it out for more details
+ *
+ * @param data the [PreferenceData] of this item
+ */
 @Composable
 fun <T : Number> PreferenceScope.PreferenceInputNumber(
     // Special
@@ -47,6 +56,16 @@ fun <T : Number> PreferenceScope.PreferenceInputNumber(
     )
 }
 
+/**
+ * A color preference item - this item provides a input dialog to change this preference
+ *
+ * &nbsp;
+ *
+ * **Basic Parameters:** all params not described here are derived from [com.michaelflisar.composepreferences.core.composables.BasePreference], check it out for more details
+ *
+ * @param value the value of this item
+ * @param onValueChange the value changed callback of this item
+ */
 @Composable
 fun <T : Number> PreferenceScope.PreferenceInputNumber(
     // Special

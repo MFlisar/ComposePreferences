@@ -15,6 +15,14 @@ import com.michaelflisar.composepreferences.core.composables.BasePreferenceConta
 import com.michaelflisar.composepreferences.core.composables.PreviewPreference
 import com.michaelflisar.composepreferences.core.hierarchy.PreferenceScope
 
+/**
+ * A divider preference item
+ *
+ * &nbsp;
+ *
+ * **Basic Parameters:** all params not described here are derived from [com.michaelflisar.composepreferences.core.composables.BasePreference], check it out for more details
+ *
+ */
 @Composable
 fun PreferenceScope.PreferenceDivider(
     // Special

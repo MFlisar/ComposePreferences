@@ -20,6 +20,15 @@ import com.michaelflisar.composepreferences.core.composables.PreferenceContentTe
 import com.michaelflisar.composepreferences.core.composables.PreviewPreference
 import com.michaelflisar.composepreferences.core.hierarchy.PreferenceScope
 
+/**
+ * A text preference item - this item provides a text input dialog to change this preference
+ *
+ * &nbsp;
+ *
+ * **Basic Parameters:** all params not described here are derived from [com.michaelflisar.composepreferences.core.composables.BasePreference], check it out for more details
+ *
+ * @param data the [PreferenceData] of this item
+ */
 @Composable
 fun PreferenceScope.PreferenceInputText(
     // Special
@@ -44,6 +53,16 @@ fun PreferenceScope.PreferenceInputText(
     )
 }
 
+/**
+ * A text preference item - this item provides a text input dialog to change this preference
+ *
+ * &nbsp;
+ *
+ * **Basic Parameters:** all params not described here are derived from [com.michaelflisar.composepreferences.core.composables.BasePreference], check it out for more details
+ *
+ * @param value the value of this item
+ * @param onValueChange the value changed callback of this item
+ */
 @Composable
 fun PreferenceScope.PreferenceInputText(
     // Special

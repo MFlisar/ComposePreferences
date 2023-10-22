@@ -28,6 +28,17 @@ import com.michaelflisar.composepreferences.core.hierarchy.PreferenceScope
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 
+/**
+ * A color preference item - this item provides a time picker dialog to change this preference
+ *
+ * &nbsp;
+ *
+ * **Basic Parameters:** all params not described here are derived from [com.michaelflisar.composepreferences.core.composables.BasePreference], check it out for more details
+ *
+ * @param data the [PreferenceData] of this item
+ * @param is24Hours if true, the time picker shows a picker in 24h mode, otherwise it will use the 12h mode
+ * @param formatter the formatter to format the time
+ */
 @Composable
 fun PreferenceScope.PreferenceTime(
     // Special
@@ -56,6 +67,18 @@ fun PreferenceScope.PreferenceTime(
     )
 }
 
+/**
+ * A color preference item - this item provides a time picker dialog to change this preference
+ *
+ * &nbsp;
+ *
+ * **Basic Parameters:** all params not described here are derived from [com.michaelflisar.composepreferences.core.composables.BasePreference], check it out for more details
+ *
+ * @param value the value of this item
+ * @param onValueChange the value changed callback of this item
+ * @param is24Hours if true, the time picker shows a picker in 24h mode, otherwise it will use the 12h mode
+ * @param formatter the formatter to format the time
+ */
 @Composable
 fun PreferenceScope.PreferenceTime(
     // Special

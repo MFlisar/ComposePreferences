@@ -18,6 +18,17 @@ import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetup
 import com.michaelflisar.composepreferences.core.composables.PreviewPreference
 import com.michaelflisar.composepreferences.core.hierarchy.PreferenceScope
 
+/**
+ * A info preference item
+ *
+ * &nbsp;
+ *
+ * **Basic Parameters:** all params not described here are derived from [com.michaelflisar.composepreferences.core.composables.BasePreference], check it out for more details
+ *
+ * @param onLongClick a optional long click listener for this item
+ * @param ignoreMinItemHeight if true, this item will wrap its content and ignore the minimum item height
+ * @param alignment the content alignment of this item
+ */
 @Composable
 fun PreferenceScope.PreferenceInfo(
     // Special

@@ -23,6 +23,17 @@ import com.michaelflisar.composepreferences.core.hierarchy.LocalOpenedGroups
 import com.michaelflisar.composepreferences.core.hierarchy.PreferenceGroupItem
 import com.michaelflisar.composepreferences.core.hierarchy.PreferenceScope
 
+/**
+ * A sub screen container preference item - use this to wrap preference items inside a subscreen that will only show its content when it is opened (clicked)
+ *
+ * &nbsp;
+ *
+ * **Basic Parameters:** all params not described here are derived from [com.michaelflisar.composepreferences.core.composables.BasePreference], check it out for more details
+ *
+ * @param onLongClick a optional long click listener for this item
+ * @param ignoreMinItemHeight if true, this item will wrap its content and ignore the minimum item height
+ * @param alignment the content alignment of this item
+ */
 @Composable
 fun PreferenceScope.PreferenceSubScreen(
     // Special

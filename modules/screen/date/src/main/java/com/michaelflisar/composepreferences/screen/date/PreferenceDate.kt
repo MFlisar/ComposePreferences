@@ -28,6 +28,17 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 
+/**
+ * A date preference item - this item provides a date dialog to change this preference
+ *
+ * &nbsp;
+ *
+ * **Basic Parameters:** all params not described here are derived from [com.michaelflisar.composepreferences.core.composables.BasePreference], check it out for more details
+ *
+ * @param data the [PreferenceData] of this item
+ * @param firstDayOfWeek the first day of the week for the underlying date dialog
+ * @param formatter the formatter for the selected date
+ */
 @Composable
 fun PreferenceScope.PreferenceDate(
     // Special
@@ -58,6 +69,18 @@ fun PreferenceScope.PreferenceDate(
     )
 }
 
+/**
+ * A date preference item - this item provides a date dialog to change this preference
+ *
+ * &nbsp;
+ *
+ * **Basic Parameters:** all params not described here are derived from [com.michaelflisar.composepreferences.core.composables.BasePreference], check it out for more details
+ *
+ * @param value the value of this item
+ * @param onValueChange the value changed callback of this item
+ * @param firstDayOfWeek the first day of the week for the underlying date dialog
+ * @param formatter the formatter for the selected date
+ */
 @Composable
 fun PreferenceScope.PreferenceDate(
     // Special

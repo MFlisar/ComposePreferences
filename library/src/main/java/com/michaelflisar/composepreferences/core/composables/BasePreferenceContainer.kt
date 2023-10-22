@@ -18,11 +18,30 @@ import androidx.compose.ui.unit.dp
 import com.michaelflisar.composepreferences.core.classes.Dependency
 import com.michaelflisar.composepreferences.core.classes.LocalPreferenceSettings
 import com.michaelflisar.composepreferences.core.classes.PreferenceStyle
+import com.michaelflisar.composepreferences.core.classes.PreferenceStyleDefaults
 import com.michaelflisar.composepreferences.core.helper.AnimatedPreference
 import com.michaelflisar.composepreferences.core.helper.disableState
 import com.michaelflisar.composepreferences.core.hierarchy.PreferenceItem
 import com.michaelflisar.composepreferences.core.hierarchy.PreferenceScope
 
+/**
+ * this is the root composable that **MUST** best used by all preferences!
+ *
+ * &nbsp;
+ *
+ * In combination with [com.michaelflisar.composepreferences.core.PreferenceScreen] it takes care of the inner hierarchical data and
+ * additionally it handles the enabled/visibiltiy state of the preference (depending on the dependencies as well as on the hierarchical position)
+ * as well as the click and long click
+ *
+ * @param modifier the [Modifier] for this composable
+ * @param enabled the [Dependency] that from which the enabled state is derived from
+ * @param visible the [Dependency] that from which the visibility state is derived from
+ * @param onClick the optional click listener for this item
+ * @param onLongClick the optional long click listener for this item
+ * @param group an **internal** flag to decide if this item holds sub items or not (needed for the hierarchical data)
+ * @param preferenceStyle the [PreferenceStyle] of this this item - use [PreferenceStyleDefaults.item] and all the predefined styles in [PreferenceStyleDefaults] to provide your own style
+ * @param content the content of this composable
+ */
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun PreferenceScope.BasePreferenceContainer(

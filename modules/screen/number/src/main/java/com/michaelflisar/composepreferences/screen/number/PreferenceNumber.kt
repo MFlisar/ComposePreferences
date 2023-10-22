@@ -30,6 +30,19 @@ import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetup
 import com.michaelflisar.composepreferences.core.composables.PreviewPreference
 import com.michaelflisar.composepreferences.core.hierarchy.PreferenceScope
 
+/**
+ * A number preference item - this item provides a number **picker** dialog to change this preference
+ *
+ * &nbsp;
+ *
+ * **Basic Parameters:** all params not described here are derived from [com.michaelflisar.composepreferences.core.composables.BasePreference], check it out for more details
+ *
+ * @param data the [PreferenceData] of this item
+ * @param min the minimum valid number
+ * @param max the maximum valid number
+ * @param stepSize the steps in which a number can be picked
+ * @param formatter a formatter for a number
+ */
 @Composable
 fun <T : Number> PreferenceScope.PreferenceNumber(
     style: PreferenceNumber.Style = PreferenceNumber.Style.Picker,
@@ -64,6 +77,20 @@ fun <T : Number> PreferenceScope.PreferenceNumber(
     )
 }
 
+/**
+ * A number preference item - this item provides a number **picker** dialog to change this preference
+ *
+ * &nbsp;
+ *
+ * **Basic Parameters:** all params not described here are derived from [com.michaelflisar.composepreferences.core.composables.BasePreference], check it out for more details
+ *
+ * @param value the value of this item
+ * @param onValueChange the value changed callback of this item
+ * @param min the minimum valid number
+ * @param max the maximum valid number
+ * @param stepSize the steps in which a number can be picked
+ * @param formatter a formatter for a number
+ */
 @Composable
 fun <T : Number> PreferenceScope.PreferenceNumber(
     style: PreferenceNumber.Style = PreferenceNumber.Style.Picker,
