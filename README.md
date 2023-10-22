@@ -9,10 +9,10 @@ Made for **Compose M3**.
 
 ### Dependencies
 
-| Dependency |        Version |        Version |
-|:-------------------------------------------------------------------- |---------------:|
-| [Compose BOM](https://developer.android.com/jetpack/compose/bom/bom) |   `2023.10.00`  [Mapping](https://developer.android.com/jetpack/compose/bom/bom-mapping) |
-| Material3 | `1.1.2` |
+|                                                                       |                                                                                         |
+|:---------------------------------------------------------------------:|:---------------------------------------------------------------------------------------:|
+| [Compose BOM](https://developer.android.com/jetpack/compose/bom/bom)  | `2023.10.00`  [Mapping](https://developer.android.com/jetpack/compose/bom/bom-mapping)  |
+|                               Material3                               |                                         `1.1.2`                                         |
 
 ### Optional Dependencies
 
