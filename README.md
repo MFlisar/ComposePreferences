@@ -10,9 +10,9 @@ Made for **Compose M3**.
 ### Dependencies
 
 | Dependency | Version | Infos |
-|:--|--:|:--:|
-| [Compose BOM](https://developer.android.com/jetpack/compose/bom/bom)  | `2023.10.00` | [Mapping](https://developer.android.com/jetpack/compose/bom/bom-mapping) |
-|                               Material3                               |                                         `1.1.2`                                         | |
+|:-|-:|:-:|
+| [Compose BOM](https://developer.android.com/jetpack/compose/bom/bom) | `2023.10.00` | [Mapping](https://developer.android.com/jetpack/compose/bom/bom-mapping) |
+| Material3 | `1.1.2` | |
 
 ### Optional Dependencies
 
@@ -20,9 +20,18 @@ Made for **Compose M3**.
 
 The `screen-input`, `screen-color`,`screen-date`,`screen-time`,`screen-list` do depend on my [ComposeDialogs](https://github.com/MFlisar/ComposeDialogs) library.
 
+| Dependency | Version |
+|:-|-:|
+| [ComposeDialogs](https://github.com/MFlisar/ComposeDialogs) | 1.0.3 |
+
+
 #### Extensions
 
 The `extension-kotpreferences` does depend on my [KotPreferences](https://github.com/MFlisar/KotPreferences) library which allows you to simply define preferences via delegates and simply use them as compose states.
+
+| Dependency | Version |
+|:-|-:|
+| [KotPreferences](https://github.com/MFlisar/KotPreferences) | 0.3 |
 
 ### Gradle (via [JitPack.io](https://jitpack.io/))
 
