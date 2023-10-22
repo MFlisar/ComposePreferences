@@ -17,7 +17,7 @@ Made for **Compose M3**.
 ### Optional Dependencies
 
 * Dialog based modules do depend on my [ComposeDialogs](https://github.com/MFlisar/ComposeDialogs) library
-* Extensions do depend on the appearant library...
+* Extensions do depend on the respective library...
 
 | Modules | Dependency | Version |
 |:-|:-|-:|
@@ -77,6 +77,13 @@ It works as simple as following:
 | ![Demo](screenshots/previews/info1.jpg?raw=true "Preview") | ![Demo](screenshots/previews/info1.jpg?raw=true "Preview") |
 
 ### Existing preferences
+
+##### Info Preference (`core` module)
+
+| ![Demo](screenshots/previews/info1.jpg?raw=true "Preview") |
+|-|
+
+https://github.com/MFlisar/ComposePreferences/blob/442acb459d36b739e8aa076e8ac92c3b265545b0/library/src/main/java/com/michaelflisar/composepreferences/core/PreferenceInfo.kt#L33-L45
 
 | Preview | Constructor | Module |
 | :- | :- | :- |
