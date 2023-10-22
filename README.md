@@ -9,10 +9,10 @@ Made for **Compose M3**.
 
 ### Dependencies
 
-|                                                                       |                                                                                         |
-|:---------------------------------------------------------------------:|:---------------------------------------------------------------------------------------:|
-| [Compose BOM](https://developer.android.com/jetpack/compose/bom/bom)  | `2023.10.00`  [Mapping](https://developer.android.com/jetpack/compose/bom/bom-mapping)  |
-|                               Material3                               |                                         `1.1.2`                                         |
+| Dependency | Version | Infos |
+|:--|--:|:--:|
+| [Compose BOM](https://developer.android.com/jetpack/compose/bom/bom)  | `2023.10.00` | [Mapping](https://developer.android.com/jetpack/compose/bom/bom-mapping) |
+|                               Material3                               |                                         `1.1.2`                                         | |
 
 ### Optional Dependencies
 
@@ -71,8 +71,14 @@ It works as simple as following:
 
 ### Screenshots
 
-| | | | |
-| :---: | :---: | :---: | :---: |
-| ![Demo](screenshots/demo1.jpg?raw=true "Demo") | ![Demo](screenshots/demo2.jpg?raw=true "Demo") | ![Demo](screenshots/demo3.jpg?raw=true "Demo") | ![Demo](screenshots/demo4.jpg?raw=true "Demo") |
-| ![Demo](screenshots/demo5.jpg?raw=true "Demo") | ![Demo](screenshots/demo6.jpg?raw=true "Demo") | ![Demo](screenshots/demo7.jpg?raw=true "Demo") |  |
-| ![Demo](screenshots/demo-theme-1.jpg?raw=true "Demo") | ![Demo](screenshots/demo-theme-2.jpg?raw=true "Demo") | ![Demo](screenshots/demo-theme-3.jpg?raw=true "Demo") | |
+| ![Demo](screenshots/previews/info1.jpg?raw=true "Preview") | ![Demo](screenshots/previews/info1.jpg?raw=true "Preview") |
+|:-:|:-:|
+| ![Demo](screenshots/previews/info1.jpg?raw=true "Preview") | ![Demo](screenshots/previews/info1.jpg?raw=true "Preview") |
+| ![Demo](screenshots/previews/info1.jpg?raw=true "Preview") | ![Demo](screenshots/previews/info1.jpg?raw=true "Preview") |
+
+### Existing preferences
+
+| Module |Preview | Constructor | 
+| :- | :- | :- |
+| `core` | ![Demo](screenshots/previews/info1.jpg?raw=true "Preview") | https://github.com/MFlisar/ComposePreferences/blob/3c0720aace8cf4bcc355d7dda2d2585c5ff31d1a/library/src/main/java/com/michaelflisar/composepreferences/core/PreferenceInfo.kt#L22-L34 |
+| `core` | ![Demo](screenshots/previews/header1.jpg?raw=true "Preview") | https://github.com/MFlisar/ComposePreferences/blob/3c0720aace8cf4bcc355d7dda2d2585c5ff31d1a/library/src/main/java/com/michaelflisar/composepreferences/core/PreferenceSectionHeader.kt#L22-L31 |
