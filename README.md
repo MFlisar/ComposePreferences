@@ -78,20 +78,34 @@ It works as simple as following:
 
 ### Existing preferences
 
-##### Info Preference (`core` module)
-
-| ![Demo](screenshots/previews/info1.jpg?raw=true "Preview") |
-|-|
+##### Info Preference
 
 | Preview | Module |
 | :- | :- |
 | ![Demo](screenshots/previews/info1.jpg?raw=true "Preview") | `core` |
 
-
 https://github.com/MFlisar/ComposePreferences/blob/442acb459d36b739e8aa076e8ac92c3b265545b0/library/src/main/java/com/michaelflisar/composepreferences/core/PreferenceInfo.kt#L33-L45
 
-| Preview | Constructor | Module |
+##### Divider Preference
+
+| Preview | Module |
+| :- | :- |
+| ![Demo](screenshots/previews/divider1.jpg?raw=true "Preview") | `core` |
+
+https://github.com/MFlisar/ComposePreferences/blob/13344729f58591fe105537a742b0a5bddb9dbfb9/library/src/main/java/com/michaelflisar/composepreferences/core/PreferenceDivider.kt#L27-L32
+
+##### Section Header Preference
+
+| Preview | Module |
+| :- | :- |
+| ![Demo](screenshots/previews/header1.jpg?raw=true "Preview") | `core` |
+
+https://github.com/MFlisar/ComposePreferences/blob/13344729f58591fe105537a742b0a5bddb9dbfb9/library/src/main/java/com/michaelflisar/composepreferences/core/PreferenceSectionHeader.kt#L30-L39
+
+##### Bool Preference
+
+| Preview | | Module |
 | :- | :- | :- |
-| ![Demo](screenshots/previews/info1.jpg?raw=true "Preview") | https://github.com/MFlisar/ComposePreferences/blob/3c0720aace8cf4bcc355d7dda2d2585c5ff31d1a/library/src/main/java/com/michaelflisar/composepreferences/core/PreferenceInfo.kt#L22-L34 | `core` |
-| ![Demo](screenshots/previews/header1.jpg?raw=true "Preview") | https://github.com/MFlisar/ComposePreferences/blob/3c0720aace8cf4bcc355d7dda2d2585c5ff31d1a/library/src/main/java/com/michaelflisar/composepreferences/core/PreferenceSectionHeader.kt#L22-L31 | `core` |
-| ![Demo](screenshots/previews/divider1.jpg?raw=true "Preview") | https://github.com/MFlisar/ComposePreferences/blob/3c0720aace8cf4bcc355d7dda2d2585c5ff31d1a/library/src/main/java/com/michaelflisar/composepreferences/core/PreferenceDivider.kt#L12-L17 | `core` |
+| ![Demo](screenshots/previews/bool1.jpg?raw=true "Preview") | ![Demo](screenshots/previews/bool2.jpg?raw=true "Preview") | `core` |
+
+https://github.com/MFlisar/ComposePreferences/blob/442acb459d36b739e8aa076e8ac92c3b265545b0/modules/screen/bool/src/main/java/com/michaelflisar/composepreferences/screen/bool/PreferenceBool.kt#L39-L50
