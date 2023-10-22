@@ -71,10 +71,11 @@ It works as simple as following:
 
 ### Screenshots
 
-| [![Preview](screenshots/previews/info1.jpg?raw=true)](https://github.com/MFlisar/ComposePreferences#existing-preferences) | ![Preview](screenshots/previews/info1.jpg?raw=true "Preview") |
-|:-:|:-:|
-| ![Preview](screenshots/previews/info1.jpg?raw=true "Preview") | ![Preview](screenshots/previews/info1.jpg?raw=true "Preview") |
-| ![Preview](screenshots/previews/info1.jpg?raw=true "Preview") | ![Preview](screenshots/previews/info1.jpg?raw=true "Preview") |
+| ![Demo](screenshots/root.jpg?raw=true "Demo") | ![Demo](screenshots/infos.jpg?raw=true "Demo") | ![Demo](screenshots/bool.jpg?raw=true "Demo") |
+|:-:|:-:|:-:|
+| ![Demo](screenshots/button.jpg?raw=true "Demo") | ![Demo](screenshots/color.jpg?raw=true "Demo") | ![Demo](screenshots/date.jpg?raw=true "Demo") |
+| ![Demo](screenshots/input.jpg?raw=true "Demo") | ![Demo](screenshots/list.jpg?raw=true "Demo") | ![Demo](screenshots/number.jpg?raw=true "Demo") |
+| ![Demo](screenshots/time.jpg?raw=true "Demo") | | |
 
 ### Existing preferences
 
