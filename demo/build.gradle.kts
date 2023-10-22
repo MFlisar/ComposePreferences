@@ -66,6 +66,9 @@ dependencies {
 
     implementation(androidx.datastore.preferences)
 
+    implementation(compose.ui.tooling)
+    implementation(compose.ui.tooling.preview)
+
     // ------------------------
     // Libraries
     // ------------------------

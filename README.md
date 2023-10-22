@@ -7,6 +7,8 @@ This library offers you simple preference screens for compose.
 
 Made for **Compose M3**.
 
+![Overview](screenshots/overview.jpg?raw=true "Overview") |
+
 ### Dependencies
 
 | Dependency | Version | Infos |
