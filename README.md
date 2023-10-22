@@ -82,4 +82,4 @@ It works as simple as following:
 | :- | :- | :- |
 | `core` | ![Demo](screenshots/previews/info1.jpg?raw=true "Preview") | https://github.com/MFlisar/ComposePreferences/blob/3c0720aace8cf4bcc355d7dda2d2585c5ff31d1a/library/src/main/java/com/michaelflisar/composepreferences/core/PreferenceInfo.kt#L22-L34 |
 | `core` | ![Demo](screenshots/previews/header1.jpg?raw=true "Preview") | https://github.com/MFlisar/ComposePreferences/blob/3c0720aace8cf4bcc355d7dda2d2585c5ff31d1a/library/src/main/java/com/michaelflisar/composepreferences/core/PreferenceSectionHeader.kt#L22-L31 |
-| `core` | - | https://github.com/MFlisar/ComposePreferences/blob/3c0720aace8cf4bcc355d7dda2d2585c5ff31d1a/library/src/main/java/com/michaelflisar/composepreferences/core/PreferenceDivider.kt#L12-L17 |
+| `core` | ![Demo](screenshots/previews/divider1.jpg?raw=true "Preview") | https://github.com/MFlisar/ComposePreferences/blob/3c0720aace8cf4bcc355d7dda2d2585c5ff31d1a/library/src/main/java/com/michaelflisar/composepreferences/core/PreferenceDivider.kt#L12-L17 |
