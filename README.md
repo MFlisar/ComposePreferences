@@ -71,7 +71,7 @@ It works as simple as following:
 
 ### Screenshots
 
-| ![Demo](screenshots/previews/info1.jpg?raw=true "Preview") | ![Demo](screenshots/previews/info1.jpg?raw=true "Preview") |
+| [![Demo](screenshots/previews/info1.jpg?raw=true)](https://github.com/MFlisar/ComposePreferences#existing-preferences) | ![Demo](screenshots/previews/info1.jpg?raw=true "Preview") |
 |:-:|:-:|
 | ![Demo](screenshots/previews/info1.jpg?raw=true "Preview") | ![Demo](screenshots/previews/info1.jpg?raw=true "Preview") |
 | ![Demo](screenshots/previews/info1.jpg?raw=true "Preview") | ![Demo](screenshots/previews/info1.jpg?raw=true "Preview") |
