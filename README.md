@@ -68,7 +68,7 @@ It works as simple as following:
 ```kotlin
 // Preferences must be wrapped in a screen
 // => this allows to manage internal hierarchy and screen nesting and everything is managed automatically
-// => this also enabled internal scrolling
+// => this also enables internal scrolling
 PreferenceScreen(
     // optional parameters to customise this screen
     settings =  PreferenceSettingsDefaults.settings(),
