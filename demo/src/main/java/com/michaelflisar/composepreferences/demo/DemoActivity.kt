@@ -26,6 +26,7 @@ import com.michaelflisar.composepreferences.demo.classes.DemoDataStore
 import com.michaelflisar.composepreferences.demo.classes.DemoTheme
 import com.michaelflisar.composepreferences.demo.classes.LocalDataStore
 import com.michaelflisar.composepreferences.demo.composables.MyCollapsibleRegion
+import com.michaelflisar.composepreferences.demo.composables.MyInfoLine
 import com.michaelflisar.composepreferences.demo.composables.SegmentedButtons
 import com.michaelflisar.composepreferences.demo.demos.PrefScreenCustomDemo
 import com.michaelflisar.composepreferences.demo.demos.PrefScreenDemo
@@ -285,6 +286,7 @@ class DemoActivity : ComponentActivity() {
             // --------------------
 
             MyCollapsibleRegion("Demos", expandedId = 2, expanded = expandedRootRegions) {
+                MyInfoLine(label = "INFORMATION", info = "Only the first demo showcases all available preferences - the other demos just showcase the basic usage because everything else just works the same!", showEqualSign = false)
                 buttons.forEachIndexed { index, s ->
                     OutlinedButton(
                         onClick = {
