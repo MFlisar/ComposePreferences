@@ -50,7 +50,9 @@ import java.time.LocalTime
 private fun PreviewAll() {
     Column(
         //verticalArrangement = Arrangement.spacedBy(8.dp),
-        modifier = Modifier.border(1.dp, MaterialTheme.colorScheme.onBackground)
+        modifier = Modifier
+            .background(MaterialTheme.colorScheme.background)
+            .border(1.dp, MaterialTheme.colorScheme.onBackground)
     ) {
         RowHeader("Info Preference", "Section Header Preference", weight2 = 2f)
         RowPreferences(
