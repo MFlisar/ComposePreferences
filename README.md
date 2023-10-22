@@ -155,7 +155,7 @@ https://github.com/MFlisar/ComposePreferences/blob/880e28fdb71bb0c56840758ca7980
 | :- | :- |
 | ![Preview](screenshots/previews/divider1.jpg?raw=true "Preview") | `core` |
 
-https://github.com/MFlisar/ComposePreferences/blob/13344729f58591fe105537a742b0a5bddb9dbfb9/library/core/src/main/java/com/michaelflisar/composepreferences/core/PreferenceDivider.kt#L27-L32
+https://github.com/MFlisar/ComposePreferences/blob/880e28fdb71bb0c56840758ca79802e96e2a7e5b/library/core/src/main/java/com/michaelflisar/composepreferences/core/PreferenceDivider.kt#L27-L32
 
 ##### Section Header Preference
 
@@ -163,7 +163,7 @@ https://github.com/MFlisar/ComposePreferences/blob/13344729f58591fe105537a742b0a
 | :- | :- |
 | ![Preview](screenshots/previews/header1.jpg?raw=true "Preview") | `core` |
 
-https://github.com/MFlisar/ComposePreferences/blob/13344729f58591fe105537a742b0a5bddb9dbfb9/library/core/src/main/java/com/michaelflisar/composepreferences/core/PreferenceSectionHeader.kt#L30-L39
+https://github.com/MFlisar/ComposePreferences/blob/880e28fdb71bb0c56840758ca79802e96e2a7e5b/library/core/src/main/java/com/michaelflisar/composepreferences/core/PreferenceSectionHeader.kt#L30-L39
 
 ##### Bool Preference
 
