@@ -1,12 +1,18 @@
 package com.michaelflisar.composepreferences.screen.list
 
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.List
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
@@ -16,6 +22,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.michaelflisar.composedialogs.core.rememberDialogState
 import com.michaelflisar.composedialogs.dialogs.list.DialogList
@@ -25,6 +32,7 @@ import com.michaelflisar.composepreferences.core.classes.PreferenceData
 import com.michaelflisar.composepreferences.core.classes.PreferenceStyle
 import com.michaelflisar.composepreferences.core.composables.BasePreference
 import com.michaelflisar.composepreferences.core.composables.PreferenceContentText
+import com.michaelflisar.composepreferences.core.composables.PreviewPreference
 import com.michaelflisar.composepreferences.core.hierarchy.PreferenceScope
 
 @Composable
@@ -147,7 +155,7 @@ fun <T> PreferenceScope.PreferenceList(
                         Row(
                             modifier = Modifier.weight(1f),
                             verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.spacedBy(8.dp)
+                            horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.End)
                         ) {
                             itemIconProvider?.let {
                                 it(value)
@@ -196,5 +204,40 @@ fun <T> PreferenceScope.PreferenceList(
 object PreferenceList {
     enum class Style {
         Dialog, Spinner
+    }
+}
+
+@Preview
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, name = "Dark")
+@Composable
+private fun Preview() {
+    PreviewPreference {
+        PreferenceList(
+            value = "Value 1",
+            onValueChange = {},
+            items = listOf("Value 1", "Value 2"),
+            itemTextProvider = { it },
+            icon = { Icon(Icons.Default.List, null) },
+            title = { Text(text = "List Preference") },
+            subtitle = { Text(text = "Clicking this item will open a dialog to select a list entry") },
+        )
+    }
+}
+
+@Preview
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, name = "Dark")
+@Composable
+private fun Preview2() {
+    PreviewPreference {
+        PreferenceList(
+            style = PreferenceList.Style.Spinner,
+            value = "Value 1",
+            onValueChange = {},
+            items = listOf("Value 1", "Value 2"),
+            itemTextProvider = { it },
+            icon = { Icon(Icons.Default.List, null) },
+            title = { Text(text = "List Preference") },
+            subtitle = { Text(text = "Clicking this item will open a dropdown to select a list entry") },
+        )
     }
 }

@@ -3,6 +3,7 @@ package com.michaelflisar.composepreferences.screen.number
 import android.content.res.Configuration
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Slider
 import androidx.compose.material3.SliderDefaults
@@ -171,14 +172,33 @@ object PreferenceNumber {
 private fun Preview() {
     PreviewPreference {
         PreferenceNumber(
-            value = 100,
+            value = 3,
             onValueChange = {},
             min = 0,
-            max = 1000,
-            stepSize = 10,
-            icon = { Icon(Icons.Default.Info, null) },
+            max = 5,
+            stepSize = 1,
+            icon = { Icon(Icons.Default.Star, null) },
             title = { Text(text = "Input Number Title") },
-            subtitle = { Text(text = "This is a description") },
+            subtitle = { Text(text = "This allows you to PICK any valid INTEGER inside a dialog with a number picker") },
+        )
+    }
+}
+
+@Preview
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, name = "Dark")
+@Composable
+private fun Preview2() {
+    PreviewPreference {
+        PreferenceNumber(
+            style = PreferenceNumber.Style.Slider(),
+            value = 3,
+            onValueChange = {},
+            min = 0,
+            max = 5,
+            stepSize = 1,
+            icon = { Icon(Icons.Default.Star, null) },
+            title = { Text(text = "Input Number Title") },
+            subtitle = { Text(text = "Select a number with a slider") },
         )
     }
 }

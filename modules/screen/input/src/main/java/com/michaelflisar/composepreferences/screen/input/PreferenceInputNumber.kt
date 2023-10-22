@@ -2,6 +2,7 @@ package com.michaelflisar.composepreferences.screen.input
 
 import android.content.res.Configuration
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -99,9 +100,24 @@ private fun Preview() {
         PreferenceInputNumber(
             value = 100,
             onValueChange = {},
-            icon = { Icon(Icons.Default.Info, null) },
-            title = { Text(text = "Input Number Title") },
-            subtitle = { Text(text = "This is a description") },
+            icon = { Icon(Icons.Default.Add, null) },
+            title = { Text(text = "Input Number") },
+            subtitle = { Text(text = "Input any valid INTEGER inside a dialog with an input field") },
+        )
+    }
+}
+
+@Preview
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, name = "Dark")
+@Composable
+private fun Preview2() {
+    PreviewPreference {
+        PreferenceInputNumber(
+            value = 3.5f,
+            onValueChange = {},
+            icon = { Icon(Icons.Default.Add, null) },
+            title = { Text(text = "Input Number") },
+            subtitle = { Text(text = "Input any valid FLOAT inside a dialog with an input field") },
         )
     }
 }

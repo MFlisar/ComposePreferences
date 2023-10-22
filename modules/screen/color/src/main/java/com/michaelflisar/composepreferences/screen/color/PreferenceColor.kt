@@ -3,10 +3,14 @@ package com.michaelflisar.composepreferences.screen.color
 import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -126,11 +130,26 @@ fun PreferenceScope.PreferenceColor(
 private fun Preview() {
     PreviewPreference {
         PreferenceColor(
-            value = Color.Red,
+            value = Color.Blue,
             onValueChange = {},
-            icon = { Icon(Icons.Default.Info, null) },
-            title = { Text(text = "Color Title") },
-            subtitle = { Text(text = "This is a description") },
+            icon = { Icon(Icons.Default.Favorite, null) },
+            title = { Text(text = "Color Preference") },
+            subtitle = { Text(text = "This preference does allow to select any RGB color") }
+        )
+    }
+}
+
+@Preview
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, name = "Dark")
+@Composable
+private fun Preview2() {
+    PreviewPreference {
+        PreferenceColor(
+            value = Color.Red.copy(alpha = .5f),
+            onValueChange = {},
+            icon = { Icon(Icons.Default.Favorite, null) },
+            title = { Text(text = "Color Preference") },
+            subtitle = { Text(text = "This preference does allow to select any ARGB color") }
         )
     }
 }

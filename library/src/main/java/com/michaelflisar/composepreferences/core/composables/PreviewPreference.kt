@@ -7,7 +7,7 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import com.michaelflisar.composepreferences.core.PreferenceScreen
-import com.michaelflisar.composepreferences.core.classes.PreferenceSettings
+import com.michaelflisar.composepreferences.core.classes.PreferenceSettingsDefaults
 import com.michaelflisar.composepreferences.core.hierarchy.PreferenceScope
 
 /*
@@ -25,7 +25,7 @@ fun PreviewPreference(
             color = MaterialTheme.colorScheme.background
         ) {
             PreferenceScreen(
-                settings = PreferenceSettings(
+                settings = PreferenceSettingsDefaults.settings(
                     animationSpec = null
                 )
             ) {

@@ -2,6 +2,7 @@ package com.michaelflisar.composepreferences.screen.date
 
 import android.content.res.Configuration
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -119,9 +120,9 @@ private fun Preview() {
         PreferenceDate(
             value = LocalDate.now(),
             onValueChange = {},
-            icon = { Icon(Icons.Default.Info, null) },
-            title = { Text(text = "Date Title") },
-            subtitle = { Text(text = "This is a description") },
+            icon = { Icon(Icons.Default.DateRange, null) },
+            title = { Text(text = "Date Preference") },
+            subtitle = { Text(text = "Click to open a date selector dialog") },
         )
     }
 }

@@ -58,8 +58,9 @@ dependencies {
     // Compose BOM
     implementation(platform(compose.bom))
     implementation(compose.material3)
-
     implementation(compose.activity)
+    implementation(compose.ui.tooling)
+    implementation(compose.ui.tooling.preview)
 
 }
 

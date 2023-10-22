@@ -1,11 +1,15 @@
 package com.michaelflisar.composepreferences.core
 
+import android.content.res.Configuration
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.michaelflisar.composepreferences.core.classes.Dependency
 import com.michaelflisar.composepreferences.core.classes.LocalPreferenceSettings
@@ -13,6 +17,7 @@ import com.michaelflisar.composepreferences.core.classes.PreferenceStyle
 import com.michaelflisar.composepreferences.core.composables.BasePreference
 import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetup
 import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetupDefaults
+import com.michaelflisar.composepreferences.core.composables.PreviewPreference
 import com.michaelflisar.composepreferences.core.hierarchy.LocalIndex
 import com.michaelflisar.composepreferences.core.hierarchy.LocalOpenedGroups
 import com.michaelflisar.composepreferences.core.hierarchy.PreferenceGroupItem
@@ -71,5 +76,20 @@ fun PreferenceScope.PreferenceSubScreen(
         }
     ) {
         content()
+    }
+}
+
+@Preview
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, name = "Dark")
+@Composable
+private fun Preview() {
+    PreviewPreference {
+        PreferenceSubScreen(
+            icon = { Icon(Icons.Default.Info, null) },
+            title = { Text(text = "Sub Screen Preference") },
+            subtitle = { Text(text = "This is a description") }
+        ) {
+
+        }
     }
 }

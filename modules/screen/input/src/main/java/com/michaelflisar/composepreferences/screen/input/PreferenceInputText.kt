@@ -3,6 +3,7 @@ package com.michaelflisar.composepreferences.screen.input
 import android.content.res.Configuration
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.MailOutline
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -93,9 +94,9 @@ private fun Preview() {
         PreferenceInputText(
             value = "Hello",
             onValueChange = {},
-            icon = { Icon(Icons.Default.Info, null) },
-            title = { Text(text = "Input Text Title") },
-            subtitle = { Text(text = "This is a description") },
+            icon = { Icon(Icons.Default.MailOutline, null) },
+            title = { Text(text = "Input Text") },
+            subtitle = { Text(text = "Input some text inside a dialog") },
         )
     }
 }

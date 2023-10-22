@@ -4,6 +4,7 @@ import android.content.res.Configuration
 import android.text.format.DateFormat
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -124,9 +125,9 @@ private fun Preview() {
             value = LocalTime.now(),
             onValueChange = {},
             is24Hours = true,
-            icon = { Icon(Icons.Default.Info, null) },
+            icon = { Icon(Icons.Default.Refresh, null) },
             title = { Text(text = "Time Title") },
-            subtitle = { Text(text = "This is a description") },
+            subtitle = { Text(text = "Select a time inside a time picker dialog") },
         )
     }
 }

@@ -3,24 +3,22 @@
 [![Release](https://jitpack.io/v/MFlisar/ComposePreferences.svg)](https://jitpack.io/#MFlisar/ComposePreferences)
 ![License](https://img.shields.io/github/license/MFlisar/ComposePreferences)
 
-This library offers you simple setting screens for compose.
+This library offers you simple preference screens for compose.
 
 Made for **Compose M3**.
 
 ### Dependencies
 
-| Dependency |        Version |
+| Dependency |        Version |        Version |
 |:-------------------------------------------------------------------- |---------------:|
-| [Compose BOM](https://developer.android.com/jetpack/compose/bom/bom) |   `2023.10.00` |
+| [Compose BOM](https://developer.android.com/jetpack/compose/bom/bom) |   `2023.10.00`  [Mapping](https://developer.android.com/jetpack/compose/bom/bom-mapping) |
 | Material3 | `1.1.2` |
-
-Compose Mappings for BOM file: [Mapping](https://developer.android.com/jetpack/compose/bom/bom-mapping)
 
 ### Optional Dependencies
 
 #### Dialog based modules
 
-The `screen-input`, `screen-color`,`screen-date`,`screen-time`,`screen-list` do depend on my [ComposeDialogs](https://github.com/MFlisar/ComposeDialogs) library
+The `screen-input`, `screen-color`,`screen-date`,`screen-time`,`screen-list` do depend on my [ComposeDialogs](https://github.com/MFlisar/ComposeDialogs) library.
 
 #### Extensions
 
