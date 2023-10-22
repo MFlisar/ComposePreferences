@@ -58,9 +58,8 @@ dependencies {
     implementation(platform(compose.bom))
     implementation(compose.material3)
     implementation(compose.activity)
-    implementation(compose.ui.tooling)
+	implementation(compose.ui.tooling)
     implementation(compose.ui.tooling.preview)
-
 }
 
 project.afterEvaluate {
