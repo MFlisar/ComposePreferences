@@ -83,6 +83,11 @@ It works as simple as following:
 | ![Demo](screenshots/previews/info1.jpg?raw=true "Preview") |
 |-|
 
+| Preview | Module |
+| :- | :- |
+| ![Demo](screenshots/previews/info1.jpg?raw=true "Preview") | `core` |
+
+
 https://github.com/MFlisar/ComposePreferences/blob/442acb459d36b739e8aa076e8ac92c3b265545b0/library/src/main/java/com/michaelflisar/composepreferences/core/PreferenceInfo.kt#L33-L45
 
 | Preview | Constructor | Module |
