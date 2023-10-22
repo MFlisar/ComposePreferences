@@ -73,6 +73,12 @@ dependencies {
     // ------------------------
 
     implementation(project(":ComposePreferences:Core"))
+
+    // ------------------------
+    // Desugar
+    // ------------------------
+
+    coreLibraryDesugaring(deps.desugar)
 }
 
 project.afterEvaluate {
