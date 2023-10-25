@@ -143,6 +143,10 @@ PreferenceScreen(
 }
 ```
 
+###  Demo
+
+A full [demo](demo/src/main/java/com/michaelflisar/compospreferences/demo/DemoActivity.kt) is included inside the *demo module*, it shows nearly every usage with working examples.
+
 ### Screenshots
 
 | ![Demo](screenshots/light/root.jpg?raw=true "Demo") | ![Demo](screenshots/light/infos.jpg?raw=true "Demo") | ![Demo](screenshots/light/bool.jpg?raw=true "Demo") |
