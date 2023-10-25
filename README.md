@@ -9,7 +9,9 @@ Made for **Compose M3**.
 
 ### Overview
 
-![Overview](screenshots/overview.jpg?raw=true "Overview")
+| ![Overview](screenshots/overview.jpg?raw=true "Overview") | ![Overview](screenshots/overview2.jpg?raw=true "Overview") |
+|-|-|
+
 
 ### Dependencies
 
@@ -145,11 +147,11 @@ PreferenceScreen(
 
 ### Screenshots
 
-| ![Demo](screenshots/root.jpg?raw=true "Demo") | ![Demo](screenshots/infos.jpg?raw=true "Demo") | ![Demo](screenshots/bool.jpg?raw=true "Demo") |
+| ![Demo](screenshots/light/root.jpg?raw=true "Demo") | ![Demo](screenshots/light/infos.jpg?raw=true "Demo") | ![Demo](screenshots/light/bool.jpg?raw=true "Demo") |
 |:-:|:-:|:-:|
-| ![Demo](screenshots/button.jpg?raw=true "Demo") | ![Demo](screenshots/color.jpg?raw=true "Demo") | ![Demo](screenshots/date.jpg?raw=true "Demo") |
-| ![Demo](screenshots/input.jpg?raw=true "Demo") | ![Demo](screenshots/list.jpg?raw=true "Demo") | ![Demo](screenshots/number.jpg?raw=true "Demo") |
-| ![Demo](screenshots/time.jpg?raw=true "Demo") | | |
+| ![Demo](screenshots/light/button.jpg?raw=true "Demo") | ![Demo](screenshots/light/color.jpg?raw=true "Demo") | ![Demo](screenshots/light/date.jpg?raw=true "Demo") |
+| ![Demo](screenshots/light/input.jpg?raw=true "Demo") | ![Demo](screenshots/light/list.jpg?raw=true "Demo") | ![Demo](screenshots/light/number.jpg?raw=true "Demo") |
+| ![Demo](screenshots/light/time.jpg?raw=true "Demo") | | |
 
 ### Existing preferences
 
