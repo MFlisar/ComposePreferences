@@ -145,7 +145,7 @@ PreferenceScreen(
 
 ###  Demo
 
-A full [demo](demo/src/main/java/com/michaelflisar/compospreferences/demo/DemoActivity.kt) is included inside the *demo module*, it shows nearly every usage with working examples.
+A full [demo](demo/src/main/java/com/michaelflisar/composepreferences/demo/DemoActivity.kt) is included inside the *demo module*, it shows nearly every usage with working examples.
 
 ### Screenshots
 
