@@ -10,9 +10,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.michaelflisar.composedialogs.core.rememberDialogState
-import com.michaelflisar.composedialogs.dialogs.datetime.DialogDate
-import com.michaelflisar.composedialogs.dialogs.datetime.DialogDateDefaults
-import com.michaelflisar.composedialogs.dialogs.datetime.rememberDialogDate
+import com.michaelflisar.composedialogs.dialogs.date.DialogDate
+import com.michaelflisar.composedialogs.dialogs.date.DialogDateDefaults
+import com.michaelflisar.composedialogs.dialogs.date.rememberDialogDate
 import com.michaelflisar.composepreferences.core.classes.PreferenceData
 import com.michaelflisar.composepreferences.core.classes.Dependency
 import com.michaelflisar.composepreferences.core.classes.LocalPreferenceSettings

@@ -10,11 +10,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.michaelflisar.composedialogs.core.rememberDialogState
-import com.michaelflisar.composedialogs.dialogs.datetime.DialogTime
-import com.michaelflisar.composedialogs.dialogs.datetime.DialogTimeDefaults
-import com.michaelflisar.composedialogs.dialogs.datetime.rememberDialogTime
+import com.michaelflisar.composedialogs.dialogs.time.DialogTime
+import com.michaelflisar.composedialogs.dialogs.time.DialogTimeDefaults
+import com.michaelflisar.composedialogs.dialogs.time.rememberDialogTime
 import com.michaelflisar.composepreferences.core.classes.PreferenceData
 import com.michaelflisar.composepreferences.core.classes.Dependency
 import com.michaelflisar.composepreferences.core.classes.LocalPreferenceSettings

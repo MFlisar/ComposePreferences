@@ -65,8 +65,14 @@ dependencies {
     // Dialog
     // ------------------------
 
-    implementation(deps.composedialogs.core)
-    implementation(deps.composedialogs.dialog.time)
+    val useLiveDependencies = providers.gradleProperty("useLiveDependencies").get().toBoolean()
+    if (useLiveDependencies) {
+        implementation(deps.composedialogs.core)
+        implementation(deps.composedialogs.dialog.time)
+    } else {
+        implementation(project(":ComposeDialogs:Core"))
+        implementation(project(":ComposeDialogs:Modules:Time"))
+    }
 
     // ------------------------
     // Libraries

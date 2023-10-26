@@ -64,8 +64,14 @@ dependencies {
     // Dialog
     // ------------------------
 
-    implementation(deps.composedialogs.core)
-    implementation(deps.composedialogs.dialog.color)
+    val useLiveDependencies = providers.gradleProperty("useLiveDependencies").get().toBoolean()
+    if (useLiveDependencies) {
+        implementation(deps.composedialogs.core)
+        implementation(deps.composedialogs.dialog.color)
+    } else {
+        implementation(project(":ComposeDialogs:Core"))
+        implementation(project(":ComposeDialogs:Modules:Color"))
+    }
 
     // ------------------------
     // Libraries

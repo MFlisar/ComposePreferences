@@ -73,35 +73,16 @@ dependencies {
     // Libraries
     // ------------------------
 
-    val live = false
-    val composePreferences = "0.1"
-
-    // release test
-    if (live) {
-        implementation("com.github.MFlisar.ComposePreferences:core:$composePreferences")
-        implementation("com.github.MFlisar.ComposePreferences:screen-bool:$composePreferences")
-        implementation("com.github.MFlisar.ComposePreferences:screen-button:$composePreferences")
-        implementation("com.github.MFlisar.ComposePreferences:screen-input:$composePreferences")
-        implementation("com.github.MFlisar.ComposePreferences:screen-color:$composePreferences")
-        implementation("com.github.MFlisar.ComposePreferences:screen-date:$composePreferences")
-        implementation("com.github.MFlisar.ComposePreferences:screen-time:$composePreferences")
-        implementation("com.github.MFlisar.ComposePreferences:screen-list:$composePreferences")
-        implementation("com.github.MFlisar.ComposePreferences:screen-number:$composePreferences")
-
-        implementation("com.github.MFlisar.ComposePreferences:extension-kotpreferences:$composePreferences")
-    } else {
-        implementation(project(":ComposePreferences:Core"))
-        implementation(project(":ComposePreferences:Modules:Screen:Bool"))
-        implementation(project(":ComposePreferences:Modules:Screen:Button"))
-        implementation(project(":ComposePreferences:Modules:Screen:Input"))
-        implementation(project(":ComposePreferences:Modules:Screen:Color"))
-        implementation(project(":ComposePreferences:Modules:Screen:Date"))
-        implementation(project(":ComposePreferences:Modules:Screen:Time"))
-        implementation(project(":ComposePreferences:Modules:Screen:List"))
-        implementation(project(":ComposePreferences:Modules:Screen:Number"))
-
-        implementation(project(":ComposePreferences:Modules:KotPreferences"))
-    }
+    implementation(project(":ComposePreferences:Core"))
+    implementation(project(":ComposePreferences:Modules:Screen:Bool"))
+    implementation(project(":ComposePreferences:Modules:Screen:Button"))
+    implementation(project(":ComposePreferences:Modules:Screen:Input"))
+    implementation(project(":ComposePreferences:Modules:Screen:Color"))
+    implementation(project(":ComposePreferences:Modules:Screen:Date"))
+    implementation(project(":ComposePreferences:Modules:Screen:Time"))
+    implementation(project(":ComposePreferences:Modules:Screen:List"))
+    implementation(project(":ComposePreferences:Modules:Screen:Number"))
+    implementation(project(":ComposePreferences:Modules:KotPreferences"))
 
     // KotPreferences
     // implementation(deps.kotpreferences.core) already included by the kotpreferences module!
