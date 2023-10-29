@@ -52,7 +52,7 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.michaelflisar.composepreferences.screen.button.PreferenceButton
+import com.michaelflisar.composedemobaseactivity.classes.ToastHelper
 import com.michaelflisar.composepreferences.core.PreferenceDivider
 import com.michaelflisar.composepreferences.core.PreferenceInfo
 import com.michaelflisar.composepreferences.core.PreferenceScreen
@@ -62,13 +62,13 @@ import com.michaelflisar.composepreferences.core.classes.PreferenceStyleDefaults
 import com.michaelflisar.composepreferences.core.composables.BasePreference
 import com.michaelflisar.composepreferences.core.composables.BasePreferenceContainer
 import com.michaelflisar.composepreferences.core.hierarchy.PreferenceScope
-import com.michaelflisar.composepreferences.demo.custom.AppItem
-import com.michaelflisar.composepreferences.demo.classes.AppPrefs
+import com.michaelflisar.composepreferences.demo.classes.DemoPrefs
 import com.michaelflisar.composepreferences.demo.classes.LocalDataStore
-import com.michaelflisar.composepreferences.demo.classes.demoToast
 import com.michaelflisar.composepreferences.demo.composables.DemoPreferenceGroup
+import com.michaelflisar.composepreferences.demo.custom.AppItem
 import com.michaelflisar.composepreferences.demo.custom.SelectAppPreference
 import com.michaelflisar.composepreferences.screen.bool.PreferenceBool
+import com.michaelflisar.composepreferences.screen.button.PreferenceButton
 import com.michaelflisar.composepreferences.screen.color.PreferenceColor
 import com.michaelflisar.composepreferences.screen.date.PreferenceDate
 import com.michaelflisar.composepreferences.screen.input.PreferenceInputNumber
@@ -89,7 +89,7 @@ import java.time.format.FormatStyle
 @Composable
 fun PrefScreenDemo() {
 
-    val settings = AppPrefs.preferenceSettings()
+    val settings = DemoPrefs.preferenceSettings()
 
     // Preferences must be wrapped in a screen
     // => this allows to manage internal hierarchy and screen nesting and everything is managed automatically
@@ -131,7 +131,7 @@ private fun PreferenceScope.PreferenceInfoExamples() {
             subtitle = { Text("This is a preference that only shows some information but does not hold any data. It contains a hidden long click listener that can be used to enabled dev menus/options or similar.") },
             icon = { Icon(Icons.Outlined.Info, null) },
             onLongClick = {
-                context.demoToast("Hidden long press found :-)")
+                ToastHelper.show(context, "Hidden long press found :-)")
             }
         )
         PreferenceInfo(
@@ -139,7 +139,7 @@ private fun PreferenceScope.PreferenceInfoExamples() {
             subtitle = { Text("This is like the previous information but it aligns its content at the top (all other preferences do always align their content at the center but the info preference allows you to customise this to get something that looks like a footnote preference which is described inside googles preference design guidelines.).") },
             icon = { Icon(Icons.Outlined.Info, null) },
             onLongClick = {
-                context.demoToast("Hidden long press found :-)")
+                ToastHelper.show(context, "Hidden long press found :-)")
             },
             alignment = Alignment.Top
         )
@@ -268,7 +268,7 @@ private fun PreferenceScope.PreferenceButtonExamples() {
             subtitle = { Text("Clicking this button will increase counter 1") },
             icon = { Icon(Icons.Default.AdsClick, null) },
             onClick = {
-                context.demoToast("Button 1 clicked!")
+                ToastHelper.show(context, "Button 1 clicked!")
                 counter1++
             }
         )
@@ -276,7 +276,7 @@ private fun PreferenceScope.PreferenceButtonExamples() {
             title = { Text("Button 2") },
             subtitle = { Text("Clicking this button will increase counter 2") },
             onClick = {
-                context.demoToast("Button2 clicked!")
+                ToastHelper.show(context, "Button2 clicked!")
                 counter2++
             }
         )
@@ -688,7 +688,6 @@ private fun PreferenceScope.PreferenceTimeExamples() {
 private fun PreferenceScope.PreferenceDependenciesExamples() {
     val dataStore = LocalDataStore.current
     val scope = rememberCoroutineScope()
-    val context = LocalContext.current
     DemoPreferenceGroup(
         type = "Dependency",
         details = "Click to see some examples that show you how you can show/hide or enable/disable preferences dependent on some main preference",
@@ -809,8 +808,6 @@ private fun PreferenceScope.PreferenceDependenciesExamples() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun PreferenceScope.PreferenceCustomExamples() {
-    val dataStore = LocalDataStore.current
-    val scope = rememberCoroutineScope()
     val context = LocalContext.current
     DemoPreferenceGroup(
         type = "Custom",
@@ -833,7 +830,7 @@ private fun PreferenceScope.PreferenceCustomExamples() {
             icon = { Icon(Icons.Default.Android, null) }
         ) {
             IconButton(onClick = {
-                context.demoToast("IconButton clicked")
+                ToastHelper.show(context, "IconButton clicked")
             }) {
                 Icon(Icons.Default.Android, null)
             }
@@ -863,7 +860,7 @@ private fun PreferenceScope.PreferenceCustomExamples() {
                     .fillMaxWidth()
                     .minimumInteractiveComponentSize(),
                 onClick = {
-                    context.demoToast("Card clicked")
+                    ToastHelper.show(context, "Card clicked")
                 }
             ) {
                 Row(
@@ -888,7 +885,7 @@ private fun PreferenceScope.PreferenceCustomExamples() {
             icon = { Icon(Icons.Default.Android, null) }
         ) {
             Button(onClick = {
-                context.demoToast("Button clicked")
+                ToastHelper.show(context, "Button clicked")
             }) {
                 Icon(Icons.Default.Android, null)
             }
@@ -902,7 +899,7 @@ private fun PreferenceScope.PreferenceCustomExamples() {
             Button(
                 modifier = modifier,
                 onClick = {
-                    context.demoToast("Button clicked")
+                    ToastHelper.show(context, "Button clicked")
                 }) {
                 Text("Button")
             }
@@ -920,14 +917,14 @@ private fun PreferenceScope.PreferenceCustomExamples() {
                 Button(
                     modifier = Modifier.weight(1f),
                     onClick = {
-                        context.demoToast("Button 1 clicked")
+                        ToastHelper.show(context, "Button 1 clicked")
                     }) {
                     Text("Button 1")
                 }
                 Button(
                     modifier = Modifier.weight(1f),
                     onClick = {
-                        context.demoToast("Button 2 clicked")
+                        ToastHelper.show(context, "Button 2 clicked")
                     }) {
                     Text("Button 2")
                 }
@@ -957,7 +954,7 @@ private fun PreferenceScope.PreferenceCustom2Examples() {
         }
         val item = appItem.value ?: return@DemoPreferenceGroup
         SelectAppPreference(
-            value =item,
+            value = item,
             onValueChange = {
                 scope.launch(Dispatchers.IO) {
                     dataStore.update("app", it.packageName)

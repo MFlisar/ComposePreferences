@@ -55,10 +55,8 @@ dependencies {
     // AndroidX
     // ------------------------
 
-    // Compose BOM
+    // Compose
     implementation(platform(compose.bom))
-
-    // Dependent on Compose BOM
     implementation(compose.material3)
     implementation(compose.activity)
     implementation(compose.material.extendedicons)
@@ -98,4 +96,11 @@ dependencies {
     // ------------------------
 
     coreLibraryDesugaring(deps.desugar)
+
+    // ------------------------
+    // Others
+    // ------------------------
+
+    // a minimal library that provides some useful composables that I use inside demo activities
+    implementation(deps.composedemobaseactivity)
 }

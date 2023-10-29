@@ -15,8 +15,8 @@ import androidx.compose.ui.unit.dp
 fun MyInfoLine(
     label: String,
     info: String,
-    showEqualSign: Boolean = true,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    showEqualSign: Boolean = true
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,

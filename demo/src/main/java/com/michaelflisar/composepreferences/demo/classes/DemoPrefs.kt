@@ -1,21 +1,87 @@
 package com.michaelflisar.composepreferences.demo.classes
 
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.KeyboardArrowRight
+import androidx.compose.material3.Icon
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import com.michaelflisar.composepreferences.core.classes.PreferenceSettings
+import com.michaelflisar.composepreferences.core.classes.PreferenceSettingsDefaults
 import com.michaelflisar.kotpreferences.core.SettingsModel
 import com.michaelflisar.kotpreferences.datastore.DataStoreStorage
+import kotlinx.coroutines.flow.combine
 
-object DemoPrefs : SettingsModel(DataStoreStorage(name = "prefs")) {
+object DemoPrefs : SettingsModel(DataStoreStorage(name = "demo_prefs")) {
 
-    // demo preferences
-    val stringValue by stringPref("some string")
-    val intValue by intPref(123)
+    // PreferenceSettings
+    val disabledStateAlpha by floatPref(.4f)
+    val disabledStateGrayscale by boolPref(false)
+    val toggleBooleanOnItemClick by boolPref(false)
+    val maxLinesValue by intPref(2)
+    val showSubScreenEndIndicator by boolPref(true)
+    val forceNoIconInset by boolPref(false)
 
-    // master/node example
-    val master1 by boolPref(true)
-    val node1a by intPref(123)
-    val node1b by boolPref(true)
-    val node1c by stringPref("Sub of master 1...")
-    val master2 by boolPref(true)
-    val node2a by intPref(456)
-    val node2b by boolPref(false)
-    val node2c by stringPref("Sub of master 2...")
+    // helper functions that converts all settings above into one flow and then converts this flow into a state
+    // => this state will change whenever any setting in the group will change and this is what we want here...
+    @Composable
+    fun preferenceSettings(): PreferenceSettings {
+        val settings = listOf(
+            disabledStateAlpha,
+            disabledStateGrayscale,
+            toggleBooleanOnItemClick,
+            maxLinesValue,
+            showSubScreenEndIndicator,
+            forceNoIconInset
+        )
+        val data = combine(settings.map { it.flow }) {it.toList()}.collectAsState(initial = emptyList())
+
+        return if (data.value.isEmpty()) {
+            PreferenceSettingsDefaults.settings()
+        } else {
+            val data = data.value
+            PreferenceSettingsDefaults.settings(
+                disabledStateAlpha = data[0] as Float,
+                disabledStateGrayscale = data[1] as Boolean,
+                toggleBooleanOnItemClick = data[2] as Boolean,
+                maxLinesValue = data[3] as Int,
+                subScreenEndIndicator = if (data[4] as Boolean) {
+                    @Composable {
+                        Icon(
+                            imageVector = Icons.Default.KeyboardArrowRight,
+                            contentDescription = null
+                        )
+                    }
+                } else null,
+                forceNoIconInset = data[5] as Boolean,
+            )
+        }
+
+
+        /*
+        return SettingsGroup(
+            disabledStateAlpha,
+            disabledStateGrayscale,
+            toggleBooleanOnItemClick,
+            maxLinesValue,
+            showSubScreenEndIndicator,
+            forceNoIconInset,
+        ) {
+            PreferenceSettingsDefaults.settings(
+                disabledStateAlpha = it[0] as Float,
+                disabledStateGrayscale = it[1] as Boolean,
+                toggleBooleanOnItemClick = it[2] as Boolean,
+                maxLinesValue = it[3] as Int,
+                subScreenEndIndicator = if (it[4] as Boolean) {
+                    @Composable {
+                        Icon(
+                            imageVector = Icons.Default.KeyboardArrowRight,
+                            contentDescription = null
+                        )
+                    }
+                } else null,
+                forceNoIconInset = it[5] as Boolean,
+            )
+        }.flow.collectAsState(initial = null)*/
+    }
+
 }
