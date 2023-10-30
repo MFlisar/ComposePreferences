@@ -21,6 +21,19 @@ android {
         versionName = "1.0"
     }
 
+    // eventually use local custom signing
+    val debugKeyStore = providers.gradleProperty("debugKeyStore").orNull
+    if (debugKeyStore != null) {
+        signingConfigs {
+            getByName("debug") {
+                keyAlias = "androiddebugkey"
+                keyPassword = "android"
+                storeFile = file(debugKeyStore)
+                storePassword = "android"
+            }
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false

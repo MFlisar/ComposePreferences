@@ -6,6 +6,7 @@ import androidx.compose.runtime.Stable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.michaelflisar.composepreferences.core.composables.PreferenceItemColors
@@ -19,7 +20,9 @@ class PreferenceStyle internal constructor(
     val colors: PreferenceItemColors = PreferenceItemColors(),
     val shape: Shape = RectangleShape,
     val tonalElevation: Dp = 0.dp,
-    val shadowElevation: Dp = 0.dp
+    val shadowElevation: Dp = 0.dp,
+    val titleTextStyle: TextStyle = TextStyle.Default,
+    val subtitleTextStyle: TextStyle = TextStyle.Default
 )
 
 @Stable
@@ -36,6 +39,8 @@ object PreferenceStyleDefaults {
      * @param shape the [Shape] of this item
      * @param tonalElevation the tonal elevation of this item
      * @param shadowElevation the shadow elevation of this item
+     * @param titleTextStyle the shadow elevation of this item
+     * @param subtitleTextStyle the shadow elevation of this item
      *
      * @return the [PreferenceStyle] holding the provided setup
      */
@@ -44,8 +49,10 @@ object PreferenceStyleDefaults {
         colors: PreferenceItemColors = PreferenceItemDefaults.colors(),
         shape: Shape = RectangleShape,
         tonalElevation: Dp = 0.dp,
-        shadowElevation: Dp = 0.dp
-    ): PreferenceStyle = PreferenceStyle(colors, shape, tonalElevation, shadowElevation)
+        shadowElevation: Dp = 0.dp,
+        titleTextStyle: TextStyle = MaterialTheme.typography.labelLarge,
+        subtitleTextStyle: TextStyle = MaterialTheme.typography.bodyMedium
+    ): PreferenceStyle = PreferenceStyle(colors, shape, tonalElevation, shadowElevation, titleTextStyle, subtitleTextStyle)
 
     /**
      * this function returns a [PreferenceStyle] defining the style of a preference item
@@ -58,6 +65,8 @@ object PreferenceStyleDefaults {
      * @param shape the [Shape] of this item
      * @param tonalElevation the tonal elevation of this item
      * @param shadowElevation the shadow elevation of this item
+     * @param titleTextStyle the shadow elevation of this item
+     * @param subtitleTextStyle the shadow elevation of this item
      *
      * @return the [PreferenceStyle] holding the provided setup
      */
@@ -68,7 +77,9 @@ object PreferenceStyleDefaults {
         alphaVariant: Float = DEFAULT_ALPHA_VARIANT,
         shape: Shape = RectangleShape,
         tonalElevation: Dp = 0.dp,
-        shadowElevation: Dp = 0.dp
+        shadowElevation: Dp = 0.dp,
+        titleTextStyle: TextStyle = MaterialTheme.typography.labelLarge,
+        subtitleTextStyle: TextStyle = MaterialTheme.typography.bodyMedium
     ): PreferenceStyle = PreferenceStyle(
         colors = PreferenceItemColors(
             containerColor = colorBackground,
@@ -79,7 +90,9 @@ object PreferenceStyleDefaults {
         ),
         shape,
         tonalElevation,
-        shadowElevation
+        shadowElevation,
+        titleTextStyle,
+        subtitleTextStyle
     )
 
     // -----------------

@@ -173,7 +173,7 @@ class PreferenceItemColors internal constructor(
     }
 
     @Composable
-    internal fun DecoratedLeadingContent(content: @Composable () -> Unit, modifier: Modifier) {
+    internal fun DecoratedLeadingContent(modifier: Modifier, content: @Composable () -> Unit) {
         val color = leadingColor()
         CompositionLocalProvider(LocalContentColor provides color.value) {
             Box(modifier) { content() }
@@ -181,9 +181,12 @@ class PreferenceItemColors internal constructor(
     }
 
     @Composable
-    internal fun DecoratedHeadline(content: @Composable () -> Unit) {
+    internal fun DecoratedHeadline(
+        preferenceStyle: PreferenceStyle,
+        content: @Composable () -> Unit
+    ) {
         val color = headlineColor()
-        val textStyle = MaterialTheme.typography.bodyLarge
+        val textStyle = preferenceStyle.titleTextStyle
         CompositionLocalProvider(LocalContentColor provides color.value) {
             val mergedStyle = LocalTextStyle.current.merge(textStyle)
             CompositionLocalProvider(LocalTextStyle provides mergedStyle, content = content)
@@ -191,9 +194,12 @@ class PreferenceItemColors internal constructor(
     }
 
     @Composable
-    internal fun DecoratedSubHeadlineContent(content: @Composable () -> Unit) {
+    internal fun DecoratedSubHeadlineContent(
+        preferenceStyle: PreferenceStyle,
+        content: @Composable () -> Unit
+    ) {
         val color = subHeadlineColor()
-        val textStyle = MaterialTheme.typography.bodyMedium
+        val textStyle = preferenceStyle.subtitleTextStyle
         CompositionLocalProvider(LocalContentColor provides color.value) {
             val mergedStyle = LocalTextStyle.current.merge(textStyle)
             CompositionLocalProvider(LocalTextStyle provides mergedStyle, content = content)
@@ -296,9 +302,8 @@ internal fun PreferenceItem(
             // Leading Area
             leading?.let {
                 preferenceStyle.colors.DecoratedLeadingContent(
-                    it,
-                    Modifier
-                        .padding(leadingContentPaddingValues)
+                    Modifier.padding(leadingContentPaddingValues),
+                    it
                 )
             }
 
@@ -309,9 +314,9 @@ internal fun PreferenceItem(
                     .padding(contentPaddingValues)
                     .sizeIn(minWidth = settings.minTextAreaWidth)
             ) {
-                preferenceStyle.colors.DecoratedHeadline(headline)
+                preferenceStyle.colors.DecoratedHeadline(preferenceStyle, headline)
                 subHeadline?.let {
-                    preferenceStyle.colors.DecoratedSubHeadlineContent(it)
+                    preferenceStyle.colors.DecoratedSubHeadlineContent(preferenceStyle, it)
                 }
                 if (content != null && setup.contentPlacementBottom) {
                     preferenceStyle.colors.DecoratedContent(
