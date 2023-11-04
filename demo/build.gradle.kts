@@ -28,7 +28,7 @@ android {
             getByName("debug") {
                 keyAlias = "androiddebugkey"
                 keyPassword = "android"
-                storeFile = file(debugKeyStore)
+                storeFile = File(debugKeyStore)
                 storePassword = "android"
             }
         }
