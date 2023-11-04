@@ -3,7 +3,7 @@
 [![Release](https://jitpack.io/v/MFlisar/ComposePreferences.svg)](https://jitpack.io/#MFlisar/ComposePreferences)
 ![License](https://img.shields.io/github/license/MFlisar/ComposePreferences)
 
-This library offers you simple preference screens for compose.
+This library offers you **preference screens** for compose including the ability of endless nesting subscreens as well as simple integration of custom preferences.
 
 Made for **Compose M3**.
 
