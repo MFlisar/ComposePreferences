@@ -7,7 +7,9 @@ import androidx.compose.material.icons.filled.MailOutline
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Stable
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.michaelflisar.composedialogs.core.rememberDialogState
 import com.michaelflisar.composedialogs.dialogs.input.DialogInput
 import com.michaelflisar.composedialogs.dialogs.input.rememberDialogInput
@@ -17,6 +19,8 @@ import com.michaelflisar.composepreferences.core.classes.Dependency
 import com.michaelflisar.composepreferences.core.classes.LocalPreferenceSettings
 import com.michaelflisar.composepreferences.core.classes.PreferenceStyle
 import com.michaelflisar.composepreferences.core.composables.PreferenceContentText
+import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetup
+import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetupDefaults
 import com.michaelflisar.composepreferences.core.composables.PreviewPreference
 import com.michaelflisar.composepreferences.core.hierarchy.PreferenceScope
 
@@ -39,7 +43,8 @@ fun PreferenceScope.PreferenceInputText(
     visible: Dependency = Dependency.Enabled,
     subtitle: @Composable (() -> Unit)? = null,
     icon: (@Composable () -> Unit)? = null,
-    preferenceStyle: PreferenceStyle = LocalPreferenceSettings.current.itemStyle
+    preferenceStyle: PreferenceStyle = LocalPreferenceSettings.current.itemStyle,
+    itemSetup: PreferenceItemSetup = PreferenceBoolDefaults.itemSetup()
 ) {
     PreferenceInputText(
         value = data.value,
@@ -49,7 +54,8 @@ fun PreferenceScope.PreferenceInputText(
         visible = visible,
         subtitle = subtitle,
         icon = icon,
-        preferenceStyle = preferenceStyle
+        preferenceStyle = preferenceStyle,
+        itemSetup = itemSetup
     )
 }
 
@@ -74,7 +80,8 @@ fun PreferenceScope.PreferenceInputText(
     visible: Dependency = Dependency.Enabled,
     subtitle: @Composable (() -> Unit)? = null,
     icon: (@Composable () -> Unit)? = null,
-    preferenceStyle: PreferenceStyle = LocalPreferenceSettings.current.itemStyle
+    preferenceStyle: PreferenceStyle = LocalPreferenceSettings.current.itemStyle,
+    itemSetup: PreferenceItemSetup = PreferenceBoolDefaults.itemSetup()
 ) {
     val showDialog = rememberDialogState()
     if (showDialog.showing) {
@@ -97,12 +104,19 @@ fun PreferenceScope.PreferenceInputText(
         subtitle = subtitle,
         icon = icon,
         preferenceStyle = preferenceStyle,
+        itemSetup = itemSetup,
         onClick = {
             showDialog.show()
         }
     ) {
         PreferenceContentText(value)
     }
+}
+
+@Stable
+object PreferenceBoolDefaults {
+    @Composable
+    fun itemSetup() = PreferenceItemSetup()
 }
 
 @Preview

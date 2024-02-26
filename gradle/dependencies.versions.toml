@@ -1,11 +1,11 @@
 [versions]
 
 # mflisar
-composedialogs =   		    "1.0.4"
+composedialogs =   		    "1.0.5"
 kotpreferences = 		    "0.3"
-composedemobaseactivity =   "0.4"
+composedemobaseactivity =   "0.5"
 
-desugar =                   "2.0.3"
+desugar =                   "2.0.4"
 
 # ---------
 # libraries

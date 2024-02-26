@@ -7,6 +7,7 @@ import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Stable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.michaelflisar.composedialogs.core.rememberDialogState
@@ -53,7 +54,8 @@ fun PreferenceScope.PreferenceDate(
     visible: Dependency = Dependency.Enabled,
     subtitle: @Composable (() -> Unit)? = null,
     icon: (@Composable () -> Unit)? = null,
-    preferenceStyle: PreferenceStyle = LocalPreferenceSettings.current.itemStyle
+    preferenceStyle: PreferenceStyle = LocalPreferenceSettings.current.itemStyle,
+    itemSetup: PreferenceItemSetup = PreferenceDateDefaults.itemSetup()
 ) {
     PreferenceDate(
         value = data.value,
@@ -65,7 +67,8 @@ fun PreferenceScope.PreferenceDate(
         visible = visible,
         subtitle = subtitle,
         icon = icon,
-        preferenceStyle = preferenceStyle
+        preferenceStyle = preferenceStyle,
+        itemSetup = itemSetup
     )
 }
 
@@ -96,7 +99,8 @@ fun PreferenceScope.PreferenceDate(
     visible: Dependency = Dependency.Enabled,
     subtitle: @Composable (() -> Unit)? = null,
     icon: (@Composable () -> Unit)? = null,
-    preferenceStyle: PreferenceStyle = LocalPreferenceSettings.current.itemStyle
+    preferenceStyle: PreferenceStyle = LocalPreferenceSettings.current.itemStyle,
+    itemSetup: PreferenceItemSetup = PreferenceDateDefaults.itemSetup()
 ) {
     val showDialog = rememberDialogState()
     if (showDialog.showing) {
@@ -118,9 +122,7 @@ fun PreferenceScope.PreferenceDate(
         }
     }
     BasePreference(
-        setup = PreferenceItemSetup(
-          trailingContentSize = PreferenceItemSetupDefaults.datetime()
-        ),
+        itemSetup = itemSetup,
         enabled = enabled,
         visible = visible,
         title = title,
@@ -133,6 +135,14 @@ fun PreferenceScope.PreferenceDate(
     ) {
         PreferenceContentText(text = formatter(value))
     }
+}
+
+@Stable
+object PreferenceDateDefaults {
+    @Composable
+    fun itemSetup() = PreferenceItemSetup(
+        trailingContentSize = PreferenceItemSetupDefaults.datetime()
+    )
 }
 
 @Preview

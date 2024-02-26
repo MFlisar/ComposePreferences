@@ -27,7 +27,7 @@ import com.michaelflisar.composepreferences.core.hierarchy.PreferenceScope
  * @param onClick the optional click listener for this item
  * @param onLongClick the optional long click listener for this item
  * @param preferenceStyle the [PreferenceStyle] of this this item - use [PreferenceStyleDefaults.item] and all the predefined styles in [PreferenceStyleDefaults] to provide your own style
- * @param setup the [PreferenceItemSetup] of this this item which allows you to influence some of the behaviour and style specifically for a special item type
+ * @param itemSetup the [PreferenceItemSetup] of this this item which allows you to influence some of the behaviour and style specifically for a special item type
  * @param content the content of this composable
  */
 @Composable
@@ -41,7 +41,8 @@ fun PreferenceScope.BasePreference(
     onClick: (() -> Unit)? = null,
     onLongClick: (() -> Unit)? = null,
     preferenceStyle: PreferenceStyle = LocalPreferenceSettings.current.itemStyle,
-    setup: PreferenceItemSetup = PreferenceItemSetup(),
+    itemSetup: PreferenceItemSetup = PreferenceItemSetup(),
+    settings: PreferenceItemSettings = PreferenceItemSettings(),
     content: (@Composable ColumnScope.() -> Unit)? = null
 ) {
     BasePreferenceContainer(
@@ -50,13 +51,13 @@ fun PreferenceScope.BasePreference(
         visible = visible,
         onClick = onClick,
         onLongClick = onLongClick,
-        group = setup.group,
+        group = settings.group,
         preferenceStyle = preferenceStyle
     ) { modifier ->
         PreferenceItem(
             modifier = modifier,
             preferenceStyle = preferenceStyle,
-            setup = setup,
+            setup = itemSetup,
             headline = title,
             subHeadline = subtitle,
             leading = icon,

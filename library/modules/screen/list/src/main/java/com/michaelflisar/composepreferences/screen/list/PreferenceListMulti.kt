@@ -6,6 +6,7 @@ import androidx.compose.material.icons.filled.List
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Stable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.tooling.preview.Preview
@@ -17,6 +18,7 @@ import com.michaelflisar.composepreferences.core.classes.PreferenceData
 import com.michaelflisar.composepreferences.core.classes.PreferenceStyle
 import com.michaelflisar.composepreferences.core.composables.BasePreference
 import com.michaelflisar.composepreferences.core.composables.PreferenceContentText
+import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetup
 import com.michaelflisar.composepreferences.core.composables.PreviewPreference
 import com.michaelflisar.composepreferences.core.hierarchy.PreferenceScope
 
@@ -50,7 +52,8 @@ fun <T> PreferenceScope.PreferenceListMulti(
     visible: Dependency = Dependency.Enabled,
     subtitle: @Composable (() -> Unit)? = null,
     icon: (@Composable () -> Unit)? = null,
-    preferenceStyle: PreferenceStyle = LocalPreferenceSettings.current.itemStyle
+    preferenceStyle: PreferenceStyle = LocalPreferenceSettings.current.itemStyle,
+    itemSetup: PreferenceItemSetup = PreferenceMultiListDefaults.itemSetup()
 ) {
     PreferenceListMulti(
         value = data.value,
@@ -64,7 +67,8 @@ fun <T> PreferenceScope.PreferenceListMulti(
         visible = visible,
         subtitle = subtitle,
         icon = icon,
-        preferenceStyle = preferenceStyle
+        preferenceStyle = preferenceStyle,
+        itemSetup = itemSetup
     )
 }
 
@@ -100,7 +104,8 @@ fun <T> PreferenceScope.PreferenceListMulti(
     visible: Dependency = Dependency.Enabled,
     subtitle: @Composable (() -> Unit)? = null,
     icon: (@Composable () -> Unit)? = null,
-    preferenceStyle: PreferenceStyle = LocalPreferenceSettings.current.itemStyle
+    preferenceStyle: PreferenceStyle = LocalPreferenceSettings.current.itemStyle,
+    itemSetup: PreferenceItemSetup = PreferenceMultiListDefaults.itemSetup()
 ) {
     val showDialog = rememberDialogState()
     if (showDialog.showing) {
@@ -133,12 +138,19 @@ fun <T> PreferenceScope.PreferenceListMulti(
         subtitle = subtitle,
         icon = icon,
         preferenceStyle = preferenceStyle,
+        itemSetup = itemSetup,
         onClick = {
             showDialog.show()
         }
     ) {
         PreferenceContentText(formatter(value))
     }
+}
+
+@Stable
+object PreferenceMultiListDefaults {
+    @Composable
+    fun itemSetup() = PreferenceItemSetup()
 }
 
 @Preview

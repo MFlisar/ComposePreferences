@@ -46,7 +46,8 @@ fun PreferenceScope.PreferenceBool(
     visible: Dependency = Dependency.Enabled,
     subtitle: @Composable (() -> Unit)? = null,
     icon: (@Composable () -> Unit)? = null,
-    preferenceStyle: PreferenceStyle = LocalPreferenceSettings.current.itemStyle
+    preferenceStyle: PreferenceStyle = LocalPreferenceSettings.current.itemStyle,
+    itemSetup: PreferenceItemSetup = PreferenceBoolDefaults.itemSetup()
 ) {
     PreferenceBool(
         style = style,
@@ -57,7 +58,8 @@ fun PreferenceScope.PreferenceBool(
         visible = visible,
         subtitle = subtitle,
         icon = icon,
-        preferenceStyle = preferenceStyle
+        preferenceStyle = preferenceStyle,
+        itemSetup = itemSetup
     )
 }
 
@@ -84,7 +86,8 @@ fun PreferenceScope.PreferenceBool(
     visible: Dependency = Dependency.Enabled,
     subtitle: @Composable (() -> Unit)? = null,
     icon: (@Composable () -> Unit)? = null,
-    preferenceStyle: PreferenceStyle = LocalPreferenceSettings.current.itemStyle
+    preferenceStyle: PreferenceStyle = LocalPreferenceSettings.current.itemStyle,
+    itemSetup: PreferenceItemSetup = PreferenceBoolDefaults.itemSetup()
 ) {
     var checked by remember(value) { mutableStateOf(value) }
     val onClick = if (LocalPreferenceSettings.current.toggleBooleanOnItemClick) {
@@ -97,9 +100,7 @@ fun PreferenceScope.PreferenceBool(
 
     // Switch is larger than Checkbox and has 52x32 DP
     BasePreference(
-        setup = PreferenceItemSetup(
-            trailingContentSize = PreferenceItemSetupDefaults.trailingContentSize(52.dp)
-        ),
+        itemSetup = itemSetup,
         enabled = enabled,
         visible = visible,
         title = title,
@@ -132,6 +133,14 @@ object PreferenceBool {
         Checkbox,
         Switch
     }
+}
+
+@Stable
+object PreferenceBoolDefaults {
+    @Composable
+    fun itemSetup() = PreferenceItemSetup(
+        trailingContentSize = PreferenceItemSetupDefaults.trailingContentSize(52.dp)
+    )
 }
 
 @Preview

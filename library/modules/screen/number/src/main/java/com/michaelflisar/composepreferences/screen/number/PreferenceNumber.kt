@@ -14,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.michaelflisar.composedialogs.core.rememberDialogState
 import com.michaelflisar.composedialogs.dialogs.input.DialogNumberPicker
 import com.michaelflisar.composedialogs.dialogs.input.NumberPickerSetup
@@ -58,7 +59,8 @@ fun <T : Number> PreferenceScope.PreferenceNumber(
     visible: Dependency = Dependency.Enabled,
     subtitle: @Composable (() -> Unit)? = null,
     icon: (@Composable () -> Unit)? = null,
-    preferenceStyle: PreferenceStyle = LocalPreferenceSettings.current.itemStyle
+    preferenceStyle: PreferenceStyle = LocalPreferenceSettings.current.itemStyle,
+    itemSetup: PreferenceItemSetup = PreferenceNumberDefaults.itemSetup(style)
 ) {
     PreferenceNumber(
         style = style,
@@ -73,7 +75,8 @@ fun <T : Number> PreferenceScope.PreferenceNumber(
         visible = visible,
         subtitle = subtitle,
         icon = icon,
-        preferenceStyle = preferenceStyle
+        preferenceStyle = preferenceStyle,
+        itemSetup = itemSetup
     )
 }
 
@@ -107,7 +110,8 @@ fun <T : Number> PreferenceScope.PreferenceNumber(
     visible: Dependency = Dependency.Enabled,
     subtitle: @Composable (() -> Unit)? = null,
     icon: (@Composable () -> Unit)? = null,
-    preferenceStyle: PreferenceStyle = LocalPreferenceSettings.current.itemStyle
+    preferenceStyle: PreferenceStyle = LocalPreferenceSettings.current.itemStyle,
+    itemSetup: PreferenceItemSetup = PreferenceNumberDefaults.itemSetup(style)
 ) {
     when (style) {
         PreferenceNumber.Style.Picker -> {
@@ -130,9 +134,7 @@ fun <T : Number> PreferenceScope.PreferenceNumber(
                 }
             }
             BasePreference(
-                setup = PreferenceItemSetup(
-                    trailingContentSize = PreferenceItemSetupDefaults.numericContent()
-                ),
+                itemSetup = itemSetup,
                 enabled = enabled,
                 visible = visible,
                 title = title,
@@ -157,7 +159,7 @@ fun <T : Number> PreferenceScope.PreferenceNumber(
                 )
             }
             BasePreference(
-                setup = PreferenceItemSetup(contentPlacementBottom = true),
+                itemSetup = itemSetup,
                 enabled = enabled,
                 visible = visible,
                 title = title,
@@ -190,6 +192,23 @@ object PreferenceNumber {
     sealed class Style {
         data object Picker : Style()
         class Slider(val showTicks: Boolean = false) : Style()
+    }
+}
+
+@Stable
+object PreferenceNumberDefaults {
+    @Composable
+    fun itemSetupPicker() = PreferenceItemSetup(
+        trailingContentSize = PreferenceItemSetupDefaults.numericContent()
+    )
+
+    @Composable
+    fun itemSetupSlider() = PreferenceItemSetup(contentPlacementBottom = true)
+
+    @Composable
+    fun itemSetup(style: PreferenceNumber.Style) = when (style) {
+        PreferenceNumber.Style.Picker -> itemSetupPicker()
+        is PreferenceNumber.Style.Slider -> itemSetupSlider()
     }
 }
 

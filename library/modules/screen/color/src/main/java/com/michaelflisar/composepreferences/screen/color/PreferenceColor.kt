@@ -16,6 +16,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Stable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawBehind
@@ -58,7 +59,8 @@ fun PreferenceScope.PreferenceColor(
     visible: Dependency = Dependency.Enabled,
     subtitle: @Composable (() -> Unit)? = null,
     icon: (@Composable () -> Unit)? = null,
-    preferenceStyle: PreferenceStyle = LocalPreferenceSettings.current.itemStyle
+    preferenceStyle: PreferenceStyle = LocalPreferenceSettings.current.itemStyle,
+    itemSetup: PreferenceItemSetup = PreferenceColorDefaults.itemSetup()
 ) {
     PreferenceColor(
         value = data.value,
@@ -69,7 +71,8 @@ fun PreferenceScope.PreferenceColor(
         visible = visible,
         subtitle = subtitle,
         icon = icon,
-        preferenceStyle = preferenceStyle
+        preferenceStyle = preferenceStyle,
+        itemSetup = itemSetup
     )
 }
 
@@ -96,7 +99,8 @@ fun PreferenceScope.PreferenceColor(
     visible: Dependency = Dependency.Enabled,
     subtitle: @Composable (() -> Unit)? = null,
     icon: (@Composable () -> Unit)? = null,
-    preferenceStyle: PreferenceStyle = LocalPreferenceSettings.current.itemStyle
+    preferenceStyle: PreferenceStyle = LocalPreferenceSettings.current.itemStyle,
+    itemSetup: PreferenceItemSetup = PreferenceColorDefaults.itemSetup()
 ) {
     val density = LocalDensity.current
     val showDialog = rememberDialogState()
@@ -115,9 +119,7 @@ fun PreferenceScope.PreferenceColor(
         }
     }
     BasePreference(
-        setup = PreferenceItemSetup(
-            trailingContentSize = PreferenceItemSetupDefaults.trailingContentSize(0.dp)
-        ),
+        itemSetup = itemSetup,
         enabled = enabled,
         visible = visible,
         title = title,
@@ -143,6 +145,14 @@ fun PreferenceScope.PreferenceColor(
             )
         }
     }
+}
+
+@Stable
+object PreferenceColorDefaults {
+    @Composable
+    fun itemSetup() = PreferenceItemSetup(
+        trailingContentSize = PreferenceItemSetupDefaults.trailingContentSize(0.dp)
+    )
 }
 
 @Preview

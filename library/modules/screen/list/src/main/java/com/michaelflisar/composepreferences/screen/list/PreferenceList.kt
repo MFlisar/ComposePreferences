@@ -32,6 +32,8 @@ import com.michaelflisar.composepreferences.core.classes.PreferenceData
 import com.michaelflisar.composepreferences.core.classes.PreferenceStyle
 import com.michaelflisar.composepreferences.core.composables.BasePreference
 import com.michaelflisar.composepreferences.core.composables.PreferenceContentText
+import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetup
+import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetupDefaults
 import com.michaelflisar.composepreferences.core.composables.PreviewPreference
 import com.michaelflisar.composepreferences.core.hierarchy.PreferenceScope
 
@@ -62,7 +64,8 @@ fun <T> PreferenceScope.PreferenceList(
     visible: Dependency = Dependency.Enabled,
     subtitle: @Composable (() -> Unit)? = null,
     icon: (@Composable () -> Unit)? = null,
-    preferenceStyle: PreferenceStyle = LocalPreferenceSettings.current.itemStyle
+    preferenceStyle: PreferenceStyle = LocalPreferenceSettings.current.itemStyle,
+    itemSetup: PreferenceItemSetup = PreferenceListDefaults.itemSetup()
 ) {
     PreferenceList(
         style = style,
@@ -76,7 +79,8 @@ fun <T> PreferenceScope.PreferenceList(
         visible = visible,
         subtitle = subtitle,
         icon = icon,
-        preferenceStyle = preferenceStyle
+        preferenceStyle = preferenceStyle,
+        itemSetup = itemSetup
     )
 }
 
@@ -110,7 +114,8 @@ fun <T> PreferenceScope.PreferenceList(
     visible: Dependency = Dependency.Enabled,
     subtitle: @Composable (() -> Unit)? = null,
     icon: (@Composable () -> Unit)? = null,
-    preferenceStyle: PreferenceStyle = LocalPreferenceSettings.current.itemStyle
+    preferenceStyle: PreferenceStyle = LocalPreferenceSettings.current.itemStyle,
+    itemSetup: PreferenceItemSetup = PreferenceListDefaults.itemSetup()
 ) {
     when (style) {
         PreferenceList.Style.Dialog -> {
@@ -142,6 +147,7 @@ fun <T> PreferenceScope.PreferenceList(
                 subtitle = subtitle,
                 icon = icon,
                 preferenceStyle = preferenceStyle,
+                itemSetup = itemSetup,
                 onClick = {
                     showDialog.show()
                 }
@@ -162,7 +168,7 @@ fun <T> PreferenceScope.PreferenceList(
         PreferenceList.Style.Spinner -> {
             var expanded by remember { mutableStateOf(false) }
             BasePreference(
-                //setup = PreferenceItemSetup(ignoreMinMaxContentWidth = true),
+                itemSetup = itemSetup,
                 enabled = enabled,
                 visible = visible,
                 title = title,
@@ -232,6 +238,12 @@ object PreferenceList {
     enum class Style {
         Dialog, Spinner
     }
+}
+
+@Stable
+object PreferenceListDefaults {
+    @Composable
+    fun itemSetup() = PreferenceItemSetup()
 }
 
 @Preview

@@ -15,6 +15,7 @@ import com.michaelflisar.composepreferences.core.classes.Dependency
 import com.michaelflisar.composepreferences.core.classes.LocalPreferenceSettings
 import com.michaelflisar.composepreferences.core.classes.PreferenceStyle
 import com.michaelflisar.composepreferences.core.composables.BasePreference
+import com.michaelflisar.composepreferences.core.composables.PreferenceItemSettings
 import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetup
 import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetupDefaults
 import com.michaelflisar.composepreferences.core.composables.PreviewPreference
@@ -57,10 +58,10 @@ fun PreferenceScope.PreferenceSubScreen(
     PreferenceGroupItem(
         item = {
             BasePreference(
-                setup = PreferenceItemSetup(
-                    group = true,
+                itemSetup = PreferenceItemSetup(
                     trailingContentSize = PreferenceItemSetupDefaults.trailingContentSize(0.dp)
                 ),
+                settings = PreferenceItemSettings(group = true),
                 enabled = enabled,
                 visible = visible,
                 title = {

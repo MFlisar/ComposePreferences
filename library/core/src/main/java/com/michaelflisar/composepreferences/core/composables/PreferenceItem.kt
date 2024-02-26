@@ -36,16 +36,14 @@ import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetup
  * this provides a class to define some custom setup to customise a preference item
  *
  * @param trailingContentSize the [TrailingContentSize] for a preference item
- * @param group a internal flag to define if this item does contain sub items or not
  * @param ignoreForceNoIconInset if true, the preference item will ignore the flag from [PreferenceSettings.forceNoIconInset]
  * @param ignoreMinItemHeight if true, the preference will not force a minimum item height
  * @param contentPlacementBottom if true, the content of this item will be place **below** the title/subtitle instead of **behind** it as trailing content
  * @param alignment the alignment of the preference item content
  */
 @Stable
-class PreferenceItemSetup(
+data class PreferenceItemSetup(
     val trailingContentSize: TrailingContentSize = TrailingContentSize(),
-    val group: Boolean = false,
     val ignoreForceNoIconInset: Boolean = false,
     val ignoreMinItemHeight: Boolean = false,
     val contentPlacementBottom: Boolean = false,
@@ -71,7 +69,17 @@ class PreferenceItemSetup(
     }
 }
 
-internal fun Modifier.trailingContentSize(setup: TrailingContentSize) = composed {
+/**
+ * this provides a class to define some custom INTERNAL settings to customise a preference item
+ *
+ * @param group a internal flag to define if this item does contain sub items or not
+ */
+@Stable
+class PreferenceItemSettings(
+    val group: Boolean = false
+)
+
+internal fun Modifier.trailingContentSize(setup: TrailingContentSize) = this then
     if (setup.minWidth == 0.dp && setup.maxWidth == 0.dp) {
         Modifier
     } else if (setup.minWidth > 0.dp && setup.maxWidth > 0.dp) {
@@ -81,7 +89,6 @@ internal fun Modifier.trailingContentSize(setup: TrailingContentSize) = composed
     } else if (setup.maxWidth > 0.dp) {
         Modifier.sizeIn(maxWidth = setup.maxWidth)
     } else Modifier
-}
 
 object PreferenceItemSetupDefaults {
 

@@ -7,6 +7,7 @@ import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Stable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.michaelflisar.composedialogs.core.rememberDialogState
@@ -42,7 +43,8 @@ fun <T : Number> PreferenceScope.PreferenceInputNumber(
     visible: Dependency = Dependency.Enabled,
     subtitle: @Composable (() -> Unit)? = null,
     icon: (@Composable () -> Unit)? = null,
-    preferenceStyle: PreferenceStyle = LocalPreferenceSettings.current.itemStyle
+    preferenceStyle: PreferenceStyle = LocalPreferenceSettings.current.itemStyle,
+    itemSetup: PreferenceItemSetup = PreferenceInputNumberDefaults.itemSetup()
 ) {
     PreferenceInputNumber(
         value = data.value,
@@ -52,7 +54,8 @@ fun <T : Number> PreferenceScope.PreferenceInputNumber(
         visible = visible,
         subtitle = subtitle,
         icon = icon,
-        preferenceStyle = preferenceStyle
+        preferenceStyle = preferenceStyle,
+        itemSetup = itemSetup
     )
 }
 
@@ -77,7 +80,8 @@ fun <T : Number> PreferenceScope.PreferenceInputNumber(
     visible: Dependency = Dependency.Enabled,
     subtitle: @Composable (() -> Unit)? = null,
     icon: (@Composable () -> Unit)? = null,
-    preferenceStyle: PreferenceStyle = LocalPreferenceSettings.current.itemStyle
+    preferenceStyle: PreferenceStyle = LocalPreferenceSettings.current.itemStyle,
+    itemSetup: PreferenceItemSetup = PreferenceInputNumberDefaults.itemSetup()
 ) {
     val showDialog = rememberDialogState()
     if (showDialog.showing) {
@@ -94,9 +98,7 @@ fun <T : Number> PreferenceScope.PreferenceInputNumber(
         }
     }
     BasePreference(
-        setup = PreferenceItemSetup(
-            trailingContentSize = PreferenceItemSetupDefaults.numericContent()
-        ),
+        itemSetup = itemSetup,
         enabled = enabled,
         visible = visible,
         title = title,
@@ -109,6 +111,14 @@ fun <T : Number> PreferenceScope.PreferenceInputNumber(
     ) {
         PreferenceContentText(value.toString())
     }
+}
+
+@Stable
+object PreferenceInputNumberDefaults {
+    @Composable
+    fun itemSetup() = PreferenceItemSetup(
+        trailingContentSize = PreferenceItemSetupDefaults.numericContent()
+    )
 }
 
 @Preview

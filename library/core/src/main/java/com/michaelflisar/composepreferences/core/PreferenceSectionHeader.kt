@@ -38,7 +38,7 @@ fun PreferenceScope.PreferenceSectionHeader(
     preferenceStyle: PreferenceStyle = PreferenceStyleDefaults.header()
 ) {
     BasePreference(
-        setup = PreferenceItemSetup(ignoreForceNoIconInset = true),
+        itemSetup = PreferenceItemSetup(ignoreForceNoIconInset = true),
         enabled = enabled,
         visible = visible,
         title = {

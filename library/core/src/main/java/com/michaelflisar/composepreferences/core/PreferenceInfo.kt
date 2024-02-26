@@ -7,14 +7,17 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Stable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.michaelflisar.composepreferences.core.classes.Dependency
 import com.michaelflisar.composepreferences.core.classes.LocalPreferenceSettings
 import com.michaelflisar.composepreferences.core.classes.PreferenceStyle
 import com.michaelflisar.composepreferences.core.classes.PreferenceStyleDefaults
 import com.michaelflisar.composepreferences.core.composables.BasePreference
 import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetup
+import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetupDefaults
 import com.michaelflisar.composepreferences.core.composables.PreviewPreference
 import com.michaelflisar.composepreferences.core.hierarchy.PreferenceScope
 
@@ -26,25 +29,22 @@ import com.michaelflisar.composepreferences.core.hierarchy.PreferenceScope
  * **Basic Parameters:** all params not described here are derived from [com.michaelflisar.composepreferences.core.composables.BasePreference], check it out for more details
  *
  * @param onLongClick a optional long click listener for this item
- * @param ignoreMinItemHeight if true, this item will wrap its content and ignore the minimum item height
- * @param alignment the content alignment of this item
  */
 @Composable
 fun PreferenceScope.PreferenceInfo(
     // Special
     onLongClick: (() -> Unit)? = null,
-    ignoreMinItemHeight: Boolean = false,
-    alignment: Alignment.Vertical = Alignment.CenterVertically,
     // Base Preference
     title: @Composable () -> Unit,
     enabled: Dependency = Dependency.Enabled,
     visible: Dependency = Dependency.Enabled,
     subtitle: @Composable (() -> Unit)? = null,
     icon: (@Composable () -> Unit)? = null,
-    preferenceStyle: PreferenceStyle = LocalPreferenceSettings.current.itemStyle
+    preferenceStyle: PreferenceStyle = LocalPreferenceSettings.current.itemStyle,
+    itemSetup: PreferenceItemSetup = PreferenceInfoDefaults.itemSetup()
 ) {
     BasePreference(
-        setup = PreferenceItemSetup(ignoreMinItemHeight = ignoreMinItemHeight, alignment = alignment),
+        itemSetup = itemSetup,
         enabled = enabled,
         visible = visible,
         title = title,
@@ -54,6 +54,12 @@ fun PreferenceScope.PreferenceInfo(
         preferenceStyle = preferenceStyle,
         content = null
     )
+}
+
+@Stable
+object PreferenceInfoDefaults {
+    @Composable
+    fun itemSetup() = PreferenceItemSetup(ignoreMinItemHeight = false, alignment = Alignment.CenterVertically)
 }
 
 @Preview

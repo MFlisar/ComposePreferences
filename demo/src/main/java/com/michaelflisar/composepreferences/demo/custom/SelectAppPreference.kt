@@ -107,7 +107,7 @@ fun PreferenceScope.SelectAppPreference(
         }
     }
     BasePreference(
-        setup = PreferenceItemSetup(
+        itemSetup = PreferenceItemSetup(
             trailingContentSize = PreferenceItemSetupDefaults.trailingContentSize(0.dp)
         ),
         enabled = enabled,

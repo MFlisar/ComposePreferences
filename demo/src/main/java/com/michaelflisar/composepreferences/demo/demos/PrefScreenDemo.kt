@@ -55,6 +55,7 @@ import androidx.compose.ui.unit.dp
 import com.michaelflisar.composedemobaseactivity.classes.ToastHelper
 import com.michaelflisar.composepreferences.core.PreferenceDivider
 import com.michaelflisar.composepreferences.core.PreferenceInfo
+import com.michaelflisar.composepreferences.core.PreferenceInfoDefaults
 import com.michaelflisar.composepreferences.core.PreferenceScreen
 import com.michaelflisar.composepreferences.core.PreferenceSectionHeader
 import com.michaelflisar.composepreferences.core.classes.Dependency
@@ -141,7 +142,9 @@ private fun PreferenceScope.PreferenceInfoExamples() {
             onLongClick = {
                 ToastHelper.show(context, "Hidden long press found :-)")
             },
-            alignment = Alignment.Top
+            itemSetup = PreferenceInfoDefaults.itemSetup().copy(
+                alignment = Alignment.Top
+            )
         )
         PreferenceInfo(
             title = { Text("Info 2") },
@@ -396,7 +399,9 @@ private fun PreferenceScope.PreferenceInputExamples() {
             subtitle = { Text("There is a input preference for strings but also one for numbers (which works with all Number types [Int, Float, Double, Long])") },
             icon = { Icon(Icons.Default.Info, null) },
             preferenceStyle = PreferenceStyleDefaults.primaryContainer(),
-            alignment = Alignment.Top
+            itemSetup = PreferenceInfoDefaults.itemSetup().copy(
+                alignment = Alignment.Top
+            )
         )
         val input1 = dataStore.getString("input1", "Hello")
             .collectAsState(initial = "Hello")
