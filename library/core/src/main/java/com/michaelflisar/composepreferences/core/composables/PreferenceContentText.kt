@@ -45,6 +45,7 @@ import com.michaelflisar.composepreferences.core.classes.PreferenceStyleDefaults
 @Composable
 fun PreferenceContentText(
     text: String,
+    itemSetup: PreferenceItemSetup,
     modifier: Modifier = Modifier,
     color: Color = Color.Unspecified,
     fontSize: TextUnit = TextUnit.Unspecified,
@@ -69,7 +70,7 @@ fun PreferenceContentText(
         fontFamily,
         letterSpacing,
         textDecoration,
-        TextAlign.End,
+        if (itemSetup.contentPlacementBottom) TextAlign.Start else TextAlign.End,
         lineHeight,
         TextOverflow.Ellipsis,
         softWrap,

@@ -143,7 +143,7 @@ fun <T> PreferenceScope.PreferenceListMulti(
             showDialog.show()
         }
     ) {
-        PreferenceContentText(formatter(value))
+        PreferenceContentText(formatter(value), itemSetup)
     }
 }
 
@@ -159,9 +159,9 @@ object PreferenceMultiListDefaults {
 private fun Preview() {
     PreviewPreference {
         PreferenceListMulti(
-            value = listOf("Value 1", "Value2"),
+            value = (0..10).map { "Value $it" },
             onValueChange = {},
-            items = listOf("Value 1", "Value 2"),
+            items = (0..10).map { "Value $it" },
             itemTextProvider = { it },
             icon = { Icon(Icons.Default.List, null) },
             title = { Text(text = "List Preference") },

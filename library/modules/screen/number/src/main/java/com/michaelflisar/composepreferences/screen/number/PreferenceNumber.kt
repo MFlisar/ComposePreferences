@@ -145,7 +145,7 @@ fun <T : Number> PreferenceScope.PreferenceNumber(
                     showDialog.show()
                 }
             ) {
-                PreferenceContentText(text = formatter(value))
+                PreferenceContentText(text = formatter(value), itemSetup)
             }
         }
 

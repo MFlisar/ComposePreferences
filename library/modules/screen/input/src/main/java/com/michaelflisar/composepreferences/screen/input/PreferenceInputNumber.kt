@@ -109,7 +109,7 @@ fun <T : Number> PreferenceScope.PreferenceInputNumber(
             showDialog.show()
         }
     ) {
-        PreferenceContentText(value.toString())
+        PreferenceContentText(value.toString(), itemSetup)
     }
 }
 

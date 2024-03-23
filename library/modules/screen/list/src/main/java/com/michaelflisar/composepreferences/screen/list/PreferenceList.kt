@@ -160,7 +160,7 @@ fun <T> PreferenceScope.PreferenceList(
                     itemIconProvider?.let {
                         it(value)
                     }
-                    PreferenceContentText(itemTextProvider(value))
+                    PreferenceContentText(itemTextProvider(value), itemSetup)
                 }
             }
         }
@@ -193,7 +193,7 @@ fun <T> PreferenceScope.PreferenceList(
                             itemIconProvider?.let {
                                 it(value)
                             }
-                            PreferenceContentText(text = itemTextProvider(value))
+                            PreferenceContentText(text = itemTextProvider(value), itemSetup)
                         }
                         ExposedDropdownMenuDefaults.TrailingIcon(expanded)
                     }

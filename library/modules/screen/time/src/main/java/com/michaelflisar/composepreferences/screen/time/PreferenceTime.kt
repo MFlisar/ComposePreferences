@@ -128,7 +128,7 @@ fun PreferenceScope.PreferenceTime(
             showDialog.show()
         }
     ) {
-        PreferenceContentText(text = formatter(value))
+        PreferenceContentText(text = formatter(value), itemSetup)
     }
 }
 

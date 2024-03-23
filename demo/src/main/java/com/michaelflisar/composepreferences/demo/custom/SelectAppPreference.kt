@@ -106,10 +106,11 @@ fun PreferenceScope.SelectAppPreference(
             }
         }
     }
+    val itemSetup = PreferenceItemSetup(
+        trailingContentSize = PreferenceItemSetupDefaults.trailingContentSize(0.dp)
+    )
     BasePreference(
-        itemSetup = PreferenceItemSetup(
-            trailingContentSize = PreferenceItemSetupDefaults.trailingContentSize(0.dp)
-        ),
+        itemSetup = itemSetup,
         enabled = enabled,
         visible = visible,
         title = title,
@@ -130,7 +131,7 @@ fun PreferenceScope.SelectAppPreference(
                 contentDescription = null,
                 modifier = Modifier.size(32.dp)
             )
-            PreferenceContentText(value.label)
+            PreferenceContentText(value.label, itemSetup)
         }
     }
 }
