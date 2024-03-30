@@ -25,7 +25,7 @@ internal fun PreferenceScope.PreferenceItem(
         }
     }
 
-    println("visible = $visible | group = $group | level = $level | parents = $parents | index = $index | openedGroupLevel = $openedGroupLevel | openedGroupIndizes = $openedGroupIndizes")
+    //println("visible = $visible | group = $group | level = $level | parents = $parents | index = $index | openedGroupLevel = $openedGroupLevel | openedGroupIndizes = $openedGroupIndizes")
 
     if (visible) {
         PreferenceItemScopeInstance(hierarchyData).content()
