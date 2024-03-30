@@ -11,7 +11,7 @@ import androidx.compose.runtime.MutableState
  */
 data class PreferenceData<T>(
     val value: T,
-    val onValueChange: (data: T) -> Unit = {}
+    val onValueChange: (data: T) -> Unit
 ) {
     companion object
 }
@@ -21,10 +21,14 @@ data class PreferenceData<T>(
  *
  * @return a [PreferenceData]
  */
-fun <T> MutableState<T>.asPreferenceData(): PreferenceData<T> {
-    return PreferenceData(
-        value
-    ) { value = it }
+fun <T> MutableState<T>.asPreferenceData(
+    onValueChange: (data: T) -> Boolean = { true }
+): PreferenceData<T> {
+    return PreferenceData(value) {
+        if (onValueChange(it)) {
+            value = it
+        }
+    }
 }
 
 //@Composable

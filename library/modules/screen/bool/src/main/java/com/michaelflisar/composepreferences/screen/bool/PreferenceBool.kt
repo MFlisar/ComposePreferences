@@ -89,12 +89,10 @@ fun PreferenceScope.PreferenceBool(
     preferenceStyle: PreferenceStyle = LocalPreferenceSettings.current.itemStyle,
     itemSetup: PreferenceItemSetup = PreferenceBoolDefaults.itemSetup()
 ) {
-    var checked by remember(value) { mutableStateOf(value) }
     val onClick = if (LocalPreferenceSettings.current.toggleBooleanOnItemClick) {
         {
-            val updated = !checked
+            val updated = !value
             onValueChange(updated)
-            checked = updated
         }
     } else null
 
@@ -111,16 +109,14 @@ fun PreferenceScope.PreferenceBool(
     ) {
         when (style) {
             PreferenceBool.Style.Checkbox -> {
-                Checkbox(checked = checked, onCheckedChange = {
+                Checkbox(checked = value, onCheckedChange = {
                     onValueChange(it)
-                    checked = it
                 })
             }
 
             PreferenceBool.Style.Switch -> {
-                Switch(checked = checked, onCheckedChange = {
+                Switch(checked = value, onCheckedChange = {
                     onValueChange(it)
-                    checked = it
                 })
             }
         }

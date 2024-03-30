@@ -6,13 +6,14 @@ import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.DoubleArrow
 import androidx.compose.material.icons.filled.Group
 import androidx.compose.material.icons.filled.Numbers
-import androidx.compose.material.icons.filled.TextSnippet
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
+import com.michaelflisar.composedemobaseactivity.classes.ToastHelper
 import com.michaelflisar.composepreferences.core.PreferenceDivider
-import com.michaelflisar.composepreferences.core.PreferenceSectionHeader
 import com.michaelflisar.composepreferences.core.PreferenceScreen
+import com.michaelflisar.composepreferences.core.PreferenceSectionHeader
 import com.michaelflisar.composepreferences.core.PreferenceSubScreen
 import com.michaelflisar.composepreferences.core.classes.PreferenceSettingsDefaults
 import com.michaelflisar.composepreferences.core.classes.PreferenceStyleDefaults
@@ -25,6 +26,8 @@ import com.michaelflisar.composepreferences.screen.input.PreferenceInputText
 
 @Composable
 fun PrefScreenDemoKotPreferences1() {
+
+    val context = LocalContext.current
 
     PreferenceScreen(
         // optional settings for this screen...
@@ -144,5 +147,27 @@ fun PrefScreenDemoKotPreferences1() {
                 )
             }
         }
+
+        // -----------
+        // Cancelable change
+        // -----------
+
+        PreferenceSectionHeader(
+            title = { Text("Reject changes") },
+            visible = Demo2Prefs.master2.asDependency { it }
+        )
+
+        PreferenceBool(
+            style = PreferenceBool.Style.Checkbox,
+            data = Demo2Prefs.boolValue.asPreferenceData() {
+                // we cancel the change and don't allow the user to change this preference this way
+                ToastHelper.show(context, "Change was rejected!")
+                false
+            },
+            visible = Demo2Prefs.master2.asDependency { it },
+            title = { Text("2b) Node") },
+            subtitle = { Text("Sub Item Master2") },
+            icon = { Icon(Icons.Default.Check, null) }
+        )
     }
 }

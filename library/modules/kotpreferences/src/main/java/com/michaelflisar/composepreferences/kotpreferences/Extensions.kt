@@ -26,15 +26,23 @@ fun <T> StorageSetting<T>.collectSetting(
 }
 
 /**
- simple extension function to plug in a setting as preference data provider and updater
+ * simple extension function to plug in a setting as preference data provider and updater
+ *
+ * @param onValueChange the value changed callback of this item (return true to accept the change, false to cancel it)
  */
 @Composable
-fun <T> StorageSetting<T>.asPreferenceData(): PreferenceData<T> {
+fun <T> StorageSetting<T>.asPreferenceData(
+    onValueChange: (data: T) -> Boolean = { true }
+): PreferenceData<T> {
     val scope = rememberCoroutineScope()
     val state = collectSetting()
-    return PreferenceData(state.value) {
-        scope.launch(Dispatchers.IO) {
-            update(it)
+    return PreferenceData(
+        state.value
+    ) {
+        if (onValueChange(it)) {
+            scope.launch(Dispatchers.IO) {
+                update(it)
+            }
         }
     }
 }

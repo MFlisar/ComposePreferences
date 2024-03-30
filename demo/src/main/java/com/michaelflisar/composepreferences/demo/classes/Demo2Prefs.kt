@@ -8,6 +8,7 @@ object Demo2Prefs : SettingsModel(DataStoreStorage(name = "demo2_prefs")) {
     // demo preferences
     val stringValue by stringPref("some string")
     val intValue by intPref(123)
+    val boolValue by boolPref(true)
 
     // master/node example
     val master1 by boolPref(true)

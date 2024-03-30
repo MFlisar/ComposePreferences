@@ -185,6 +185,7 @@ private fun PreferenceScope.PreferenceInfoExamples() {
 private fun PreferenceScope.PreferenceBoolExamples() {
     val dataStore = LocalDataStore.current
     val scope = rememberCoroutineScope()
+    val context = LocalContext.current
     DemoPreferenceGroup(
         type = "Bool",
         details = "Click to see some switch/checkbox preference examples",
@@ -255,6 +256,22 @@ private fun PreferenceScope.PreferenceBoolExamples() {
                 }
             },
             title = { Text("Bool 5 - No Icon") }
+        )
+        // Cancel any change via callbak
+        val bool6 = dataStore.getBool("bool6", true).collectAsState(initial = true)
+        PreferenceBool(
+            style = PreferenceBool.Style.Switch,
+            value = bool6.value,
+            onValueChange = {
+                if (it) {
+                    scope.launch(Dispatchers.IO) {
+                        dataStore.update("bool5", it)
+                    }
+                } else {
+                    ToastHelper.show(context, "Change was rejected!")
+                }
+            },
+            title = { Text("Bool 6 - Can't be changed because onValueChange only accept true") }
         )
     }
 }
