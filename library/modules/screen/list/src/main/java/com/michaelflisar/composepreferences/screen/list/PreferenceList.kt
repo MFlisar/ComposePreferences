@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Search
@@ -256,7 +257,7 @@ private fun Preview() {
             onValueChange = {},
             items = listOf("Value 1", "Value 2"),
             itemTextProvider = { it },
-            icon = { Icon(Icons.Default.List, null) },
+            icon = { Icon(Icons.AutoMirrored.Filled.List, null) },
             title = { Text(text = "List Preference") },
             subtitle = { Text(text = "Clicking this item will open a dialog to select a list entry") },
         )
@@ -274,7 +275,7 @@ private fun Preview2() {
             onValueChange = {},
             items = listOf("Value 1", "Value 2"),
             itemTextProvider = { it },
-            icon = { Icon(Icons.Default.List, null) },
+            icon = { Icon(Icons.AutoMirrored.Filled.List, null) },
             title = { Text(text = "List Preference") },
             subtitle = { Text(text = "Clicking this item will open a dropdown to select a list entry") },
         )

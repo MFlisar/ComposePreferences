@@ -2,6 +2,7 @@ package com.michaelflisar.composepreferences.screen.list
 
 import android.content.res.Configuration
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material.icons.filled.List
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -163,7 +164,7 @@ private fun Preview() {
             onValueChange = {},
             items = (0..10).map { "Value $it" },
             itemTextProvider = { it },
-            icon = { Icon(Icons.Default.List, null) },
+            icon = { Icon(Icons.AutoMirrored.Filled.List, null) },
             title = { Text(text = "List Preference") },
             subtitle = { Text(text = "Clicking this item will open a dialog to select one, more or no list entry") },
         )

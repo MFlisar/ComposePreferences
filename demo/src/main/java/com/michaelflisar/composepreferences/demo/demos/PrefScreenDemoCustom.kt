@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.TextSnippet
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Numbers
 import androidx.compose.material.icons.filled.TextSnippet
@@ -97,7 +98,7 @@ fun PrefScreenCustomDemo() {
             data = string1.asPreferenceData(),
             title = { Text("Text 1") },
             subtitle = { Text("Description Text 1") },
-            icon = { Icon(Icons.Default.TextSnippet, null) },
+            icon = { Icon(Icons.AutoMirrored.Filled.TextSnippet, null) },
             visible = master1Dependency
         )
         PreferenceInputNumber(

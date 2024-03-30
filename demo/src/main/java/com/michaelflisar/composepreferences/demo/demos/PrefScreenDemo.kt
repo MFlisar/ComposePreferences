@@ -6,6 +6,9 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowRight
+import androidx.compose.material.icons.automirrored.filled.List
+import androidx.compose.material.icons.automirrored.filled.TextSnippet
 import androidx.compose.material.icons.filled.AccessTime
 import androidx.compose.material.icons.filled.Accessibility
 import androidx.compose.material.icons.filled.AdsClick
@@ -392,7 +395,7 @@ private fun PreferenceScope.PreferenceInputExamples() {
     DemoPreferenceGroup(
         type = "Input",
         details = "Click to see some date input preference examples (texts or numbers)",
-        icon = Icons.Default.TextSnippet
+        icon = Icons.AutoMirrored.Filled.TextSnippet
     ) {
         PreferenceInfo(
             title = { Text("Supported Formats") },
@@ -414,7 +417,7 @@ private fun PreferenceScope.PreferenceInputExamples() {
             },
             title = { Text("Input 1") },
             subtitle = { Text("String input example") },
-            icon = { Icon(Icons.Default.TextSnippet, null) }
+            icon = { Icon(Icons.AutoMirrored.Filled.TextSnippet, null) }
         )
         val input2 = dataStore.getInt("input2", 100)
             .collectAsState(initial = 100)
@@ -452,7 +455,7 @@ private fun PreferenceScope.PreferenceListExamples() {
     DemoPreferenceGroup(
         type = "List",
         details = "Click to see some list preference examples (dialogs, dropdowns)",
-        icon = Icons.Default.List
+        icon = Icons.AutoMirrored.Filled.List
     ) {
 
         val icons = listOf(
@@ -461,7 +464,7 @@ private fun PreferenceScope.PreferenceListExamples() {
             Icons.Default.Android,
             Icons.Default.Check,
             Icons.Default.AccessTime,
-            Icons.Default.ArrowRight,
+            Icons.AutoMirrored.Filled.ArrowRight,
             Icons.Default.CheckBox,
             Icons.Default.Key,
             Icons.Default.Accessibility,
@@ -482,7 +485,7 @@ private fun PreferenceScope.PreferenceListExamples() {
             items = list,
             itemTextProvider = { icons[it].name },
             title = { Text("List 1 (Dialog)") },
-            icon = { Icon(Icons.Default.List, null) }
+            icon = { Icon(Icons.AutoMirrored.Filled.List, null) }
         )
         val list2 = dataStore.getInt("list2", 0)
             .collectAsState(initial = 0)
@@ -497,7 +500,7 @@ private fun PreferenceScope.PreferenceListExamples() {
             items = list,
             itemTextProvider = { icons[it].name },
             title = { Text("List 2 (Spinner)") },
-            icon = { Icon(Icons.Default.List, null) }
+            icon = { Icon(Icons.AutoMirrored.Filled.List, null) }
         )
         val list3 = dataStore.getInt("list3", 0)
             .collectAsState(initial = 0)
@@ -513,7 +516,7 @@ private fun PreferenceScope.PreferenceListExamples() {
             itemTextProvider = { icons[it].name },
             itemIconProvider = { Icon(icons[it], null) },
             title = { Text("List 3 (Dialog + Icons)") },
-            icon = { Icon(Icons.Default.List, null) }
+            icon = { Icon(Icons.AutoMirrored.Filled.List, null) }
         )
         val list4 = dataStore.getInt("list4", 0)
             .collectAsState(initial = 0)
@@ -529,7 +532,7 @@ private fun PreferenceScope.PreferenceListExamples() {
             itemTextProvider = { icons[it].name },
             itemIconProvider = { Icon(icons[it], null) },
             title = { Text("List 4 (Spinner + Icons)") },
-            icon = { Icon(Icons.Default.List, null) }
+            icon = { Icon(Icons.AutoMirrored.Filled.List, null) }
         )
         PreferenceSectionHeader(
             title = { Text("Multi Selection") }

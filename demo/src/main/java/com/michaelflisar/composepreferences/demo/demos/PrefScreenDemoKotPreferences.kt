@@ -1,6 +1,7 @@
 package com.michaelflisar.composepreferences.demo.demos
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.TextSnippet
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.DoubleArrow
 import androidx.compose.material.icons.filled.Group
@@ -72,7 +73,7 @@ fun PrefScreenDemoKotPreferences1() {
             enabled = Demo2Prefs.master1.asDependency { it },
             title = { Text("1c) Node") },
             subtitle = { Text("Sub Item Master1") },
-            icon = { Icon(Icons.Default.TextSnippet, null) }
+            icon = { Icon(Icons.AutoMirrored.Filled.TextSnippet, null) }
         )
 
         // -----------
@@ -114,7 +115,7 @@ fun PrefScreenDemoKotPreferences1() {
             visible = Demo2Prefs.master2.asDependency { it },
             title = { Text("2c) Node") },
             subtitle = { Text("Sub Item Master2") },
-            icon = { Icon(Icons.Default.TextSnippet, null) }
+            icon = { Icon(Icons.AutoMirrored.Filled.TextSnippet, null) }
         )
 
         // -----------

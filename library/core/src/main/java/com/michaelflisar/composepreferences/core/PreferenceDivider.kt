@@ -4,6 +4,7 @@ import android.content.res.Configuration
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.Divider
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -37,7 +38,7 @@ fun PreferenceScope.PreferenceDivider(
         onClick = null,
         preferenceStyle = LocalPreferenceSettings.current.itemStyle
     ) { modifier ->
-        Divider(modifier = modifier)
+        HorizontalDivider(modifier = modifier)
     }
 }
 

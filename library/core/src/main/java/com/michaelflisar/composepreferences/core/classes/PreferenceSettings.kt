@@ -4,6 +4,7 @@ import androidx.compose.animation.core.AnimationSpec
 import androidx.compose.animation.core.FastOutLinearInEasing
 import androidx.compose.animation.core.tween
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
@@ -26,7 +27,7 @@ data class PreferenceSettings internal constructor(
         easing = FastOutLinearInEasing
     ),
     val subScreenEndIndicator: @Composable (() -> Unit)? = {
-        Icon(imageVector = Icons.Default.KeyboardArrowRight, contentDescription = null)
+        Icon(imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight, contentDescription = null)
     },
     val itemStyle: PreferenceStyle = PreferenceStyle(),
     val forceNoIconInset: Boolean = false,
@@ -63,7 +64,7 @@ object PreferenceSettingsDefaults {
             easing = FastOutLinearInEasing
         ),
         subScreenEndIndicator: @Composable (() -> Unit)? = {
-            Icon(imageVector = Icons.Default.KeyboardArrowRight, contentDescription = null)
+            Icon(imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight, contentDescription = null)
         },
         itemStyle: PreferenceStyle = PreferenceStyleDefaults.item(),
         forceNoIconInset: Boolean = false,
