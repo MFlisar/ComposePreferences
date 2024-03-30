@@ -32,7 +32,8 @@ fun <T> StorageSetting<T>.collectSetting(
  */
 @Composable
 fun <T> StorageSetting<T>.asPreferenceData(
-    onValueChange: (data: T) -> Boolean = { true }
+    onValueChange: (data: T) -> Boolean = { true },
+    onAfterValueChanged: (data: T) -> Unit = {}
 ): PreferenceData<T> {
     val scope = rememberCoroutineScope()
     val state = collectSetting()
@@ -42,6 +43,7 @@ fun <T> StorageSetting<T>.asPreferenceData(
         if (onValueChange(it)) {
             scope.launch(Dispatchers.IO) {
                 update(it)
+                onAfterValueChanged(it)
             }
         }
     }
