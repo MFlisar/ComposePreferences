@@ -67,10 +67,10 @@ dependencies {
     val useLiveDependencies = providers.gradleProperty("useLiveDependencies").get().toBoolean()
     if (useLiveDependencies) {
         implementation(deps.composedialogs.core)
-        implementation(deps.composedialogs.dialog.input)
+        api(deps.composedialogs.dialog.input)
     } else {
         implementation(project(":ComposeDialogs:Core"))
-        implementation(project(":ComposeDialogs:Modules:Input"))
+        api(project(":ComposeDialogs:Modules:Input"))
     }
 
     // ------------------------

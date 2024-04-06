@@ -3,19 +3,18 @@ package com.michaelflisar.composepreferences.screen.input
 import android.content.res.Configuration
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.michaelflisar.composedialogs.core.rememberDialogState
 import com.michaelflisar.composedialogs.dialogs.input.DialogInputNumber
+import com.michaelflisar.composedialogs.dialogs.input.DialogInputValidator
 import com.michaelflisar.composedialogs.dialogs.input.rememberDialogInputNumber
-import com.michaelflisar.composepreferences.core.classes.PreferenceData
 import com.michaelflisar.composepreferences.core.classes.Dependency
 import com.michaelflisar.composepreferences.core.classes.LocalPreferenceSettings
+import com.michaelflisar.composepreferences.core.classes.PreferenceData
 import com.michaelflisar.composepreferences.core.classes.PreferenceStyle
 import com.michaelflisar.composepreferences.core.composables.BasePreference
 import com.michaelflisar.composepreferences.core.composables.PreferenceContentText
@@ -32,11 +31,15 @@ import com.michaelflisar.composepreferences.core.hierarchy.PreferenceScope
  * **Basic Parameters:** all params not described here are derived from [com.michaelflisar.composepreferences.core.composables.BasePreference], check it out for more details
  *
  * @param data the [PreferenceData] of this item
+ * @param validator the [DialogInputValidator] of this item
+ * @param formatter the formatter of this item
  */
 @Composable
 fun <T : Number> PreferenceScope.PreferenceInputNumber(
     // Special
     data: PreferenceData<T>,
+    validator: DialogInputValidator = DialogInputNumber.rememberDefaultValidator(data.value),
+    formatter: (value: T) -> String = { it.toString() },
     // Base Preference
     title: @Composable () -> Unit,
     enabled: Dependency = Dependency.Enabled,
@@ -49,6 +52,8 @@ fun <T : Number> PreferenceScope.PreferenceInputNumber(
     PreferenceInputNumber(
         value = data.value,
         onValueChange = data.onValueChange,
+        validator = validator,
+        formatter = formatter,
         title = title,
         enabled = enabled,
         visible = visible,
@@ -68,12 +73,16 @@ fun <T : Number> PreferenceScope.PreferenceInputNumber(
  *
  * @param value the value of this item
  * @param onValueChange the value changed callback of this item
+ * @param validator the [DialogInputValidator] of this item
+ * @param formatter the formatter of this item
  */
 @Composable
 fun <T : Number> PreferenceScope.PreferenceInputNumber(
     // Special
     value: T,
     onValueChange: (value: T) -> Unit,
+    validator: DialogInputValidator = DialogInputNumber.rememberDefaultValidator(value),
+    formatter: (value: T) -> String = { it.toString() },
     // Base Preference
     title: @Composable () -> Unit,
     enabled: Dependency = Dependency.Enabled,
@@ -90,7 +99,8 @@ fun <T : Number> PreferenceScope.PreferenceInputNumber(
             state = showDialog,
             value = value,
             title = title,
-            icon = icon
+            icon = icon,
+            validator = validator
         ) {
             if (it.isPositiveButton) {
                 onValueChange(value.value)
@@ -109,7 +119,7 @@ fun <T : Number> PreferenceScope.PreferenceInputNumber(
             showDialog.show()
         }
     ) {
-        PreferenceContentText(value.toString(), itemSetup)
+        PreferenceContentText(formatter(value), itemSetup)
     }
 }
 

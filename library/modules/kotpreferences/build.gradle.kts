@@ -65,8 +65,16 @@ dependencies {
 
     implementation(project(":ComposePreferences:Core"))
 
-    api(deps.kotpreferences.core)
-    api(deps.kotpreferences.compose)
+    val useLiveDependencies = providers.gradleProperty("useLiveDependencies").get().toBoolean()
+    if (useLiveDependencies) {
+        api(deps.kotpreferences.core)
+        api(deps.kotpreferences.compose)
+    } else {
+        api(project(":KotPreferences:Core"))
+        api(project(":KotPreferences:Modules:Datastore"))
+    }
+
+
 }
 
 project.afterEvaluate {

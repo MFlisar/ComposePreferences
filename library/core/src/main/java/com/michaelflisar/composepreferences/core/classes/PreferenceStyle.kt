@@ -186,7 +186,7 @@ object PreferenceStyleDefaults {
     @Composable
     fun surfaceVariant(
         shape: Shape = RectangleShape
-    ): PreferenceStyle = PreferenceStyle(
+    ): PreferenceStyle = item(
         colors = PreferenceItemColors(
             containerColor = MaterialTheme.colorScheme.surfaceVariant,
             headlineColor = MaterialTheme.colorScheme.onSurface,
@@ -207,7 +207,7 @@ object PreferenceStyleDefaults {
     @Composable
     fun header(
         alphaVariant: Float = DEFAULT_ALPHA_VARIANT
-    ): PreferenceStyle = PreferenceStyle(
+    ): PreferenceStyle = item(
         colors = PreferenceItemColors(
             containerColor = MaterialTheme.colorScheme.surface,
             headlineColor = MaterialTheme.colorScheme.primary,
