@@ -2,7 +2,7 @@
 
 # mflisar
 composedialogs =   		    "1.0.7"
-kotpreferences = 		    "0.5"
+kotpreferences = 		    "0.5.1"
 composedemobaseactivity =   "0.7"
 
 desugar =                   "2.0.4"
