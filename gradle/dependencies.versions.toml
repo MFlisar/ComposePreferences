@@ -1,7 +1,7 @@
 [versions]
 
 # mflisar
-composedialogs =   		    "1.0.7"
+composedialogs =   		    "1.0.8"
 kotpreferences = 		    "0.5.1"
 composedemobaseactivity =   "0.7"
 
