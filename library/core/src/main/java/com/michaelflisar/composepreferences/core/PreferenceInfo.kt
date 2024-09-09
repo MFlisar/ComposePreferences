@@ -3,22 +3,19 @@ package com.michaelflisar.composepreferences.core
 import android.content.res.Configuration
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Info
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.michaelflisar.composepreferences.core.classes.Dependency
 import com.michaelflisar.composepreferences.core.classes.LocalPreferenceSettings
 import com.michaelflisar.composepreferences.core.classes.PreferenceStyle
-import com.michaelflisar.composepreferences.core.classes.PreferenceStyleDefaults
 import com.michaelflisar.composepreferences.core.composables.BasePreference
 import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetup
-import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetupDefaults
 import com.michaelflisar.composepreferences.core.composables.PreviewPreference
+import com.michaelflisar.composepreferences.core.helper.SearchText
 import com.michaelflisar.composepreferences.core.hierarchy.PreferenceScope
 
 /**
@@ -41,7 +38,8 @@ fun PreferenceScope.PreferenceInfo(
     subtitle: @Composable (() -> Unit)? = null,
     icon: (@Composable () -> Unit)? = null,
     preferenceStyle: PreferenceStyle = LocalPreferenceSettings.current.itemStyle,
-    itemSetup: PreferenceItemSetup = PreferenceInfoDefaults.itemSetup()
+    itemSetup: PreferenceItemSetup = PreferenceInfoDefaults.itemSetup(),
+    filterTags: List<String> = emptyList()
 ) {
     BasePreference(
         itemSetup = itemSetup,
@@ -52,7 +50,36 @@ fun PreferenceScope.PreferenceInfo(
         icon = icon,
         onLongClick = onLongClick,
         preferenceStyle = preferenceStyle,
-        content = null
+        content = null,
+        filterTags = filterTags
+    )
+}
+
+@Composable
+fun PreferenceScope.PreferenceInfo(
+    // Special
+    onLongClick: (() -> Unit)? = null,
+    // Base Preference
+    title: String,
+    enabled: Dependency = Dependency.Enabled,
+    visible: Dependency = Dependency.Enabled,
+    subtitle: String? = null,
+    icon: (@Composable () -> Unit)? = null,
+    preferenceStyle: PreferenceStyle = LocalPreferenceSettings.current.itemStyle,
+    itemSetup: PreferenceItemSetup = PreferenceInfoDefaults.itemSetup(),
+    filterTags: List<String> = emptyList()
+) {
+    BasePreference(
+        itemSetup = itemSetup,
+        enabled = enabled,
+        visible = visible,
+        title = { SearchText(title) },
+        subtitle = subtitle?.let { { SearchText(subtitle) } },
+        icon = icon,
+        onLongClick = onLongClick,
+        preferenceStyle = preferenceStyle,
+        content = null,
+        filterTags = filterTags + listOfNotNull(title, subtitle)
     )
 }
 

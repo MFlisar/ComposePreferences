@@ -3,6 +3,7 @@ plugins {
     id("kotlin-android")
     id("kotlin-parcelize")
     id("maven-publish")
+    alias(libs.plugins.compose.compiler)
 }
 
 android {

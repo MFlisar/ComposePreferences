@@ -8,6 +8,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.saveable.listSaver
@@ -15,6 +16,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Modifier
+import com.michaelflisar.composepreferences.core.classes.LocalPreferenceSettings
 
 internal data class Level(val level: Int = 0)
 
@@ -76,6 +78,11 @@ internal fun HierarchyAwareRoot(
 ) {
     val openedGroup = rememberOpenedGroups()
 
+    val settings = LocalPreferenceSettings.current
+    LaunchedEffect(openedGroup.size) {
+        settings.level.value = openedGroup.size
+    }
+
     BackHandler(openedGroup.size > 0) {
         openedGroup.removeLast()
     }
@@ -99,6 +106,7 @@ internal fun HierarchyAwareRoot(
         LocalIndex provides Index(0),
         LocalOpenedGroups provides openedGroup
     ) {
+
         Column(
             modifier = modifier
                 .then(

@@ -5,10 +5,13 @@ import androidx.compose.animation.core.FastOutLinearInEasing
 import androidx.compose.animation.core.tween
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
-import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.State
 import androidx.compose.runtime.compositionLocalOf
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
@@ -16,6 +19,10 @@ val LocalPreferenceSettings = compositionLocalOf { PreferenceSettings() }
 
 /**
  * see [PreferenceSettingsDefaults.settings]
+ *
+ * additionally this class exposes following:
+ *
+ * currentLevel... this state holds the currently visible hierarchical level to determine if you are at the root level or not
  */
 data class PreferenceSettings internal constructor(
     val disabledStateAlpha: Float = .4f,
@@ -33,8 +40,12 @@ data class PreferenceSettings internal constructor(
     val forceNoIconInset: Boolean = false,
     val minTextAreaWidth: Dp = 48.dp,
     val leadingContentEndPadding: Dp = 16.dp,
-    val trailingContentStartPadding: Dp = 16.dp
-)
+    val trailingContentStartPadding: Dp = 16.dp,
+    internal val level: MutableState<Int> = mutableIntStateOf(0)
+) {
+    val currentLevel: State<Int>
+        get() = level
+}
 
 object PreferenceSettingsDefaults {
 
@@ -64,7 +75,10 @@ object PreferenceSettingsDefaults {
             easing = FastOutLinearInEasing
         ),
         subScreenEndIndicator: @Composable (() -> Unit)? = {
-            Icon(imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight, contentDescription = null)
+            Icon(
+                imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
+                contentDescription = null
+            )
         },
         itemStyle: PreferenceStyle = PreferenceStyleDefaults.item(),
         forceNoIconInset: Boolean = false,
@@ -82,6 +96,7 @@ object PreferenceSettingsDefaults {
         forceNoIconInset = forceNoIconInset,
         minTextAreaWidth = minTextAreaWidth,
         leadingContentEndPadding = leadingContentEndPadding,
-        trailingContentStartPadding = trailingContentStartPadding
+        trailingContentStartPadding = trailingContentStartPadding,
+        level = remember { mutableIntStateOf(0) }
     )
 }

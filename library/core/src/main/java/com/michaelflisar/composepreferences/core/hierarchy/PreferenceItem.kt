@@ -4,12 +4,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import com.michaelflisar.composepreferences.core.classes.LocalPreferenceFilter
 
 @Composable
 internal fun PreferenceScope.PreferenceItem(
     group: Boolean = false,
     content: @Composable PreferenceItemScopeInstance.() -> Unit
 ) {
+    val filter = LocalPreferenceFilter.current
     val openedGroupIndizes = LocalOpenedGroups.current.toList()
     val openedGroupLevel = openedGroupIndizes.size - 1
 
@@ -19,9 +21,9 @@ internal fun PreferenceScope.PreferenceItem(
 
     val hierarchyData = HierarchyData(parents, index)
 
-    val visible by remember(level, openedGroupLevel, openedGroupIndizes) {
+    val visible by remember(level, openedGroupLevel, openedGroupIndizes, filter?.search?.value) {
         derivedStateOf {
-            level == openedGroupLevel + 1 && openedGroupIndizes == parents
+            filter?.search?.value?.isNotEmpty() == true || (level == openedGroupLevel + 1 && openedGroupIndizes == parents)
         }
     }
 

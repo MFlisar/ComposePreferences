@@ -3,7 +3,6 @@ package com.michaelflisar.composepreferences.core.composables
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import com.michaelflisar.composepreferences.core.classes.Dependency
 import com.michaelflisar.composepreferences.core.classes.LocalPreferenceSettings
 import com.michaelflisar.composepreferences.core.classes.PreferenceStyle
@@ -43,6 +42,7 @@ fun PreferenceScope.BasePreference(
     preferenceStyle: PreferenceStyle = LocalPreferenceSettings.current.itemStyle,
     itemSetup: PreferenceItemSetup = PreferenceItemSetup(),
     settings: PreferenceItemSettings = PreferenceItemSettings(),
+    filterTags: List<String> = emptyList(),
     content: (@Composable ColumnScope.() -> Unit)? = null
 ) {
     BasePreferenceContainer(
@@ -52,7 +52,8 @@ fun PreferenceScope.BasePreference(
         onClick = onClick,
         onLongClick = onLongClick,
         group = settings.group,
-        preferenceStyle = preferenceStyle
+        preferenceStyle = preferenceStyle,
+        filterTags = filterTags
     ) { modifier ->
         PreferenceItem(
             modifier = modifier,

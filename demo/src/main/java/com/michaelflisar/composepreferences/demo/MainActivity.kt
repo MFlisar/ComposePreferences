@@ -40,6 +40,7 @@ import com.michaelflisar.composepreferences.demo.classes.LocalDataStore
 import com.michaelflisar.composepreferences.demo.composables.MyInfoLine
 import com.michaelflisar.composepreferences.demo.demos.PrefScreenCustomDemo
 import com.michaelflisar.composepreferences.demo.demos.PrefScreenDemo
+import com.michaelflisar.composepreferences.demo.demos.PrefScreenDemoFilter
 import com.michaelflisar.composepreferences.demo.demos.PrefScreenDemoKotPreferences1
 import com.michaelflisar.composepreferences.kotpreferences.asPreferenceData
 import com.michaelflisar.composepreferences.screen.bool.PreferenceBool
@@ -106,12 +107,13 @@ private fun Content(
         when (page.value) {
             0 -> Root(
                 page, theme, dynamicTheme, expandedRootRegions,
-                listOf("Demo", "Demo KotPreference", "Demo Custom")
+                listOf("Demo", "Demo KotPreference", "Demo Custom", "Demo Filter")
             )
 
             1 -> PrefScreenDemo()
             2 -> PrefScreenDemoKotPreferences1()
             3 -> PrefScreenCustomDemo()
+            4 -> PrefScreenDemoFilter()
         }
     }
 }

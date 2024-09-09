@@ -7,8 +7,9 @@ import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.graphicsLayer
@@ -16,6 +17,7 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import com.michaelflisar.composepreferences.core.classes.Dependency
+import com.michaelflisar.composepreferences.core.classes.LocalPreferenceFilter
 import com.michaelflisar.composepreferences.core.classes.LocalPreferenceSettings
 import com.michaelflisar.composepreferences.core.classes.PreferenceStyle
 import com.michaelflisar.composepreferences.core.classes.PreferenceStyleDefaults
@@ -52,11 +54,24 @@ fun PreferenceScope.BasePreferenceContainer(
     onLongClick: (() -> Unit)? = null,
     group: Boolean = false,
     preferenceStyle: PreferenceStyle = LocalPreferenceSettings.current.itemStyle,
+    filterTags: List<String> = emptyList(),
     content: @Composable (modifier: Modifier) -> Unit
 ) {
     val stateVisible = visible.state()
     val stateEnabled = enabled.state()
     val settings = LocalPreferenceSettings.current
+    val filter = LocalPreferenceFilter.current
+
+    val visibleInFilter by remember(filter?.search?.value, filterTags) {
+        derivedStateOf {
+            filter?.filter(filter.search.value, filterTags) ?: true
+        }
+    }
+    val visible by remember(stateVisible.value, visibleInFilter) {
+        derivedStateOf {
+            visibleInFilter && stateVisible.value
+        }
+    }
 
     //println("stateVisible = $stateVisible | containerColor = ${preferenceStyle.colors.containerColor()}")
 
@@ -65,7 +80,7 @@ fun PreferenceScope.BasePreferenceContainer(
             Animatable(1f)
         }
         LaunchedEffect(Unit) {
-            if (stateVisible.value && settings.animationSpec != null) {
+            if (visible && settings.animationSpec != null) {
                 animationFactor.animateTo(
                     0f,
                     animationSpec = settings.animationSpec
@@ -74,7 +89,7 @@ fun PreferenceScope.BasePreferenceContainer(
         }
 
         AnimatedPreference(
-            visible = stateVisible.value
+            visible = visible
         ) {
             val animationOffsetY =
                 with(LocalDensity.current) { (animationFactor.value * 8).dp.toPx() }
