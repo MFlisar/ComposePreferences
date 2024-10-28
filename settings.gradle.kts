@@ -1,28 +1,31 @@
 dependencyResolutionManagement {
+
     repositories {
         mavenCentral()
         google()
         gradlePluginPortal()
         maven("https://jitpack.io")
     }
+
     versionCatalogs {
-        create("androidx") {
-            from(files("gradle/androidx.versions.toml"))
-        }
-        create("deps") {
-            from(files("gradle/dependencies.versions.toml"))
-        }
-        create("compose") {
-            from(files("gradle/compose.versions.toml"))
-        }
         create("app") {
             from(files("gradle/app.versions.toml"))
         }
     }
 }
 
+pluginManagement {
+
+    repositories {
+        mavenCentral()
+        google()
+        gradlePluginPortal()
+        maven("https://jitpack.io")
+    }
+}
+
 // --------------
-// App
+// Library
 // --------------
 
 include(":ComposePreferences:Core")
@@ -48,5 +51,5 @@ project(":ComposePreferences:Modules:Screen:Number").projectDir = file("library/
 include(":ComposePreferences:Modules:KotPreferences")
 project(":ComposePreferences:Modules:KotPreferences").projectDir = file("library/modules/kotpreferences")
 
-include(":demo")
-project(":demo").projectDir = file("demo")
+include(":demo:android")
+include(":demo:desktop")
