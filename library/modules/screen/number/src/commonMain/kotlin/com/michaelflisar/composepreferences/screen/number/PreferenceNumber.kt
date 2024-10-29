@@ -1,13 +1,16 @@
 package com.michaelflisar.composepreferences.screen.number
 
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.material3.Slider
 import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import com.michaelflisar.composedialogs.core.DialogState
 import com.michaelflisar.composedialogs.core.rememberDialogState
 import com.michaelflisar.composedialogs.dialogs.number.DialogNumberPicker
 import com.michaelflisar.composedialogs.dialogs.number.NumberPickerSetup
@@ -15,14 +18,11 @@ import com.michaelflisar.composedialogs.dialogs.number.RepeatingButton
 import com.michaelflisar.composedialogs.dialogs.number.rememberDialogNumber
 import com.michaelflisar.composepreferences.core.classes.Dependency
 import com.michaelflisar.composepreferences.core.classes.LocalPreferenceSettings
-import com.michaelflisar.composepreferences.core.classes.PreferenceData
-import com.michaelflisar.composepreferences.core.classes.PreferenceType
 import com.michaelflisar.composepreferences.core.composables.BasePreference
+import com.michaelflisar.composepreferences.core.composables.BasePreferenceDialog
 import com.michaelflisar.composepreferences.core.composables.PreferenceContentText
 import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetup
 import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetupDefaults
-import com.michaelflisar.composepreferences.core.helper.SearchText
-import com.michaelflisar.composepreferences.core.internal.rememberPreferenceItemState
 import com.michaelflisar.composepreferences.core.scopes.PreferenceScope
 import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
 
@@ -33,7 +33,7 @@ import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
  *
  * **Basic Parameters:** all params not described here are derived from [com.michaelflisar.composepreferences.core.composables.BasePreference], check it out for more details
  *
- * @param data the [PreferenceData] of this item
+ * @param value the [MutableState] of this item
  * @param min the minimum valid number
  * @param max the maximum valid number
  * @param stepSize the steps in which a number can be picked
@@ -43,7 +43,7 @@ import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
 fun <T : Number> PreferenceScope.PreferenceNumber(
     style: PreferenceNumber.Style = PreferenceNumber.Style.Picker,
     // Special
-    data: PreferenceData<T>,
+    value: MutableState<T>,
     min: T,
     max: T,
     stepSize: T,
@@ -56,12 +56,16 @@ fun <T : Number> PreferenceScope.PreferenceNumber(
     icon: (@Composable () -> Unit)? = null,
     itemStyle: PreferenceItemStyle = LocalPreferenceSettings.current.style.defaultItemStyle,
     itemSetup: PreferenceItemSetup = PreferenceNumberDefaults.itemSetup(style),
-    filterTags: List<String> = emptyList()
+    filterTags: List<String> = emptyList(),
+    // Dialog
+    dialog: @Composable (state: DialogState) -> Unit = { dialogState ->
+        PreferenceNumberDefaults.dialog(dialogState, value.value, { value.value = it }, min, max, stepSize, formatter, title, icon)
+    }
 ) {
     PreferenceNumber(
         style = style,
-        value = data.value,
-        onValueChange = data.onValueChange,
+        value = value.value,
+        onValueChange = { value.value = it },
         min = min,
         max = max,
         stepSize = stepSize,
@@ -73,7 +77,8 @@ fun <T : Number> PreferenceScope.PreferenceNumber(
         icon = icon,
         itemStyle = itemStyle,
         itemSetup = itemSetup,
-        filterTags = filterTags
+        filterTags = filterTags,
+        dialog = dialog
     )
 }
 
@@ -109,30 +114,17 @@ fun <T : Number> PreferenceScope.PreferenceNumber(
     icon: (@Composable () -> Unit)? = null,
     itemStyle: PreferenceItemStyle = LocalPreferenceSettings.current.style.defaultItemStyle,
     itemSetup: PreferenceItemSetup = PreferenceNumberDefaults.itemSetup(style),
-    filterTags: List<String> = emptyList()
+    filterTags: List<String> = emptyList(),
+    // Dialog
+    dialog: @Composable (state: DialogState) -> Unit = { dialogState ->
+        PreferenceNumberDefaults.dialog(dialogState, value, onValueChange, min, max, stepSize, formatter, title, icon)
+    }
 ) {
     when (style) {
         PreferenceNumber.Style.Picker -> {
-            val showDialog = rememberDialogState()
-            if (showDialog.showing) {
-                val value = rememberDialogNumber(value)
-                DialogNumberPicker(
-                    state = showDialog,
-                    value = value,
-                    setup = NumberPickerSetup(
-                        min, max, stepSize, repeatingButton = RepeatingButton.Enabled()
-                    ),
-                    formatter = formatter,
-                    title = { Text(title) },
-                    icon = icon
-                ) {
-                    if (it.isPositiveButton) {
-                        onValueChange(value.value)
-                    }
-                }
-            }
-
-            BasePreference(
+            BasePreferenceDialog(
+                dialogState = rememberDialogState(),
+                dialog = dialog,
                 itemSetup = itemSetup,
                 enabled = enabled,
                 visible = visible,
@@ -140,25 +132,13 @@ fun <T : Number> PreferenceScope.PreferenceNumber(
                 subtitle = subtitle,
                 icon = icon,
                 itemStyle = itemStyle,
-                filterTags = filterTags,
-                onClick = {
-                    showDialog.show()
-                }
+                filterTags = filterTags
             ) {
                 PreferenceContentText(text = formatter(value), itemSetup)
             }
         }
 
         is PreferenceNumber.Style.Slider -> {
-            val colors = if (style.showTicks) {
-                SliderDefaults.colors()
-            } else {
-                SliderDefaults.colors(
-                    activeTickColor = Color.Transparent,
-                    inactiveTickColor = Color.Transparent
-                )
-            }
-
             BasePreference(
                 itemSetup = itemSetup,
                 enabled = enabled,
@@ -169,25 +149,47 @@ fun <T : Number> PreferenceScope.PreferenceNumber(
                 itemStyle = itemStyle,
                 filterTags = filterTags
             ) {
-                Slider(
-                    value = value.toFloat(),
-                    onValueChange = {
-                        @Suppress("UNCHECKED_CAST")
-                        when (value) {
-                            is Int -> onValueChange(it.toInt() as T)
-                            is Float -> onValueChange(it as T)
-                            is Double -> onValueChange(it.toDouble() as T)
-                            is Long -> onValueChange(it.toLong() as T)
-                        }
-                    },
-                    colors = colors,
-                    valueRange = min.toFloat()..max.toFloat(),
-                    steps = ((max.toFloat() - min.toFloat()) / stepSize.toFloat() - 1).toInt()
-                )
-                Text(formatter(value), modifier = Modifier.align(Alignment.CenterHorizontally))
+                ContentSlider(style, value, onValueChange, min, max, stepSize, formatter)
             }
         }
     }
+}
+
+@Composable
+private fun <T: Number> ColumnScope.ContentSlider(
+    style: PreferenceNumber.Style.Slider,
+    value: T,
+    onValueChange: (T) -> Unit,
+    min: T,
+    max: T,
+    stepSize: T,
+    formatter: (T) -> String
+) {
+    val colors = if (style.showTicks) {
+        SliderDefaults.colors()
+    } else {
+        SliderDefaults.colors(
+            activeTickColor = Color.Transparent,
+            inactiveTickColor = Color.Transparent
+        )
+    }
+
+    Slider(
+        value = value.toFloat(),
+        onValueChange = {
+            @Suppress("UNCHECKED_CAST")
+            when (value) {
+                is Int -> onValueChange(it.toInt() as T)
+                is Float -> onValueChange(it as T)
+                is Double -> onValueChange(it.toDouble() as T)
+                is Long -> onValueChange(it.toLong() as T)
+            }
+        },
+        colors = colors,
+        valueRange = min.toFloat()..max.toFloat(),
+        steps = ((max.toFloat() - min.toFloat()) / stepSize.toFloat() - 1).toInt()
+    )
+    Text(formatter(value), modifier = Modifier.align(Alignment.CenterHorizontally))
 }
 
 @Stable
@@ -200,6 +202,7 @@ object PreferenceNumber {
 
 @Stable
 object PreferenceNumberDefaults {
+
     @Composable
     fun itemSetupPicker() = PreferenceItemSetup(
         trailingContentSize = PreferenceItemSetupDefaults.numericContent()
@@ -212,5 +215,34 @@ object PreferenceNumberDefaults {
     fun itemSetup(style: PreferenceNumber.Style) = when (style) {
         PreferenceNumber.Style.Picker -> itemSetupPicker()
         is PreferenceNumber.Style.Slider -> itemSetupSlider()
+    }
+
+    @Composable
+    fun <T : Number> dialog(
+        dialogState: DialogState,
+        value: T,
+        onValueChange: (value: T) -> Unit,
+        min: T,
+        max: T,
+        stepSize: T,
+        formatter: (value: T) -> String = { it.toString() },
+        title: String,
+        icon: (@Composable () -> Unit)? = null
+    ) {
+        val value = rememberDialogNumber(value)
+        DialogNumberPicker(
+            state = dialogState,
+            value = value,
+            setup = NumberPickerSetup(
+                min, max, stepSize, repeatingButton = RepeatingButton.Enabled()
+            ),
+            formatter = formatter,
+            title = { Text(title) },
+            icon = icon
+        ) {
+            if (it.isPositiveButton) {
+                onValueChange(value.value)
+            }
+        }
     }
 }

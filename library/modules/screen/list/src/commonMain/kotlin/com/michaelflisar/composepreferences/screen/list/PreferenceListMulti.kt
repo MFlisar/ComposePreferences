@@ -2,20 +2,19 @@ package com.michaelflisar.composepreferences.screen.list
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import com.michaelflisar.composedialogs.core.DialogState
 import com.michaelflisar.composedialogs.core.rememberDialogState
 import com.michaelflisar.composedialogs.dialogs.list.DialogList
 import com.michaelflisar.composepreferences.core.classes.Dependency
 import com.michaelflisar.composepreferences.core.classes.LocalPreferenceSettings
-import com.michaelflisar.composepreferences.core.classes.PreferenceData
-import com.michaelflisar.composepreferences.core.classes.PreferenceType
 import com.michaelflisar.composepreferences.core.composables.BasePreference
+import com.michaelflisar.composepreferences.core.composables.BasePreferenceDialog
 import com.michaelflisar.composepreferences.core.composables.PreferenceContentText
 import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetup
-import com.michaelflisar.composepreferences.core.helper.SearchText
-import com.michaelflisar.composepreferences.core.internal.rememberPreferenceItemState
 import com.michaelflisar.composepreferences.core.scopes.PreferenceScope
 import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
 
@@ -26,7 +25,7 @@ import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
  *
  * **Basic Parameters:** all params not described here are derived from [com.michaelflisar.composepreferences.core.composables.BasePreference], check it out for more details
  *
- * @param data the [PreferenceData] of this item
+ * @param value the [MutableState] of this item
  * @param items the list of items that this preference can select from
  * @param itemTextProvider a converter to get the text of an item
  * @param itemIconProvider a converter to provide an icon for an item
@@ -34,7 +33,7 @@ import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
 @Composable
 fun <T> PreferenceScope.PreferenceListMulti(
     // listStyle
-    data: PreferenceData<List<T>>,
+    value: MutableState<List<T>>,
     items: List<T>,
     itemTextProvider: @Composable (item: T) -> String = { it.toString() },
     itemIconProvider: (@Composable (item: T) -> Unit)? = null,
@@ -51,11 +50,15 @@ fun <T> PreferenceScope.PreferenceListMulti(
     icon: (@Composable () -> Unit)? = null,
     itemStyle: PreferenceItemStyle = LocalPreferenceSettings.current.style.defaultItemStyle,
     itemSetup: PreferenceItemSetup = PreferenceMultiListDefaults.itemSetup(),
-    filterTags: List<String> = emptyList()
+    filterTags: List<String> = emptyList(),
+    // Dialog
+    dialog: @Composable (state: DialogState) -> Unit = { dialogState ->
+        PreferenceMultiListDefaults.dialog(dialogState, value.value, { value.value = it }, items, itemTextProvider, itemIconProvider, title, icon)
+    }
 ) {
     PreferenceListMulti(
-        value = data.value,
-        onValueChange = data.onValueChange,
+        value = value.value,
+        onValueChange = { value.value = it },
         items = items,
         itemTextProvider = itemTextProvider,
         itemIconProvider = itemIconProvider,
@@ -67,7 +70,8 @@ fun <T> PreferenceScope.PreferenceListMulti(
         icon = icon,
         itemStyle = itemStyle,
         itemSetup = itemSetup,
-        filterTags = filterTags
+        filterTags = filterTags,
+        dialog = dialog
     )
 }
 
@@ -105,15 +109,50 @@ fun <T> PreferenceScope.PreferenceListMulti(
     icon: (@Composable () -> Unit)? = null,
     itemStyle: PreferenceItemStyle = LocalPreferenceSettings.current.style.defaultItemStyle,
     itemSetup: PreferenceItemSetup = PreferenceMultiListDefaults.itemSetup(),
-    filterTags: List<String> = emptyList()
+    filterTags: List<String> = emptyList(),
+    // Dialog
+    dialog: @Composable (state: DialogState) -> Unit = { dialogState ->
+        PreferenceMultiListDefaults.dialog(dialogState, value, onValueChange, items, itemTextProvider, itemIconProvider, title, icon)
+    }
 ) {
-    val showDialog = rememberDialogState()
-    if (showDialog.showing) {
+    BasePreferenceDialog(
+        dialogState = rememberDialogState(),
+        dialog = dialog,
+        enabled = enabled,
+        visible = visible,
+        title = title,
+        subtitle = subtitle,
+        icon = icon,
+        itemStyle = itemStyle,
+        filterTags = filterTags,
+        itemSetup = itemSetup
+    ) {
+        PreferenceContentText(formatter(value), itemSetup)
+    }
+}
+
+@Stable
+object PreferenceMultiListDefaults {
+
+    @Composable
+    fun itemSetup() = PreferenceItemSetup()
+
+    @Composable
+    fun <T> dialog(
+        dialogState: DialogState,
+        value: List<T>,
+        onValueChange: (value: List<T>) -> Unit,
+        items: List<T>,
+        itemTextProvider: @Composable (item: T) -> String = { it.toString() },
+        itemIconProvider: (@Composable (item: T) -> Unit)? = null,
+        title: String,
+        icon: (@Composable () -> Unit)? = null
+    ) {
         val selection = remember(value) {
             mutableStateOf(value.map { items.indexOf(it) })
         }
         DialogList(
-            state = showDialog,
+            state = dialogState,
             items = items,
             itemIdProvider = { items.indexOf(it) },
             selectionMode = DialogList.SelectionMode.MultiSelect<T>(
@@ -131,26 +170,4 @@ fun <T> PreferenceScope.PreferenceListMulti(
             }
         }
     }
-
-    BasePreference(
-        enabled = enabled,
-        visible = visible,
-        title = title,
-        subtitle = subtitle,
-        icon = icon,
-        itemStyle = itemStyle,
-        filterTags = filterTags,
-        itemSetup = itemSetup,
-        onClick = {
-            showDialog.show()
-        }
-    ) {
-        PreferenceContentText(formatter(value), itemSetup)
-    }
-}
-
-@Stable
-object PreferenceMultiListDefaults {
-    @Composable
-    fun itemSetup() = PreferenceItemSetup()
 }

@@ -29,7 +29,6 @@ import com.michaelflisar.composepreferences.core.PreferenceSubScreen
 import com.michaelflisar.composepreferences.core.classes.PreferenceFilter
 import com.michaelflisar.composepreferences.core.classes.PreferenceSettingsDefaults
 import com.michaelflisar.composepreferences.core.classes.PreferenceState
-import com.michaelflisar.composepreferences.core.classes.asPreferenceData
 import com.michaelflisar.composepreferences.core.classes.rememberPreferenceFilter
 import com.michaelflisar.composepreferences.core.classes.rememberPreferenceState
 import com.michaelflisar.composepreferences.core.styles.PreferenceStyle
@@ -104,7 +103,7 @@ fun PrefScreenDemoFilter(
         val numberInt2 = remember { mutableStateOf(0) }
         val numberFloat2 = remember { mutableStateOf(0f) }
 
-        val listItems = List(100) { "Item ${it + 1}"}
+        val listItems = List(100) { "Item ${it + 1}" }
         val list1 = remember { mutableStateOf(listItems.first()) }
         val list2 = remember { mutableStateOf(listItems.first()) }
         val listMulti1 = remember { mutableStateOf(emptyList<String>()) }
@@ -128,7 +127,14 @@ fun PrefScreenDemoFilter(
                         )
                     } else {
                         if (filter.isActive() && filter.flattenResult) {
-                            Text("${state.countVisible()} / ${state.countAll(includeGroups = false, includeSections = false)}")
+                            Text(
+                                "${state.countVisible()} / ${
+                                    state.countAll(
+                                        includeGroups = false,
+                                        includeSections = false
+                                    )
+                                }"
+                            )
                         } else {
                             Text("${state.countVisible()} / ${state.countCurrentLevel()}")
                         }
@@ -139,80 +145,147 @@ fun PrefScreenDemoFilter(
                 }
             }
 
-            PreferenceSubScreen(title = "Pref 1 - Core") {
-                PreferenceInfo(title = "Pref 1.1")
-                PreferenceSubScreen(title = "Pref 1.2 - NESTING") {
-                    PreferenceInfo(title = "Pref 1.2.1")
-                    PreferenceInfo(title = "Pref 1.2.2")
-                    PreferenceSectionHeader(title = "Region 1.2.3") {
-                        PreferenceInfo(title = "Pref 1.2.3.1")
-                        PreferenceInfo(title = "Pref 1.2.3.2")
-                        PreferenceInfo(title = "Pref 1.2.3.3")
+            PreferenceSectionHeader(
+                title = "Section 1-3"
+            ) {
+
+                PreferenceSubScreen(title = "Pref 1 - Core") {
+                    PreferenceInfo(title = "Pref 1.1")
+                    PreferenceSubScreen(title = "Pref 1.2 - NESTING") {
+                        PreferenceInfo(title = "Pref 1.2.1")
+                        PreferenceInfo(title = "Pref 1.2.2")
+                        PreferenceSectionHeader(title = "Region 1.2.3") {
+                            PreferenceInfo(title = "Pref 1.2.3.1")
+                            PreferenceInfo(title = "Pref 1.2.3.2")
+                            PreferenceInfo(title = "Pref 1.2.3.3")
+                        }
+                        PreferenceSubScreen(title = "Pref 1.2.4") {
+                            PreferenceInfo(title = "Pref 1.2.4.1")
+                            PreferenceInfo(title = "Pref 1.2.4.2")
+                        }
+                        PreferenceInfo(title = "Pref 1.2.5")
                     }
-                    PreferenceSubScreen(title = "Pref 1.2.4") {
-                        PreferenceInfo(title = "Pref 1.2.4.1")
-                        PreferenceInfo(title = "Pref 1.2.4.2")
+                    PreferenceSectionHeader(title = "Pref 1.3 - Section") {
+                        PreferenceInfo(title = "Pref 1.3.1")
+                        PreferenceInfo(title = "Pref 1.3.2")
+                        PreferenceInfo(title = "Pref 1.3.3")
                     }
-                    PreferenceInfo(title = "Pref 1.2.5")
-                }
-                PreferenceSectionHeader(title = "Pref 1.3 - Section") {
-                    PreferenceInfo(title = "Pref 1.3.1")
-                    PreferenceInfo(title = "Pref 1.3.2")
-                    PreferenceInfo(title = "Pref 1.3.3")
-                }
-                PreferenceSectionHeader(title = "Pref 1.4 - Section2") {
-                    PreferenceInfo(title = "Pref 1.4.1")
-                    PreferenceInfo(title = "Pref 1.4.2")
-                    PreferenceInfo(title = "Pref 1.4.3")
-                }
-            }
-
-            PreferenceSubScreen(title = "Pref 2 - Boolean") {
-                PreferenceBool(title = "Pref 2.1", data = bool.asPreferenceData())
-                PreferenceBool(title = "Pref 2.2", data = bool2.asPreferenceData(), style = PreferenceBool.Style.Checkbox)
-            }
-
-            PreferenceSubScreen(title = "Pref 3 - Buttons") {
-                PreferenceButton(title = "Pref 3.1 - Button 1", onClick = {
-                    scope.launch {
-                        snackbarHostState.currentSnackbarData?.dismiss()
-                        snackbarHostState.showSnackbar("Button 1 clicked")
+                    PreferenceSectionHeader(title = "Pref 1.4 - Section2") {
+                        PreferenceInfo(title = "Pref 1.4.1")
+                        PreferenceInfo(title = "Pref 1.4.2")
+                        PreferenceInfo(title = "Pref 1.4.3")
                     }
-                })
-            }
+                }
 
-            PreferenceSubScreen(title = "Pref 4 - Colors") {
-                PreferenceColor(title = "Pref 4.1 - Color 1 - with alpha", data = color1.asPreferenceData())
-                PreferenceColor(title = "Pref 4.2 - Color 2 - no alpha", data = color2.asPreferenceData(), alphaSupported = false)
-            }
+                PreferenceSubScreen(title = "Pref 2 - Boolean") {
+                    PreferenceBool(title = "Pref 2.1", value = bool)
+                    PreferenceBool(
+                        title = "Pref 2.2",
+                        value = bool2,
+                        style = PreferenceBool.Style.Checkbox
+                    )
+                }
 
-            PreferenceSubScreen(title = "Pref 5 - Date/Time") {
-                PreferenceDate(title = "Pref 5.1 - Date 1 (MO - SO)", data = date1.asPreferenceData(), firstDayOfWeek = DayOfWeek.MONDAY)
-                PreferenceDate(title = "Pref 5.2 - Date 2 (SO - SA)", data = date2.asPreferenceData(), firstDayOfWeek = DayOfWeek.SUNDAY)
-                PreferenceTime(title = "Pref 5.3 - Time (24h)", data = time1.asPreferenceData(), is24Hours = true)
-                PreferenceTime(title = "Pref 5.4 - Time (12h)", data = time2.asPreferenceData(), is24Hours = false)
+                PreferenceSubScreen(title = "Pref 3 - Buttons") {
+                    PreferenceButton(title = "Pref 3.1 - Button 1", onClick = {
+                        scope.launch {
+                            snackbarHostState.currentSnackbarData?.dismiss()
+                            snackbarHostState.showSnackbar("Button 1 clicked")
+                        }
+                    })
+                }
             }
+            PreferenceSectionHeader(
+                title = "Section 4-6"
+            ) {
+                PreferenceSubScreen(title = "Pref 4 - Colors") {
+                    PreferenceColor(
+                        title = "Pref 4.1 - Color 1 - with alpha",
+                        value = color1
+                    )
+                    PreferenceColor(
+                        title = "Pref 4.2 - Color 2 - no alpha",
+                        value = color2,
+                        alphaSupported = false
+                    )
+                }
 
-            PreferenceSubScreen(title = "Pref 6 - Input") {
-                PreferenceInputText(title = "Pref 6.1 - Text", data = text1.asPreferenceData())
-                PreferenceInputNumber(title = "Pref 6.2 - Int", data = numberInt1.asPreferenceData())
-                PreferenceInputNumber(title = "Pref 6.3 - Float", data = numberFloat1.asPreferenceData())
+                PreferenceSubScreen(title = "Pref 5 - Date/Time") {
+                    PreferenceDate(
+                        title = "Pref 5.1 - Date 1 (MO - SO)",
+                        value = date1,
+                        firstDayOfWeek = DayOfWeek.MONDAY
+                    )
+                    PreferenceDate(
+                        title = "Pref 5.2 - Date 2 (SO - SA)",
+                        value = date2,
+                        firstDayOfWeek = DayOfWeek.SUNDAY
+                    )
+                    PreferenceTime(
+                        title = "Pref 5.3 - Time (24h)",
+                        value = time1,
+                        is24Hours = true
+                    )
+                    PreferenceTime(
+                        title = "Pref 5.4 - Time (12h)",
+                        value = time2,
+                        is24Hours = false
+                    )
+                }
+
+                PreferenceSubScreen(title = "Pref 6 - Input") {
+                    PreferenceInputText(title = "Pref 6.1 - Text", value = text1)
+                    PreferenceInputNumber(
+                        title = "Pref 6.2 - Int",
+                        value = numberInt1
+                    )
+                    PreferenceInputNumber(
+                        title = "Pref 6.3 - Float",
+                        value = numberFloat1
+                    )
+                }
             }
+            PreferenceSectionHeader(
+                title = "Section 7+"
+            ) {
+                PreferenceSubScreen(title = "Pref 7 - Picker") {
+                    PreferenceNumber(
+                        title = "Pref 7.1 - Int",
+                        min = 0,
+                        max = 100,
+                        stepSize = 1,
+                        value = numberInt2
+                    )
+                    PreferenceNumber(title = "Pref 7.2 - Float",
+                        min = 0f,
+                        max = 10f,
+                        stepSize = .5f,
+                        value = numberFloat2,
+                        style = PreferenceNumber.Style.Slider(showTicks = true),
+                        formatter = { "%.1f".format(it) }
+                    )
+                }
 
-            PreferenceSubScreen(title = "Pref 7 - Picker") {
-                PreferenceNumber(title = "Pref 7.1 - Int", min = 0, max = 100, stepSize = 1, data = numberInt2.asPreferenceData())
-                PreferenceNumber(title = "Pref 7.2 - Float", min = 0f, max = 10f, stepSize = .5f, data = numberFloat2.asPreferenceData(),
-                    style = PreferenceNumber.Style.Slider(showTicks = true),
-                    formatter = { "%.1f".format(it) }
-                )
+                PreferenceSubScreen(title = "Pref 8 - List") {
+                    PreferenceList(
+                        title = "Pref 8.1 - List Dialog",
+                        value = list1,
+                        items = listItems
+                    )
+                    PreferenceList(
+                        title = "Pref 8.2 - List Spinner",
+                        value = list2,
+                        items = listItems,
+                        style = PreferenceList.Style.Spinner
+                    )
+                    PreferenceListMulti(
+                        title = "Pref 8.1 - Multi Selection",
+                        value = listMulti1,
+                        items = listItems
+                    )
+                }
+
             }
-
-            PreferenceSubScreen(title = "Pref 8 - List") {
-                PreferenceList(title = "Pref 8.1 - List Dialog", data = list1.asPreferenceData(), items = listItems)
-                PreferenceList(title = "Pref 8.2 - List Spinner", data = list2.asPreferenceData(), items = listItems, style = PreferenceList.Style.Spinner)
-                PreferenceListMulti(title = "Pref 8.1 - Multi Selection", data = listMulti1.asPreferenceData(), items = listItems)
-            }
-
         }
     }
 }

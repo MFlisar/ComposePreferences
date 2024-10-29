@@ -9,6 +9,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.Style
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
@@ -37,11 +38,11 @@ import com.michaelflisar.composepreferences.demo.demos.PrefScreenCustomDemo
 import com.michaelflisar.composepreferences.demo.demos.PrefScreenDemo
 import com.michaelflisar.composepreferences.demo.demos.PrefScreenDemoFilter
 import com.michaelflisar.composepreferences.demo.demos.PrefScreenDemoKotPreferences1
-import com.michaelflisar.composepreferences.kotpreferences.asPreferenceData
 import com.michaelflisar.composepreferences.screen.bool.PreferenceBool
 import com.michaelflisar.composepreferences.screen.list.PreferenceList
 import com.michaelflisar.composepreferences.screen.number.PreferenceNumber
 import com.michaelflisar.composethemer.ComposeTheme
+import com.michaelflisar.kotpreferences.compose.asMutableState
 import com.michaelflisar.toolbox.androiddemoapp.DemoActivity
 import com.michaelflisar.toolbox.androiddemoapp.composables.DemoAppThemeRegion
 import com.michaelflisar.toolbox.androiddemoapp.composables.DemoCollapsibleRegion
@@ -117,8 +118,7 @@ private fun Root(
 
     Column(
         modifier = Modifier
-            .verticalScroll(rememberScrollState())
-        ,
+            .verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
 
@@ -162,12 +162,13 @@ private fun Root(
                 settings = settings
             ) {
                 PreferenceList(
-                    data = DemoPrefs.style.asPreferenceData(),
+                    value = DemoPrefs.style.asMutableState(),
                     title = "Style",
-                    items = DemoStyle.entries.toList()
+                    items = DemoStyle.entries.toList(),
+                    icon = { Icon(Icons.Default.Style, null) },
                 )
                 PreferenceNumber(
-                    data = DemoPrefs.disabledStateAlpha.asPreferenceData(),
+                    value = DemoPrefs.disabledStateAlpha.asMutableState(),
                     title = "Alpha",
                     subtitle = "Alpha value for disabled preferences",
                     icon = { Icon(Icons.Default.Settings, null) },
@@ -183,20 +184,20 @@ private fun Root(
                 )
                 PreferenceBool(
                     style = PreferenceBool.Style.Switch,
-                    data = DemoPrefs.disabledStateGrayscale.asPreferenceData(),
+                    value = DemoPrefs.disabledStateGrayscale.asMutableState(),
                     title = "Grayscale",
                     subtitle = "Grayscale out disabled preferences?",
                     icon = { Icon(Icons.Default.Settings, null) }
                 )
                 PreferenceBool(
                     style = PreferenceBool.Style.Switch,
-                    data = DemoPrefs.toggleBooleanOnItemClick.asPreferenceData(),
+                    value = DemoPrefs.toggleBooleanOnItemClick.asMutableState(),
                     title = "Bool Behaviour",
                     subtitle = "Toggle boolean preferences on item click (or on checkbox/switch click only)?",
                     icon = { Icon(Icons.Default.Settings, null) }
                 )
                 PreferenceNumber(
-                    data = DemoPrefs.maxLinesValue.asPreferenceData(),
+                    value = DemoPrefs.maxLinesValue.asMutableState(),
                     title = "Lines",
                     subtitle = "Maximum number of lines for all preferences that show some text inside their content area.",
                     icon = { Icon(Icons.Default.Settings, null) },
@@ -206,14 +207,14 @@ private fun Root(
                 )
                 PreferenceBool(
                     style = PreferenceBool.Style.Switch,
-                    data = DemoPrefs.showSubScreenEndIndicator.asPreferenceData(),
+                    value = DemoPrefs.showSubScreenEndIndicator.asMutableState(),
                     title = "Sub Screen Indicator",
                     subtitle = "Show an arrow on the right for sub screens?",
                     icon = { Icon(Icons.Default.Settings, null) }
                 )
                 PreferenceBool(
                     style = PreferenceBool.Style.Switch,
-                    data = DemoPrefs.forceNoIconInset.asPreferenceData(),
+                    value = DemoPrefs.forceNoIconInset.asMutableState(),
                     title = "No Icon Inset",
                     subtitle = "Force an inset for preferences without an icon, so that all preferences align beautifully on the left?",
                     icon = { Icon(Icons.Default.Settings, null) }

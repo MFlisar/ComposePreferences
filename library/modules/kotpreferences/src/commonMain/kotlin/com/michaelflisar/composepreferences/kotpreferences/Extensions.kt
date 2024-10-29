@@ -1,11 +1,9 @@
 package com.michaelflisar.composepreferences.kotpreferences
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.rememberCoroutineScope
-import com.michaelflisar.composepreferences.core.classes.PreferenceData
 import com.michaelflisar.composepreferences.core.classes.Dependency
 import com.michaelflisar.kotpreferences.core.interfaces.StorageSetting
 import kotlinx.coroutines.Dispatchers
@@ -33,6 +31,7 @@ fun <T> StorageSetting<T>.collectSetting(
  *
  * @param onValueChange the value changed callback of this item (return true to accept the change, false to cancel it)
  */
+/*
 @Composable
 fun <T> StorageSetting<T>.asPreferenceData(
     onValueChange: (data: T) -> Boolean = { true },
@@ -54,7 +53,7 @@ fun <T> StorageSetting<T>.asPreferenceData(
             }
         }
     }
-}
+}*/
 
 /**
  simple extension function to plug in a setting as a dependency

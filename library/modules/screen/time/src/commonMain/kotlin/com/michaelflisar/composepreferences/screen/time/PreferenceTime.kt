@@ -2,7 +2,9 @@ package com.michaelflisar.composepreferences.screen.time
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.Stable
+import com.michaelflisar.composedialogs.core.DialogState
 import com.michaelflisar.composedialogs.core.rememberDialogState
 import com.michaelflisar.composedialogs.dialogs.time.DialogTime
 import com.michaelflisar.composedialogs.dialogs.time.DialogTimeDefaults
@@ -10,15 +12,11 @@ import com.michaelflisar.composedialogs.dialogs.time.is24HourFormat
 import com.michaelflisar.composedialogs.dialogs.time.rememberDialogTime
 import com.michaelflisar.composepreferences.core.classes.Dependency
 import com.michaelflisar.composepreferences.core.classes.LocalPreferenceSettings
-import com.michaelflisar.composepreferences.core.classes.PreferenceData
-import com.michaelflisar.composepreferences.core.classes.PreferenceType
 import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
-import com.michaelflisar.composepreferences.core.composables.BasePreference
+import com.michaelflisar.composepreferences.core.composables.BasePreferenceDialog
 import com.michaelflisar.composepreferences.core.composables.PreferenceContentText
 import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetup
 import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetupDefaults
-import com.michaelflisar.composepreferences.core.helper.SearchText
-import com.michaelflisar.composepreferences.core.internal.rememberPreferenceItemState
 import com.michaelflisar.composepreferences.core.scopes.PreferenceScope
 import kotlinx.datetime.LocalTime
 import kotlinx.datetime.format.char
@@ -30,14 +28,14 @@ import kotlinx.datetime.format.char
  *
  * **Basic Parameters:** all params not described here are derived from [com.michaelflisar.composepreferences.core.composables.BasePreference], check it out for more details
  *
- * @param data the [PreferenceData] of this item
+ * @param value the [MutableState] of this item
  * @param is24Hours if true, the time picker shows a picker in 24h mode, otherwise it will use the 12h mode
  * @param formatter the formatter to format the time
  */
 @Composable
 fun PreferenceScope.PreferenceTime(
     // Special
-    data: PreferenceData<LocalTime>,
+    value: MutableState<LocalTime>,
     is24Hours: Boolean = is24HourFormat(), // comes from ComposeDialog
     formatter: (time: LocalTime) -> String = getDefaultTimeFormatter(is24Hours),
     // Base Preference
@@ -48,11 +46,15 @@ fun PreferenceScope.PreferenceTime(
     icon: (@Composable () -> Unit)? = null,
     itemStyle: PreferenceItemStyle = LocalPreferenceSettings.current.style.defaultItemStyle,
     itemSetup: PreferenceItemSetup = PreferenceTimeDefaults.itemSetup(),
-    filterTags: List<String> = emptyList()
+    filterTags: List<String> = emptyList(),
+    // Dialog
+    dialog: @Composable (state: DialogState) -> Unit = { dialogState ->
+        PreferenceTimeDefaults.dialog(dialogState, value.value, { value.value = it }, is24Hours, title, icon)
+    }
 ) {
     PreferenceTime(
-        value = data.value,
-        onValueChange = data.onValueChange,
+        value = value.value,
+        onValueChange = { value.value = it },
         is24Hours = is24Hours,
         formatter = formatter,
         title = title,
@@ -62,7 +64,8 @@ fun PreferenceScope.PreferenceTime(
         icon = icon,
         itemStyle = itemStyle,
         itemSetup = itemSetup,
-        filterTags = filterTags
+        filterTags = filterTags,
+        dialog = dialog
     )
 }
 
@@ -93,16 +96,51 @@ fun PreferenceScope.PreferenceTime(
     icon: (@Composable () -> Unit)? = null,
     itemStyle: PreferenceItemStyle = LocalPreferenceSettings.current.style.defaultItemStyle,
     itemSetup: PreferenceItemSetup = PreferenceTimeDefaults.itemSetup(),
-    filterTags: List<String> = emptyList()
+    filterTags: List<String> = emptyList(),
+    // Dialog
+    dialog: @Composable (state: DialogState) -> Unit = { dialogState ->
+        PreferenceTimeDefaults.dialog(dialogState, value, onValueChange, is24Hours, title, icon)
+    }
 ) {
-    val showDialog = rememberDialogState()
-    if (showDialog.showing) {
+    BasePreferenceDialog(
+        dialogState = rememberDialogState(),
+        dialog = dialog,
+        itemSetup = itemSetup,
+        enabled = enabled,
+        visible = visible,
+        title = title,
+        subtitle = subtitle,
+        icon = icon,
+        itemStyle = itemStyle,
+        filterTags = filterTags
+    ) {
+        PreferenceContentText(text = formatter(value), itemSetup)
+    }
+}
+
+@Stable
+object PreferenceTimeDefaults {
+
+    @Composable
+    fun itemSetup() = PreferenceItemSetup(
+        trailingContentSize = PreferenceItemSetupDefaults.datetime()
+    )
+
+    @Composable
+    fun dialog(
+        dialogState: DialogState,
+        value: LocalTime,
+        onValueChange: (value: LocalTime) -> Unit,
+        is24Hours: Boolean,
+        title: String,
+        icon: (@Composable () -> Unit)? = null
+    ) {
         val value = rememberDialogTime(value)
         val setup = DialogTimeDefaults.setup(
             is24Hours = is24Hours
         )
         DialogTime(
-            state = showDialog,
+            state = dialogState,
             time = value,
             setup = setup,
             title = { Text(title) },
@@ -113,30 +151,6 @@ fun PreferenceScope.PreferenceTime(
             }
         }
     }
-
-    BasePreference(
-        itemSetup = itemSetup,
-        enabled = enabled,
-        visible = visible,
-        title = title,
-        subtitle = subtitle,
-        icon = icon,
-        itemStyle = itemStyle,
-        filterTags = filterTags,
-        onClick = {
-            showDialog.show()
-        }
-    ) {
-        PreferenceContentText(text = formatter(value), itemSetup)
-    }
-}
-
-@Stable
-object PreferenceTimeDefaults {
-    @Composable
-    fun itemSetup() = PreferenceItemSetup(
-        trailingContentSize = PreferenceItemSetupDefaults.datetime()
-    )
 }
 
 private val TIME_FORMAT_24H = LocalTime.Format {

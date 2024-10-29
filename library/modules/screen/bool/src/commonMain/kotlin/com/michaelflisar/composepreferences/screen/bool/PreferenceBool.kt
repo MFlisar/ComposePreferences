@@ -3,19 +3,16 @@ package com.michaelflisar.composepreferences.screen.bool
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Switch
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.unit.dp
 import com.michaelflisar.composepreferences.core.classes.Dependency
 import com.michaelflisar.composepreferences.core.classes.LocalPreferenceSettings
-import com.michaelflisar.composepreferences.core.classes.PreferenceData
-import com.michaelflisar.composepreferences.core.classes.PreferenceType
-import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
 import com.michaelflisar.composepreferences.core.composables.BasePreference
 import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetup
 import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetupDefaults
-import com.michaelflisar.composepreferences.core.helper.SearchText
-import com.michaelflisar.composepreferences.core.internal.rememberPreferenceItemState
 import com.michaelflisar.composepreferences.core.scopes.PreferenceScope
+import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
 
 /**
  * A bool preference item - this item shows a checkbox/switch which reflects the preference state
@@ -25,13 +22,13 @@ import com.michaelflisar.composepreferences.core.scopes.PreferenceScope
  * **Basic Parameters:** all params not described here are derived from [com.michaelflisar.composepreferences.core.composables.BasePreference], check it out for more details
  *
  * @param style the [PreferenceBool.Style] of this item ([PreferenceBool.Style.Switch] or [PreferenceBool.Style.Checkbox])
- * @param data the [PreferenceData] of this item
+ * @param value the [MutableState] of this item
  */
 @Composable
 fun PreferenceScope.PreferenceBool(
     style: PreferenceBool.Style = PreferenceBool.Style.Switch,
     // Special
-    data: PreferenceData<Boolean>,
+    value: MutableState<Boolean>,
     // Base Preference
     title: String,
     enabled: Dependency = Dependency.Enabled,
@@ -43,8 +40,8 @@ fun PreferenceScope.PreferenceBool(
 ) {
     PreferenceBool(
         style = style,
-        value = data.value,
-        onValueChange = data.onValueChange,
+        value = value.value,
+        onValueChange = { value.value = it },
         title = title,
         enabled = enabled,
         visible = visible,

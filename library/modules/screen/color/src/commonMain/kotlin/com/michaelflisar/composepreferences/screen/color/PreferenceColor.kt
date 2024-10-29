@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -15,21 +16,18 @@ import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
+import com.michaelflisar.composedialogs.core.DialogState
 import com.michaelflisar.composedialogs.core.rememberDialogState
 import com.michaelflisar.composedialogs.dialogs.color.DialogColor
 import com.michaelflisar.composedialogs.dialogs.color.DialogColorUtil
 import com.michaelflisar.composedialogs.dialogs.color.rememberDialogColor
 import com.michaelflisar.composepreferences.core.classes.Dependency
 import com.michaelflisar.composepreferences.core.classes.LocalPreferenceSettings
-import com.michaelflisar.composepreferences.core.classes.PreferenceData
-import com.michaelflisar.composepreferences.core.classes.PreferenceType
-import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
-import com.michaelflisar.composepreferences.core.composables.BasePreference
+import com.michaelflisar.composepreferences.core.composables.BasePreferenceDialog
 import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetup
 import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetupDefaults
-import com.michaelflisar.composepreferences.core.helper.SearchText
-import com.michaelflisar.composepreferences.core.internal.rememberPreferenceItemState
 import com.michaelflisar.composepreferences.core.scopes.PreferenceScope
+import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
 
 /**
  * A color preference item - this item provides a color dialog to change this preference
@@ -38,13 +36,13 @@ import com.michaelflisar.composepreferences.core.scopes.PreferenceScope
  *
  * **Basic Parameters:** all params not described here are derived from [com.michaelflisar.composepreferences.core.composables.BasePreference], check it out for more details
  *
- * @param data the [PreferenceData] of this item
+ * @param value the [MutableState] of this item
  * @param alphaSupported if true, this preference does support alpha values (ARGB) otherwise it doesn't (RGB only)
  */
 @Composable
 fun PreferenceScope.PreferenceColor(
     // Special
-    data: PreferenceData<Color>,
+    value: MutableState<Color>,
     alphaSupported: Boolean = true,
     // Base Preference
     title: String,
@@ -54,11 +52,15 @@ fun PreferenceScope.PreferenceColor(
     icon: (@Composable () -> Unit)? = null,
     itemStyle: PreferenceItemStyle = LocalPreferenceSettings.current.style.defaultItemStyle,
     itemSetup: PreferenceItemSetup = PreferenceColorDefaults.itemSetup(),
-    filterTags: List<String> = emptyList()
+    filterTags: List<String> = emptyList(),
+    // Dialog
+    dialog: @Composable (state: DialogState) -> Unit = { dialogState ->
+        PreferenceColorDefaults.dialog(dialogState, value.value, { value.value = it }, alphaSupported, title, icon)
+    }
 ) {
     PreferenceColor(
-        value = data.value,
-        onValueChange = data.onValueChange,
+        value = value.value,
+        onValueChange = { value.value = it },
         alphaSupported = alphaSupported,
         title = title,
         enabled = enabled,
@@ -67,7 +69,8 @@ fun PreferenceScope.PreferenceColor(
         icon = icon,
         itemStyle = itemStyle,
         itemSetup = itemSetup,
-        filterTags = filterTags
+        filterTags = filterTags,
+        dialog = dialog
     )
 }
 
@@ -78,7 +81,7 @@ fun PreferenceScope.PreferenceColor(
  *
  * **Basic Parameters:** all params not described here are derived from [com.michaelflisar.composepreferences.core.composables.BasePreference], check it out for more details
  *
- * @param value the value of this item
+ * @param value the color value of this item
  * @param onValueChange the value changed callback of this item
  * @param alphaSupported if true, this preference does support alpha values (ARGB) otherwise it doesn't (RGB only)
  */
@@ -96,14 +99,67 @@ fun PreferenceScope.PreferenceColor(
     icon: (@Composable () -> Unit)? = null,
     itemStyle: PreferenceItemStyle = LocalPreferenceSettings.current.style.defaultItemStyle,
     itemSetup: PreferenceItemSetup = PreferenceColorDefaults.itemSetup(),
-    filterTags: List<String> = emptyList()
+    filterTags: List<String> = emptyList(),
+    // Dialog
+    dialog: @Composable (state: DialogState) -> Unit = { dialogState ->
+        PreferenceColorDefaults.dialog(dialogState, value, onValueChange, alphaSupported, title, icon)
+    }
 ) {
+    BasePreferenceDialog(
+        dialogState = rememberDialogState(),
+        dialog = dialog,
+        itemSetup = itemSetup,
+        enabled = enabled,
+        visible = visible,
+        title = title,
+        subtitle = subtitle,
+        icon = icon,
+        itemStyle = itemStyle,
+        filterTags = filterTags
+    ) {
+        Content(value)
+    }
+}
+
+@Composable
+private fun Content(value: Color) {
     val density = LocalDensity.current
-    val showDialog = rememberDialogState()
-    if (showDialog.showing) {
+    Box(
+        modifier = Modifier
+            .size(24.dp)
+            .clip(MaterialTheme.shapes.small)
+    ) {
+        Spacer(
+            modifier = Modifier
+                .fillMaxSize()
+                .drawBehind {
+                    DialogColorUtil.drawCheckerboard(this, density)
+                }
+                .background(value)
+        )
+    }
+}
+
+@Stable
+object PreferenceColorDefaults {
+
+    @Composable
+    fun itemSetup() = PreferenceItemSetup(
+        trailingContentSize = PreferenceItemSetupDefaults.trailingContentSize(0.dp)
+    )
+
+    @Composable
+    fun dialog(
+        dialogState: DialogState,
+        value: Color,
+        onValueChange: (value: Color) -> Unit,
+        alphaSupported: Boolean,
+        title: String,
+        icon: (@Composable () -> Unit)? = null
+    ) {
         val value = rememberDialogColor(value)
         DialogColor(
-            state = showDialog,
+            state = dialogState,
             color = value,
             alphaSupported = alphaSupported,
             title = { Text(title) },
@@ -114,41 +170,4 @@ fun PreferenceScope.PreferenceColor(
             }
         }
     }
-
-    BasePreference(
-        itemSetup = itemSetup,
-        enabled = enabled,
-        visible = visible,
-        title = title,
-        subtitle = subtitle,
-        icon = icon,
-        itemStyle = itemStyle,
-        filterTags = filterTags,
-        onClick = {
-            showDialog.show()
-        }
-    ) {
-        Box(
-            modifier = Modifier
-                .size(24.dp)
-                .clip(MaterialTheme.shapes.small)
-        ) {
-            Spacer(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .drawBehind {
-                        DialogColorUtil.drawCheckerboard(this, density)
-                    }
-                    .background(value)
-            )
-        }
-    }
-}
-
-@Stable
-object PreferenceColorDefaults {
-    @Composable
-    fun itemSetup() = PreferenceItemSetup(
-        trailingContentSize = PreferenceItemSetupDefaults.trailingContentSize(0.dp)
-    )
 }

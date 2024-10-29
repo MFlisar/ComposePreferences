@@ -2,24 +2,21 @@ package com.michaelflisar.composepreferences.screen.input
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.Stable
+import com.michaelflisar.composedialogs.core.DialogState
 import com.michaelflisar.composedialogs.core.rememberDialogState
 import com.michaelflisar.composedialogs.dialogs.input.DialogInput
-import com.michaelflisar.composedialogs.dialogs.input.DialogInputNumber
 import com.michaelflisar.composedialogs.dialogs.input.DialogInputValidator
 import com.michaelflisar.composedialogs.dialogs.input.rememberDialogInput
 import com.michaelflisar.composedialogs.dialogs.input.rememberDialogInputValidator
-import com.michaelflisar.composepreferences.core.composables.BasePreference
-import com.michaelflisar.composepreferences.core.classes.PreferenceData
 import com.michaelflisar.composepreferences.core.classes.Dependency
 import com.michaelflisar.composepreferences.core.classes.LocalPreferenceSettings
-import com.michaelflisar.composepreferences.core.classes.PreferenceType
-import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
+import com.michaelflisar.composepreferences.core.composables.BasePreferenceDialog
 import com.michaelflisar.composepreferences.core.composables.PreferenceContentText
 import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetup
-import com.michaelflisar.composepreferences.core.helper.SearchText
-import com.michaelflisar.composepreferences.core.internal.rememberPreferenceItemState
 import com.michaelflisar.composepreferences.core.scopes.PreferenceScope
+import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
 
 /**
  * A text preference item - this item provides a text input dialog to change this preference
@@ -28,13 +25,13 @@ import com.michaelflisar.composepreferences.core.scopes.PreferenceScope
  *
  * **Basic Parameters:** all params not described here are derived from [com.michaelflisar.composepreferences.core.composables.BasePreference], check it out for more details
  *
- * @param data the [PreferenceData] of this item
+ * @param value the [MutableState] of this item
  * @param validator the [DialogInputValidator] of this item
  */
 @Composable
 fun PreferenceScope.PreferenceInputText(
     // Special
-    data: PreferenceData<String>,
+    value: MutableState<String>,
     validator: DialogInputValidator = rememberDialogInputValidator(),
     // Base Preference
     title: String,
@@ -43,12 +40,16 @@ fun PreferenceScope.PreferenceInputText(
     subtitle: String? = null,
     icon: (@Composable () -> Unit)? = null,
     itemStyle: PreferenceItemStyle = LocalPreferenceSettings.current.style.defaultItemStyle,
-    itemSetup: PreferenceItemSetup = PreferenceBoolDefaults.itemSetup(),
-    filterTags: List<String> = emptyList()
+    itemSetup: PreferenceItemSetup = PreferenceInputTextDefaults.itemSetup(),
+    filterTags: List<String> = emptyList(),
+    // Dialog
+    dialog: @Composable (state: DialogState) -> Unit = { dialogState ->
+        PreferenceInputTextDefaults.dialog(dialogState, value.value, { value.value = it }, validator, title, icon)
+    }
 ) {
     PreferenceInputText(
-        value = data.value,
-        onValueChange = data.onValueChange,
+        value = value.value,
+        onValueChange = { value.value = it },
         validator = validator,
         title = title,
         enabled = enabled,
@@ -57,7 +58,8 @@ fun PreferenceScope.PreferenceInputText(
         icon = icon,
         itemStyle = itemStyle,
         itemSetup = itemSetup,
-        filterTags = filterTags
+        filterTags = filterTags,
+        dialog = dialog
     )
 }
 
@@ -85,15 +87,48 @@ fun PreferenceScope.PreferenceInputText(
     subtitle: String? = null,
     icon: (@Composable () -> Unit)? = null,
     itemStyle: PreferenceItemStyle = LocalPreferenceSettings.current.style.defaultItemStyle,
-    itemSetup: PreferenceItemSetup = PreferenceBoolDefaults.itemSetup(),
-    filterTags: List<String> = emptyList()
+    itemSetup: PreferenceItemSetup = PreferenceInputTextDefaults.itemSetup(),
+    filterTags: List<String> = emptyList(),
+    // Dialog
+    dialog: @Composable (state: DialogState) -> Unit = { dialogState ->
+        PreferenceInputTextDefaults.dialog(dialogState, value, onValueChange, validator, title, icon)
+    }
 ) {
-    val showDialog = rememberDialogState()
-    if (showDialog.showing) {
+    BasePreferenceDialog(
+        dialogState = rememberDialogState(),
+        dialog = dialog,
+        itemSetup = itemSetup,
+        enabled = enabled,
+        visible = visible,
+        title = title,
+        subtitle = subtitle,
+        icon = icon,
+        itemStyle = itemStyle,
+        filterTags = filterTags
+    ) {
+        PreferenceContentText(value, itemSetup)
+    }
+}
+
+@Stable
+object PreferenceInputTextDefaults {
+
+    @Composable
+    fun itemSetup() = PreferenceItemSetup()
+
+    @Composable
+    fun dialog(
+        dialogState: DialogState,
+        value: String,
+        onValueChange: (value: String) -> Unit,
+        validator: DialogInputValidator = rememberDialogInputValidator(),
+        title: String,
+        icon: (@Composable () -> Unit)? = null
+    ) {
         val value = rememberDialogInput(value)
         DialogInput(
-            state = showDialog,
-            input = value,
+            state = dialogState,
+            value = value,
             title = { Text(title) },
             icon = icon,
             validator = validator
@@ -103,27 +138,5 @@ fun PreferenceScope.PreferenceInputText(
             }
         }
     }
-
-    BasePreference(
-        itemSetup = itemSetup,
-        enabled = enabled,
-        visible = visible,
-        title = title,
-        subtitle = subtitle,
-        icon = icon,
-        itemStyle = itemStyle,
-        filterTags = filterTags,
-        onClick = {
-            showDialog.show()
-        }
-    ) {
-        PreferenceContentText(value, itemSetup)
-    }
-}
-
-@Stable
-object PreferenceBoolDefaults {
-    @Composable
-    fun itemSetup() = PreferenceItemSetup()
 }
 

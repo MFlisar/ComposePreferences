@@ -72,6 +72,13 @@ kotlin {
             implementation(libs.compose.ui)
 
             implementation(libs.moko.parcelize)
+
+            val useLiveDependencies = providers.gradleProperty("useLiveDependencies").get().toBoolean()
+            if (useLiveDependencies) {
+                implementation(libs.composedialogs.core)
+            } else {
+                implementation(project(":ComposeDialogs:Core"))
+            }
         }
 
         androidMain.dependencies {

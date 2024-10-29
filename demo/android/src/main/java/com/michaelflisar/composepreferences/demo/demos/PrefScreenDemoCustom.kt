@@ -14,7 +14,6 @@ import com.michaelflisar.composepreferences.core.PreferenceScreen
 import com.michaelflisar.composepreferences.core.PreferenceSectionHeader
 import com.michaelflisar.composepreferences.core.classes.PreferenceSettingsDefaults
 import com.michaelflisar.composepreferences.core.classes.asDependency
-import com.michaelflisar.composepreferences.core.classes.asPreferenceData
 import com.michaelflisar.composepreferences.core.styles.PreferenceStyleDefaults
 import com.michaelflisar.composepreferences.screen.bool.PreferenceBool
 import com.michaelflisar.composepreferences.screen.input.PreferenceInputNumber
@@ -57,7 +56,7 @@ fun PrefScreenCustomDemo() {
         // example with extension function for MutableState<T>
         PreferenceBool(
             style = PreferenceBool.Style.Checkbox,
-            data = bool2.asPreferenceData(),
+            value = bool2,
             title = "Bool 2",
             icon = { Icon(Icons.Default.Check, null) }
         )
@@ -66,12 +65,12 @@ fun PrefScreenCustomDemo() {
         // Master 1
         // -----------
 
-        val master1Data = bool3.asPreferenceData()
+        val master1Data = bool3
         val master1Dependency = bool3.asDependency(enabled = { it })
 
         PreferenceBool(
             style = PreferenceBool.Style.Switch,
-            data = master1Data,
+            value = master1Data,
             title = "Master 1",
             itemStyle = PreferenceStyleDefaults.primaryContainer()
         )
@@ -82,14 +81,14 @@ fun PrefScreenCustomDemo() {
         ) {
             PreferenceDivider(visible = master1Dependency)
             PreferenceInputText(
-                data = string1.asPreferenceData(),
+                value = string1,
                 title = "Text 1",
                 subtitle = "Description Text 1",
                 icon = { Icon(Icons.AutoMirrored.Filled.TextSnippet, null) },
                 visible = master1Dependency
             )
             PreferenceInputNumber(
-                data = int1.asPreferenceData(),
+                value = int1,
                 title = "NUMBER (PRO FEATURE)",
                 itemStyle = PreferenceStyleDefaults.error(),
                 /*

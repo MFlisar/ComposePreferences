@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.saveable.autoSaver
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,19 +25,14 @@ import com.google.accompanist.drawablepainter.rememberDrawablePainter
 import com.michaelflisar.composedialogs.core.rememberDialogState
 import com.michaelflisar.composedialogs.dialogs.list.DialogList
 import com.michaelflisar.composedialogs.dialogs.list.composables.DialogListContent
-import com.michaelflisar.composepreferences.core.PreferenceInfoDefaults
 import com.michaelflisar.composepreferences.core.classes.Dependency
 import com.michaelflisar.composepreferences.core.classes.LocalPreferenceSettings
-import com.michaelflisar.composepreferences.core.classes.PreferenceData
-import com.michaelflisar.composepreferences.core.classes.PreferenceType
-import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
 import com.michaelflisar.composepreferences.core.composables.BasePreference
 import com.michaelflisar.composepreferences.core.composables.PreferenceContentText
 import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetup
 import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetupDefaults
-import com.michaelflisar.composepreferences.core.helper.SearchText
-import com.michaelflisar.composepreferences.core.internal.rememberPreferenceItemState
 import com.michaelflisar.composepreferences.core.scopes.PreferenceScope
+import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -44,7 +40,7 @@ import kotlinx.coroutines.withContext
 @Composable
 fun PreferenceScope.SelectAppPreference(
     // Special
-    data: PreferenceData<AppItem>,
+    data: MutableState<AppItem>,
     // Base Preference
     title: String,
     enabled: Dependency = Dependency.Enabled,
@@ -56,7 +52,7 @@ fun PreferenceScope.SelectAppPreference(
 ) {
     SelectAppPreference(
         value = data.value,
-        onValueChange = data.onValueChange,
+        onValueChange = { data.value = it },
         title = title,
         enabled = enabled,
         visible = visible,
@@ -116,7 +112,7 @@ fun PreferenceScope.SelectAppPreference(
     val itemSetup = PreferenceItemSetup(
         trailingContentSize = PreferenceItemSetupDefaults.trailingContentSize(0.dp)
     )
-    
+
     BasePreference(
         itemSetup = itemSetup,
         enabled = enabled,
