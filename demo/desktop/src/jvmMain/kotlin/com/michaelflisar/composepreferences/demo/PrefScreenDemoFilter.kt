@@ -61,12 +61,8 @@ fun PrefScreenDemoFilter(
     val settings = PreferenceSettingsDefaults.settings(
         style = style
     )
-    val flatResults = remember { mutableStateOf(true) }
-    val filterMode = remember { mutableStateOf(PreferenceFilter.Mode.AllWords) }
     val filter = rememberPreferenceFilter(
-        mode = filterMode.value,
-        highlightSpan = SpanStyle(color = Color.Red),
-        flattenResult = flatResults.value
+        highlightSpan = SpanStyle(color = Color.Red)
     )
 
     val scope = rememberCoroutineScope()
@@ -81,7 +77,7 @@ fun PrefScreenDemoFilter(
                 .padding(horizontal = 8.dp),
             value = filter.search.value,
             onValueChange = { filter.search.value = it },
-            label = { Text("Search X") },
+            label = { Text("Search") },
             trailingIcon = if (filter.search.value.isNotEmpty()) {
                 {
                     IconButton(onClick = { filter.search.value = "" }) {
@@ -98,7 +94,7 @@ fun PrefScreenDemoFilter(
                 .fillMaxWidth()
                 .padding(horizontal = 8.dp),
             title = "Flat Results?",
-            checked = flatResults
+            checked = filter.flattenResult
         )
         MyDropdown<PreferenceFilter.Mode>(
             modifier = Modifier
@@ -106,7 +102,7 @@ fun PrefScreenDemoFilter(
                 .padding(horizontal = 8.dp),
             items = PreferenceFilter.Mode.entries.toList(),
             mapper = { it.name },
-            selected = filterMode,
+            selected = filter.mode,
             title = "Filter Mode"
         )
 
@@ -147,7 +143,7 @@ fun PrefScreenDemoFilter(
                             textAlign = TextAlign.Center
                         )
                     } else {
-                        if (filter.isActive() && filter.flattenResult) {
+                        if (filter.isActive() && filter.flattenResult.value) {
                             Text(
                                 "${state.countVisible()} / ${
                                     state.countAll(

@@ -92,7 +92,7 @@ fun rememberPreferenceItemState(
     var item = parent.children.value.find { it.id == id }
 
     if (item == null) {
-        println("item = created - id = $id | parent = ${parent.id}")
+        //println("item = created - id = $id | parent = ${parent.id}")
         val stateVisible = visible.state()
         val filter = LocalPreferenceFilter.current
 
@@ -113,7 +113,7 @@ fun rememberPreferenceItemState(
                     group?.id == state.openedGroups.lastOrNull()
                 }
 
-                println("item = id = $id | groupVisible = $groupVisible | groupVisible = ${stateVisible.value}")
+                //println("item = id = $id | groupVisible = $groupVisible | groupVisible = ${stateVisible.value}")
 
                 groupVisible &&
                         (filter?.filter(filter.search.value, allTags.value) ?: true) &&

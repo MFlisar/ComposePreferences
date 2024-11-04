@@ -54,7 +54,8 @@ class PreferenceFilter internal constructor(
                     tagWords.filter { it.text == word.text }.sumOf { it.count } >= word.count
                 }
 
-                if (tags.contains("Sub Sub Info 1")) {
+                if (tags.contains("Pref 1.1")) {
+                    println("mode.value = ${mode.value}")
                     println("search = '$search' (isEmpty = ${search.isEmpty()})")
                     println("searchWords = $searchWords")
                     println("tagWords = $tagWords")
@@ -73,7 +74,7 @@ class PreferenceFilter internal constructor(
 fun rememberPreferenceFilter(
     search: String = "",
     ignoreCase: Boolean = true,
-    mode: PreferenceFilter.Mode = PreferenceFilter.Mode.AllWords,
+    mode: PreferenceFilter.Mode = PreferenceFilter.Mode.ContainsText,
     highlightSpan: SpanStyle = SpanStyle(color = MaterialTheme.colorScheme.primary),
     flattenResult: Boolean = false
 ): PreferenceFilter = PreferenceFilter(
