@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -51,7 +52,8 @@ import java.text.NumberFormat
 import java.util.Locale
 
 class MainActivity : DemoActivity(
-    scrollableContent = false
+    scrollableContent = false,
+    contentPadding = 0.dp
 ) {
 
     @Composable
@@ -118,6 +120,7 @@ private fun Root(
 
     Column(
         modifier = Modifier
+            .padding(16.dp)
             .verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {

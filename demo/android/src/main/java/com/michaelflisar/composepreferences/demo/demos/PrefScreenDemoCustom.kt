@@ -1,5 +1,6 @@
 package com.michaelflisar.composepreferences.demo.demos
 
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.TextSnippet
 import androidx.compose.material.icons.filled.Check
@@ -9,6 +10,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import com.michaelflisar.composepreferences.core.PreferenceDivider
 import com.michaelflisar.composepreferences.core.PreferenceScreen
 import com.michaelflisar.composepreferences.core.PreferenceSectionHeader
@@ -29,7 +32,8 @@ fun PrefScreenCustomDemo() {
             disabledStateAlpha = .4f,
             disabledStateGrayscale = false,
             maxLinesValue = 2
-        )
+        ),
+        modifier = Modifier.padding(16.dp)
     ) {
         // settings are normally persisted, so you should use a database or preferences
         // here we will simply use saved remembered state for this showcase

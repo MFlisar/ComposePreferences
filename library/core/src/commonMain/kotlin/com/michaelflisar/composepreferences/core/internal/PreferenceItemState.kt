@@ -85,13 +85,14 @@ fun rememberPreferenceItemState(
     tags: List<String>
 ): PreferenceItemState.Item {
 
-    val hierarchy = LocalHierarchy.current
     val state = LocalState.current
     val parent = LocalParent.current
     val id by remember { mutableIntStateOf(state.getNextID()) }
 
-    val item = if (!hierarchy.containsID(id)) {
-        //println("item = created - id = $id | parent = ${parent.id}")
+    var item = parent.children.value.find { it.id == id }
+
+    if (item == null) {
+        println("item = created - id = $id | parent = ${parent.id}")
         val stateVisible = visible.state()
         val filter = LocalPreferenceFilter.current
 
@@ -104,7 +105,7 @@ fun rememberPreferenceItemState(
                 while (group !is PreferenceItemState.Root && (group is PreferenceItemState.Item && group.type != PreferenceType.Group)) {
                     group = group.parent
                 }
-                val groupVisible = if (filter?.isActive() == true && filter.flattenResult) {
+                val groupVisible = if (filter?.isActive() == true && filter.flattenResult.value) {
                     type == PreferenceType.Item
                 } else if (state.openedGroups.size == 0) {
                     group is PreferenceItemState.Root
@@ -112,14 +113,15 @@ fun rememberPreferenceItemState(
                     group?.id == state.openedGroups.lastOrNull()
                 }
 
-                //println("item = id = $id | groupVisible = $groupVisible | groupVisible = ${stateVisible.value}")
+                println("item = id = $id | groupVisible = $groupVisible | groupVisible = ${stateVisible.value}")
 
-                groupVisible && (filter?.filter(filter.search.value, allTags.value)
-                    ?: true) && stateVisible.value
+                groupVisible &&
+                        (filter?.filter(filter.search.value, allTags.value) ?: true) &&
+                        stateVisible.value
             }
         }
 
-        remember {
+        item = remember {
             PreferenceItemState.Item(
                 id = id,
                 parent = parent,
@@ -134,8 +136,6 @@ fun rememberPreferenceItemState(
             }
         }
 
-    } else {
-        parent.children.value.find { it.id == id }!!
     }
 
     return item

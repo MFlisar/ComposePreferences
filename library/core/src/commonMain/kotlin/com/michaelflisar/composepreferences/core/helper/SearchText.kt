@@ -33,15 +33,15 @@ private fun buildHighlightedString(
 ): AnnotatedString {
     return buildAnnotatedString {
         append(text)
-        val parts = when (filter.mode) {
-            PreferenceFilter.Mode.Exakt -> listOf(filter.search.value)
+        val parts = when (filter.mode.value) {
+            PreferenceFilter.Mode.ContainsText -> listOf(filter.search.value)
             PreferenceFilter.Mode.AllWords,
-            PreferenceFilter.Mode.AnyWord -> PreferenceFilter.words(filter.search.value)
+            PreferenceFilter.Mode.AnyWord -> PreferenceFilter.words(filter.search.value, filter.ignoreCase.value).map { it.text }
         }.filter { it.isNotEmpty() }
         for (part in parts) {
             var offset = 0
             var startIndex = 0
-            while (text.indexOf(part, startIndex = offset, ignoreCase = filter.ignoreCase)
+            while (text.indexOf(part, startIndex = offset, ignoreCase = filter.ignoreCase.value)
                     .also { startIndex = it } != -1
             ) {
                 val endIndex = startIndex + part.length

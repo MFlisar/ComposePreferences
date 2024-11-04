@@ -7,6 +7,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import com.michaelflisar.composepreferences.core.classes.PreferenceSettings
 import com.michaelflisar.composepreferences.core.classes.PreferenceSettingsDefaults
+import com.michaelflisar.composepreferences.core.styles.DefaultStyle
+import com.michaelflisar.composepreferences.core.styles.ModernStyle
+import com.michaelflisar.composepreferences.core.styles.PreferenceStyle
+import com.michaelflisar.composepreferences.core.styles.PreferenceStyleDefaults
+import com.michaelflisar.composepreferences.screen.number.PreferenceNumber
 import com.michaelflisar.kotpreferences.core.SettingsModel
 import com.michaelflisar.kotpreferences.core.enumPref
 import com.michaelflisar.kotpreferences.storage.datastore.DataStoreStorage
@@ -34,7 +39,8 @@ object DemoPrefs : SettingsModel(DataStoreStorage.create(name = "demo1_prefs")) 
             toggleBooleanOnItemClick,
             maxLinesValue,
             showSubScreenEndIndicator,
-            forceNoIconInset
+            forceNoIconInset,
+            style
         )
         val data =
             combine(settings.map { it.flow }) { it.toList() }.collectAsState(initial = emptyList())
@@ -57,6 +63,12 @@ object DemoPrefs : SettingsModel(DataStoreStorage.create(name = "demo1_prefs")) 
                     }
                 } else null,
                 forceNoIconInset = data[5] as Boolean,
+                style = (data[6] as DemoStyle).let {
+                    when (it) {
+                        DemoStyle.Default -> DefaultStyle.create()
+                        DemoStyle.Modern -> ModernStyle.create()
+                    }
+                }
             )
         }
 

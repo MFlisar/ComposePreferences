@@ -17,6 +17,8 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -34,6 +36,8 @@ import com.michaelflisar.composepreferences.core.classes.rememberPreferenceState
 import com.michaelflisar.composepreferences.core.scopes.PreferenceScope
 import com.michaelflisar.composepreferences.demo.classes.DemoPrefs
 import com.michaelflisar.kotpreferences.core.initialisation.SettingSetup
+import com.michaelflisar.toolbox.composables.MyCheckbox
+import com.michaelflisar.toolbox.composables.MyDropdown
 
 @Composable
 fun PrefScreenDemoFilter() {
@@ -41,13 +45,14 @@ fun PrefScreenDemoFilter() {
     val settings = DemoPrefs.preferenceSettings()
     val filter = rememberPreferenceFilter(
         mode = PreferenceFilter.Mode.AllWords,
-        highlightSpan = SpanStyle(color = Color.Red)
+        highlightSpan = SpanStyle(color = Color.Red),
+        flattenResult = true
     )
     val state = rememberPreferenceState()
 
     Column(
         verticalArrangement = Arrangement.spacedBy(8.dp),
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize().padding(16.dp)
     ) {
         OutlinedTextField(
             modifier = Modifier
@@ -66,6 +71,23 @@ fun PrefScreenDemoFilter() {
                     }
                 }
             } else null
+        )
+
+        MyCheckbox(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 8.dp),
+            title = "Flat Results?",
+            checked = filter.flattenResult
+        )
+        MyDropdown<PreferenceFilter.Mode>(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 8.dp),
+            items = PreferenceFilter.Mode.entries.toList(),
+            mapper = { it.name },
+            selected = filter.mode,
+            title = "Filter Mode"
         )
 
         PreferenceScreen(
@@ -87,7 +109,7 @@ fun PrefScreenDemoFilter() {
                             textAlign = TextAlign.Center
                         )
                     } else {
-                        if (filter.isActive() && filter.flattenResult) {
+                        if (filter.isActive() && filter.flattenResult.value) {
                             Text("${state.countVisible()} / ${state.countAll(includeGroups = false, includeSections = false)}")
                         } else {
                             Text("${state.countVisible()} / ${state.countCurrentLevel()}")

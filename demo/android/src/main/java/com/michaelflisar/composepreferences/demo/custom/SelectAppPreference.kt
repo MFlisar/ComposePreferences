@@ -28,6 +28,7 @@ import com.michaelflisar.composedialogs.dialogs.list.composables.DialogListConte
 import com.michaelflisar.composepreferences.core.classes.Dependency
 import com.michaelflisar.composepreferences.core.classes.LocalPreferenceSettings
 import com.michaelflisar.composepreferences.core.composables.BasePreference
+import com.michaelflisar.composepreferences.core.composables.BasePreferenceDialog
 import com.michaelflisar.composepreferences.core.composables.PreferenceContentText
 import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetup
 import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetupDefaults
@@ -113,6 +114,10 @@ fun PreferenceScope.SelectAppPreference(
         trailingContentSize = PreferenceItemSetupDefaults.trailingContentSize(0.dp)
     )
 
+    //return
+    // TODO: should use following:
+    // BasePreferenceDialog()
+
     BasePreference(
         itemSetup = itemSetup,
         enabled = enabled,
@@ -145,7 +150,7 @@ object SelectAppPreference {
 
     internal val ItemContents = object : DialogList.ItemContents<AppItem.ResolveInfo> {
 
-        override val content: @Composable() (ColumnScope.(item: AppItem.ResolveInfo) -> Unit)
+        override val content: @Composable (ColumnScope.(item: AppItem.ResolveInfo) -> Unit)
             get() = {
                 DialogListContent(it.label, "ID: ${it.id}")
             }

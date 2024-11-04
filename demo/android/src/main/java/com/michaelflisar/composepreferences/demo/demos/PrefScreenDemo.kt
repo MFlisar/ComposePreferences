@@ -99,10 +99,11 @@ fun PrefScreenDemo() {
 
     // Preferences must be wrapped in a screen
     // => this allows to manage internal hierarchy and screen nesting and everything is managed automatically
-    // => this also enabled internal scrolling
+    // => this also enables internal scrolling
     PreferenceScreen(
         // optional Preferences for this screen...
-        settings = settings
+        settings = settings,
+        modifier = Modifier.padding(16.dp)
     ) {
         PreferenceSectionHeader(
             title = "Demos"
@@ -244,7 +245,7 @@ private fun PreferenceScope.PreferenceBoolExamples() {
         )
         PreferenceSectionHeader(
             title = "No icon example",
-            itemStyle = PreferenceStyleDefaults.primary()
+            //itemStyle = PreferenceStyleDefaults.primary()
         ) {
             val bool5 = dataStore.getBool("bool5", true).collectAsState(initial = true)
             PreferenceBool(
@@ -836,7 +837,6 @@ private fun PreferenceScope.PreferenceDependenciesExamples() {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun PreferenceScope.PreferenceCustomExamples() {
     val context = LocalContext.current
@@ -984,17 +984,19 @@ private fun PreferenceScope.PreferenceCustom2Examples() {
                 appItem.value = SelectAppPreference.loadSingleApp(context, app.value)
             }
         }
-        val item = appItem.value ?: return@DemoPreferenceGroup
-        SelectAppPreference(
-            value = item,
-            onValueChange = {
-                scope.launch(Dispatchers.IO) {
-                    dataStore.update("app", it.packageName)
-                }
-            },
-            title = "App",
-            subtitle = "Select a installed app",
-            icon = { Icon(Icons.Default.Apps, null) }
-        )
+        val item = appItem.value
+        if (item != null) {
+            SelectAppPreference(
+                value = item,
+                onValueChange = {
+                    scope.launch(Dispatchers.IO) {
+                        dataStore.update("app", it.packageName)
+                    }
+                },
+                title = "App",
+                subtitle = "Select a installed app",
+                icon = { Icon(Icons.Default.Apps, null) }
+            )
+        }
     }
 }

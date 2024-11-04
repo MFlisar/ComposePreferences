@@ -10,6 +10,7 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.michaelflisar.composepreferences.core.classes.LocalPreferenceSettings
 import com.michaelflisar.composepreferences.core.composables.PreferenceItemColors
 import com.michaelflisar.composepreferences.core.composables.PreferenceItemDefaults
 
@@ -37,7 +38,7 @@ object PreferenceStyleDefaults {
     fun item(
         colors: PreferenceItemColors = PreferenceItemDefaults.colors(),
         outerPadding: PaddingValues = PaddingValues(),
-        shape: Shape = RectangleShape,
+        shape: Shape = LocalPreferenceSettings.current.style.defaultItemStyle.shape,
         tonalElevation: Dp = 0.dp,
         shadowElevation: Dp = 0.dp,
         titleTextStyle: TextStyle = MaterialTheme.typography.labelLarge,
@@ -73,7 +74,7 @@ object PreferenceStyleDefaults {
         colorBackground: Color = MaterialTheme.colorScheme.surface,
         colorForeground: Color = MaterialTheme.colorScheme.onSurface,
         alphaVariant: Float = DEFAULT_ALPHA_VARIANT,
-        shape: Shape = RectangleShape,
+        shape: Shape = LocalPreferenceSettings.current.style.defaultItemStyle.shape,
         outerPadding: PaddingValues = PaddingValues(),
         tonalElevation: Dp = 0.dp,
         shadowElevation: Dp = 0.dp,
@@ -109,7 +110,7 @@ object PreferenceStyleDefaults {
      */
     @Composable
     fun primary(
-        shape: Shape = RectangleShape,
+        shape: Shape = LocalPreferenceSettings.current.style.defaultItemStyle.shape,
         outerPadding: PaddingValues = PaddingValues(),
         alphaVariant: Float = DEFAULT_ALPHA_VARIANT
     ) = item(
@@ -130,7 +131,7 @@ object PreferenceStyleDefaults {
      */
     @Composable
     fun primaryContainer(
-        shape: Shape = RectangleShape,
+        shape: Shape = LocalPreferenceSettings.current.style.defaultItemStyle.shape,
         outerPadding: PaddingValues = PaddingValues(),
         alphaVariant: Float = DEFAULT_ALPHA_VARIANT
     ) = item(
@@ -151,7 +152,7 @@ object PreferenceStyleDefaults {
      */
     @Composable
     fun error(
-        shape: Shape = RectangleShape,
+        shape: Shape = LocalPreferenceSettings.current.style.defaultItemStyle.shape,
         outerPadding: PaddingValues = PaddingValues(),
         alphaVariant: Float = DEFAULT_ALPHA_VARIANT
     ) = item(
@@ -172,7 +173,7 @@ object PreferenceStyleDefaults {
      */
     @Composable
     fun errorContainer(
-        shape: Shape = RectangleShape,
+        shape: Shape = LocalPreferenceSettings.current.style.defaultItemStyle.shape,
         outerPadding: PaddingValues = PaddingValues(),
         alphaVariant: Float = DEFAULT_ALPHA_VARIANT
     ) = item(
@@ -193,7 +194,7 @@ object PreferenceStyleDefaults {
      */
     @Composable
     fun surfaceVariant(
-        shape: Shape = RectangleShape,
+        shape: Shape = LocalPreferenceSettings.current.style.defaultItemStyle.shape,
         outerPadding: PaddingValues = PaddingValues()
     ): PreferenceItemStyle = item(
         colors = PreferenceItemColors(
@@ -217,7 +218,7 @@ object PreferenceStyleDefaults {
     @Composable
     fun header(
         alphaVariant: Float = DEFAULT_ALPHA_VARIANT,
-        shape: Shape = RectangleShape,
+        shape: Shape = LocalPreferenceSettings.current.style.defaultItemStyle.shape,
         outerPadding: PaddingValues = PaddingValues(),
     ): PreferenceItemStyle = item(
         colors = PreferenceItemColors(

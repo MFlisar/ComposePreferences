@@ -20,6 +20,7 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
+import com.michaelflisar.composepreferences.core.Test
 import com.michaelflisar.composepreferences.core.classes.Dependency
 import com.michaelflisar.composepreferences.core.classes.LocalPreferenceSettings
 import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
@@ -33,7 +34,7 @@ import com.michaelflisar.composepreferences.core.internal.rememberPreferenceItem
 import com.michaelflisar.composepreferences.core.scopes.PreferenceScope
 
 /**
- * this is the root composable that **MUST** best used by all preferences!
+ * this is the root composable that **MUST** be used by all preferences!
  *
  * &nbsp;
  *
@@ -125,7 +126,9 @@ internal fun PreferenceScope.BasePreferenceContainer(
 
     AnimatedPreference(
         visible = item.visible.value,
-        animate = settings.animationSpec != null
+        animate = if (Test.useAnimation) {
+            settings.animationSpec != null
+        } else false
     ) {
         Column {
             content(

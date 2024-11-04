@@ -59,21 +59,21 @@ fun PreferenceContentText(
 ) {
     Text(
         text = text,
-        modifier,
-        color,
-        fontSize,
-        fontStyle,
-        fontWeight,
-        fontFamily,
-        letterSpacing,
-        textDecoration,
-        if (itemSetup.contentPlacementBottom) TextAlign.Start else TextAlign.End,
-        lineHeight,
-        TextOverflow.Ellipsis,
-        softWrap,
+        modifier = modifier,
+        color = color,
+        fontSize = fontSize,
+        fontStyle = fontStyle,
+        fontWeight = fontWeight,
+        fontFamily = fontFamily,
+        letterSpacing = letterSpacing,
+        textDecoration = textDecoration,
+        textAlign = if (itemSetup.contentPlacementBottom) TextAlign.Start else TextAlign.End,
+        lineHeight = lineHeight,
+        overflow = TextOverflow.Ellipsis,
+        softWrap = softWrap,
         maxLines = LocalPreferenceSettings.current.maxLinesValue,
-        minLines,
-        onTextLayout,
-        style
+        minLines = minLines,
+        onTextLayout = onTextLayout,
+        style = style
     )
 }

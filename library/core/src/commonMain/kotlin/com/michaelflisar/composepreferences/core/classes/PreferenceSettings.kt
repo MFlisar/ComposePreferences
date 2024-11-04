@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.michaelflisar.composepreferences.core.composables.PreferenceItemDefaults
 import com.michaelflisar.composepreferences.core.styles.DefaultStyle
 import com.michaelflisar.composepreferences.core.styles.PreferenceStyle
 import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
@@ -67,23 +68,17 @@ object PreferenceSettingsDefaults {
         disabledStateGrayscale: Boolean = false,
         toggleBooleanOnItemClick: Boolean = false,
         maxLinesValue: Int = 2,
-        // TODO: for now this is disabled because it does interfere with scroll position restoration on back press
-        // animationSpec: AnimationSpec<Float>? = tween(
-        //     durationMillis = 200,
-        //     easing = FastOutLinearInEasing
-        // ),
+        animationSpec: AnimationSpec<Float>? = tween(
+            durationMillis = 200,
+            easing = FastOutLinearInEasing
+        ),
         subScreenEndIndicator: @Composable (() -> Unit)? = {
             Icon(
                 imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
                 contentDescription = null
             )
         },
-        style: PreferenceStyle = DefaultStyle(
-            PreferenceItemStyle(),
-            PreferenceItemStyle(),
-            PreferenceItemStyle(),
-            0.dp
-        ),
+        style: PreferenceStyle = DefaultStyle.create(),
         forceNoIconInset: Boolean = false,
         minTextAreaWidth: Dp = 48.dp,
         leadingContentEndPadding: Dp = 16.dp,
@@ -93,7 +88,7 @@ object PreferenceSettingsDefaults {
         disabledStateGrayscale = disabledStateGrayscale,
         toggleBooleanOnItemClick = toggleBooleanOnItemClick,
         maxLinesValue = maxLinesValue,
-        animationSpec = null, // TODO: animationSpec,
+        animationSpec = animationSpec,
         subScreenEndIndicator = subScreenEndIndicator,
         style = style,
         forceNoIconInset = forceNoIconInset,

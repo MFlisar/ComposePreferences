@@ -50,6 +50,7 @@ class PreferenceState internal constructor(
     internal fun getNextID() = id.getAndIncrement()
 
     fun popLast() {
+        println("BACK - popLast")
         if (openedGroups.size > 0) {
             openedGroups.removeLast()
         }

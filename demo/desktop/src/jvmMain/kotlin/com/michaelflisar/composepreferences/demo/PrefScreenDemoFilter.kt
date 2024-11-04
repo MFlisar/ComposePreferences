@@ -1,5 +1,6 @@
 package com.michaelflisar.composepreferences.demo
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -42,6 +43,8 @@ import com.michaelflisar.composepreferences.screen.list.PreferenceList
 import com.michaelflisar.composepreferences.screen.list.PreferenceListMulti
 import com.michaelflisar.composepreferences.screen.number.PreferenceNumber
 import com.michaelflisar.composepreferences.screen.time.PreferenceTime
+import com.michaelflisar.toolbox.composables.MyCheckbox
+import com.michaelflisar.toolbox.composables.MyDropdown
 import kotlinx.coroutines.launch
 import kotlinx.datetime.DayOfWeek
 import kotlinx.datetime.toKotlinLocalDate
@@ -58,10 +61,12 @@ fun PrefScreenDemoFilter(
     val settings = PreferenceSettingsDefaults.settings(
         style = style
     )
+    val flatResults = remember { mutableStateOf(true) }
+    val filterMode = remember { mutableStateOf(PreferenceFilter.Mode.AllWords) }
     val filter = rememberPreferenceFilter(
-        mode = PreferenceFilter.Mode.AllWords,
+        mode = filterMode.value,
         highlightSpan = SpanStyle(color = Color.Red),
-        flattenResult = true
+        flattenResult = flatResults.value
     )
 
     val scope = rememberCoroutineScope()
@@ -76,7 +81,7 @@ fun PrefScreenDemoFilter(
                 .padding(horizontal = 8.dp),
             value = filter.search.value,
             onValueChange = { filter.search.value = it },
-            label = { Text("Search") },
+            label = { Text("Search X") },
             trailingIcon = if (filter.search.value.isNotEmpty()) {
                 {
                     IconButton(onClick = { filter.search.value = "" }) {
@@ -87,6 +92,22 @@ fun PrefScreenDemoFilter(
                     }
                 }
             } else null
+        )
+        MyCheckbox(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 8.dp),
+            title = "Flat Results?",
+            checked = flatResults
+        )
+        MyDropdown<PreferenceFilter.Mode>(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 8.dp),
+            items = PreferenceFilter.Mode.entries.toList(),
+            mapper = { it.name },
+            selected = filterMode,
+            title = "Filter Mode"
         )
 
         val bool = remember { mutableStateOf(false) }

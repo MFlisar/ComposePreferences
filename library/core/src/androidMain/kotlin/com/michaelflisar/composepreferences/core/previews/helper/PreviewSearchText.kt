@@ -22,7 +22,7 @@ fun PreviewSearchText() {
                 val highlightSpan = SpanStyle(color = Color.Red, fontWeight = FontWeight.Bold)
                 val filter1 = rememberPreferenceFilter(
                     "ha yo",
-                    mode = PreferenceFilter.Mode.Exakt,
+                    mode = PreferenceFilter.Mode.ContainsText,
                     highlightSpan = highlightSpan
                 )
                 val filter2 = rememberPreferenceFilter(

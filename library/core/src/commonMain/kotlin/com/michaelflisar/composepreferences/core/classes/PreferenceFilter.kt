@@ -12,35 +12,56 @@ val LocalPreferenceFilter = compositionLocalOf<PreferenceFilter?> { null }
 
 class PreferenceFilter internal constructor(
     val search: MutableState<String>,
-    val ignoreCase: Boolean,
-    val mode: Mode,
+    val ignoreCase: MutableState<Boolean>,
+    val mode: MutableState<Mode>,
     val highlightSpan: SpanStyle,
-    val flattenResult : Boolean
+    val flattenResult: MutableState<Boolean>
 ) {
     enum class Mode {
-        Exakt,
+        ContainsText,
         AllWords,
         AnyWord
     }
 
+    internal data class Word(val text: String, val count: Int)
+
     companion object {
-        internal fun words(search: String) = search.split(" ").map { it.trim() }.filter { it.isNotEmpty() }
+        internal fun words(search: String, ignoreCase: Boolean): List<Word> {
+            val splitted = search.split(" ").map { it.trim() }.filter { it.isNotEmpty() }
+                .map { if (ignoreCase) it.lowercase() else it }
+            return splitted
+                .distinct()
+                .map { w ->
+                    Word(w, splitted.count { it == w })
+                }
+        }
+
     }
 
     fun isActive() = search.value.isNotEmpty()
 
     fun filter(search: String, tags: List<String>): Boolean {
-        if (tags.isEmpty() && search.isEmpty()) {
+        if (search.trim().isEmpty()) {
             return true
         }
-        return when (mode) {
-            Mode.Exakt -> tags.any { it.contains(search, ignoreCase) }
+        return when (mode.value) {
+            Mode.ContainsText -> tags.any { it.contains(search, ignoreCase.value) }
             Mode.AllWords,
-            Mode.AnyWord -> {
-                val matches = words(search).map { word ->
-                    tags.any { it.contains(word, ignoreCase) }
+            Mode.AnyWord-> {
+                val searchWords = words(search, ignoreCase.value)
+                val tagWords = words(tags.joinToString(" "), ignoreCase.value)
+                val matches = searchWords.map { word ->
+                    tagWords.filter { it.text == word.text }.sumOf { it.count } >= word.count
                 }
-                if (mode == Mode.AllWords) {
+
+                if (tags.contains("Sub Sub Info 1")) {
+                    println("search = '$search' (isEmpty = ${search.isEmpty()})")
+                    println("searchWords = $searchWords")
+                    println("tagWords = $tagWords")
+                    println("matches = $matches")
+                }
+
+                if (mode.value == Mode.AllWords) {
                     !matches.contains(false)
                 } else matches.contains(true)
             }
@@ -54,6 +75,11 @@ fun rememberPreferenceFilter(
     ignoreCase: Boolean = true,
     mode: PreferenceFilter.Mode = PreferenceFilter.Mode.AllWords,
     highlightSpan: SpanStyle = SpanStyle(color = MaterialTheme.colorScheme.primary),
-    flattenResult : Boolean = false
-): PreferenceFilter =
-    PreferenceFilter(rememberSaveable { mutableStateOf(search) }, ignoreCase, mode, highlightSpan, flattenResult)
+    flattenResult: Boolean = false
+): PreferenceFilter = PreferenceFilter(
+    rememberSaveable { mutableStateOf(search) },
+    rememberSaveable { mutableStateOf(ignoreCase) },
+    rememberSaveable { mutableStateOf(mode) },
+    highlightSpan,
+    rememberSaveable { mutableStateOf(flattenResult) }
+)
