@@ -9,7 +9,7 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import com.michaelflisar.composepreferences.core.classes.Dependency
-import com.michaelflisar.composepreferences.core.classes.LocalPreferenceFilter
+import com.michaelflisar.composepreferences.core.filter.LocalPreferenceFilter
 import com.michaelflisar.composepreferences.core.classes.PreferenceType
 
 sealed class PreferenceItemState {

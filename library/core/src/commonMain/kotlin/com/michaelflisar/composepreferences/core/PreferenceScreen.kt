@@ -18,13 +18,13 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Modifier
-import com.michaelflisar.composepreferences.core.classes.LocalPreferenceFilter
+import com.michaelflisar.composepreferences.core.filter.LocalPreferenceFilter
 import com.michaelflisar.composepreferences.core.classes.LocalPreferenceSettings
-import com.michaelflisar.composepreferences.core.classes.PreferenceFilter
 import com.michaelflisar.composepreferences.core.classes.PreferenceSettings
 import com.michaelflisar.composepreferences.core.classes.PreferenceSettingsDefaults
 import com.michaelflisar.composepreferences.core.classes.PreferenceState
 import com.michaelflisar.composepreferences.core.classes.rememberPreferenceState
+import com.michaelflisar.composepreferences.core.filter.PreferenceFilter
 import com.michaelflisar.composepreferences.core.internal.LocalParent
 import com.michaelflisar.composepreferences.core.internal.LocalState
 import com.michaelflisar.composepreferences.core.internal.PreferenceItemState
@@ -37,7 +37,7 @@ import com.michaelflisar.composepreferences.core.scopes.PreferenceRootScopeInsta
  * @param modifier the [Modifier] for this composable
  * @param scrollable if true, this composable does wrap its content inside a scrollable container
  * @param settings the [PreferenceSettings] for this screen - use [PreferenceSettingsDefaults.settings] to provide your own settings
- * @param filter the [PreferenceFilter] for this screen - use [rememberPreferenceFilter] to provide your setup
+ * @param filter the [PreferenceFilter] for this screen - use [rememberDefaultPreferenceFilter] to use some of the predefined options or provide your own [PreferenceFilter] implementation
  * @param content the content of this screen
  */
 @Composable
@@ -60,7 +60,7 @@ fun PreferenceScreen(
     }
 
     BackHandler(state.openedGroups.size > 0) {
-        println("BACK - state.openedGroups = ${state.openedGroups.size}")
+        //println("BACK - state.openedGroups = ${state.openedGroups.size}")
         //state.popLast()
         if (Test.useRemoveLastOrNull) {
             state.openedGroups.removeLastOrNull()
@@ -88,7 +88,7 @@ fun PreferenceScreen(
                         }
                     }
                     while (scrollStates.size < state.openedGroups.size + 1) {
-                        println("scroll state ADDED")
+                        //println("scroll state ADDED")
                         scrollStates.add(ScrollState(0))
                     }
                     scrollStates.last()
@@ -100,10 +100,10 @@ fun PreferenceScreen(
 
         LaunchedEffect(scrollState) {
             val value = scrollState.value
-            println("scroll - value = $value | scrollState = $scrollState")
+            //println("scroll - value = $value | scrollState = $scrollState")
         }
         LaunchedEffect(scrollState.value) {
-            println("scrolled to ${scrollState.value} | scrollState = $scrollState")
+            //println("scrolled to ${scrollState.value} | scrollState = $scrollState")
         }
 
         Column(

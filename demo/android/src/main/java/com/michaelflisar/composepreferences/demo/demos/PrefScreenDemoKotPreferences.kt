@@ -18,6 +18,7 @@ import com.michaelflisar.composepreferences.core.PreferenceSubScreen
 import com.michaelflisar.composepreferences.core.classes.PreferenceSettingsDefaults
 import com.michaelflisar.composepreferences.core.styles.PreferenceStyleDefaults
 import com.michaelflisar.composepreferences.demo.classes.Demo2Prefs
+import com.michaelflisar.composepreferences.demo.classes.DemoPrefs
 import com.michaelflisar.composepreferences.kotpreferences.asDependency
 import com.michaelflisar.composepreferences.screen.bool.PreferenceBool
 import com.michaelflisar.composepreferences.screen.input.PreferenceInputNumber
@@ -27,14 +28,10 @@ import com.michaelflisar.kotpreferences.compose.asMutableState
 @Composable
 fun PrefScreenDemoKotPreferences1() {
 
+    val settings = DemoPrefs.preferenceSettings()
+
     PreferenceScreen(
-        // optional settings for this screen...
-        settings = PreferenceSettingsDefaults.settings(
-            toggleBooleanOnItemClick = true,
-            disabledStateAlpha = .4f,
-            disabledStateGrayscale = false,
-            maxLinesValue = 2
-        ),
+        settings = settings,
         modifier = Modifier.padding(16.dp)
     ) {
 
@@ -54,7 +51,7 @@ fun PrefScreenDemoKotPreferences1() {
             title = "Master 1",
             enabled = Demo2Prefs.master1.asDependency { it }
         ) {
-            PreferenceDivider(enabled = Demo2Prefs.master1.asDependency { it })
+            //PreferenceDivider(enabled = Demo2Prefs.master1.asDependency { it })
             PreferenceInputNumber(
                 value = Demo2Prefs.node1a.asMutableState(),
                 enabled = Demo2Prefs.master1.asDependency { it },
@@ -94,9 +91,7 @@ fun PrefScreenDemoKotPreferences1() {
             title = "Master 2",
             visible = Demo2Prefs.master2.asDependency { it }
         ) {
-            PreferenceDivider(
-                visible = Demo2Prefs.master2.asDependency { it }
-            )
+            //PreferenceDivider(visible = Demo2Prefs.master2.asDependency { it })
             PreferenceInputNumber(
                 value = Demo2Prefs.node2a.asMutableState(),
                 visible = Demo2Prefs.master2.asDependency { it },

@@ -1,6 +1,5 @@
 package com.michaelflisar.composepreferences.demo
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -27,11 +26,11 @@ import com.michaelflisar.composepreferences.core.PreferenceInfo
 import com.michaelflisar.composepreferences.core.PreferenceScreen
 import com.michaelflisar.composepreferences.core.PreferenceSectionHeader
 import com.michaelflisar.composepreferences.core.PreferenceSubScreen
-import com.michaelflisar.composepreferences.core.classes.PreferenceFilter
 import com.michaelflisar.composepreferences.core.classes.PreferenceSettingsDefaults
 import com.michaelflisar.composepreferences.core.classes.PreferenceState
-import com.michaelflisar.composepreferences.core.classes.rememberPreferenceFilter
 import com.michaelflisar.composepreferences.core.classes.rememberPreferenceState
+import com.michaelflisar.composepreferences.core.filter.DefaultPreferenceFilter
+import com.michaelflisar.composepreferences.core.filter.rememberDefaultPreferenceFilter
 import com.michaelflisar.composepreferences.core.styles.PreferenceStyle
 import com.michaelflisar.composepreferences.screen.bool.PreferenceBool
 import com.michaelflisar.composepreferences.screen.button.PreferenceButton
@@ -61,8 +60,16 @@ fun PrefScreenDemoFilter(
     val settings = PreferenceSettingsDefaults.settings(
         style = style
     )
-    val filter = rememberPreferenceFilter(
-        highlightSpan = SpanStyle(color = Color.Red)
+
+    val filterModes = listOf(
+        DefaultPreferenceFilter.Mode.ContainsText,
+        DefaultPreferenceFilter.Mode.AllWords(false),
+        DefaultPreferenceFilter.Mode.AnyWord(false)
+    )
+
+    val filter = rememberDefaultPreferenceFilter(
+        highlightSpan = SpanStyle(color = Color.Red),
+        mode = filterModes[0]
     )
 
     val scope = rememberCoroutineScope()
@@ -96,12 +103,12 @@ fun PrefScreenDemoFilter(
             title = "Flat Results?",
             checked = filter.flattenResult
         )
-        MyDropdown<PreferenceFilter.Mode>(
+        MyDropdown<DefaultPreferenceFilter.Mode>(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 8.dp),
-            items = PreferenceFilter.Mode.entries.toList(),
-            mapper = { it.name },
+            items = filterModes,
+            mapper = { it.javaClass.simpleName },
             selected = filter.mode,
             title = "Filter Mode"
         )

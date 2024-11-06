@@ -10,8 +10,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import com.michaelflisar.composepreferences.core.PreferenceInfo
 import com.michaelflisar.composepreferences.core.PreferenceScreen
-import com.michaelflisar.composepreferences.core.classes.PreferenceFilter
-import com.michaelflisar.composepreferences.core.classes.rememberPreferenceFilter
+import com.michaelflisar.composepreferences.core.filter.DefaultPreferenceFilter
+import com.michaelflisar.composepreferences.core.filter.rememberDefaultPreferenceFilter
 
 @Composable
 @Preview(showBackground = true)
@@ -20,24 +20,24 @@ fun PreviewSearchText() {
         Surface {
             Column {
                 val highlightSpan = SpanStyle(color = Color.Red, fontWeight = FontWeight.Bold)
-                val filter1 = rememberPreferenceFilter(
+                val filter1 = rememberDefaultPreferenceFilter(
                     "ha yo",
-                    mode = PreferenceFilter.Mode.ContainsText,
+                    mode = DefaultPreferenceFilter.Mode.ContainsText,
                     highlightSpan = highlightSpan
                 )
-                val filter2 = rememberPreferenceFilter(
+                val filter2 = rememberDefaultPreferenceFilter(
                     "ha yo",
-                    mode = PreferenceFilter.Mode.AnyWord,
+                    mode = DefaultPreferenceFilter.Mode.AnyWord(),
                     highlightSpan = highlightSpan
                 )
-                val filter3 = rememberPreferenceFilter(
+                val filter3 = rememberDefaultPreferenceFilter(
                     "ha yo",
-                    mode = PreferenceFilter.Mode.AllWords,
+                    mode = DefaultPreferenceFilter.Mode.AllWords(false),
                     highlightSpan = highlightSpan
                 )
-                val filter4 = rememberPreferenceFilter(
+                val filter4 = rememberDefaultPreferenceFilter(
                     "ha yo 4c",
-                    mode = PreferenceFilter.Mode.AllWords,
+                    mode = DefaultPreferenceFilter.Mode.AllWords(false),
                     highlightSpan = highlightSpan
                 )
                 PreferenceScreen(filter = filter1, scrollable = false) {

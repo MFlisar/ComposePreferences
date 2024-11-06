@@ -21,7 +21,7 @@ val LocalPreferenceSettings = compositionLocalOf { PreferenceSettings() }
 /**
  * see [PreferenceSettingsDefaults.settings]
  */
-data class PreferenceSettings internal constructor(
+class PreferenceSettings internal constructor(
     val disabledStateAlpha: Float = .4f,
     val disabledStateGrayscale: Boolean = false,
     val toggleBooleanOnItemClick: Boolean = false,

@@ -29,6 +29,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.michaelflisar.composepreferences.core.PreferenceScreen
 import com.michaelflisar.composepreferences.core.styles.DefaultStyle
+import com.michaelflisar.composepreferences.core.styles.ModernStyle
 import com.michaelflisar.composepreferences.core.styles.PreferenceStyleDefaults
 import com.michaelflisar.composepreferences.demo.classes.DemoDataStore
 import com.michaelflisar.composepreferences.demo.classes.DemoPrefs
@@ -139,26 +140,12 @@ private fun Root(
             state = regionState
         ) {
 
-            val settingsState = DemoPrefs.preferenceSettings()
-            val itemStyle = PreferenceStyleDefaults.item(
-                shape = MaterialTheme.shapes.small
+            // this shape looks better if settings are not used on full screen width
+            // => so we overwrite the settings for this area
+            val settings = DemoPrefs.preferenceSettings(
+                style = ModernStyle.create(),
+                animationSpec = null
             )
-            val style = DefaultStyle.create(
-                defaultItemStyle = itemStyle,
-                defaultSectionItemStyle = itemStyle,
-                defaultGroupItemStyle = itemStyle,
-            )
-            val settings by remember(settingsState) {
-                derivedStateOf {
-                    settingsState.copy(
-                        // this shape looks better if settings are not used on full screen width
-                        style = style,
-                        // we disable the animation here
-                        animationSpec = null
-                    )
-                }
-
-            }
 
             PreferenceScreen(
                 scrollable = false,

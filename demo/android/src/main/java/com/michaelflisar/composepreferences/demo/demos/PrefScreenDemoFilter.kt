@@ -17,8 +17,6 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -30,9 +28,9 @@ import com.michaelflisar.composepreferences.core.PreferenceInfo
 import com.michaelflisar.composepreferences.core.PreferenceScreen
 import com.michaelflisar.composepreferences.core.PreferenceSectionHeader
 import com.michaelflisar.composepreferences.core.PreferenceSubScreen
-import com.michaelflisar.composepreferences.core.classes.PreferenceFilter
-import com.michaelflisar.composepreferences.core.classes.rememberPreferenceFilter
 import com.michaelflisar.composepreferences.core.classes.rememberPreferenceState
+import com.michaelflisar.composepreferences.core.filter.DefaultPreferenceFilter
+import com.michaelflisar.composepreferences.core.filter.rememberDefaultPreferenceFilter
 import com.michaelflisar.composepreferences.core.scopes.PreferenceScope
 import com.michaelflisar.composepreferences.demo.classes.DemoPrefs
 import com.michaelflisar.kotpreferences.core.initialisation.SettingSetup
@@ -43,16 +41,24 @@ import com.michaelflisar.toolbox.composables.MyDropdown
 fun PrefScreenDemoFilter() {
 
     val settings = DemoPrefs.preferenceSettings()
-    val filter = rememberPreferenceFilter(
-        mode = PreferenceFilter.Mode.AllWords,
+    val filterModes = listOf(
+        DefaultPreferenceFilter.Mode.ContainsText,
+        DefaultPreferenceFilter.Mode.AllWords(false),
+        DefaultPreferenceFilter.Mode.AnyWord(false)
+    )
+    val filter = rememberDefaultPreferenceFilter(
+        mode = filterModes[1],
         highlightSpan = SpanStyle(color = Color.Red),
         flattenResult = true
     )
+
     val state = rememberPreferenceState()
 
     Column(
         verticalArrangement = Arrangement.spacedBy(8.dp),
-        modifier = Modifier.fillMaxSize().padding(16.dp)
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
     ) {
         OutlinedTextField(
             modifier = Modifier
@@ -80,12 +86,12 @@ fun PrefScreenDemoFilter() {
             title = "Flat Results?",
             checked = filter.flattenResult
         )
-        MyDropdown<PreferenceFilter.Mode>(
+        MyDropdown<DefaultPreferenceFilter.Mode>(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 8.dp),
-            items = PreferenceFilter.Mode.entries.toList(),
-            mapper = { it.name },
+            items = filterModes,
+            mapper = { it.javaClass.simpleName },
             selected = filter.mode,
             title = "Filter Mode"
         )
@@ -99,7 +105,9 @@ fun PrefScreenDemoFilter() {
             // Empty nur anzeigen, falls durch Filtern leer!
             if (state.countCurrentLevel() > 0) {
                 Row(
-                    modifier = Modifier.padding(horizontal = 16.dp).fillMaxWidth(),
+                    modifier = Modifier
+                        .padding(horizontal = 16.dp)
+                        .fillMaxWidth(),
                     horizontalArrangement = Arrangement.End
                 ) {
                     if (state.countVisible() == 0) {
@@ -110,7 +118,14 @@ fun PrefScreenDemoFilter() {
                         )
                     } else {
                         if (filter.isActive() && filter.flattenResult.value) {
-                            Text("${state.countVisible()} / ${state.countAll(includeGroups = false, includeSections = false)}")
+                            Text(
+                                "${state.countVisible()} / ${
+                                    state.countAll(
+                                        includeGroups = false,
+                                        includeSections = false
+                                    )
+                                }"
+                            )
                         } else {
                             Text("${state.countVisible()} / ${state.countCurrentLevel()}")
                         }

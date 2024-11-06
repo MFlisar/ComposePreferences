@@ -18,6 +18,7 @@ import com.michaelflisar.composepreferences.core.PreferenceSectionHeader
 import com.michaelflisar.composepreferences.core.classes.PreferenceSettingsDefaults
 import com.michaelflisar.composepreferences.core.classes.asDependency
 import com.michaelflisar.composepreferences.core.styles.PreferenceStyleDefaults
+import com.michaelflisar.composepreferences.demo.classes.DemoPrefs
 import com.michaelflisar.composepreferences.screen.bool.PreferenceBool
 import com.michaelflisar.composepreferences.screen.input.PreferenceInputNumber
 import com.michaelflisar.composepreferences.screen.input.PreferenceInputText
@@ -25,14 +26,10 @@ import com.michaelflisar.composepreferences.screen.input.PreferenceInputText
 @Composable
 fun PrefScreenCustomDemo() {
 
+    val settings = DemoPrefs.preferenceSettings()
+
     PreferenceScreen(
-        // optional settings for this screen...
-        settings = PreferenceSettingsDefaults.settings(
-            toggleBooleanOnItemClick = true,
-            disabledStateAlpha = .4f,
-            disabledStateGrayscale = false,
-            maxLinesValue = 2
-        ),
+        settings = settings,
         modifier = Modifier.padding(16.dp)
     ) {
         // settings are normally persisted, so you should use a database or preferences
@@ -83,7 +80,7 @@ fun PrefScreenCustomDemo() {
             subtitle = "Region header with sub title...",
             visible = master1Dependency
         ) {
-            PreferenceDivider(visible = master1Dependency)
+            //PreferenceDivider(visible = master1Dependency)
             PreferenceInputText(
                 value = string1,
                 title = "Text 1",

@@ -1,5 +1,8 @@
 package com.michaelflisar.composepreferences.demo.classes
 
+import androidx.compose.animation.core.AnimationSpec
+import androidx.compose.animation.core.FastOutLinearInEasing
+import androidx.compose.animation.core.tween
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material3.Icon
@@ -9,6 +12,7 @@ import com.michaelflisar.composepreferences.core.classes.PreferenceSettings
 import com.michaelflisar.composepreferences.core.classes.PreferenceSettingsDefaults
 import com.michaelflisar.composepreferences.core.styles.DefaultStyle
 import com.michaelflisar.composepreferences.core.styles.ModernStyle
+import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
 import com.michaelflisar.composepreferences.core.styles.PreferenceStyle
 import com.michaelflisar.composepreferences.core.styles.PreferenceStyleDefaults
 import com.michaelflisar.composepreferences.screen.number.PreferenceNumber
@@ -32,7 +36,13 @@ object DemoPrefs : SettingsModel(DataStoreStorage.create(name = "demo1_prefs")) 
     // helper functions that converts all settings above into one flow and then converts this flow into a state
     // => this state will change whenever any setting in the group will change and this is what we want here...
     @Composable
-    fun preferenceSettings(): PreferenceSettings {
+    fun preferenceSettings(
+        style: PreferenceStyle? = null,
+        animationSpec: AnimationSpec<Float>? = tween(
+            durationMillis = 200,
+            easing = FastOutLinearInEasing
+        )
+    ): PreferenceSettings {
         val settings = listOf(
             disabledStateAlpha,
             disabledStateGrayscale,
@@ -40,7 +50,7 @@ object DemoPrefs : SettingsModel(DataStoreStorage.create(name = "demo1_prefs")) 
             maxLinesValue,
             showSubScreenEndIndicator,
             forceNoIconInset,
-            style
+            this.style
         )
         val data =
             combine(settings.map { it.flow }) { it.toList() }.collectAsState(initial = emptyList())
@@ -63,12 +73,13 @@ object DemoPrefs : SettingsModel(DataStoreStorage.create(name = "demo1_prefs")) 
                     }
                 } else null,
                 forceNoIconInset = data[5] as Boolean,
-                style = (data[6] as DemoStyle).let {
+                style = style ?: (data[6] as DemoStyle).let {
                     when (it) {
                         DemoStyle.Default -> DefaultStyle.create()
                         DemoStyle.Modern -> ModernStyle.create()
                     }
-                }
+                },
+                animationSpec = animationSpec
             )
         }
 
