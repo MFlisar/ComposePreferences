@@ -108,7 +108,7 @@ fun PrefScreenDemoFilter(
                 .fillMaxWidth()
                 .padding(horizontal = 8.dp),
             items = filterModes,
-            mapper = { it.javaClass.simpleName },
+            mapper = { item, dropdown -> item.javaClass.simpleName },
             selected = filter.mode,
             title = "Filter Mode"
         )
