@@ -1,8 +1,7 @@
 package com.michaelflisar.composepreferences.core.helper
 
-import androidx.compose.foundation.clickable
+//import androidx.compose.ui.input.pointer.pointerInteropFilter
 import androidx.compose.runtime.State
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.draw.DrawModifier
@@ -13,7 +12,6 @@ import androidx.compose.ui.graphics.Paint
 import androidx.compose.ui.graphics.drawscope.ContentDrawScope
 import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
 import androidx.compose.ui.graphics.graphicsLayer
-//import androidx.compose.ui.input.pointer.pointerInteropFilter
 import com.michaelflisar.composepreferences.core.classes.LocalPreferenceSettings
 
 // simply copied from here: https://stackoverflow.com/a/76244926/1439522
@@ -35,7 +33,6 @@ private class GrayScaleModifier : DrawModifier {
 
 private fun Modifier.grayScale() = this.then(GrayScaleModifier())
 
-@OptIn(ExperimentalComposeUiApi::class)
 internal fun Modifier.disableState(stateEnabled: State<Boolean>) = composed {
     this.then(
         if (stateEnabled.value)

@@ -22,7 +22,7 @@ kotlin {
                 implementation(libs.compose.material.icons.core)
                 implementation(libs.compose.material.icons.extended)
 
-                implementation(libs.kotlinx.datetime)
+                implementation(kotlinx.datetime)
 
                 // Libraries
                 implementation(project(":ComposePreferences:Core"))
@@ -37,12 +37,12 @@ kotlin {
                 implementation(project(":ComposePreferences:Modules:KotPreferences"))
 
                 // KotPreferences
-                implementation(libs.kotpreferences.core)
-                implementation(libs.kotpreferences.storage.datastore)
-                implementation(libs.kotpreferences.extension.compose)
+                implementation(deps.kotpreferences.core)
+                implementation(deps.kotpreferences.storage.datastore)
+                implementation(deps.kotpreferences.extension.compose)
 
-                implementation(libs.toolbox.core)
-                implementation(libs.toolbox.ui)
+                implementation(deps.toolbox.core)
+                implementation(deps.toolbox.ui)
                 //implementation(libs.toolbox.windows.app)
             }
         }

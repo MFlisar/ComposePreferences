@@ -52,7 +52,7 @@ class PreferenceState internal constructor(
     fun popLast() {
         //println("BACK - popLast")
         if (openedGroups.size > 0) {
-            openedGroups.removeLast()
+            openedGroups.removeAt(openedGroups.lastIndex)
         }
     }
 

@@ -49,7 +49,6 @@ fun PreferenceScreen(
     state: PreferenceState = rememberPreferenceState(),
     content: @Composable PreferenceRootScope.() -> Unit
 ) {
-    val scope = rememberCoroutineScope()
     val children = remember { mutableStateOf<List<PreferenceItemState.Item>>(emptyList()) }
     val root = remember { PreferenceItemState.Root(children) }
 
@@ -62,11 +61,7 @@ fun PreferenceScreen(
     BackHandler(state.openedGroups.size > 0) {
         //println("BACK - state.openedGroups = ${state.openedGroups.size}")
         //state.popLast()
-        if (Test.useRemoveLastOrNull) {
-            state.openedGroups.removeLastOrNull()
-        } else {
-            state.openedGroups.removeLast()
-        }
+        state.openedGroups.removeAt(state.openedGroups.lastIndex)
     }
 
     val scrollStates = rememberScrollStates()
@@ -81,11 +76,7 @@ fun PreferenceScreen(
             remember(state.openedGroups.size) {
                 derivedStateOf {
                     while (scrollStates.size > state.openedGroups.size + 1) {
-                        if (Test.useRemoveLastOrNull) {
-                            scrollStates.removeLastOrNull()
-                        } else {
-                            scrollStates.removeLast()
-                        }
+                        scrollStates.removeAt(scrollStates.lastIndex)
                     }
                     while (scrollStates.size < state.openedGroups.size + 1) {
                         //println("scroll state ADDED")
@@ -107,12 +98,12 @@ fun PreferenceScreen(
         }
 
         Column(
-            modifier = modifier.fillMaxSize()
+            modifier = Modifier
                 .then(
                     if (scrollable) {
                         Modifier.verticalScroll(scrollState.value)
                     } else Modifier
-                )
+                ).then(modifier)
         ) {
             PreferenceRootScopeInstance.content()
         }

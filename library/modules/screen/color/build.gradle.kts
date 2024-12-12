@@ -63,9 +63,6 @@ kotlin {
 
         commonMain.dependencies {
 
-            // Kotlin
-            implementation(libs.kotlin)
-
             // Compose
             implementation(libs.compose.material3)
 
@@ -73,8 +70,8 @@ kotlin {
 
             val useLiveDependencies = providers.gradleProperty("useLiveDependencies").get().toBoolean()
             if (useLiveDependencies) {
-                implementation(libs.composedialogs.core)
-                implementation(libs.composedialogs.dialog.color)
+                implementation(deps.composedialogs.core)
+                implementation(deps.composedialogs.dialog.color)
             } else {
                 implementation(project(":ComposeDialogs:Core"))
                 implementation(project(":ComposeDialogs:Modules:Color"))

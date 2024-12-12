@@ -15,7 +15,8 @@ import com.michaelflisar.composepreferences.core.composables.PreferenceItemColor
 @Stable
 data class PreferenceItemStyle internal constructor(
     val colors: PreferenceItemColors = PreferenceItemColors(),
-    val padding: PaddingValues = PaddingValues(),
+    val innerPadding: PaddingValues = PaddingValues(),
+    val outerPadding: PaddingValues = PaddingValues(),
     val shape: Shape = RectangleShape,
     val tonalElevation: Dp = 0.dp,
     val shadowElevation: Dp = 0.dp,

@@ -1,8 +1,13 @@
 package com.michaelflisar.composepreferences.core
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import com.michaelflisar.composepreferences.core.classes.Dependency
 import com.michaelflisar.composepreferences.core.classes.LocalPreferenceSettings
 import com.michaelflisar.composepreferences.core.classes.PreferenceType
@@ -12,7 +17,6 @@ import com.michaelflisar.composepreferences.core.helper.SearchText
 import com.michaelflisar.composepreferences.core.internal.LocalParent
 import com.michaelflisar.composepreferences.core.internal.rememberPreferenceItemState
 import com.michaelflisar.composepreferences.core.scopes.PreferenceGroupScope
-import com.michaelflisar.composepreferences.core.scopes.PreferenceGroupScopeInstance
 import com.michaelflisar.composepreferences.core.scopes.PreferenceRootScope
 import com.michaelflisar.composepreferences.core.scopes.PreferenceScope
 import com.michaelflisar.composepreferences.core.scopes.PreferenceSectionScope
@@ -25,7 +29,7 @@ fun PreferenceRootScope.PreferenceSectionHeader(
     // Base Preference
     enabled: Dependency = Dependency.Enabled,
     visible: Dependency = Dependency.Enabled,
-    title: String,
+    title: String? = null,
     subtitle: String? = null,
     icon: (@Composable () -> Unit)? = null,
     itemStyle: PreferenceItemStyle = LocalPreferenceSettings.current.style.defaultSectionItemStyle,
@@ -51,7 +55,7 @@ fun PreferenceGroupScope.PreferenceSectionHeader(
     // Base Preference
     enabled: Dependency = Dependency.Enabled,
     visible: Dependency = Dependency.Enabled,
-    title: String,
+    title: String? = null,
     subtitle: String? = null,
     icon: (@Composable () -> Unit)? = null,
     itemStyle: PreferenceItemStyle = LocalPreferenceSettings.current.style.defaultSectionItemStyle,
@@ -77,7 +81,7 @@ private fun PreferenceScope.PreferenceSectionHeaderImpl(
     // Base Preference
     enabled: Dependency = Dependency.Enabled,
     visible: Dependency = Dependency.Enabled,
-    title: String,
+    title: String?,
     subtitle: String? = null,
     icon: (@Composable () -> Unit)? = null,
     itemStyle: PreferenceItemStyle = LocalPreferenceSettings.current.style.defaultSectionItemStyle,
@@ -91,19 +95,19 @@ private fun PreferenceScope.PreferenceSectionHeaderImpl(
         item.allTags.value = tags + item.children.value.map { it.tags }.flatten()
     }
 
-    BasePreference(
-        itemSetup = PreferenceItemSetup(ignoreForceNoIconInset = true),
-        enabled = enabled,
-        visible = visible,
-        title = {
-            SearchText(title)
-        },
-        subtitle = { subtitle?.let { SearchText(subtitle) } },
-        icon = icon,
-        itemStyle = itemStyle,
-        filterTags = tags,
-        item = item
-    )
+    if (title != null || subtitle != null) {
+        BasePreference(
+            itemSetup = PreferenceItemSetup(ignoreForceNoIconInset = true, minHeight = 0.dp),
+            enabled = enabled,
+            visible = visible,
+            title = { SearchText(title ?: "") },
+            subtitle = { subtitle?.let { SearchText(subtitle) } },
+            icon = icon,
+            itemStyle = itemStyle,
+            filterTags = tags,
+            item = item
+        )
+    }
     CompositionLocalProvider(LocalParent provides item) {
         content()
     }

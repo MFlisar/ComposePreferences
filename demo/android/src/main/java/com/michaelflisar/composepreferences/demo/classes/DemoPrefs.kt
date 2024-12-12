@@ -6,16 +6,15 @@ import androidx.compose.animation.core.tween
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import com.michaelflisar.composepreferences.core.classes.PreferenceSettings
 import com.michaelflisar.composepreferences.core.classes.PreferenceSettingsDefaults
+import com.michaelflisar.composepreferences.core.composables.PreferenceItemDefaults
 import com.michaelflisar.composepreferences.core.styles.DefaultStyle
 import com.michaelflisar.composepreferences.core.styles.ModernStyle
-import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
 import com.michaelflisar.composepreferences.core.styles.PreferenceStyle
-import com.michaelflisar.composepreferences.core.styles.PreferenceStyleDefaults
-import com.michaelflisar.composepreferences.screen.number.PreferenceNumber
 import com.michaelflisar.kotpreferences.core.SettingsModel
 import com.michaelflisar.kotpreferences.core.enumPref
 import com.michaelflisar.kotpreferences.storage.datastore.DataStoreStorage
@@ -76,7 +75,12 @@ object DemoPrefs : SettingsModel(DataStoreStorage.create(name = "demo1_prefs")) 
                 style = style ?: (data[6] as DemoStyle).let {
                     when (it) {
                         DemoStyle.Default -> DefaultStyle.create()
-                        DemoStyle.Modern -> ModernStyle.create()
+                        DemoStyle.Modern -> ModernStyle.create(
+                            sectionColors = PreferenceItemDefaults.colors(
+                                containerColor = MaterialTheme.colorScheme.surfaceContainerHighest,
+                                contentColor = MaterialTheme.colorScheme.onSurface
+                            )
+                        )
                     }
                 },
                 animationSpec = animationSpec

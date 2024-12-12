@@ -2,10 +2,6 @@ package com.michaelflisar.composepreferences.core
 
 internal object Test {
 
-    // TODO: HACK to avoid java.lang.NoSuchMethodError: No virtual method removeLast()Ljava/lang/Object; in class Landroidx/compose/runtime/snapshots/SnapshotStateList; or its super classes
-    // issue only happens on android!
-    const val useRemoveLastOrNull = true
-
     // TODO: Animations + ScrollState restoration do not work well together
     // on back does always reset the scrollstate because items are resized
     // PROBLEM: AnimatedPreference does resize all items so whenever the state is restored the scrollstate gets resetted by the column

@@ -64,17 +64,15 @@ kotlin {
         commonMain.dependencies {
 
             // Kotlin
-            implementation(libs.kotlin)
-
-            implementation(libs.kotlinx.datetime)
+            implementation(kotlinx.datetime)
 
             // Compose
             implementation(libs.compose.material3)
 
             val useLiveDependencies = providers.gradleProperty("useLiveDependencies").get().toBoolean()
             if (useLiveDependencies) {
-                implementation(libs.composedialogs.core)
-                implementation(libs.composedialogs.dialog.time)
+                implementation(deps.composedialogs.core)
+                implementation(deps.composedialogs.dialog.time)
             } else {
                 implementation(project(":ComposeDialogs:Core"))
                 implementation(project(":ComposeDialogs:Modules:Time"))
@@ -84,9 +82,6 @@ kotlin {
         }
 
         androidMain.dependencies {
-
-            //implementation(libs.androidx.activity.compose)
-
             implementation(libs.compose.ui.tooling)
             implementation(libs.compose.ui.tooling.preview.android)
         }
@@ -127,7 +122,7 @@ android {
 }
 
 dependencies {
-    coreLibraryDesugaring(libs.desugar)
+    coreLibraryDesugaring(deps.desugar)
 }
 
 mavenPublishing {

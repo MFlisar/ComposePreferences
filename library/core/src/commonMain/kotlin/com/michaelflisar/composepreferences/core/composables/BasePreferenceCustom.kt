@@ -39,31 +39,25 @@ import com.michaelflisar.composepreferences.core.styles.PreferenceStyleDefaults
  * @param content the content of this composable
  */
 @Composable
-fun PreferenceScope.BasePreference(
+fun PreferenceScope.BasePreferenceCustom(
     modifier: Modifier = Modifier,
     enabled: Dependency = Dependency.Enabled,
     visible: Dependency = Dependency.Enabled,
-    title: String,
-    subtitle: String? = null,
-    icon: (@Composable () -> Unit)? = null,
     onClick: (() -> Unit)? = null,
     onLongClick: (() -> Unit)? = null,
     itemStyle: PreferenceItemStyle = LocalPreferenceSettings.current.style.defaultItemStyle,
     itemSetup: PreferenceItemSetup = PreferenceItemSetup(),
     filterTags: List<String> = emptyList(),
-    content: (@Composable ColumnScope.() -> Unit)? = null
+    content: @Composable ColumnScope.() -> Unit
 ) {
-    val tags = filterTags + listOfNotNull(title, subtitle)
+    val tags = filterTags
     val item = rememberPreferenceItemState(PreferenceType.Item, visible, tags)
 
-    BasePreference(
+    BasePreferenceCustom(
         modifier = modifier,
         itemSetup = itemSetup,
         enabled = enabled,
         visible = visible,
-        title = title.takeIf { !itemSetup.hideTitle }?.let { { SearchText(title) } },
-        subtitle = subtitle?.let { { SearchText(subtitle) } },
-        icon = icon,
         onClick = onClick,
         onLongClick = onLongClick,
         itemStyle = itemStyle,
@@ -74,20 +68,17 @@ fun PreferenceScope.BasePreference(
 }
 
 @Composable
-internal fun PreferenceScope.BasePreference(
+internal fun PreferenceScope.BasePreferenceCustom(
     modifier: Modifier = Modifier,
     enabled: Dependency = Dependency.Enabled,
     visible: Dependency = Dependency.Enabled,
     item: PreferenceItemState.Item,
-    title: @Composable (() -> Unit)?,
-    subtitle: @Composable (() -> Unit)? = null,
-    icon: (@Composable () -> Unit)? = null,
     onClick: (() -> Unit)? = null,
     onLongClick: (() -> Unit)? = null,
     itemStyle: PreferenceItemStyle = LocalPreferenceSettings.current.style.defaultItemStyle,
     itemSetup: PreferenceItemSetup = PreferenceItemSetup(),
     filterTags: List<String> = emptyList(),
-    content: (@Composable ColumnScope.() -> Unit)? = null
+    content: @Composable ColumnScope.() -> Unit
 ) {
     val preferenceSettings = LocalPreferenceSettings.current
     val style = preferenceSettings.style
@@ -103,13 +94,10 @@ internal fun PreferenceScope.BasePreference(
         filterTags = filterTags,
         item = item
     ) { modifier ->
-        PreferenceItem(
+        PreferenceItemCustom(
             modifier = modifier,
             preferenceStyle = itemStyle.style,
             setup = itemSetup,
-            headline = title,
-            subHeadline = subtitle,
-            leading = icon,
             content = content
         )
         if (itemStyle.spaceBelow != 0.dp) {

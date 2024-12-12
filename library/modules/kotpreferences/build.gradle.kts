@@ -49,8 +49,8 @@ kotlin {
     }
 
     // iOS
-    macosX64()
-    macosArm64()
+    //macosX64()
+    //macosArm64()
     iosArm64()
     iosX64()
     iosSimulatorArm64()
@@ -63,9 +63,6 @@ kotlin {
 
         commonMain.dependencies {
 
-            // Kotlin
-            implementation(libs.kotlin)
-
             // Compose
             implementation(libs.compose.material3)
 
@@ -73,11 +70,11 @@ kotlin {
 
             val useLiveDependencies = providers.gradleProperty("useLiveDependencies").get().toBoolean()
             if (useLiveDependencies) {
-                api(libs.kotpreferences.core)
-                api(libs.kotpreferences.storage.datastore)
+                api(deps.kotpreferences.core)
+                api(deps.kotpreferences.storage.datastore)
             } else {
                 api(project(":KotPreferences:Core"))
-                api(project(":KotPreferences:Modules:Datastore"))
+                api(project(":KotPreferences:Modules:Storage:Datastore"))
             }
 
         }

@@ -30,7 +30,7 @@ fun PrefScreenCustomDemo() {
 
     PreferenceScreen(
         settings = settings,
-        modifier = Modifier.padding(16.dp)
+        //modifier = Modifier.padding(16.dp)
     ) {
         // settings are normally persisted, so you should use a database or preferences
         // here we will simply use saved remembered state for this showcase

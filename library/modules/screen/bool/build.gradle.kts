@@ -49,8 +49,8 @@ kotlin {
     }
 
     // iOS
-    macosX64()
-    macosArm64()
+    //macosX64()
+    //macosArm64()
     iosArm64()
     iosX64()
     iosSimulatorArm64()
@@ -62,9 +62,6 @@ kotlin {
     sourceSets {
 
         commonMain.dependencies {
-
-            // Kotlin
-            implementation(libs.kotlin)
 
             // Compose
             implementation(libs.compose.material3)

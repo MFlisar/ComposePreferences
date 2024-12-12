@@ -1,6 +1,5 @@
 package com.michaelflisar.composepreferences.demo.demos
 
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.TextSnippet
 import androidx.compose.material.icons.filled.Check
@@ -9,13 +8,9 @@ import androidx.compose.material.icons.filled.Group
 import androidx.compose.material.icons.filled.Numbers
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-import com.michaelflisar.composepreferences.core.PreferenceDivider
 import com.michaelflisar.composepreferences.core.PreferenceScreen
 import com.michaelflisar.composepreferences.core.PreferenceSectionHeader
 import com.michaelflisar.composepreferences.core.PreferenceSubScreen
-import com.michaelflisar.composepreferences.core.classes.PreferenceSettingsDefaults
 import com.michaelflisar.composepreferences.core.styles.PreferenceStyleDefaults
 import com.michaelflisar.composepreferences.demo.classes.Demo2Prefs
 import com.michaelflisar.composepreferences.demo.classes.DemoPrefs
@@ -32,7 +27,7 @@ fun PrefScreenDemoKotPreferences1() {
 
     PreferenceScreen(
         settings = settings,
-        modifier = Modifier.padding(16.dp)
+        //modifier = Modifier.padding(16.dp)
     ) {
 
         // -----------

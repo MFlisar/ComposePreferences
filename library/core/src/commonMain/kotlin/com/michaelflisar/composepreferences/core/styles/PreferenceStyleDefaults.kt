@@ -17,7 +17,7 @@ import com.michaelflisar.composepreferences.core.composables.PreferenceItemDefau
 @Stable
 object PreferenceStyleDefaults {
 
-    private const val DEFAULT_ALPHA_VARIANT = .6f
+    private val DEFAULT_INNER_PADDING = PaddingValues(horizontal = 16.dp, 8.dp)
 
     /**
      * this function returns a [PreferenceItemStyle] defining the style of a preference item
@@ -25,7 +25,8 @@ object PreferenceStyleDefaults {
      * check out the overload to find a background/foreground based function
      *
      * @param colors the [PreferenceItemColors] of this item
-     * @param outerPadding the [PaddingValues] of this item
+     * @param innerPadding the outer [PaddingValues] of this item
+     * @param outerPadding the inner [PaddingValues] of this item
      * @param shape the [Shape] of this item
      * @param tonalElevation the tonal elevation of this item
      * @param shadowElevation the shadow elevation of this item
@@ -37,6 +38,7 @@ object PreferenceStyleDefaults {
     @Composable
     fun item(
         colors: PreferenceItemColors = PreferenceItemDefaults.colors(),
+        innerPadding: PaddingValues = DEFAULT_INNER_PADDING,
         outerPadding: PaddingValues = PaddingValues(),
         shape: Shape = LocalPreferenceSettings.current.style.defaultItemStyle.shape,
         tonalElevation: Dp = 0.dp,
@@ -44,13 +46,14 @@ object PreferenceStyleDefaults {
         titleTextStyle: TextStyle = MaterialTheme.typography.labelLarge,
         subtitleTextStyle: TextStyle = MaterialTheme.typography.bodyMedium
     ): PreferenceItemStyle = PreferenceItemStyle(
-        colors,
-        outerPadding,
-        shape,
-        tonalElevation,
-        shadowElevation,
-        titleTextStyle,
-        subtitleTextStyle
+        colors = colors,
+        innerPadding = innerPadding,
+        outerPadding = outerPadding,
+        shape = shape,
+        tonalElevation = tonalElevation,
+        shadowElevation = shadowElevation,
+        titleTextStyle = titleTextStyle,
+        subtitleTextStyle = subtitleTextStyle
     )
 
     /**
@@ -73,8 +76,9 @@ object PreferenceStyleDefaults {
     fun item(
         colorBackground: Color = MaterialTheme.colorScheme.surface,
         colorForeground: Color = MaterialTheme.colorScheme.onSurface,
-        alphaVariant: Float = DEFAULT_ALPHA_VARIANT,
+        alphaVariant: Float = PreferenceItemDefaults.DEFAULT_ALPHA_VARIANT,
         shape: Shape = LocalPreferenceSettings.current.style.defaultItemStyle.shape,
+        innerPadding: PaddingValues = DEFAULT_INNER_PADDING,
         outerPadding: PaddingValues = PaddingValues(),
         tonalElevation: Dp = 0.dp,
         shadowElevation: Dp = 0.dp,
@@ -89,7 +93,8 @@ object PreferenceStyleDefaults {
             contentColor = colorForeground.copy(alpha = alphaVariant)
         ),
         shape = shape,
-        padding = outerPadding,
+        innerPadding = innerPadding,
+        outerPadding = outerPadding,
         tonalElevation = tonalElevation,
         shadowElevation = shadowElevation,
         titleTextStyle = titleTextStyle,
@@ -111,13 +116,15 @@ object PreferenceStyleDefaults {
     @Composable
     fun primary(
         shape: Shape = LocalPreferenceSettings.current.style.defaultItemStyle.shape,
+        innerPadding: PaddingValues = DEFAULT_INNER_PADDING,
         outerPadding: PaddingValues = PaddingValues(),
-        alphaVariant: Float = DEFAULT_ALPHA_VARIANT
+        alphaVariant: Float = PreferenceItemDefaults.DEFAULT_ALPHA_VARIANT
     ) = item(
         colorBackground = MaterialTheme.colorScheme.primary,
         colorForeground = MaterialTheme.colorScheme.onPrimary,
         alphaVariant = alphaVariant,
         shape = shape,
+        innerPadding = innerPadding,
         outerPadding = outerPadding
     )
 
@@ -132,13 +139,15 @@ object PreferenceStyleDefaults {
     @Composable
     fun primaryContainer(
         shape: Shape = LocalPreferenceSettings.current.style.defaultItemStyle.shape,
+        innerPadding: PaddingValues = DEFAULT_INNER_PADDING,
         outerPadding: PaddingValues = PaddingValues(),
-        alphaVariant: Float = DEFAULT_ALPHA_VARIANT
+        alphaVariant: Float = PreferenceItemDefaults.DEFAULT_ALPHA_VARIANT
     ) = item(
         colorBackground = MaterialTheme.colorScheme.primaryContainer,
         colorForeground = MaterialTheme.colorScheme.onPrimaryContainer,
         alphaVariant = alphaVariant,
         shape = shape,
+        innerPadding = innerPadding,
         outerPadding = outerPadding
     )
 
@@ -153,13 +162,15 @@ object PreferenceStyleDefaults {
     @Composable
     fun error(
         shape: Shape = LocalPreferenceSettings.current.style.defaultItemStyle.shape,
+        innerPadding: PaddingValues = DEFAULT_INNER_PADDING,
         outerPadding: PaddingValues = PaddingValues(),
-        alphaVariant: Float = DEFAULT_ALPHA_VARIANT
+        alphaVariant: Float = PreferenceItemDefaults.DEFAULT_ALPHA_VARIANT
     ) = item(
         colorBackground = MaterialTheme.colorScheme.error,
         colorForeground = MaterialTheme.colorScheme.onError,
         alphaVariant = alphaVariant,
         shape = shape,
+        innerPadding = innerPadding,
         outerPadding = outerPadding
     )
 
@@ -174,13 +185,15 @@ object PreferenceStyleDefaults {
     @Composable
     fun errorContainer(
         shape: Shape = LocalPreferenceSettings.current.style.defaultItemStyle.shape,
+        innerPadding: PaddingValues = DEFAULT_INNER_PADDING,
         outerPadding: PaddingValues = PaddingValues(),
-        alphaVariant: Float = DEFAULT_ALPHA_VARIANT
+        alphaVariant: Float = PreferenceItemDefaults.DEFAULT_ALPHA_VARIANT
     ) = item(
         colorBackground = MaterialTheme.colorScheme.errorContainer,
         colorForeground = MaterialTheme.colorScheme.onErrorContainer,
         alphaVariant = alphaVariant,
         shape = shape,
+        innerPadding = innerPadding,
         outerPadding = outerPadding
     )
 
@@ -195,7 +208,8 @@ object PreferenceStyleDefaults {
     @Composable
     fun surfaceVariant(
         shape: Shape = LocalPreferenceSettings.current.style.defaultItemStyle.shape,
-        outerPadding: PaddingValues = PaddingValues()
+        innerPadding: PaddingValues = DEFAULT_INNER_PADDING,
+        outerPadding: PaddingValues = PaddingValues(),
     ): PreferenceItemStyle = item(
         colors = PreferenceItemColors(
             containerColor = MaterialTheme.colorScheme.surfaceVariant,
@@ -205,6 +219,7 @@ object PreferenceStyleDefaults {
             contentColor = MaterialTheme.colorScheme.onSurfaceVariant
         ),
         shape = shape,
+        innerPadding = innerPadding,
         outerPadding = outerPadding
     )
 
@@ -217,18 +232,20 @@ object PreferenceStyleDefaults {
      */
     @Composable
     fun header(
-        alphaVariant: Float = DEFAULT_ALPHA_VARIANT,
+        alphaVariant: Float = PreferenceItemDefaults.DEFAULT_ALPHA_VARIANT,
         shape: Shape = LocalPreferenceSettings.current.style.defaultItemStyle.shape,
+        innerPadding: PaddingValues = DEFAULT_INNER_PADDING,
         outerPadding: PaddingValues = PaddingValues(),
     ): PreferenceItemStyle = item(
         colors = PreferenceItemColors(
-            containerColor = MaterialTheme.colorScheme.surface,
+            containerColor = MaterialTheme.colorScheme.background,
             headlineColor = MaterialTheme.colorScheme.primary,
             subHeadlineColor = MaterialTheme.colorScheme.primary.copy(alpha = alphaVariant),
             leadingColor = MaterialTheme.colorScheme.primary.copy(alpha = alphaVariant),
             contentColor = MaterialTheme.colorScheme.primary.copy(alpha = alphaVariant)
         ),
         shape = shape,
+        innerPadding = innerPadding,
         outerPadding = outerPadding
     )
 }

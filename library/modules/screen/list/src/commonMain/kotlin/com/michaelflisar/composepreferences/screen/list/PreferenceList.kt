@@ -4,10 +4,14 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuDefaults
+import androidx.compose.material3.SegmentedButton
+import androidx.compose.material3.SegmentedButtonDefaults
+import androidx.compose.material3.SingleChoiceSegmentedButtonRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
@@ -22,12 +26,12 @@ import com.michaelflisar.composedialogs.core.rememberDialogState
 import com.michaelflisar.composedialogs.dialogs.list.DialogList
 import com.michaelflisar.composepreferences.core.classes.Dependency
 import com.michaelflisar.composepreferences.core.classes.LocalPreferenceSettings
-import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
 import com.michaelflisar.composepreferences.core.composables.BasePreference
 import com.michaelflisar.composepreferences.core.composables.BasePreferenceDialog
 import com.michaelflisar.composepreferences.core.composables.PreferenceContentText
 import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetup
 import com.michaelflisar.composepreferences.core.scopes.PreferenceScope
+import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
 
 /**
  * A list preference item - this item provides a list dialog or a dropdown to change this preference
@@ -36,11 +40,12 @@ import com.michaelflisar.composepreferences.core.scopes.PreferenceScope
  *
  * **Basic Parameters:** all params not described here are derived from [com.michaelflisar.composepreferences.core.composables.BasePreference], check it out for more details
  *
- * @param style the [PreferenceList.Style] of this item ([PreferenceList.Style.Dialog] or [PreferenceList.Style.Spinner])
+ * @param style the [PreferenceList.Style] of this item ([PreferenceList.Style.Dialog], [PreferenceList.Style.Spinner] or [PreferenceList.Style.SegmentedButtons])
  * @param value the [MutableState] of this item
  * @param items the list of items that this preference can select from
  * @param itemTextProvider a converter to get the text of an item
  * @param itemIconProvider a converter to provide an icon for an item
+ * @param filter a lambda for filtering the list - if it is null, filtering is disabled ([PreferenceList.Style.SegmentedButtons] does ignore this value)
  */
 @Composable
 fun <T> PreferenceScope.PreferenceList(
@@ -50,6 +55,7 @@ fun <T> PreferenceScope.PreferenceList(
     items: List<T>,
     itemTextProvider: @Composable (item: T) -> String = { it.toString() },
     itemIconProvider: (@Composable (item: T) -> Unit)? = null,
+    filter: ((filter: String, item: T) -> Boolean)? = null,
     // Base Preference
     title: String,
     enabled: Dependency = Dependency.Enabled,
@@ -57,11 +63,26 @@ fun <T> PreferenceScope.PreferenceList(
     subtitle: String? = null,
     icon: (@Composable () -> Unit)? = null,
     itemStyle: PreferenceItemStyle = LocalPreferenceSettings.current.style.defaultItemStyle,
-    itemSetup: PreferenceItemSetup = PreferenceListDefaults.itemSetup(),
+    itemSetup: PreferenceItemSetup = PreferenceListDefaults.itemSetup(style),
     filterTags: List<String> = emptyList(),
     // Dialog
     dialog: @Composable (state: DialogState) -> Unit = { dialogState ->
-        PreferenceListDefaults.dialog(dialogState, value.value, { value.value = it}, items, itemTextProvider, itemIconProvider, title, icon)
+        PreferenceListDefaults.dialog(
+            dialogState,
+            value.value,
+            { value.value = it },
+            items,
+            itemTextProvider,
+            itemIconProvider,
+            title,
+            icon,
+            filter?.let {
+                DialogList.Filter(
+                    filter = it,
+                    keepSelectionForInvisibleItems = false
+                )
+            }
+        )
     }
 ) {
     PreferenceList(
@@ -97,7 +118,6 @@ fun <T> PreferenceScope.PreferenceList(
  * @param itemTextProvider a converter to get the text of an item
  * @param itemIconProvider a converter to provide an icon for an item
  */
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun <T> PreferenceScope.PreferenceList(
     style: PreferenceList.Style = PreferenceList.Style.Dialog,
@@ -114,11 +134,20 @@ fun <T> PreferenceScope.PreferenceList(
     subtitle: String? = null,
     icon: (@Composable () -> Unit)? = null,
     itemStyle: PreferenceItemStyle = LocalPreferenceSettings.current.style.defaultItemStyle,
-    itemSetup: PreferenceItemSetup = PreferenceListDefaults.itemSetup(),
+    itemSetup: PreferenceItemSetup = PreferenceListDefaults.itemSetup(style),
     filterTags: List<String> = emptyList(),
     // Dialog
     dialog: @Composable (state: DialogState) -> Unit = { dialogState ->
-        PreferenceListDefaults.dialog(dialogState, value, onValueChange, items, itemTextProvider, itemIconProvider, title, icon)
+        PreferenceListDefaults.dialog(
+            dialogState,
+            value,
+            onValueChange,
+            items,
+            itemTextProvider,
+            itemIconProvider,
+            title,
+            icon
+        )
     }
 ) {
     when (style) {
@@ -155,7 +184,37 @@ fun <T> PreferenceScope.PreferenceList(
                         expanded.value = true
                 }
             ) {
-                ContentDialogSpinner(value, onValueChange, items, itemSetup, itemIconProvider, itemTextProvider, expanded)
+                ContentDialogSpinner(
+                    value,
+                    onValueChange,
+                    items,
+                    itemSetup,
+                    itemIconProvider,
+                    itemTextProvider,
+                    expanded
+                )
+            }
+        }
+
+        PreferenceList.Style.SegmentedButtons -> {
+            BasePreference(
+                itemSetup = itemSetup,
+                enabled = enabled,
+                visible = visible,
+                title = title,
+                subtitle = subtitle,
+                icon = icon,
+                itemStyle = itemStyle,
+                filterTags = filterTags,
+                onClick = null
+            ) {
+                ContentDialogSegmentedButtons(
+                    value,
+                    onValueChange,
+                    items,
+                    itemIconProvider,
+                    itemTextProvider
+                )
             }
         }
     }
@@ -187,7 +246,7 @@ private fun <T> ContentDialogSpinner(
     onValueChange: (value: T) -> Unit,
     items: List<T>,
     itemSetup: PreferenceItemSetup,
-    itemIconProvider: @Composable() ((item: T) -> Unit)?,
+    itemIconProvider: @Composable ((item: T) -> Unit)?,
     itemTextProvider: @Composable (item: T) -> String,
     expanded: MutableState<Boolean>
 ) {
@@ -241,10 +300,44 @@ private fun <T> ContentDialogSpinner(
     }
 }
 
+@Composable
+private fun <T> ColumnScope.ContentDialogSegmentedButtons(
+    value: T,
+    onValueChange: (value: T) -> Unit,
+    items: List<T>,
+    itemIconProvider: @Composable ((item: T) -> Unit)?,
+    itemTextProvider: @Composable (item: T) -> String
+) {
+    Row(
+        modifier = Modifier.align(Alignment.End),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        SingleChoiceSegmentedButtonRow(
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            items.forEachIndexed { index, item ->
+                SegmentedButton(
+                    selected = item == value,
+                    shape = SegmentedButtonDefaults.itemShape(index, items.size),
+                    onClick = { onValueChange(item) },
+                    icon = if (item == value) {
+                        { SegmentedButtonDefaults.Icon(true) }
+                    } else {
+                        { itemIconProvider?.invoke(item) }
+                    },
+                    label = { Text(itemTextProvider(item)) }
+                )
+            }
+        }
+    }
+
+}
+
 @Stable
 object PreferenceList {
     enum class Style {
-        Dialog, Spinner
+        Dialog, Spinner, SegmentedButtons
     }
 }
 
@@ -252,7 +345,17 @@ object PreferenceList {
 object PreferenceListDefaults {
 
     @Composable
-    fun itemSetup() = PreferenceItemSetup()
+    fun itemSetup(style: PreferenceList.Style) : PreferenceItemSetup {
+        return when (style) {
+            PreferenceList.Style.Dialog,
+            PreferenceList.Style.Spinner -> PreferenceItemSetup()
+            PreferenceList.Style.SegmentedButtons -> PreferenceItemSetup(
+                ignoreForceNoIconInset = true,
+                hideTitle = true,
+                contentPlacementBottom = true
+            )
+        }
+    }
 
     @Composable
     fun <T> dialog(
@@ -263,7 +366,8 @@ object PreferenceListDefaults {
         itemTextProvider: @Composable (item: T) -> String = { it.toString() },
         itemIconProvider: (@Composable (item: T) -> Unit)? = null,
         title: String,
-        icon: (@Composable () -> Unit)? = null
+        icon: (@Composable () -> Unit)? = null,
+        filter: DialogList.Filter<T>? = null
     ) {
         DialogList(
             state = dialogState,
@@ -277,7 +381,8 @@ object PreferenceListDefaults {
                 icon = itemIconProvider
             ),
             title = { Text(title) },
-            icon = icon
+            icon = icon,
+            filter = filter
         ) {
             if (it.isPositiveButton) {
                 onValueChange(value)

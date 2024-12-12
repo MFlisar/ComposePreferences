@@ -103,7 +103,7 @@ fun PrefScreenDemo() {
     PreferenceScreen(
         // optional Preferences for this screen...
         settings = settings,
-        modifier = Modifier.padding(16.dp)
+        //modifier = Modifier.padding(16.dp)
     ) {
         PreferenceSectionHeader(
             title = "Demos"
@@ -389,7 +389,7 @@ private fun PreferenceScope.PreferenceDateExamples() {
             value = date2.value.let { LocalDate.ofEpochDay(it).toKotlinLocalDate() },
             onValueChange = {
                 scope.launch(Dispatchers.IO) {
-                    dataStore.update("date2", it.toEpochDays())
+                    dataStore.update("date2", it.toJavaLocalDate().toEpochDay())
                 }
             },
             title = "Date 2",

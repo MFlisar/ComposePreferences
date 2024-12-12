@@ -28,26 +28,30 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.michaelflisar.composepreferences.core.classes.LocalPreferenceSettings
 import com.michaelflisar.composepreferences.core.classes.PreferenceSettings
-import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
 import com.michaelflisar.composepreferences.core.classes.PreferenceType
 import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetup.TrailingContentSize
+import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
 
 /**
  * this provides a class to define some custom setup to customise a preference item
  *
  * @param trailingContentSize the [TrailingContentSize] for a preference item
  * @param ignoreForceNoIconInset if true, the preference item will ignore the flag from [PreferenceSettings.forceNoIconInset]
- * @param ignoreMinItemHeight if true, the preference will not force a minimum item height
+ * @param minHeight the forced minimum height for the preference item
+ * @param minSubTitleExtraHeight the forced minimum height addition if the preference item has a sub title
  * @param contentPlacementBottom if true, the content of this item will be place **below** the title/subtitle instead of **behind** it as trailing content
  * @param alignment the alignment of the preference item content
+ * @param hideTitle if true, the title will not be displayed (allows the content to take up its place)
  */
 @Stable
 data class PreferenceItemSetup(
     val trailingContentSize: TrailingContentSize = TrailingContentSize(),
     val ignoreForceNoIconInset: Boolean = false,
-    val ignoreMinItemHeight: Boolean = false,
+    val minHeight: Dp = 56.dp,
+    val minSubTitleExtraHeight: Dp = 16.dp,
     val contentPlacementBottom: Boolean = false,
-    val alignment: Alignment.Vertical = Alignment.CenterVertically
+    val alignment: Alignment.Vertical = Alignment.CenterVertically,
+    val hideTitle: Boolean = false
 ) {
 
     /**
@@ -80,15 +84,15 @@ class PreferenceItemSettings(
 )
 
 internal fun Modifier.trailingContentSize(setup: TrailingContentSize) = this then
-    if (setup.minWidth == 0.dp && setup.maxWidth == 0.dp) {
-        Modifier
-    } else if (setup.minWidth > 0.dp && setup.maxWidth > 0.dp) {
-        Modifier.sizeIn(minWidth = setup.minWidth, maxWidth = setup.maxWidth)
-    } else if (setup.minWidth > 0.dp) {
-        Modifier.sizeIn(minWidth = setup.minWidth)
-    } else if (setup.maxWidth > 0.dp) {
-        Modifier.sizeIn(maxWidth = setup.maxWidth)
-    } else Modifier
+        if (setup.minWidth == 0.dp && setup.maxWidth == 0.dp) {
+            Modifier
+        } else if (setup.minWidth > 0.dp && setup.maxWidth > 0.dp) {
+            Modifier.sizeIn(minWidth = setup.minWidth, maxWidth = setup.maxWidth)
+        } else if (setup.minWidth > 0.dp) {
+            Modifier.sizeIn(minWidth = setup.minWidth)
+        } else if (setup.maxWidth > 0.dp) {
+            Modifier.sizeIn(maxWidth = setup.maxWidth)
+        } else Modifier
 
 object PreferenceItemSetupDefaults {
 
@@ -226,6 +230,8 @@ class PreferenceItemColors internal constructor(
 
 object PreferenceItemDefaults {
 
+    const val DEFAULT_ALPHA_VARIANT = .74f
+
     /**
      * use this function to create a [PreferenceItemColors] object
      *
@@ -237,11 +243,11 @@ object PreferenceItemDefaults {
      */
     @Composable
     fun colors(
-        containerColor: Color = MaterialTheme.colorScheme.surface,
-        contentColor: Color = MaterialTheme.colorScheme.onSurfaceVariant,
-        headlineColor: Color = MaterialTheme.colorScheme.onSurface,
-        subHeadlineColor: Color = MaterialTheme.colorScheme.onSurfaceVariant,
-        leadingColor: Color = MaterialTheme.colorScheme.onSurfaceVariant,
+        containerColor: Color = MaterialTheme.colorScheme.background,
+        contentColor: Color = MaterialTheme.colorScheme.onBackground.copy(DEFAULT_ALPHA_VARIANT),
+        headlineColor: Color = MaterialTheme.colorScheme.onBackground,
+        subHeadlineColor: Color = MaterialTheme.colorScheme.onBackground.copy(DEFAULT_ALPHA_VARIANT),
+        leadingColor: Color = MaterialTheme.colorScheme.onBackground.copy(DEFAULT_ALPHA_VARIANT)
     ): PreferenceItemColors =
         PreferenceItemColors(
             containerColor = containerColor,
@@ -255,7 +261,7 @@ object PreferenceItemDefaults {
 @Composable
 internal fun PreferenceItem(
     modifier: Modifier = Modifier,
-    headline: @Composable () -> Unit,
+    headline: @Composable (() -> Unit)?,
     subHeadline: @Composable (() -> Unit)?,
     leading: @Composable (() -> Unit)?,
     content: @Composable (ColumnScope.() -> Unit)?,
@@ -271,13 +277,9 @@ internal fun PreferenceItem(
     // => I need some fix text area to content area size constraints for some uniform and I don't want to use more colors than necessary
     //    so I simply make a own version based on ListItem myself...
 
-    val minHeight =
-        if (setup.ignoreMinItemHeight) 0.dp else if (subHeadline == null) 56.dp else 72.dp
-    val rootPaddingValues = PaddingValues(
-        horizontal = 16.dp,
-        vertical = 8.dp
-    )
-    val contentPaddingValues = PaddingValues(horizontal = 0.dp)
+    val minHeight = setup.minHeight + (if (subHeadline == null) 0.dp else setup.minSubTitleExtraHeight)
+    val rootPaddingValues = preferenceStyle.innerPadding
+    val contentPaddingValues = PaddingValues()
     val leadingContentPaddingValues = PaddingValues(end = settings.leadingContentEndPadding)
     val trailingContentPaddingValues =
         PaddingValues(start = settings.trailingContentStartPadding, end = 8.dp)
@@ -319,7 +321,9 @@ internal fun PreferenceItem(
                     .padding(contentPaddingValues)
                     .sizeIn(minWidth = settings.minTextAreaWidth)
             ) {
-                preferenceStyle.colors.DecoratedHeadline(preferenceStyle, headline)
+                headline?.let {
+                    preferenceStyle.colors.DecoratedHeadline(preferenceStyle, it)
+                }
                 subHeadline?.let {
                     preferenceStyle.colors.DecoratedSubHeadlineContent(preferenceStyle, it)
                 }
@@ -354,5 +358,36 @@ internal fun PreferenceItem(
     //    leadingContent = leadingContent,
     //    trailingContent = trailingContent
     //)
+}
+
+@Composable
+internal fun PreferenceItemCustom(
+    modifier: Modifier = Modifier,
+    content: @Composable ColumnScope.() -> Unit,
+    setup: PreferenceItemSetup,
+    preferenceStyle: PreferenceItemStyle
+) {
+    val settings = LocalPreferenceSettings.current
+
+    val minHeight = setup.minHeight
+    val rootPaddingValues = preferenceStyle.innerPadding
+
+    Surface(
+        modifier = modifier,
+        shape = preferenceStyle.shape,
+        color = preferenceStyle.colors.containerColor().value,
+        contentColor = preferenceStyle.colors.headlineColor().value,
+        tonalElevation = preferenceStyle.tonalElevation,
+        shadowElevation = preferenceStyle.shadowElevation,
+    ) {
+        Column(
+            modifier = Modifier
+                .heightIn(min = minHeight)
+                .padding(rootPaddingValues)
+                .semantics(mergeDescendants = true) {}
+        ) {
+            content()
+        }
+    }
 }
 

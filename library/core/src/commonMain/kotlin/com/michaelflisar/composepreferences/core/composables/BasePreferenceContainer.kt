@@ -3,6 +3,7 @@ package com.michaelflisar.composepreferences.core.composables
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.AnimationVector1D
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.gestures.detectTapGestures
@@ -130,7 +131,9 @@ internal fun PreferenceScope.BasePreferenceContainer(
             settings.animationSpec != null
         } else false
     ) {
-        Column {
+        Column(
+            modifier = Modifier.padding(itemStyle.outerPadding)
+        ) {
             content(
                 createModifier(
                     modifier,
@@ -160,7 +163,6 @@ private fun createModifier(
         with(LocalDensity.current) { (animationFactor.value * 8).dp.toPx() }
     val animationAlpha = 1f - animationFactor.value
     return modifier
-        .padding(itemStyle.padding)
         .clip(itemStyle.shape)
         .then(Modifier.disableState(stateEnabled))
         .then(if (stateEnabled.value && (onClick != null || onLongClick != null)) {

@@ -1,6 +1,7 @@
 package com.michaelflisar.composepreferences.core.styles
 
 import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -8,6 +9,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.michaelflisar.composepreferences.core.classes.PreferenceItemStyleData
@@ -17,7 +19,7 @@ import com.michaelflisar.composepreferences.core.composables.PreferenceItemDefau
 import com.michaelflisar.composepreferences.core.internal.PreferenceItemState
 
 class ModernStyle internal constructor(
-    val sectionItemStyle: PreferenceSectionStyle,
+    private val sectionItemStyle: PreferenceSectionStyle,
     override val defaultItemStyle : PreferenceItemStyle,
     override val defaultSectionItemStyle : PreferenceItemStyle,
     override val defaultGroupItemStyle : PreferenceItemStyle,
@@ -29,23 +31,31 @@ class ModernStyle internal constructor(
         @Composable
         fun create(
             cornerSize: Dp = 8.dp,
-            colors: PreferenceItemColors = PreferenceItemDefaults.colors(
+            horizontalInnerItemPadding: Dp = 16.dp,
+            horizontalOuterItemPadding: Dp = 16.dp,
+            sectionColors: PreferenceItemColors = PreferenceItemDefaults.colors(
                 containerColor = MaterialTheme.colorScheme.primaryContainer,
                 contentColor = MaterialTheme.colorScheme.onPrimaryContainer
             ),
             defaultItemStyle : PreferenceItemStyle = PreferenceStyleDefaults.item(
-                shape = RoundedCornerShape(cornerSize)
+                shape = RoundedCornerShape(cornerSize),
+                innerPadding = PaddingValues(horizontal = horizontalInnerItemPadding, vertical = 8.dp),
+                outerPadding = PaddingValues(horizontal = horizontalOuterItemPadding),
             ),
             defaultSectionItemStyle : PreferenceItemStyle = PreferenceStyleDefaults.header(
-                shape = RoundedCornerShape(cornerSize)
+                shape = RoundedCornerShape(cornerSize),
+                innerPadding = PaddingValues(horizontal = horizontalInnerItemPadding, vertical = 8.dp),
+                outerPadding = PaddingValues(horizontal = horizontalOuterItemPadding),
             ),
             defaultGroupItemStyle : PreferenceItemStyle = PreferenceStyleDefaults.item(
-                shape = RoundedCornerShape(cornerSize)
+                shape = RoundedCornerShape(cornerSize),
+                innerPadding = PaddingValues(horizontal = horizontalInnerItemPadding, vertical = 8.dp),
+                outerPadding = PaddingValues(horizontal = horizontalOuterItemPadding),
             ),
             spacing: Dp = 4.dp
         ) : ModernStyle {
             return ModernStyle(
-                PreferenceSectionStyle(cornerSize, colors),
+                PreferenceSectionStyle(cornerSize, sectionColors),
                 defaultItemStyle,
                 defaultSectionItemStyle,
                 defaultGroupItemStyle,
@@ -89,9 +99,10 @@ class ModernStyle internal constructor(
                 last
             }
         }
+        val isInSection = item.parent is PreferenceItemState.Item && item.parent.type == PreferenceType.Section
 
         val style =
-            if (item.parent is PreferenceItemState.Item && item.parent.type == PreferenceType.Section) {
+            if (isInSection) {
                 var cornerTop = 0.dp
                 var cornerBottom = 0.dp
 

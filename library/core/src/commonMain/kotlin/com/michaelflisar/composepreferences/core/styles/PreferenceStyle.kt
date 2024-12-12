@@ -1,5 +1,6 @@
 package com.michaelflisar.composepreferences.core.styles
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.Dp
 import com.michaelflisar.composepreferences.core.classes.PreferenceItemStyleData

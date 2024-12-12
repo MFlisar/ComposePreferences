@@ -49,8 +49,8 @@ kotlin {
     }
 
     // iOS
-    macosX64()
-    macosArm64()
+    //macosX64()
+    //macosArm64()
     iosArm64()
     iosX64()
     iosSimulatorArm64()
@@ -64,18 +64,17 @@ kotlin {
         commonMain.dependencies {
 
             // Kotlin
-            implementation(libs.kotlin)
-            implementation(libs.kotlinx.coroutines)
+            implementation(kotlinx.coroutines)
 
             // Compose
             implementation(libs.compose.material3)
             implementation(libs.compose.ui)
 
-            implementation(libs.moko.parcelize)
+            implementation(deps.moko.parcelize)
 
             val useLiveDependencies = providers.gradleProperty("useLiveDependencies").get().toBoolean()
             if (useLiveDependencies) {
-                implementation(libs.composedialogs.core)
+                implementation(deps.composedialogs.core)
             } else {
                 implementation(project(":ComposeDialogs:Core"))
             }
@@ -83,7 +82,7 @@ kotlin {
 
         androidMain.dependencies {
 
-            implementation(libs.androidx.activity.compose)
+            implementation(androidx.activity.compose)
 
             implementation(libs.compose.ui.tooling)
             implementation(libs.compose.ui.tooling.preview.android)

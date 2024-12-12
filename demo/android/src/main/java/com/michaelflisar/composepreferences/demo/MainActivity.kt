@@ -49,6 +49,7 @@ import com.michaelflisar.toolbox.androiddemoapp.DemoActivity
 import com.michaelflisar.toolbox.androiddemoapp.composables.DemoAppThemeRegion
 import com.michaelflisar.toolbox.androiddemoapp.composables.DemoCollapsibleRegion
 import com.michaelflisar.toolbox.androiddemoapp.composables.rememberDemoExpandedRegions
+import com.michaelflisar.toolbox.composables.MyColumn
 import java.text.NumberFormat
 import java.util.Locale
 
@@ -139,11 +140,12 @@ private fun Root(
             regionId = 1,
             state = regionState
         ) {
-
             // this shape looks better if settings are not used on full screen width
             // => so we overwrite the settings for this area
             val settings = DemoPrefs.preferenceSettings(
-                style = ModernStyle.create(),
+                style = ModernStyle.create(
+                    horizontalOuterItemPadding = 0.dp
+                ),
                 animationSpec = null
             )
 
@@ -217,19 +219,21 @@ private fun Root(
         // --------------------
 
         DemoCollapsibleRegion(title = "Demos", regionId = 2, state = regionState) {
-            MyInfoLine(
-                label = "INFORMATION",
-                info = "Only the first demo showcases all available preferences - the other demos just showcase the basic usage because everything else just works the same!",
-                showEqualSign = false
-            )
-            buttons.forEachIndexed { index, s ->
-                OutlinedButton(
-                    onClick = {
-                        page.value = index + 1
-                    },
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Text(s)
+            MyColumn {
+                MyInfoLine(
+                    label = "INFORMATION",
+                    info = "Only the first demo showcases all available preferences - the other demos just showcase the basic usage because everything else just works the same!",
+                    showEqualSign = false
+                )
+                buttons.forEachIndexed { index, s ->
+                    OutlinedButton(
+                        onClick = {
+                            page.value = index + 1
+                        },
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Text(s)
+                    }
                 }
             }
         }
