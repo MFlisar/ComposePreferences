@@ -1,17 +1,14 @@
 [versions]
 
-desugar =                   "2.1.3"
 accompanist = 			    "0.36.0"
 moko-parcelize =            "0.9.0"
 
 # mflisar
-kotpreferences = 		    "0.7.1"
-composedialogs =   		    "2.0.0-test16"
+kotpreferences = 		    "0.7.2"
+composedialogs =   		    "2.0.0-test17"
 toolbox =                   "2.4.6"
 
 [libraries]
-
-desugar =			        	    { module = "com.android.tools:desugar_jdk_libs", 					    version.ref = "desugar" }
 
 drawablepainter = 		    	    { module = "com.google.accompanist:accompanist-drawablepainter", 		version.ref = "accompanist" }
 

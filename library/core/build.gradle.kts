@@ -64,7 +64,7 @@ kotlin {
         commonMain.dependencies {
 
             // Kotlin
-            implementation(kotlinx.coroutines)
+            implementation(kotlinx.coroutines.core)
 
             // Compose
             implementation(libs.compose.material3)
@@ -76,7 +76,7 @@ kotlin {
             if (useLiveDependencies) {
                 implementation(deps.composedialogs.core)
             } else {
-                implementation(project(":ComposeDialogs:Core"))
+                implementation(project(":composedialogs:core"))
             }
         }
 
@@ -85,12 +85,13 @@ kotlin {
             implementation(androidx.activity.compose)
 
             implementation(libs.compose.ui.tooling)
-            implementation(libs.compose.ui.tooling.preview.android)
+            implementation(libs.compose.components.ui.tooling.preview)
+
         }
 
         jvmMain.dependencies {
             implementation(libs.compose.ui.tooling)
-            implementation(libs.compose.ui.tooling.preview.desktop)
+            implementation(libs.compose.components.ui.tooling.preview)
         }
     }
 }

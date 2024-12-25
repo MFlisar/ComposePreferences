@@ -66,15 +66,15 @@ kotlin {
             // Compose
             implementation(libs.compose.material3)
 
-            implementation(project(":ComposePreferences:Core"))
+            implementation(project(":composepreferences:core"))
 
             val useLiveDependencies = providers.gradleProperty("useLiveDependencies").get().toBoolean()
             if (useLiveDependencies) {
                 api(deps.kotpreferences.core)
                 api(deps.kotpreferences.storage.datastore)
             } else {
-                api(project(":KotPreferences:Core"))
-                api(project(":KotPreferences:Modules:Storage:Datastore"))
+                api(project(":kotpreferences:core"))
+                api(project(":kotpreferences:modules:storage:datastore"))
             }
 
         }

@@ -66,29 +66,26 @@ kotlin {
             // Compose
             implementation(libs.compose.material3)
 
-            implementation(project(":ComposePreferences:Core"))
+            implementation(project(":composepreferences:core"))
 
             val useLiveDependencies = providers.gradleProperty("useLiveDependencies").get().toBoolean()
             if (useLiveDependencies) {
                 implementation(deps.composedialogs.core)
                 implementation(deps.composedialogs.dialog.color)
             } else {
-                implementation(project(":ComposeDialogs:Core"))
-                implementation(project(":ComposeDialogs:Modules:Color"))
+                implementation(project(":composedialogs:core"))
+                implementation(project(":composedialogs:modules:color"))
             }
         }
 
         androidMain.dependencies {
-
-            //implementation(libs.androidx.activity.compose)
-
             implementation(libs.compose.ui.tooling)
-            implementation(libs.compose.ui.tooling.preview.android)
+            implementation(libs.compose.components.ui.tooling.preview)
         }
 
         jvmMain.dependencies {
             implementation(libs.compose.ui.tooling)
-            implementation(libs.compose.ui.tooling.preview.desktop)
+            implementation(libs.compose.components.ui.tooling.preview)
         }
     }
 }

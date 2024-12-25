@@ -64,7 +64,7 @@ object PreferenceSettingsDefaults {
      */
     @Composable
     fun settings(
-        disabledStateAlpha: Float = .4f,
+        disabledStateAlpha: Float = 0.38f,
         disabledStateGrayscale: Boolean = false,
         toggleBooleanOnItemClick: Boolean = false,
         maxLinesValue: Int = 2,

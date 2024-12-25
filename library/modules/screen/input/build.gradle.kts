@@ -71,24 +71,21 @@ kotlin {
                 implementation(deps.composedialogs.core)
                 api(deps.composedialogs.dialog.input)
             } else {
-                implementation(project(":ComposeDialogs:Core"))
-                api(project(":ComposeDialogs:Modules:Input"))
+                implementation(project(":composedialogs:core"))
+                api(project(":composedialogs:modules:input"))
             }
 
-            implementation(project(":ComposePreferences:Core"))
+            implementation(project(":composepreferences:core"))
         }
 
         androidMain.dependencies {
-
-            //implementation(libs.androidx.activity.compose)
-
             implementation(libs.compose.ui.tooling)
-            implementation(libs.compose.ui.tooling.preview.android)
+            implementation(libs.compose.components.ui.tooling.preview)
         }
 
         jvmMain.dependencies {
             implementation(libs.compose.ui.tooling)
-            implementation(libs.compose.ui.tooling.preview.desktop)
+            implementation(libs.compose.components.ui.tooling.preview)
         }
     }
 }

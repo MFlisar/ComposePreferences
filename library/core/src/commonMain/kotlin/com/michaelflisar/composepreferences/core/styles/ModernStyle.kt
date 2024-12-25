@@ -33,23 +33,24 @@ class ModernStyle internal constructor(
             cornerSize: Dp = 8.dp,
             horizontalInnerItemPadding: Dp = 16.dp,
             horizontalOuterItemPadding: Dp = 16.dp,
+            verticalInnerItemPadding: Dp = 8.dp,
             sectionColors: PreferenceItemColors = PreferenceItemDefaults.colors(
                 containerColor = MaterialTheme.colorScheme.primaryContainer,
                 contentColor = MaterialTheme.colorScheme.onPrimaryContainer
             ),
             defaultItemStyle : PreferenceItemStyle = PreferenceStyleDefaults.item(
                 shape = RoundedCornerShape(cornerSize),
-                innerPadding = PaddingValues(horizontal = horizontalInnerItemPadding, vertical = 8.dp),
+                innerPadding = PaddingValues(horizontal = horizontalInnerItemPadding, vertical = verticalInnerItemPadding),
                 outerPadding = PaddingValues(horizontal = horizontalOuterItemPadding),
             ),
             defaultSectionItemStyle : PreferenceItemStyle = PreferenceStyleDefaults.header(
                 shape = RoundedCornerShape(cornerSize),
-                innerPadding = PaddingValues(horizontal = horizontalInnerItemPadding, vertical = 8.dp),
+                innerPadding = PaddingValues(horizontal = horizontalInnerItemPadding, vertical = verticalInnerItemPadding),
                 outerPadding = PaddingValues(horizontal = horizontalOuterItemPadding),
             ),
             defaultGroupItemStyle : PreferenceItemStyle = PreferenceStyleDefaults.item(
                 shape = RoundedCornerShape(cornerSize),
-                innerPadding = PaddingValues(horizontal = horizontalInnerItemPadding, vertical = 8.dp),
+                innerPadding = PaddingValues(horizontal = horizontalInnerItemPadding, vertical = verticalInnerItemPadding),
                 outerPadding = PaddingValues(horizontal = horizontalOuterItemPadding),
             ),
             spacing: Dp = 4.dp

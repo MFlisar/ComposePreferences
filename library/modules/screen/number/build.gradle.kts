@@ -71,21 +71,21 @@ kotlin {
                 implementation(deps.composedialogs.core)
                 implementation(deps.composedialogs.dialog.number)
             } else {
-                implementation(project(":ComposeDialogs:Core"))
-                implementation(project(":ComposeDialogs:Modules:Number"))
+                implementation(project(":composedialogs:core"))
+                implementation(project(":composedialogs:modules:number"))
             }
 
-            implementation(project(":ComposePreferences:Core"))
+            implementation(project(":composepreferences:core"))
         }
 
         androidMain.dependencies {
             implementation(libs.compose.ui.tooling)
-            implementation(libs.compose.ui.tooling.preview.android)
+            implementation(libs.compose.components.ui.tooling.preview)
         }
 
         jvmMain.dependencies {
             implementation(libs.compose.ui.tooling)
-            implementation(libs.compose.ui.tooling.preview.desktop)
+            implementation(libs.compose.components.ui.tooling.preview)
         }
     }
 }

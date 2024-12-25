@@ -76,22 +76,22 @@ dependencies {
     implementation(androidx.datastore.preferences)
 
     implementation(libs.compose.ui.tooling)
-    implementation(libs.compose.ui.tooling.preview.android)
+    implementation(libs.compose.components.ui.tooling.preview)
 
     // ------------------------
     // Libraries
     // ------------------------
 
-    implementation(project(":ComposePreferences:Core"))
-    implementation(project(":ComposePreferences:Modules:Screen:Bool"))
-    implementation(project(":ComposePreferences:Modules:Screen:Button"))
-    implementation(project(":ComposePreferences:Modules:Screen:Input"))
-    implementation(project(":ComposePreferences:Modules:Screen:Color"))
-    implementation(project(":ComposePreferences:Modules:Screen:Date"))
-    implementation(project(":ComposePreferences:Modules:Screen:Time"))
-    implementation(project(":ComposePreferences:Modules:Screen:List"))
-    implementation(project(":ComposePreferences:Modules:Screen:Number"))
-    implementation(project(":ComposePreferences:Modules:KotPreferences"))
+    implementation(project(":composepreferences:core"))
+    implementation(project(":composepreferences:modules:screen:bool"))
+    implementation(project(":composepreferences:modules:screen:button"))
+    implementation(project(":composepreferences:modules:screen:input"))
+    implementation(project(":composepreferences:modules:screen:color"))
+    implementation(project(":composepreferences:modules:screen:date"))
+    implementation(project(":composepreferences:modules:screen:time"))
+    implementation(project(":composepreferences:modules:screen:list"))
+    implementation(project(":composepreferences:modules:screen:number"))
+    implementation(project(":composepreferences:modules:kotpreferences"))
 
     // KotPreferences
     implementation(deps.kotpreferences.core)
@@ -106,7 +106,7 @@ dependencies {
     // Desugar
     // ------------------------
 
-    coreLibraryDesugaring(deps.desugar)
+    coreLibraryDesugaring(libs.desugar)
 
     // ------------------------
     // Others

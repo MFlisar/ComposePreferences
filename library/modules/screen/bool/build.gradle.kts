@@ -66,21 +66,19 @@ kotlin {
             // Compose
             implementation(libs.compose.material3)
 
-            implementation(project(":ComposePreferences:Core"))
+            implementation(project(":composepreferences:core"))
         }
 
         androidMain.dependencies {
-
-            //implementation(libs.androidx.activity.compose)
-
             implementation(libs.compose.ui.tooling)
-            implementation(libs.compose.ui.tooling.preview.android)
+            implementation(libs.compose.components.ui.tooling.preview)
         }
 
         jvmMain.dependencies {
             implementation(libs.compose.ui.tooling)
-            implementation(libs.compose.ui.tooling.preview.desktop)
+            implementation(libs.compose.components.ui.tooling.preview)
         }
+
     }
 }
 
