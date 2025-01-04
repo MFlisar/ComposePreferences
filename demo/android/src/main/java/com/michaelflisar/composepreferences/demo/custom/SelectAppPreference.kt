@@ -79,7 +79,7 @@ fun PreferenceScope.SelectAppPreference(
     filterTags: List<String> = emptyList()
 ) {
     val showDialog = rememberDialogState()
-    if (showDialog.showing) {
+    if (showDialog.visible) {
         val context = LocalContext.current
         DialogList(
             state = showDialog,
@@ -180,7 +180,7 @@ object SelectAppPreference {
             val resolveInfos = pm.queryIntentActivities(intent, 0)
             var id = 1
             for (info in resolveInfos) {
-                val text = info.loadLabel(pm)?.toString() ?: ""
+                val text = info.loadLabel(pm).toString()
                 //val icon = info.loadIcon(context.packageManager)
                 items.add(AppItem.ResolveInfo(id, info, text))
                 id++

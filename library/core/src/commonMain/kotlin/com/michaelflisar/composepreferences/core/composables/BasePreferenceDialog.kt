@@ -36,7 +36,7 @@ fun <T: DialogState> PreferenceScope.BasePreferenceDialog(
     content: (@Composable ColumnScope.() -> Unit)? = null
 ) {
     // Dialog
-    if (dialogState.showing) {
+    if (dialogState.visible) {
         dialog(dialogState)
     }
 
