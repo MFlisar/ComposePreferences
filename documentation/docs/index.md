@@ -12,8 +12,6 @@ icon: material/information-variant
 
     All features are splitted into separate modules, just include the modules you want to use!
 
-Under Development
-
 {% include 'screenshots.md' %}
 
 {% include 'modules.md' %}
