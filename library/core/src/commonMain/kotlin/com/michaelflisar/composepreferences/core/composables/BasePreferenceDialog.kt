@@ -3,6 +3,7 @@ package com.michaelflisar.composepreferences.core.composables
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.runtime.Composable
 import com.michaelflisar.composedialogs.core.DialogState
+import com.michaelflisar.composedialogs.core.DialogStateNoData
 import com.michaelflisar.composepreferences.core.PreferenceInfoDefaults
 import com.michaelflisar.composepreferences.core.classes.Dependency
 import com.michaelflisar.composepreferences.core.classes.LocalPreferenceSettings
@@ -20,10 +21,10 @@ import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
  * @param dialog the dialog composable
  */
 @Composable
-fun <T: DialogState> PreferenceScope.BasePreferenceDialog(
+fun PreferenceScope.BasePreferenceDialog(
     // Special
-    dialogState: T,
-    dialog: @Composable (state: T) -> Unit,
+    dialogState: DialogStateNoData,
+    dialog: @Composable (state: DialogStateNoData) -> Unit,
     // Base Preference
     title: String,
     enabled: Dependency = Dependency.Enabled,

@@ -4,7 +4,7 @@ gradle = 				        "8.7.3"
 kotlin = 				        "2.1.0"
 dokka =                         "1.9.20"
 gradle-maven-publish-plugin =   "0.30.0"
-compose =                       "1.7.1"
+compose =                       "1.7.3"
 desugar =                       "2.1.4"
 
 [plugins]
