@@ -10,7 +10,7 @@ icon: material/information-variant
 
 !!! info
 
-    This docs are not written yet - the docs are still placed in the github readme [here](https://mflisar.github.io/github-docs/pages/compose/composepreferences/) for now.
+    All features are splitted into separate modules, just include the modules you want to use!
 
 Under Development
 
