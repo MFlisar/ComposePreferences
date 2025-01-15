@@ -163,6 +163,6 @@ modules:
       jvm: false
       info:
     dependencies:
-      - name: ComposeDialogs
+      - name: KotPreferences
         link: https://github.com/MFlisar/KotPreferences
         version: 0.7.2
