@@ -52,7 +52,7 @@ modules:
     platforms:
       android: true
       ios: true
-      jvm: false
+      jvm: true
       info:
     dependencies: []
   - name: screen-bool
@@ -62,7 +62,7 @@ modules:
     platforms:
       android: true
       ios: true
-      jvm: false
+      jvm: true
       info:
     dependencies: []
   - name: screen-button
@@ -72,7 +72,7 @@ modules:
     platforms:
       android: true
       ios: true
-      jvm: false
+      jvm: true
       info:
     dependencies: []
   - name: screen-input
@@ -82,7 +82,7 @@ modules:
     platforms:
       android: true
       ios: true
-      jvm: false
+      jvm: true
       info:
     dependencies:
       - name: ComposeDialogs
@@ -95,7 +95,7 @@ modules:
     platforms:
       android: true
       ios: true
-      jvm: false
+      jvm: true
       info:
     dependencies:
       - name: ComposeDialogs
@@ -108,7 +108,7 @@ modules:
     platforms:
       android: true
       ios: true
-      jvm: false
+      jvm: true
       info:
     dependencies:
       - name: ComposeDialogs
@@ -121,7 +121,7 @@ modules:
     platforms:
       android: true
       ios: true
-      jvm: false
+      jvm: true
       info:
     dependencies:
       - name: ComposeDialogs
@@ -134,7 +134,7 @@ modules:
     platforms:
       android: true
       ios: true
-      jvm: false
+      jvm: true
       info:
     dependencies:
       - name: ComposeDialogs
@@ -147,7 +147,7 @@ modules:
     platforms:
       android: true
       ios: true
-      jvm: false
+      jvm: true
       info:
     dependencies:
       - name: ComposeDialogs
@@ -160,7 +160,7 @@ modules:
     platforms:
       android: true
       ios: true
-      jvm: false
+      jvm: true
       info:
     dependencies:
       - name: KotPreferences

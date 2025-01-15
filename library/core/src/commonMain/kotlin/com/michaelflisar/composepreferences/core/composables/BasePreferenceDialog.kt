@@ -2,7 +2,6 @@ package com.michaelflisar.composepreferences.core.composables
 
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.runtime.Composable
-import com.michaelflisar.composedialogs.core.DialogState
 import com.michaelflisar.composedialogs.core.DialogStateNoData
 import com.michaelflisar.composepreferences.core.PreferenceInfoDefaults
 import com.michaelflisar.composepreferences.core.classes.Dependency
