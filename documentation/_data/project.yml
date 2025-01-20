@@ -16,12 +16,12 @@ library:
   screenshots: 
     - name: core
       images:
+        - ./screenshots/core/1-root.jpg
+        - ./screenshots/core/2 - infos.jpg
         - ./screenshots/core/custom1.jpg
         - ./screenshots/core/custom2.jpg
         - ./screenshots/core/dependencies1.jpg
         - ./screenshots/core/dependencies2.jpg
-        - ./screenshots/core/infos.jpg
-        - ./screenshots/core/root.jpg
     - name: bool
       images:
         - ./screenshots/bool/bool.jpg
