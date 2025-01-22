@@ -91,7 +91,7 @@ modules:
     dependencies:
       - name: ComposeDialogs
         link: https://github.com/MFlisar/ComposeDialogs
-        version: 2.0.0
+        version: 2.0.1
   - name: kotpreferences
     group: extensions
     description: 
@@ -137,7 +137,7 @@ modules:
     dependencies:
       - name: ComposeDialogs
         link: https://github.com/MFlisar/ComposeDialogs
-        version: 2.0.0
+        version: 2.0.1
   - name: screen-date
     group: modules
     description: provides a date picker preference screen
@@ -150,7 +150,7 @@ modules:
     dependencies:
       - name: ComposeDialogs
         link: https://github.com/MFlisar/ComposeDialogs
-        version: 2.0.0
+        version: 2.0.1
   - name: screen-input
     group: modules
     description: provides a input dialog preference screen
@@ -163,7 +163,7 @@ modules:
     dependencies:
       - name: ComposeDialogs
         link: https://github.com/MFlisar/ComposeDialogs
-        version: 2.0.0
+        version: 2.0.1
   - name: screen-list
     group: modules
     description: provides a list preference screen
@@ -176,7 +176,7 @@ modules:
     dependencies:
       - name: ComposeDialogs
         link: https://github.com/MFlisar/ComposeDialogs
-        version: 2.0.0
+        version: 2.0.1
   - name: screen-number
     group: modules
     description: provides a number picker preference screen
@@ -189,7 +189,7 @@ modules:
     dependencies:
       - name: ComposeDialogs
         link: https://github.com/MFlisar/ComposeDialogs
-        version: 2.0.0
+        version: 2.0.1
   - name: screen-time
     group: modules
     description: provides a time picker preference screen
@@ -202,4 +202,4 @@ modules:
     dependencies:
       - name: ComposeDialogs
         link: https://github.com/MFlisar/ComposeDialogs
-        version: 2.0.0
+        version: 2.0.1

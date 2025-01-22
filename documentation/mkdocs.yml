@@ -118,26 +118,25 @@ nav:
     - Dependencies: dependencies.md
     - Setup: setup.md
     - Usage: usage.md
-  #- Modules:
-  #  - Core: modules/core.md
-  #  - Dialog Info: modules/dialog-info.md
-  #  - Dialog Input: modules/dialog-input.md
-  #  - Dialog Number: modules/dialog-number.md
-  #  - Dialog Date: modules/dialog-date.md
-  #  - Dialog Time: modules/dialog-time.md
-  #  - Dialog Color: modules/dialog-color.md
-  #  - Dialog List: modules/dialog-list.md
-  #  - Dialog Menu: modules/dialog-menu.md
-  #  - Dialog Progress: modules/dialog-progress.md
-  #  - Dialog Billing: modules/dialog-billing.md
-  #- Advanced:
-  #  - Dialog Styles: advanced/styles.md
-  #  - Events: advanced/events.md
-  #  - Buttons: advanced/buttons.md
-  #  - Options: advanced/options.md
-  #  - Custom Dialog: advanced/custom-dialog.md
-  #- Migration:
-  #  - Version 2: migration/v2.md
+  - Modules:
+    - Core: modules/core.md
+    - Bool Preference: modules/screen-bool.md
+    - Button Preference: modules/screen-button.md
+    - Color Preference: modules/screen-color.md
+    - Date Preference: modules/screen-date.md
+    - Input Preference: modules/screen-input.md
+    - List Preference: modules/screen-list.md
+    - Number Preference: modules/screen-number.md
+    - Time Preference: modules/screen-time.md
+  - Extensions:
+    - KotPreferences: modules/kotpreferences.md
+  - Advanced:
+    - Styling: advanced/styles.md
+    - Dependency Management: advanced/dependencies.md
+    - Filtering: advanced/filtering.md
+    - Custom Preferences: advanced/custom-preferences.md
+  - Migration:
+    - Version 1: migration/v1.md
   - More:
     - Other Libraries: other-libraries.md
     - About Me: me.md

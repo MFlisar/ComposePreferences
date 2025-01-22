@@ -4,8 +4,12 @@ import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -19,23 +23,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.derivedStateOf
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.michaelflisar.composepreferences.core.PreferenceScreen
-import com.michaelflisar.composepreferences.core.styles.DefaultStyle
 import com.michaelflisar.composepreferences.core.styles.ModernStyle
-import com.michaelflisar.composepreferences.core.styles.PreferenceStyleDefaults
 import com.michaelflisar.composepreferences.demo.classes.DemoDataStore
 import com.michaelflisar.composepreferences.demo.classes.DemoPrefs
 import com.michaelflisar.composepreferences.demo.classes.DemoStyle
 import com.michaelflisar.composepreferences.demo.classes.LocalDataStore
-import com.michaelflisar.composepreferences.demo.composables.MyInfoLine
 import com.michaelflisar.composepreferences.demo.demos.PrefScreenCustomDemo
 import com.michaelflisar.composepreferences.demo.demos.PrefScreenDemo
 import com.michaelflisar.composepreferences.demo.demos.PrefScreenDemoFilter
@@ -49,7 +48,7 @@ import com.michaelflisar.toolbox.androiddemoapp.DemoActivity
 import com.michaelflisar.toolbox.androiddemoapp.composables.DemoAppThemeRegion
 import com.michaelflisar.toolbox.androiddemoapp.composables.DemoCollapsibleRegion
 import com.michaelflisar.toolbox.androiddemoapp.composables.rememberDemoExpandedRegions
-import com.michaelflisar.toolbox.composables.MyColumn
+import com.michaelflisar.toolbox.components.MyColumn
 import java.text.NumberFormat
 import java.util.Locale
 
@@ -140,11 +139,9 @@ private fun Root(
             regionId = 1,
             state = regionState
         ) {
-            // this shape looks better if settings are not used on full screen width
-            // => so we overwrite the settings for this area
             val settings = DemoPrefs.preferenceSettings(
                 style = ModernStyle.create(
-                    horizontalOuterItemPadding = 0.dp
+                    outerPadding = PaddingValues(0.dp)
                 ),
                 animationSpec = null
             )
@@ -238,5 +235,30 @@ private fun Root(
             }
         }
 
+    }
+}
+
+@Composable
+private fun MyInfoLine(
+    label: String,
+    info: String,
+    modifier: Modifier = Modifier,
+    showEqualSign: Boolean = true
+) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier
+    ) {
+        Text(label, style = MaterialTheme.typography.titleSmall, modifier = Modifier.weight(1f))
+        if (showEqualSign) {
+            Text(
+                "=",
+                style = MaterialTheme.typography.titleSmall,
+                modifier = Modifier.padding(horizontal = 4.dp)
+            )
+        } else {
+            Spacer(modifier = Modifier.width(4.dp))
+        }
+        Text(info, style = MaterialTheme.typography.bodySmall, modifier = Modifier.weight(1f))
     }
 }

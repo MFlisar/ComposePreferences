@@ -4,6 +4,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.Stable
+import androidx.compose.ui.text.AnnotatedString
 import com.michaelflisar.composedialogs.core.DialogState
 import com.michaelflisar.composedialogs.core.rememberDialogState
 import com.michaelflisar.composedialogs.dialogs.date.DialogDate
@@ -22,6 +23,7 @@ import com.michaelflisar.composepreferences.core.scopes.PreferenceScope
 import kotlinx.datetime.DayOfWeek
 import kotlinx.datetime.LocalDate
 
+/* --8<-- [start: constructor] */
 /**
  * A date preference item - this item provides a date dialog to change this preference
  *
@@ -50,12 +52,16 @@ fun PreferenceScope.PreferenceDate(
     icon: (@Composable () -> Unit)? = null,
     itemStyle: PreferenceItemStyle = LocalPreferenceSettings.current.style.defaultItemStyle,
     itemSetup: PreferenceItemSetup = PreferenceDateDefaults.itemSetup(),
+    titleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
+    subtitleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
     filterTags: List<String> = emptyList(),
     // Dialog
     dialog: @Composable (state: DialogState) -> Unit = { dialogState ->
         PreferenceDateDefaults.dialog(dialogState, value.value, { value.value = it }, firstDayOfWeek, formatter, title, icon)
     }
-) {
+)
+/* --8<-- [end: constructor] */
+{
     PreferenceDate(
         value = value.value,
         onValueChange = { value.value = it },
@@ -68,11 +74,14 @@ fun PreferenceScope.PreferenceDate(
         icon = icon,
         itemStyle = itemStyle,
         itemSetup = itemSetup,
+        titleRenderer = titleRenderer,
+        subtitleRenderer = subtitleRenderer,
         filterTags = filterTags,
         dialog = dialog
     )
 }
 
+/* --8<-- [start: constructor2] */
 /**
  * A date preference item - this item provides a date dialog to change this preference
  *
@@ -103,12 +112,16 @@ fun PreferenceScope.PreferenceDate(
     icon: (@Composable () -> Unit)? = null,
     itemStyle: PreferenceItemStyle = LocalPreferenceSettings.current.style.defaultItemStyle,
     itemSetup: PreferenceItemSetup = PreferenceDateDefaults.itemSetup(),
+    titleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
+    subtitleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
     filterTags: List<String> = emptyList(),
     // Dialog
     dialog: @Composable (state: DialogState) -> Unit = { state ->
         PreferenceDateDefaults.dialog(state, value, onValueChange, firstDayOfWeek, formatter, title, icon)
     }
-) {
+)
+/* --8<-- [end: constructor2] */
+{
     BasePreferenceDialog(
         dialogState = rememberDialogState(),
         dialog = dialog,
@@ -119,6 +132,8 @@ fun PreferenceScope.PreferenceDate(
         subtitle = subtitle,
         icon = icon,
         itemStyle = itemStyle,
+        titleRenderer = titleRenderer,
+        subtitleRenderer = subtitleRenderer,
         filterTags = filterTags
     ) {
         PreferenceContentText(text = formatter(value), itemSetup)

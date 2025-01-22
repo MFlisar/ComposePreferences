@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowLeft
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
@@ -15,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.WindowPosition
@@ -22,11 +24,12 @@ import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
 import com.michaelflisar.composepreferences.core.classes.PreferenceState
 import com.michaelflisar.composepreferences.core.classes.rememberPreferenceState
+import com.michaelflisar.composepreferences.core.composables.PreferenceItemDefaults
 import com.michaelflisar.composepreferences.core.styles.DefaultStyle
 import com.michaelflisar.composepreferences.core.styles.ModernStyle
 import com.michaelflisar.composepreferences.core.styles.PreferenceStyle
-import com.michaelflisar.toolbox.composables.MyIconButton
-import com.michaelflisar.toolbox.composables.MyTitle
+import com.michaelflisar.toolbox.components.MyIconButton
+import com.michaelflisar.toolbox.components.MyTitle
 
 fun main() {
     application {
@@ -53,14 +56,29 @@ fun main() {
                         verticalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
                         MyTitle("Default Style")
-                        Preferences(DefaultStyle.create(), snackbarHostState)
+                        Preferences(
+                            DefaultStyle.create(
+                                //backgroundColor = Color.Green,
+                                //foregroundColor = Color.Yellow,
+                                //sectionBackgroundColor = Color.Blue,
+                                sectionForegroundColor = Color.Red
+                            ),
+                            snackbarHostState
+                        )
                     }
                     Column(
                         modifier = Modifier.weight(1f),
                         verticalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
                         MyTitle("Modern Style")
-                        Preferences(ModernStyle.create(), snackbarHostState)
+                        Preferences(
+                            ModernStyle.create(
+                                //cornerSize = 16.dp,
+                                //sectionForegroundColor = Color.Red,
+                                //sectionGroupItemForegroundColor = Color.White,
+                                //sectionGroupItemBackgroundColor = Color.Black
+                            ), snackbarHostState
+                        )
                     }
                 }
             }

@@ -12,4 +12,5 @@ plugins {
     alias(libs.plugins.compose) apply false
     alias(libs.plugins.gradle.maven.publish.plugin) apply false
     alias(libs.plugins.dokka) apply false
+    alias(libs.plugins.binary.compatibility.validator) apply false
 }

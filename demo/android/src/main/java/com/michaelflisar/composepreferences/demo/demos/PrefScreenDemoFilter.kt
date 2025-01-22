@@ -26,7 +26,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.michaelflisar.composepreferences.core.PreferenceInfo
 import com.michaelflisar.composepreferences.core.PreferenceScreen
-import com.michaelflisar.composepreferences.core.PreferenceSectionHeader
+import com.michaelflisar.composepreferences.core.PreferenceSection
 import com.michaelflisar.composepreferences.core.PreferenceSubScreen
 import com.michaelflisar.composepreferences.core.classes.rememberPreferenceState
 import com.michaelflisar.composepreferences.core.filter.DefaultPreferenceFilter
@@ -34,8 +34,8 @@ import com.michaelflisar.composepreferences.core.filter.rememberDefaultPreferenc
 import com.michaelflisar.composepreferences.core.scopes.PreferenceScope
 import com.michaelflisar.composepreferences.demo.classes.DemoPrefs
 import com.michaelflisar.kotpreferences.core.initialisation.SettingSetup
-import com.michaelflisar.toolbox.composables.MyCheckbox
-import com.michaelflisar.toolbox.composables.MyDropdown
+import com.michaelflisar.toolbox.components.MyCheckbox
+import com.michaelflisar.toolbox.components.MyDropdown
 
 @Composable
 fun PrefScreenDemoFilter() {
@@ -145,7 +145,7 @@ private fun PreferenceScope.PreferenceInfoExamples() {
         subtitle = "Click to see some info preference examples",
         icon = { Icon(Icons.Outlined.Info, null) }
     ) {
-        PreferenceSectionHeader(
+        PreferenceSection(
             title = "Infos"
         ) {
 
@@ -171,24 +171,32 @@ private fun PreferenceScope.PreferenceInfoExamples() {
                 title = "Sub Infos",
                 icon = { Icon(Icons.Outlined.Info, null) }
             ) {
-                PreferenceInfo(
-                    title = "Sub Info 1",
-                    subtitle = "Theme",
-                    filterTags = listOf("style")
-                )
-                PreferenceInfo(title = "Sub Info 2")
-                PreferenceInfo(title = "Sub Info 3")
-                PreferenceInfo(title = "Sub Info 4")
-                PreferenceInfo(title = "Sub Info 5")
-                PreferenceInfo(title = "Sub Info 6")
-
-                PreferenceSubScreen(
-                    title = "Sub Sub Infos",
-                    icon = { Icon(Icons.Outlined.Info, null) }
+                PreferenceSection(
+                    title = "Sub Infos"
                 ) {
-                    PreferenceInfo(title = "Sub Sub Info 1")
-                    PreferenceInfo(title = "Sub Sub Info 2")
-                    PreferenceInfo(title = "Sub Sub Info 3")
+                    PreferenceInfo(
+                        title = "Sub Info 1",
+                        subtitle = "Theme",
+                        filterTags = listOf("style")
+                    )
+                    PreferenceInfo(title = "Sub Info 2")
+                    PreferenceInfo(title = "Sub Info 3")
+                    PreferenceInfo(title = "Sub Info 4")
+                    PreferenceInfo(title = "Sub Info 5")
+                    PreferenceInfo(title = "Sub Info 6")
+
+                    PreferenceSubScreen(
+                        title = "Sub Sub Infos",
+                        icon = { Icon(Icons.Outlined.Info, null) }
+                    ) {
+                        PreferenceSection(
+                            title = "Sub Sub Infos"
+                        ) {
+                            PreferenceInfo(title = "Sub Sub Info 1")
+                            PreferenceInfo(title = "Sub Sub Info 2")
+                            PreferenceInfo(title = "Sub Sub Info 3")
+                        }
+                    }
                 }
             }
         }

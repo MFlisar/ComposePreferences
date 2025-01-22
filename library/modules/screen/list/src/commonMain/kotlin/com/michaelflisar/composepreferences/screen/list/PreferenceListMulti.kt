@@ -6,6 +6,7 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.text.AnnotatedString
 import com.michaelflisar.composedialogs.core.DialogState
 import com.michaelflisar.composedialogs.core.rememberDialogState
 import com.michaelflisar.composedialogs.dialogs.list.DialogList
@@ -18,6 +19,7 @@ import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetup
 import com.michaelflisar.composepreferences.core.scopes.PreferenceScope
 import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
 
+/* --8<-- [start: constructor] */
 /**
  * A list preference item - this item provides a list dialog to change this preference
  *
@@ -50,12 +52,16 @@ fun <T> PreferenceScope.PreferenceListMulti(
     icon: (@Composable () -> Unit)? = null,
     itemStyle: PreferenceItemStyle = LocalPreferenceSettings.current.style.defaultItemStyle,
     itemSetup: PreferenceItemSetup = PreferenceMultiListDefaults.itemSetup(),
+    titleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
+    subtitleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
     filterTags: List<String> = emptyList(),
     // Dialog
     dialog: @Composable (state: DialogState) -> Unit = { dialogState ->
         PreferenceMultiListDefaults.dialog(dialogState, value.value, { value.value = it }, items, itemTextProvider, itemIconProvider, title, icon)
     }
-) {
+)
+/* --8<-- [end: constructor] */
+{
     PreferenceListMulti(
         value = value.value,
         onValueChange = { value.value = it },
@@ -70,11 +76,14 @@ fun <T> PreferenceScope.PreferenceListMulti(
         icon = icon,
         itemStyle = itemStyle,
         itemSetup = itemSetup,
+        titleRenderer = titleRenderer,
+        subtitleRenderer = subtitleRenderer,
         filterTags = filterTags,
         dialog = dialog
     )
 }
 
+/* --8<-- [start: constructor2] */
 /**
  * A list preference item - this item provides a list dialog to change this preference
  *
@@ -109,12 +118,16 @@ fun <T> PreferenceScope.PreferenceListMulti(
     icon: (@Composable () -> Unit)? = null,
     itemStyle: PreferenceItemStyle = LocalPreferenceSettings.current.style.defaultItemStyle,
     itemSetup: PreferenceItemSetup = PreferenceMultiListDefaults.itemSetup(),
+    titleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
+    subtitleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
     filterTags: List<String> = emptyList(),
     // Dialog
     dialog: @Composable (state: DialogState) -> Unit = { dialogState ->
         PreferenceMultiListDefaults.dialog(dialogState, value, onValueChange, items, itemTextProvider, itemIconProvider, title, icon)
     }
-) {
+)
+/* --8<-- [end: constructor2] */
+{
     BasePreferenceDialog(
         dialogState = rememberDialogState(),
         dialog = dialog,
@@ -124,6 +137,8 @@ fun <T> PreferenceScope.PreferenceListMulti(
         subtitle = subtitle,
         icon = icon,
         itemStyle = itemStyle,
+        titleRenderer = titleRenderer,
+        subtitleRenderer = subtitleRenderer,
         filterTags = filterTags,
         itemSetup = itemSetup
     ) {

@@ -32,6 +32,7 @@ import com.michaelflisar.composepreferences.core.classes.PreferenceType
 import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetup.TrailingContentSize
 import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
 
+/* --8<-- [start: constructor] */
 /**
  * this provides a class to define some custom setup to customise a preference item
  *
@@ -42,6 +43,7 @@ import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
  * @param contentPlacementBottom if true, the content of this item will be place **below** the title/subtitle instead of **behind** it as trailing content
  * @param alignment the alignment of the preference item content
  * @param hideTitle if true, the title will not be displayed (allows the content to take up its place)
+ * @param excludeFromSectionStyle if true, the item will not be styled as a section item and will break the section style up if it is placed in the middle of a section
  */
 @Stable
 data class PreferenceItemSetup(
@@ -51,8 +53,11 @@ data class PreferenceItemSetup(
     val minSubTitleExtraHeight: Dp = 16.dp,
     val contentPlacementBottom: Boolean = false,
     val alignment: Alignment.Vertical = Alignment.CenterVertically,
-    val hideTitle: Boolean = false
-) {
+    val hideTitle: Boolean = false,
+    val excludeFromSectionStyle: Boolean = false
+)
+/* --8<-- [end: constructor] */
+{
 
     /**
      * this provides a class to define size constraints for a preference item
@@ -255,6 +260,27 @@ object PreferenceItemDefaults {
             headlineColor = headlineColor,
             subHeadlineColor = subHeadlineColor,
             leadingColor = leadingColor
+        )
+
+    /**
+     * use this function to create a [PreferenceItemColors] object
+     *
+     * @param backgroundColor the [Color] of the container
+     * @param foregroundColor the foreground [Color] - used for the headline and in combination with [alphaVariant] for the content area and the sub headline
+     * @param alphaVariant the alpha to apply to the content color - the result is used for the content area and the sub headline
+     */
+    @Composable
+    fun colors(
+        backgroundColor: Color = MaterialTheme.colorScheme.background,
+        foregroundColor: Color = MaterialTheme.colorScheme.onBackground,
+        alphaVariant: Float = DEFAULT_ALPHA_VARIANT
+    ): PreferenceItemColors =
+        PreferenceItemColors(
+            containerColor = backgroundColor,
+            contentColor = foregroundColor.copy(alphaVariant),
+            headlineColor = foregroundColor,
+            subHeadlineColor = foregroundColor.copy(alphaVariant),
+            leadingColor = foregroundColor.copy(alphaVariant)
         )
 }
 

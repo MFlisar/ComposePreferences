@@ -1,0 +1,19 @@
+public final class com/michaelflisar/composepreferences/screen/time/ComposableSingletons$PreviewPreferenceTimeKt {
+	public static final field INSTANCE Lcom/michaelflisar/composepreferences/screen/time/ComposableSingletons$PreviewPreferenceTimeKt;
+	public fun <init> ()V
+	public final fun getLambda-1$time_release ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda-2$time_release ()Lkotlin/jvm/functions/Function3;
+}
+
+public final class com/michaelflisar/composepreferences/screen/time/PreferenceTimeDefaults {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/michaelflisar/composepreferences/screen/time/PreferenceTimeDefaults;
+	public final fun dialog (Lcom/michaelflisar/composedialogs/core/DialogState;Lkotlinx/datetime/LocalTime;Lkotlin/jvm/functions/Function1;ZLjava/lang/String;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)V
+	public final fun itemSetup (Landroidx/compose/runtime/Composer;I)Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup;
+}
+
+public final class com/michaelflisar/composepreferences/screen/time/PreferenceTimeKt {
+	public static final fun PreferenceTime (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;Landroidx/compose/runtime/MutableState;ZLkotlin/jvm/functions/Function1;Ljava/lang/String;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup;Ljava/util/List;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;III)V
+	public static final fun PreferenceTime (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;Lkotlinx/datetime/LocalTime;Lkotlin/jvm/functions/Function1;ZLkotlin/jvm/functions/Function1;Ljava/lang/String;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup;Ljava/util/List;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;III)V
+}
+

@@ -9,9 +9,9 @@ import com.michaelflisar.composepreferences.core.internal.PreferenceItemState
 interface PreferenceStyle {
 
     val spacing: Dp
-    val defaultItemStyle : PreferenceItemStyle
-    val defaultSectionItemStyle : PreferenceItemStyle
-    val defaultGroupItemStyle : PreferenceItemStyle
+    val defaultItemStyle: PreferenceItemStyle
+    val defaultSectionItemStyle: PreferenceItemStyle
+    val defaultGroupItemStyle: PreferenceItemStyle
 
     @Composable
     fun getItemStyle(

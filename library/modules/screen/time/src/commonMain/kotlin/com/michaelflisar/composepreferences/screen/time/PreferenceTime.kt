@@ -4,6 +4,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.Stable
+import androidx.compose.ui.text.AnnotatedString
 import com.michaelflisar.composedialogs.core.DialogState
 import com.michaelflisar.composedialogs.core.rememberDialogState
 import com.michaelflisar.composedialogs.dialogs.time.DialogTime
@@ -21,6 +22,7 @@ import com.michaelflisar.composepreferences.core.scopes.PreferenceScope
 import kotlinx.datetime.LocalTime
 import kotlinx.datetime.format.char
 
+/* --8<-- [start: constructor] */
 /**
  * A color preference item - this item provides a time picker dialog to change this preference
  *
@@ -46,12 +48,16 @@ fun PreferenceScope.PreferenceTime(
     icon: (@Composable () -> Unit)? = null,
     itemStyle: PreferenceItemStyle = LocalPreferenceSettings.current.style.defaultItemStyle,
     itemSetup: PreferenceItemSetup = PreferenceTimeDefaults.itemSetup(),
+    titleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
+    subtitleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
     filterTags: List<String> = emptyList(),
     // Dialog
     dialog: @Composable (state: DialogState) -> Unit = { dialogState ->
         PreferenceTimeDefaults.dialog(dialogState, value.value, { value.value = it }, is24Hours, title, icon)
     }
-) {
+)
+/* --8<-- [end: constructor] */
+{
     PreferenceTime(
         value = value.value,
         onValueChange = { value.value = it },
@@ -64,11 +70,14 @@ fun PreferenceScope.PreferenceTime(
         icon = icon,
         itemStyle = itemStyle,
         itemSetup = itemSetup,
+        titleRenderer = titleRenderer,
+        subtitleRenderer = subtitleRenderer,
         filterTags = filterTags,
         dialog = dialog
     )
 }
 
+/* --8<-- [start: constructor2] */
 /**
  * A color preference item - this item provides a time picker dialog to change this preference
  *
@@ -96,12 +105,16 @@ fun PreferenceScope.PreferenceTime(
     icon: (@Composable () -> Unit)? = null,
     itemStyle: PreferenceItemStyle = LocalPreferenceSettings.current.style.defaultItemStyle,
     itemSetup: PreferenceItemSetup = PreferenceTimeDefaults.itemSetup(),
+    titleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
+    subtitleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
     filterTags: List<String> = emptyList(),
     // Dialog
     dialog: @Composable (state: DialogState) -> Unit = { dialogState ->
         PreferenceTimeDefaults.dialog(dialogState, value, onValueChange, is24Hours, title, icon)
     }
-) {
+)
+/* --8<-- [end: constructor2] */
+{
     BasePreferenceDialog(
         dialogState = rememberDialogState(),
         dialog = dialog,
@@ -112,6 +125,8 @@ fun PreferenceScope.PreferenceTime(
         subtitle = subtitle,
         icon = icon,
         itemStyle = itemStyle,
+        titleRenderer = titleRenderer,
+        subtitleRenderer = subtitleRenderer,
         filterTags = filterTags
     ) {
         PreferenceContentText(text = formatter(value), itemSetup)

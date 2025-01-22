@@ -10,18 +10,33 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 
+/* --8<-- [start: constructor] */
+/**
+ * Remember a DefaultPreferenceFilter with the given parameters.
+ *
+ * @param search the search string to filter by
+ * @param flattenResult Whether to flatten the result of the filter
+ * @param mode the mode to use for the filter
+ * @param ignoreCase whether to ignore the case of the search string
+ * @param highlightSpan the SpanStyle to use for highlighting the search string
+ */
 class DefaultPreferenceFilter internal constructor(
     override val search: MutableState<String>,
     override val flattenResult: MutableState<Boolean>,
     val mode: MutableState<Mode>,
-    val ignoreCase: MutableState<Boolean>,
-    val highlightSpan: SpanStyle
-) : PreferenceFilter {
-
+    private val ignoreCase: MutableState<Boolean>,
+    private val highlightSpan: SpanStyle
+) : PreferenceFilter
+/* --8<-- [end: constructor] */
+{
+    /* --8<-- [start: modes] */
     sealed class Mode {
+
+
         data object ContainsText : Mode()
         data class AllWords(val fullWordsOnly: Boolean = false) : Mode()
         data class AnyWord(val fullWordOnly: Boolean = false) : Mode()
+    /* --8<-- [end: modes] */
 
         companion object {
             val SAVER = Saver<MutableState<Mode>, Int>(
@@ -100,6 +115,16 @@ class DefaultPreferenceFilter internal constructor(
     }
 }
 
+/* --8<-- [start: remember] */
+/**
+ * Remember a DefaultPreferenceFilter with the given parameters.
+ *
+ * @param search the search string to filter by
+ * @param flattenResult Whether to flatten the result of the filter
+ * @param mode the mode to use for the filter
+ * @param ignoreCase whether to ignore the case of the search string
+ * @param highlightSpan the SpanStyle to use for highlighting the search string
+ */
 @Composable
 fun rememberDefaultPreferenceFilter(
     search: String = "",
@@ -114,3 +139,4 @@ fun rememberDefaultPreferenceFilter(
     rememberSaveable { mutableStateOf(ignoreCase) },
     highlightSpan
 )
+/* --8<-- [end: remember] */

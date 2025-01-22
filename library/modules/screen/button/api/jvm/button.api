@@ -1,0 +1,4 @@
+public final class com/michaelflisar/composepreferences/screen/button/PreferenceButtonKt {
+	public static final fun PreferenceButton (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;Lkotlin/jvm/functions/Function0;Ljava/lang/String;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Ljava/util/List;Landroidx/compose/runtime/Composer;II)V
+}
+

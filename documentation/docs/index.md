@@ -20,6 +20,3 @@ icon: material/information-variant
 
 {% include 'demo.md' %}
 
-
-
-

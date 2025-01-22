@@ -76,10 +76,8 @@ object DemoPrefs : SettingsModel(DataStoreStorage.create(name = "demo1_prefs")) 
                     when (it) {
                         DemoStyle.Default -> DefaultStyle.create()
                         DemoStyle.Modern -> ModernStyle.create(
-                            sectionColors = PreferenceItemDefaults.colors(
-                                containerColor = MaterialTheme.colorScheme.surfaceContainerHighest,
-                                contentColor = MaterialTheme.colorScheme.onSurface
-                            )
+                            sectionGroupItemBackgroundColor = MaterialTheme.colorScheme.surfaceContainerHighest,
+                            sectionGroupItemForegroundColor = MaterialTheme.colorScheme.onSurface
                         )
                     }
                 },

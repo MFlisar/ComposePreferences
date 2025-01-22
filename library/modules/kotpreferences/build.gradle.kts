@@ -11,6 +11,7 @@ plugins {
     alias(libs.plugins.kotlin.parcelize)
     alias(libs.plugins.dokka)
     alias(libs.plugins.gradle.maven.publish.plugin)
+    alias(libs.plugins.binary.compatibility.validator)
 }
 
 // -------------------
@@ -82,10 +83,10 @@ kotlin {
             val useLiveDependencies = providers.gradleProperty("useLiveDependencies").get().toBoolean()
             if (useLiveDependencies) {
                 api(deps.kotpreferences.core)
-                api(deps.kotpreferences.storage.datastore)
+                //api(deps.kotpreferences.storage.datastore)
             } else {
                 api(project(":kotpreferences:core"))
-                api(project(":kotpreferences:modules:storage:datastore"))
+                //api(project(":kotpreferences:modules:storage:datastore"))
             }
 
         }

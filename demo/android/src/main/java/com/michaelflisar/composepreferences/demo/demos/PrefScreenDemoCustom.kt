@@ -1,26 +1,35 @@
 package com.michaelflisar.composepreferences.demo.demos
 
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.TextSnippet
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Numbers
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.michaelflisar.composepreferences.core.PreferenceDivider
+import androidx.compose.ui.unit.sp
 import com.michaelflisar.composepreferences.core.PreferenceScreen
-import com.michaelflisar.composepreferences.core.PreferenceSectionHeader
-import com.michaelflisar.composepreferences.core.classes.PreferenceSettingsDefaults
+import com.michaelflisar.composepreferences.core.PreferenceSection
 import com.michaelflisar.composepreferences.core.classes.asDependency
 import com.michaelflisar.composepreferences.core.styles.PreferenceStyleDefaults
 import com.michaelflisar.composepreferences.demo.classes.DemoPrefs
 import com.michaelflisar.composepreferences.screen.bool.PreferenceBool
 import com.michaelflisar.composepreferences.screen.input.PreferenceInputNumber
+import com.michaelflisar.composepreferences.screen.input.PreferenceInputNumberDefaults
 import com.michaelflisar.composepreferences.screen.input.PreferenceInputText
 
 @Composable
@@ -30,8 +39,9 @@ fun PrefScreenCustomDemo() {
 
     PreferenceScreen(
         settings = settings,
-        //modifier = Modifier.padding(16.dp)
+        modifier = Modifier.padding(vertical = 16.dp)
     ) {
+
         // settings are normally persisted, so you should use a database or preferences
         // here we will simply use saved remembered state for this showcase
         // HINT: check out the PrefScreenDemoKotPreferences1 example, it uses preferences
@@ -43,24 +53,29 @@ fun PrefScreenCustomDemo() {
         val string1 = rememberSaveable { mutableStateOf("Test") }
         val int1 = rememberSaveable { mutableIntStateOf(123) }
 
-        // simple (manual) example
-        PreferenceBool(
-            style = PreferenceBool.Style.Switch,
-            value = bool1.value,
-            onValueChange = {
-                bool1.value = it
-            },
-            title = "Bool 1",
-            icon = { Icon(Icons.Default.Check, null) }
-        )
+        PreferenceSection(
+            title = "Boolean"
+        ) {
 
-        // example with extension function for MutableState<T>
-        PreferenceBool(
-            style = PreferenceBool.Style.Checkbox,
-            value = bool2,
-            title = "Bool 2",
-            icon = { Icon(Icons.Default.Check, null) }
-        )
+            // simple (manual) example
+            PreferenceBool(
+                style = PreferenceBool.Style.Switch,
+                value = bool1.value,
+                onValueChange = {
+                    bool1.value = it
+                },
+                title = "Bool 1",
+                icon = { Icon(Icons.Default.Check, null) }
+            )
+
+            // example with extension function for MutableState<T>
+            PreferenceBool(
+                style = PreferenceBool.Style.Checkbox,
+                value = bool2,
+                title = "Bool 2",
+                icon = { Icon(Icons.Default.Check, null) }
+            )
+        }
 
         // -----------
         // Master 1
@@ -75,7 +90,7 @@ fun PrefScreenCustomDemo() {
             title = "Master 1",
             itemStyle = PreferenceStyleDefaults.primaryContainer()
         )
-        PreferenceSectionHeader(
+        PreferenceSection(
             title = "Master 1",
             subtitle = "Region header with sub title...",
             visible = master1Dependency
@@ -88,17 +103,18 @@ fun PrefScreenCustomDemo() {
                 icon = { Icon(Icons.AutoMirrored.Filled.TextSnippet, null) },
                 visible = master1Dependency
             )
+            val isProVersion = remember { mutableStateOf(false) }
             PreferenceInputNumber(
                 value = int1,
-                title = "NUMBER (PRO FEATURE)",
-                itemStyle = PreferenceStyleDefaults.error(),
-                /*
-                title = {
+                title = "Pro Feature",
+                enabled = isProVersion.asDependency { it },
+                itemSetup = PreferenceInputNumberDefaults.itemSetup(),
+                titleRenderer = { title ->
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(4.dp)
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
-                        Text("Number 1")
+                        Text(title)
                         Text(
                             "PRO",
                             modifier = Modifier
@@ -109,7 +125,7 @@ fun PrefScreenCustomDemo() {
                             fontWeight = FontWeight.Bold
                         )
                     }
-                },*/
+                },
                 subtitle = "Value = ${int1.intValue}",
                 icon = { Icon(Icons.Default.Numbers, null) },
                 visible = master1Dependency

@@ -17,8 +17,10 @@ import com.michaelflisar.composepreferences.core.composables.PreferenceItemDefau
 @Stable
 object PreferenceStyleDefaults {
 
-    private val DEFAULT_INNER_PADDING = PaddingValues(horizontal = 16.dp, 8.dp)
+    val DEFAULT_INNER_PADDING = PaddingValues(horizontal = 16.dp, 8.dp)
+    val DEFAULT_OUTER_PADDING = PaddingValues()
 
+    /* --8<-- [start: item] */
     /**
      * this function returns a [PreferenceItemStyle] defining the style of a preference item
      *
@@ -38,14 +40,16 @@ object PreferenceStyleDefaults {
     @Composable
     fun item(
         colors: PreferenceItemColors = PreferenceItemDefaults.colors(),
-        innerPadding: PaddingValues = DEFAULT_INNER_PADDING,
-        outerPadding: PaddingValues = PaddingValues(),
+        innerPadding: PaddingValues = LocalPreferenceSettings.current.style.defaultItemStyle.innerPadding,
+        outerPadding: PaddingValues = LocalPreferenceSettings.current.style.defaultItemStyle.outerPadding,
         shape: Shape = LocalPreferenceSettings.current.style.defaultItemStyle.shape,
         tonalElevation: Dp = 0.dp,
         shadowElevation: Dp = 0.dp,
         titleTextStyle: TextStyle = MaterialTheme.typography.labelLarge,
         subtitleTextStyle: TextStyle = MaterialTheme.typography.bodyMedium
-    ): PreferenceItemStyle = PreferenceItemStyle(
+    ): PreferenceItemStyle
+    /* --8<-- [end: item] */
+    = PreferenceItemStyle(
         colors = colors,
         innerPadding = innerPadding,
         outerPadding = outerPadding,
@@ -78,8 +82,8 @@ object PreferenceStyleDefaults {
         colorForeground: Color = MaterialTheme.colorScheme.onSurface,
         alphaVariant: Float = PreferenceItemDefaults.DEFAULT_ALPHA_VARIANT,
         shape: Shape = LocalPreferenceSettings.current.style.defaultItemStyle.shape,
-        innerPadding: PaddingValues = DEFAULT_INNER_PADDING,
-        outerPadding: PaddingValues = PaddingValues(),
+        innerPadding: PaddingValues = LocalPreferenceSettings.current.style.defaultItemStyle.innerPadding,
+        outerPadding: PaddingValues = LocalPreferenceSettings.current.style.defaultItemStyle.outerPadding,
         tonalElevation: Dp = 0.dp,
         shadowElevation: Dp = 0.dp,
         titleTextStyle: TextStyle = MaterialTheme.typography.labelLarge,
@@ -116,8 +120,8 @@ object PreferenceStyleDefaults {
     @Composable
     fun primary(
         shape: Shape = LocalPreferenceSettings.current.style.defaultItemStyle.shape,
-        innerPadding: PaddingValues = DEFAULT_INNER_PADDING,
-        outerPadding: PaddingValues = PaddingValues(),
+        innerPadding: PaddingValues = LocalPreferenceSettings.current.style.defaultItemStyle.innerPadding,
+        outerPadding: PaddingValues = LocalPreferenceSettings.current.style.defaultItemStyle.outerPadding,
         alphaVariant: Float = PreferenceItemDefaults.DEFAULT_ALPHA_VARIANT
     ) = item(
         colorBackground = MaterialTheme.colorScheme.primary,
@@ -139,8 +143,8 @@ object PreferenceStyleDefaults {
     @Composable
     fun primaryContainer(
         shape: Shape = LocalPreferenceSettings.current.style.defaultItemStyle.shape,
-        innerPadding: PaddingValues = DEFAULT_INNER_PADDING,
-        outerPadding: PaddingValues = PaddingValues(),
+        innerPadding: PaddingValues = LocalPreferenceSettings.current.style.defaultItemStyle.innerPadding,
+        outerPadding: PaddingValues = LocalPreferenceSettings.current.style.defaultItemStyle.outerPadding,
         alphaVariant: Float = PreferenceItemDefaults.DEFAULT_ALPHA_VARIANT
     ) = item(
         colorBackground = MaterialTheme.colorScheme.primaryContainer,
@@ -162,8 +166,8 @@ object PreferenceStyleDefaults {
     @Composable
     fun error(
         shape: Shape = LocalPreferenceSettings.current.style.defaultItemStyle.shape,
-        innerPadding: PaddingValues = DEFAULT_INNER_PADDING,
-        outerPadding: PaddingValues = PaddingValues(),
+        innerPadding: PaddingValues = LocalPreferenceSettings.current.style.defaultItemStyle.innerPadding,
+        outerPadding: PaddingValues = LocalPreferenceSettings.current.style.defaultItemStyle.outerPadding,
         alphaVariant: Float = PreferenceItemDefaults.DEFAULT_ALPHA_VARIANT
     ) = item(
         colorBackground = MaterialTheme.colorScheme.error,
@@ -185,8 +189,8 @@ object PreferenceStyleDefaults {
     @Composable
     fun errorContainer(
         shape: Shape = LocalPreferenceSettings.current.style.defaultItemStyle.shape,
-        innerPadding: PaddingValues = DEFAULT_INNER_PADDING,
-        outerPadding: PaddingValues = PaddingValues(),
+        innerPadding: PaddingValues = LocalPreferenceSettings.current.style.defaultItemStyle.innerPadding,
+        outerPadding: PaddingValues = LocalPreferenceSettings.current.style.defaultItemStyle.outerPadding,
         alphaVariant: Float = PreferenceItemDefaults.DEFAULT_ALPHA_VARIANT
     ) = item(
         colorBackground = MaterialTheme.colorScheme.errorContainer,
@@ -208,8 +212,8 @@ object PreferenceStyleDefaults {
     @Composable
     fun surfaceVariant(
         shape: Shape = LocalPreferenceSettings.current.style.defaultItemStyle.shape,
-        innerPadding: PaddingValues = DEFAULT_INNER_PADDING,
-        outerPadding: PaddingValues = PaddingValues(),
+        innerPadding: PaddingValues = LocalPreferenceSettings.current.style.defaultItemStyle.innerPadding,
+        outerPadding: PaddingValues = LocalPreferenceSettings.current.style.defaultItemStyle.outerPadding
     ): PreferenceItemStyle = item(
         colors = PreferenceItemColors(
             containerColor = MaterialTheme.colorScheme.surfaceVariant,
@@ -234,8 +238,8 @@ object PreferenceStyleDefaults {
     fun header(
         alphaVariant: Float = PreferenceItemDefaults.DEFAULT_ALPHA_VARIANT,
         shape: Shape = LocalPreferenceSettings.current.style.defaultItemStyle.shape,
-        innerPadding: PaddingValues = DEFAULT_INNER_PADDING,
-        outerPadding: PaddingValues = PaddingValues(),
+        innerPadding: PaddingValues = LocalPreferenceSettings.current.style.defaultItemStyle.innerPadding,
+        outerPadding: PaddingValues = LocalPreferenceSettings.current.style.defaultItemStyle.outerPadding
     ): PreferenceItemStyle = item(
         colors = PreferenceItemColors(
             containerColor = MaterialTheme.colorScheme.background,

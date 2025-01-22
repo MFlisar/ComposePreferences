@@ -28,10 +28,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.michaelflisar.composepreferences.core.PreferenceInfo
-import com.michaelflisar.composepreferences.core.PreferenceSectionHeader
+import com.michaelflisar.composepreferences.core.PreferenceSection
 import com.michaelflisar.composepreferences.core.preview.PreviewPreference
 import com.michaelflisar.composepreferences.core.scopes.PreferenceRootScope
-import com.michaelflisar.composepreferences.core.scopes.PreferenceScope
 import com.michaelflisar.composepreferences.screen.bool.PreferenceBool
 import com.michaelflisar.composepreferences.screen.button.PreferenceButton
 import com.michaelflisar.composepreferences.screen.color.PreferenceColor
@@ -65,12 +64,12 @@ private fun PreviewAll() {
                 )
             },
             {
-                PreferenceSectionHeader(
+                PreferenceSection(
                     title = "Section Header"
                 ) {}
             },
             {
-                PreferenceSectionHeader(
+                PreferenceSection(
                     icon = { Icon(Icons.Default.Info, null) },
                     title = "Section Header",
                     subtitle = "This is a description"

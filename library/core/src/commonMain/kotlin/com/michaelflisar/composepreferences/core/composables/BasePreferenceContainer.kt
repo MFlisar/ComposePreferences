@@ -3,7 +3,6 @@ package com.michaelflisar.composepreferences.core.composables
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.AnimationVector1D
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.gestures.detectTapGestures
@@ -21,7 +20,7 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
-import com.michaelflisar.composepreferences.core.Test
+import com.michaelflisar.composepreferences.core.ExperimentalSettings
 import com.michaelflisar.composepreferences.core.classes.Dependency
 import com.michaelflisar.composepreferences.core.classes.LocalPreferenceSettings
 import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
@@ -66,7 +65,7 @@ fun PreferenceScope.BasePreferenceContainer(
     content: @Composable (modifier: Modifier) -> Unit
 ) {
     val tags = filterTags
-    val item = rememberPreferenceItemState(PreferenceType.Item, visible, tags)
+    val item = rememberPreferenceItemState(PreferenceType.Item, visible, tags, false)
 
     val preferenceSettings = LocalPreferenceSettings.current
     val style = preferenceSettings.style
@@ -126,8 +125,8 @@ internal fun PreferenceScope.BasePreferenceContainer(
     }
 
     AnimatedPreference(
-        visible = item.visible.value,
-        animate = if (Test.useAnimation) {
+        itemState = item,
+        animate = if (ExperimentalSettings.useAnimation) {
             settings.animationSpec != null
         } else false
     ) {

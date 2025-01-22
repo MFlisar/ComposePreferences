@@ -5,8 +5,8 @@ import androidx.compose.runtime.mutableStateOf
 import com.michaelflisar.composepreferences.core.classes.PreferenceState
 
 // hierarchical data
-val LocalParent = compositionLocalOf<PreferenceItemState> { PreferenceItemState.Root() }
-val LocalState = compositionLocalOf { PreferenceState() }
-val LocalItem = compositionLocalOf { mutableStateOf<PreferenceItemState>(PreferenceItemState.Root()) }
+internal val LocalParent = compositionLocalOf<PreferenceItemState> { PreferenceItemState.Root() }
+internal val LocalState = compositionLocalOf { PreferenceState() }
+internal val LocalItem = compositionLocalOf { mutableStateOf<PreferenceItemState>(PreferenceItemState.Root()) }
 
 //internal val LocalItemTitle = compositionLocalOf { mutableStateOf("") }

@@ -1,6 +1,8 @@
 package com.michaelflisar.composepreferences.core.internal
 
+import androidx.compose.animation.core.MutableTransitionState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.runtime.derivedStateOf
@@ -11,6 +13,7 @@ import androidx.compose.runtime.remember
 import com.michaelflisar.composepreferences.core.classes.Dependency
 import com.michaelflisar.composepreferences.core.filter.LocalPreferenceFilter
 import com.michaelflisar.composepreferences.core.classes.PreferenceType
+import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetup
 
 sealed class PreferenceItemState {
 
@@ -18,6 +21,7 @@ sealed class PreferenceItemState {
     abstract val parent: PreferenceItemState?
     abstract val children: MutableState<List<Item>>
     abstract val visible: State<Boolean>
+    abstract val visibleTransitionState: MutableTransitionState<Boolean>
     abstract val tags: List<String>
     abstract val allTags: MutableState<List<String>>
 
@@ -60,6 +64,7 @@ sealed class PreferenceItemState {
     ) : PreferenceItemState() {
         override val id = 0
         override val visible: State<Boolean> = mutableStateOf(true)
+        override val visibleTransitionState = MutableTransitionState(true)
         override val tags = emptyList<String>()
         override val allTags: MutableState<List<String>> = mutableStateOf(emptyList())
         override val parent: PreferenceItemState? = null
@@ -74,7 +79,9 @@ sealed class PreferenceItemState {
         override val tags: List<String>,
         override val allTags: MutableState<List<String>>,
         override val children: MutableState<List<Item>>,
-        override val visible: State<Boolean>
+        override val visible: State<Boolean>,
+        override val visibleTransitionState: MutableTransitionState<Boolean>,
+        val excludeFromSectionStyle: Boolean
     ) : PreferenceItemState()
 }
 
@@ -82,7 +89,8 @@ sealed class PreferenceItemState {
 fun rememberPreferenceItemState(
     type: PreferenceType,
     visible: Dependency,
-    tags: List<String>
+    tags: List<String>,
+    excludeFromSectionStyle: Boolean
 ): PreferenceItemState.Item {
 
     val state = LocalState.current
@@ -121,6 +129,7 @@ fun rememberPreferenceItemState(
             }
         }
 
+        val visibleTransitionState = remember { MutableTransitionState(visible.value) }
         item = remember {
             PreferenceItemState.Item(
                 id = id,
@@ -129,13 +138,20 @@ fun rememberPreferenceItemState(
                 tags = tags,
                 children = children,
                 allTags = allTags,
-                visible = visible
+                visible = visible,
+                visibleTransitionState = visibleTransitionState,
+                excludeFromSectionStyle = excludeFromSectionStyle
             ).also {
                 parent.children.value =
                     parent.children.value.toMutableList().also { list -> list.add(it) }
             }
         }
 
+    }
+
+    LaunchedEffect(item.visible.value) {
+        item.visibleTransitionState.targetState = item.visible.value
+        //println("ANIMATION: item = id = $id | visible = ${visible.value} | target = ${visibleTransitionState.targetState}")
     }
 
     return item

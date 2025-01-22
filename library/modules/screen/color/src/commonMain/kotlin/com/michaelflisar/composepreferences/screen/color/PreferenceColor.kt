@@ -15,6 +15,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
 import com.michaelflisar.composedialogs.core.DialogState
 import com.michaelflisar.composedialogs.core.rememberDialogState
@@ -29,6 +30,7 @@ import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetup
 import com.michaelflisar.composepreferences.core.scopes.PreferenceScope
 import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
 
+/* --8<-- [start: constructor] */
 /**
  * A color preference item - this item provides a color dialog to change this preference
  *
@@ -52,12 +54,16 @@ fun PreferenceScope.PreferenceColor(
     icon: (@Composable () -> Unit)? = null,
     itemStyle: PreferenceItemStyle = LocalPreferenceSettings.current.style.defaultItemStyle,
     itemSetup: PreferenceItemSetup = PreferenceColorDefaults.itemSetup(),
+    titleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
+    subtitleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
     filterTags: List<String> = emptyList(),
     // Dialog
     dialog: @Composable (state: DialogState) -> Unit = { dialogState ->
         PreferenceColorDefaults.dialog(dialogState, value.value, { value.value = it }, alphaSupported, title, icon)
     }
-) {
+)
+/* --8<-- [end: constructor] */
+{
     PreferenceColor(
         value = value.value,
         onValueChange = { value.value = it },
@@ -69,11 +75,14 @@ fun PreferenceScope.PreferenceColor(
         icon = icon,
         itemStyle = itemStyle,
         itemSetup = itemSetup,
+        titleRenderer = titleRenderer,
+        subtitleRenderer = subtitleRenderer,
         filterTags = filterTags,
         dialog = dialog
     )
 }
 
+/* --8<-- [start: constructor2] */
 /**
  * A color preference item - this item provides a color dialog to change this preference
  *
@@ -99,12 +108,16 @@ fun PreferenceScope.PreferenceColor(
     icon: (@Composable () -> Unit)? = null,
     itemStyle: PreferenceItemStyle = LocalPreferenceSettings.current.style.defaultItemStyle,
     itemSetup: PreferenceItemSetup = PreferenceColorDefaults.itemSetup(),
+    titleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
+    subtitleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
     filterTags: List<String> = emptyList(),
     // Dialog
     dialog: @Composable (state: DialogState) -> Unit = { dialogState ->
         PreferenceColorDefaults.dialog(dialogState, value, onValueChange, alphaSupported, title, icon)
     }
-) {
+)
+/* --8<-- [end: constructor2] */
+{
     BasePreferenceDialog(
         dialogState = rememberDialogState(),
         dialog = dialog,
@@ -115,6 +128,8 @@ fun PreferenceScope.PreferenceColor(
         subtitle = subtitle,
         icon = icon,
         itemStyle = itemStyle,
+        titleRenderer = titleRenderer,
+        subtitleRenderer = subtitleRenderer,
         filterTags = filterTags
     ) {
         Content(value)

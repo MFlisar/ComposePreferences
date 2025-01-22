@@ -4,8 +4,10 @@ import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
 import com.michaelflisar.composepreferences.core.classes.Dependency
 import com.michaelflisar.composepreferences.core.classes.LocalPreferenceSettings
@@ -51,7 +53,7 @@ fun PreferenceScope.BasePreferenceCustom(
     content: @Composable ColumnScope.() -> Unit
 ) {
     val tags = filterTags
-    val item = rememberPreferenceItemState(PreferenceType.Item, visible, tags)
+    val item = rememberPreferenceItemState(PreferenceType.Item, visible, tags, itemSetup.excludeFromSectionStyle)
 
     BasePreferenceCustom(
         modifier = modifier,

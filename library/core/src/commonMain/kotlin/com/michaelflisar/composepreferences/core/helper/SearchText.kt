@@ -5,21 +5,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.buildAnnotatedString
 import com.michaelflisar.composepreferences.core.filter.LocalPreferenceFilter
 
 @Composable
 fun SearchText(
-    text: String
+    text: String,
+    renderer: @Composable (text: AnnotatedString) -> Unit
 ) {
     val filter = LocalPreferenceFilter.current
-    if (filter == null) {
-        Text(text)
-    } else {
-        val annotated by remember(text, filter) {
-            derivedStateOf {
-                filter.highlight(text)
-            }
+    val annotated by remember(text, filter) {
+        derivedStateOf {
+            filter?.highlight(text) ?: buildAnnotatedString { append(text) }
         }
-        Text(annotated)
     }
+    renderer(annotated)
 }

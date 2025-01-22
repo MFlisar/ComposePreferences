@@ -10,6 +10,7 @@ import androidx.compose.runtime.Stable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.AnnotatedString
 import com.michaelflisar.composedialogs.core.DialogState
 import com.michaelflisar.composedialogs.core.rememberDialogState
 import com.michaelflisar.composedialogs.dialogs.number.DialogNumberPicker
@@ -26,6 +27,7 @@ import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetup
 import com.michaelflisar.composepreferences.core.scopes.PreferenceScope
 import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
 
+/* --8<-- [start: constructor] */
 /**
  * A number preference item - this item provides a number **picker** dialog to change this preference
  *
@@ -56,12 +58,16 @@ fun <T : Number> PreferenceScope.PreferenceNumber(
     icon: (@Composable () -> Unit)? = null,
     itemStyle: PreferenceItemStyle = LocalPreferenceSettings.current.style.defaultItemStyle,
     itemSetup: PreferenceItemSetup = PreferenceNumberDefaults.itemSetup(style),
+    titleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
+    subtitleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
     filterTags: List<String> = emptyList(),
     // Dialog
     dialog: @Composable (state: DialogState) -> Unit = { dialogState ->
         PreferenceNumberDefaults.dialog(dialogState, value.value, { value.value = it }, min, max, stepSize, formatter, title, icon)
     }
-) {
+)
+/* --8<-- [end: constructor] */
+{
     PreferenceNumber(
         style = style,
         value = value.value,
@@ -77,11 +83,14 @@ fun <T : Number> PreferenceScope.PreferenceNumber(
         icon = icon,
         itemStyle = itemStyle,
         itemSetup = itemSetup,
+        titleRenderer = titleRenderer,
+        subtitleRenderer = subtitleRenderer,
         filterTags = filterTags,
         dialog = dialog
     )
 }
 
+/* --8<-- [start: constructor2] */
 /**
  * A number preference item - this item provides a number **picker** dialog to change this preference
  *
@@ -114,12 +123,16 @@ fun <T : Number> PreferenceScope.PreferenceNumber(
     icon: (@Composable () -> Unit)? = null,
     itemStyle: PreferenceItemStyle = LocalPreferenceSettings.current.style.defaultItemStyle,
     itemSetup: PreferenceItemSetup = PreferenceNumberDefaults.itemSetup(style),
+    titleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
+    subtitleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
     filterTags: List<String> = emptyList(),
     // Dialog
     dialog: @Composable (state: DialogState) -> Unit = { dialogState ->
         PreferenceNumberDefaults.dialog(dialogState, value, onValueChange, min, max, stepSize, formatter, title, icon)
     }
-) {
+)
+/* --8<-- [end: constructor2] */
+{
     when (style) {
         PreferenceNumber.Style.Picker -> {
             BasePreferenceDialog(
@@ -132,6 +145,8 @@ fun <T : Number> PreferenceScope.PreferenceNumber(
                 subtitle = subtitle,
                 icon = icon,
                 itemStyle = itemStyle,
+                titleRenderer = titleRenderer,
+                subtitleRenderer = subtitleRenderer,
                 filterTags = filterTags
             ) {
                 PreferenceContentText(text = formatter(value), itemSetup)
@@ -147,6 +162,8 @@ fun <T : Number> PreferenceScope.PreferenceNumber(
                 subtitle = subtitle,
                 icon = icon,
                 itemStyle = itemStyle,
+                titleRenderer = titleRenderer,
+                subtitleRenderer = subtitleRenderer,
                 filterTags = filterTags
             ) {
                 ContentSlider(style, value, onValueChange, min, max, stepSize, formatter)

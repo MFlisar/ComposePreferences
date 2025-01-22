@@ -20,6 +20,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
 import com.michaelflisar.composedialogs.core.DialogState
 import com.michaelflisar.composedialogs.core.rememberDialogState
@@ -33,6 +34,7 @@ import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetup
 import com.michaelflisar.composepreferences.core.scopes.PreferenceScope
 import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
 
+/* --8<-- [start: constructor] */
 /**
  * A list preference item - this item provides a list dialog or a dropdown to change this preference
  *
@@ -49,7 +51,7 @@ import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
  */
 @Composable
 fun <T> PreferenceScope.PreferenceList(
-    style: PreferenceList.Style = PreferenceList.Style.Dialog,
+    style: PreferenceList.Style = PreferenceList.Style.Dialog(),
     // listStyle
     value: MutableState<T>,
     items: List<T>,
@@ -64,10 +66,13 @@ fun <T> PreferenceScope.PreferenceList(
     icon: (@Composable () -> Unit)? = null,
     itemStyle: PreferenceItemStyle = LocalPreferenceSettings.current.style.defaultItemStyle,
     itemSetup: PreferenceItemSetup = PreferenceListDefaults.itemSetup(style),
+    titleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
+    subtitleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
     filterTags: List<String> = emptyList(),
     // Dialog
     dialog: @Composable (state: DialogState) -> Unit = { dialogState ->
         PreferenceListDefaults.dialog(
+            style,
             dialogState,
             value.value,
             { value.value = it },
@@ -84,7 +89,9 @@ fun <T> PreferenceScope.PreferenceList(
             }
         )
     }
-) {
+)
+/* --8<-- [end: constructor] */
+{
     PreferenceList(
         style = style,
         value = value.value,
@@ -99,11 +106,14 @@ fun <T> PreferenceScope.PreferenceList(
         icon = icon,
         itemStyle = itemStyle,
         itemSetup = itemSetup,
+        titleRenderer = titleRenderer,
+        subtitleRenderer = subtitleRenderer,
         filterTags = filterTags,
         dialog = dialog
     )
 }
 
+/* --8<-- [start: constructor2] */
 /**
  * A list preference item - this item provides a list dialog or a dropdown to change this preference
  *
@@ -120,7 +130,7 @@ fun <T> PreferenceScope.PreferenceList(
  */
 @Composable
 fun <T> PreferenceScope.PreferenceList(
-    style: PreferenceList.Style = PreferenceList.Style.Dialog,
+    style: PreferenceList.Style = PreferenceList.Style.Dialog(),
     // Special
     value: T,
     onValueChange: (value: T) -> Unit,
@@ -135,10 +145,13 @@ fun <T> PreferenceScope.PreferenceList(
     icon: (@Composable () -> Unit)? = null,
     itemStyle: PreferenceItemStyle = LocalPreferenceSettings.current.style.defaultItemStyle,
     itemSetup: PreferenceItemSetup = PreferenceListDefaults.itemSetup(style),
+    titleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
+    subtitleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
     filterTags: List<String> = emptyList(),
     // Dialog
     dialog: @Composable (state: DialogState) -> Unit = { dialogState ->
         PreferenceListDefaults.dialog(
+            style,
             dialogState,
             value,
             onValueChange,
@@ -149,9 +162,11 @@ fun <T> PreferenceScope.PreferenceList(
             icon
         )
     }
-) {
+)
+/* --8<-- [end: constructor2] */
+{
     when (style) {
-        PreferenceList.Style.Dialog -> {
+        is PreferenceList.Style.Dialog -> {
             BasePreferenceDialog(
                 dialogState = rememberDialogState(),
                 dialog = dialog,
@@ -162,6 +177,8 @@ fun <T> PreferenceScope.PreferenceList(
                 subtitle = subtitle,
                 icon = icon,
                 itemStyle = itemStyle,
+                titleRenderer = titleRenderer,
+                subtitleRenderer = subtitleRenderer,
                 filterTags = filterTags
             ) {
                 ContentDialogMode(value, itemSetup, itemIconProvider, itemTextProvider)
@@ -178,6 +195,8 @@ fun <T> PreferenceScope.PreferenceList(
                 subtitle = subtitle,
                 icon = icon,
                 itemStyle = itemStyle,
+                titleRenderer = titleRenderer,
+                subtitleRenderer = subtitleRenderer,
                 filterTags = filterTags,
                 onClick = {
                     if (!expanded.value)
@@ -205,6 +224,8 @@ fun <T> PreferenceScope.PreferenceList(
                 subtitle = subtitle,
                 icon = icon,
                 itemStyle = itemStyle,
+                titleRenderer = titleRenderer,
+                subtitleRenderer = subtitleRenderer,
                 filterTags = filterTags,
                 onClick = null
             ) {
@@ -336,8 +357,12 @@ private fun <T> ColumnScope.ContentDialogSegmentedButtons(
 
 @Stable
 object PreferenceList {
-    enum class Style {
-        Dialog, Spinner, SegmentedButtons
+    sealed class Style {
+        class Dialog(
+            val closeOnItemClick: Boolean = false
+        ) : Style()
+        data object Spinner : Style()
+        data object SegmentedButtons : Style()
     }
 }
 
@@ -347,7 +372,7 @@ object PreferenceListDefaults {
     @Composable
     fun itemSetup(style: PreferenceList.Style) : PreferenceItemSetup {
         return when (style) {
-            PreferenceList.Style.Dialog,
+            is PreferenceList.Style.Dialog,
             PreferenceList.Style.Spinner -> PreferenceItemSetup()
             PreferenceList.Style.SegmentedButtons -> PreferenceItemSetup(
                 ignoreForceNoIconInset = true,
@@ -359,6 +384,7 @@ object PreferenceListDefaults {
 
     @Composable
     fun <T> dialog(
+        style: PreferenceList.Style,
         dialogState: DialogState,
         value: T,
         onValueChange: (value: T) -> Unit,
@@ -369,13 +395,16 @@ object PreferenceListDefaults {
         icon: (@Composable () -> Unit)? = null,
         filter: DialogList.Filter<T>? = null
     ) {
+        val selected = remember { mutableStateOf(items.indexOf(value).takeIf { it >= 0 }) }
         DialogList(
             state = dialogState,
             items = items,
             itemIdProvider = { items.indexOf(it) },
-            selectionMode = DialogList.SelectionMode.SingleClickAndClose {
-                onValueChange(it)
-            },
+            selectionMode = DialogList.SelectionMode.SingleSelect(
+                selected = selected,
+                selectOnRadioButtonClickOnly = false,
+                closeOnSelect = style is PreferenceList.Style.Dialog && style.closeOnItemClick
+            ),
             itemContents = DialogList.ItemDefaultContent(
                 text = itemTextProvider,
                 icon = itemIconProvider
@@ -385,7 +414,8 @@ object PreferenceListDefaults {
             filter = filter
         ) {
             if (it.isPositiveButton) {
-                onValueChange(value)
+                val newValue = selected.value?.let { items[it] } ?: value
+                onValueChange(newValue)
             }
         }
     }

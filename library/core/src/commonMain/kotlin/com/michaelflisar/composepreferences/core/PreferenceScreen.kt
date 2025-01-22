@@ -2,28 +2,23 @@ package com.michaelflisar.composepreferences.core
 
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.State
-import androidx.compose.runtime.derivedStateOf
-import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.snapshots.SnapshotStateList
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Modifier
-import com.michaelflisar.composepreferences.core.filter.LocalPreferenceFilter
 import com.michaelflisar.composepreferences.core.classes.LocalPreferenceSettings
 import com.michaelflisar.composepreferences.core.classes.PreferenceSettings
 import com.michaelflisar.composepreferences.core.classes.PreferenceSettingsDefaults
 import com.michaelflisar.composepreferences.core.classes.PreferenceState
 import com.michaelflisar.composepreferences.core.classes.rememberPreferenceState
+import com.michaelflisar.composepreferences.core.filter.LocalPreferenceFilter
 import com.michaelflisar.composepreferences.core.filter.PreferenceFilter
 import com.michaelflisar.composepreferences.core.internal.LocalParent
 import com.michaelflisar.composepreferences.core.internal.LocalState
@@ -31,6 +26,7 @@ import com.michaelflisar.composepreferences.core.internal.PreferenceItemState
 import com.michaelflisar.composepreferences.core.scopes.PreferenceRootScope
 import com.michaelflisar.composepreferences.core.scopes.PreferenceRootScopeInstance
 
+/* --8<-- [start: constructor] */
 /**
  * the **root** screen holding preference items
  *
@@ -48,15 +44,11 @@ fun PreferenceScreen(
     filter: PreferenceFilter? = null,
     state: PreferenceState = rememberPreferenceState(),
     content: @Composable PreferenceRootScope.() -> Unit
-) {
+)
+/* --8<-- [end: constructor] */
+{
     val children = remember { mutableStateOf<List<PreferenceItemState.Item>>(emptyList()) }
     val root = remember { PreferenceItemState.Root(children) }
-
-    LaunchedEffect(root.getChildren(true).map { it.visible.value }) {
-        val list = root.getChildren(true)
-        state.items.value =
-            list.map { PreferenceState.Item(it.id, it.getLevel(), it.type, it.visible.value) }
-    }
 
     BackHandler(state.openedGroups.size > 0) {
         //println("BACK - state.openedGroups = ${state.openedGroups.size}")
@@ -64,7 +56,16 @@ fun PreferenceScreen(
         state.openedGroups.removeAt(state.openedGroups.lastIndex)
     }
 
-    val scrollStates = rememberScrollStates()
+    val scrollStates = rememberSaveable(saver = listSaver(
+        save = { it.toList() },
+        restore = { it.toMutableStateList() }
+    )) { listOf(0).toMutableStateList() }
+    val scrollStateToUpdate = rememberSaveable { mutableStateOf<Int?>(null) }
+    val scrollState = remember { mutableStateOf(ScrollState(0)) }
+    LaunchedEffect(state.openedGroups.size) {
+        scrollStateToUpdate.value = null
+        scrollState.value.animateScrollTo(0)
+    }
 
     CompositionLocalProvider(
         LocalPreferenceSettings provides settings,
@@ -72,29 +73,48 @@ fun PreferenceScreen(
         LocalParent provides root,
         LocalState provides state
     ) {
-        val scrollState: State<ScrollState> = if (Test.useScrollStateRestoration) {
-            remember(state.openedGroups.size) {
-                derivedStateOf {
-                    while (scrollStates.size > state.openedGroups.size + 1) {
+        LaunchedEffect(
+            root.getChildren(true).map { it.visible.value }
+        ) {
+            val list = root.getChildren(true)
+
+            // whenever all visible items have finished their animation
+            snapshotFlow {
+                list.filter { it.visible.value }
+                    .map { it.visibleTransitionState.isIdle && it.visibleTransitionState.targetState }
+            }.collect {
+                //if (it.all { it }) {
+                // whenever items change because of the animation we try to restore the scroll state...
+                // this gives us a quite good result
+                var lastOffset = scrollStates.getOrNull(state.openedGroups.size)
+                if (lastOffset != null) {
+                    scrollState.value.animateScrollTo(lastOffset)
+                }
+                if (it.all { it }) {
+                    // just to make sure, maybe something leads to opening levels faster than this is executed...
+                    // => we make sure scrollstate for all but the current level exists
+                    while (scrollStates.lastIndex < state.openedGroups.size) {
+                        scrollStates.add(0)
+                    }
+                    if (lastOffset == null) {
+                        lastOffset = scrollState.value.value
+                        scrollStates.add(lastOffset)
+                    }
+                    while (scrollStates.lastIndex > state.openedGroups.size) {
                         scrollStates.removeAt(scrollStates.lastIndex)
                     }
-                    while (scrollStates.size < state.openedGroups.size + 1) {
-                        //println("scroll state ADDED")
-                        scrollStates.add(ScrollState(0))
-                    }
-                    scrollStates.last()
+                    scrollStateToUpdate.value = state.openedGroups.size
+                    //println("scroll state reset - level: ${state.openedGroups.size} | items: ${it.size} | scrollstate: ${scrollState.value} - ${scrollState.value.value}")
                 }
             }
-        } else {
-            remember { mutableStateOf(ScrollState(0)) }
         }
 
-        LaunchedEffect(scrollState) {
-            val value = scrollState.value
-            //println("scroll - value = $value | scrollState = $scrollState")
-        }
-        LaunchedEffect(scrollState.value) {
-            //println("scrolled to ${scrollState.value} | scrollState = $scrollState")
+        LaunchedEffect(scrollState.value.value) {
+            val index = scrollStateToUpdate.value
+            //println("scrolled to ${scrollState.value.value} | index = $index")
+            if (index != null) {
+                scrollStates[index] = scrollState.value.value
+            }
         }
 
         Column(
@@ -107,15 +127,5 @@ fun PreferenceScreen(
         ) {
             PreferenceRootScopeInstance.content()
         }
-    }
-}
-
-@Composable
-private fun rememberScrollStates(): SnapshotStateList<ScrollState> {
-    return rememberSaveable(saver = listSaver(
-        save = { it.toList().map { it.value } },
-        restore = { it.map { ScrollState(it) }.toMutableStateList() }
-    )) {
-        mutableStateListOf()
     }
 }

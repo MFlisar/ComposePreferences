@@ -4,10 +4,9 @@ import android.content.res.Configuration
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.michaelflisar.composepreferences.core.PreferenceSectionHeader
+import com.michaelflisar.composepreferences.core.PreferenceSection
 import com.michaelflisar.composepreferences.core.preview.PreviewPreference
 
 @Preview
@@ -15,7 +14,7 @@ import com.michaelflisar.composepreferences.core.preview.PreviewPreference
 @Composable
 private fun PreviewPreferenceSectionHeader() {
     PreviewPreference {
-        PreferenceSectionHeader(
+        PreferenceSection(
             title = "Section Header"
         ) {}
     }
@@ -26,7 +25,7 @@ private fun PreviewPreferenceSectionHeader() {
 @Composable
 private fun PreviewPreferenceSectionHeader2() {
     PreviewPreference {
-        PreferenceSectionHeader(
+        PreferenceSection(
             icon = { Icon(Icons.Default.Info, null) },
             title = "Section Header",
             subtitle = "This is a description"

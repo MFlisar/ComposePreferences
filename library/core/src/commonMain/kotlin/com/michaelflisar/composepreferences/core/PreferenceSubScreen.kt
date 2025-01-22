@@ -3,9 +3,11 @@ package com.michaelflisar.composepreferences.core
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
 import com.michaelflisar.composepreferences.core.classes.Dependency
 import com.michaelflisar.composepreferences.core.classes.LocalPreferenceSettings
@@ -23,6 +25,15 @@ import com.michaelflisar.composepreferences.core.scopes.PreferenceGroupScopeInst
 import com.michaelflisar.composepreferences.core.scopes.PreferenceScope
 import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
 
+/* --8<-- [start: constructor] */
+/**
+ * A group preference item
+ *
+ * &nbsp;
+ *
+ * **Basic Parameters:** all params not described here are derived from [com.michaelflisar.composepreferences.core.composables.BasePreference], check it out for more details
+ *
+ */
 @Composable
 fun PreferenceScope.PreferenceSubScreen(
     // Special
@@ -33,11 +44,15 @@ fun PreferenceScope.PreferenceSubScreen(
     subtitle: String? = null,
     icon: (@Composable () -> Unit)? = null,
     itemStyle: PreferenceItemStyle = LocalPreferenceSettings.current.style.defaultGroupItemStyle,
+    titleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
+    subtitleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
     filterTags: List<String> = emptyList(),
     content: @Composable PreferenceGroupScope.() -> Unit
-) {
+)
+/* --8<-- [end: constructor] */
+{
     val tags = filterTags + listOfNotNull(title, subtitle)
-    val item = rememberPreferenceItemState(PreferenceType.Group, visible, tags)
+    val item = rememberPreferenceItemState(PreferenceType.Group, visible, tags, false)
 
     LaunchedEffect(filterTags, item.getChildren(true).map { it.tags }) {
         item.allTags.value = tags + item.getChildren(true).map { it.tags }.flatten()
@@ -54,9 +69,9 @@ fun PreferenceScope.PreferenceSubScreen(
         enabled = enabled,
         visible = visible,
         title = {
-            SearchText(title)
+            SearchText(title, titleRenderer)
         },
-        subtitle = subtitle?.let { { SearchText((it)) } },
+        subtitle = subtitle?.let { { SearchText(it, subtitleRenderer) } },
         icon = icon,
         itemStyle = itemStyle,
         onClick = {

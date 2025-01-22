@@ -1,12 +1,26 @@
 package com.michaelflisar.composepreferences.core.composables
 
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Info
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.michaelflisar.composepreferences.core.classes.Dependency
 import com.michaelflisar.composepreferences.core.classes.LocalPreferenceSettings
 import com.michaelflisar.composepreferences.core.classes.PreferenceType
@@ -50,19 +64,21 @@ fun PreferenceScope.BasePreference(
     onLongClick: (() -> Unit)? = null,
     itemStyle: PreferenceItemStyle = LocalPreferenceSettings.current.style.defaultItemStyle,
     itemSetup: PreferenceItemSetup = PreferenceItemSetup(),
+    titleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
+    subtitleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
     filterTags: List<String> = emptyList(),
     content: (@Composable ColumnScope.() -> Unit)? = null
 ) {
     val tags = filterTags + listOfNotNull(title, subtitle)
-    val item = rememberPreferenceItemState(PreferenceType.Item, visible, tags)
+    val item = rememberPreferenceItemState(PreferenceType.Item, visible, tags, itemSetup.excludeFromSectionStyle)
 
     BasePreference(
         modifier = modifier,
         itemSetup = itemSetup,
         enabled = enabled,
         visible = visible,
-        title = title.takeIf { !itemSetup.hideTitle }?.let { { SearchText(title) } },
-        subtitle = subtitle?.let { { SearchText(subtitle) } },
+        title = title.takeIf { !itemSetup.hideTitle }?.let { { SearchText(title, titleRenderer) } },
+        subtitle = subtitle?.let { { SearchText(subtitle, subtitleRenderer) } },
         icon = icon,
         onClick = onClick,
         onLongClick = onLongClick,
@@ -86,6 +102,8 @@ internal fun PreferenceScope.BasePreference(
     onLongClick: (() -> Unit)? = null,
     itemStyle: PreferenceItemStyle = LocalPreferenceSettings.current.style.defaultItemStyle,
     itemSetup: PreferenceItemSetup = PreferenceItemSetup(),
+    titleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
+    subtitleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
     filterTags: List<String> = emptyList(),
     content: (@Composable ColumnScope.() -> Unit)? = null
 ) {

@@ -24,7 +24,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.michaelflisar.composepreferences.core.PreferenceInfo
 import com.michaelflisar.composepreferences.core.PreferenceScreen
-import com.michaelflisar.composepreferences.core.PreferenceSectionHeader
+import com.michaelflisar.composepreferences.core.PreferenceSection
 import com.michaelflisar.composepreferences.core.PreferenceSubScreen
 import com.michaelflisar.composepreferences.core.classes.PreferenceSettingsDefaults
 import com.michaelflisar.composepreferences.core.classes.PreferenceState
@@ -42,8 +42,8 @@ import com.michaelflisar.composepreferences.screen.list.PreferenceList
 import com.michaelflisar.composepreferences.screen.list.PreferenceListMulti
 import com.michaelflisar.composepreferences.screen.number.PreferenceNumber
 import com.michaelflisar.composepreferences.screen.time.PreferenceTime
-import com.michaelflisar.toolbox.composables.MyCheckbox
-import com.michaelflisar.toolbox.composables.MyDropdown
+import com.michaelflisar.toolbox.components.MyCheckbox
+import com.michaelflisar.toolbox.components.MyDropdown
 import kotlinx.coroutines.launch
 import kotlinx.datetime.DayOfWeek
 import kotlinx.datetime.toKotlinLocalDate
@@ -61,16 +61,20 @@ fun PrefScreenDemoFilter(
         style = style
     )
 
+    /* --8<-- [start: filter-modes] */
     val filterModes = listOf(
         DefaultPreferenceFilter.Mode.ContainsText,
         DefaultPreferenceFilter.Mode.AllWords(false),
         DefaultPreferenceFilter.Mode.AnyWord(false)
     )
+    /* --8<-- [end: filter-modes] */
 
+    /* --8<-- [start: filter] */
     val filter = rememberDefaultPreferenceFilter(
         highlightSpan = SpanStyle(color = Color.Red),
         mode = filterModes[0]
     )
+    /* --8<-- [end: filter] */
 
     val scope = rememberCoroutineScope()
 
@@ -78,6 +82,7 @@ fun PrefScreenDemoFilter(
         verticalArrangement = Arrangement.spacedBy(8.dp),
         modifier = Modifier.fillMaxSize()
     ) {
+        /* --8<-- [start: filter-input] */
         OutlinedTextField(
             modifier = Modifier
                 .fillMaxWidth()
@@ -96,6 +101,8 @@ fun PrefScreenDemoFilter(
                 }
             } else null
         )
+        /* --8<-- [end: filter-input] */
+        /* --8<-- [start: filter-flat] */
         MyCheckbox(
             modifier = Modifier
                 .fillMaxWidth()
@@ -103,6 +110,7 @@ fun PrefScreenDemoFilter(
             title = "Flat Results?",
             checked = filter.flattenResult
         )
+        /* --8<-- [end: filter-flat] */
         MyDropdown<DefaultPreferenceFilter.Mode>(
             modifier = Modifier
                 .fillMaxWidth()
@@ -132,12 +140,15 @@ fun PrefScreenDemoFilter(
         val list2 = remember { mutableStateOf(listItems.first()) }
         val listMulti1 = remember { mutableStateOf(emptyList<String>()) }
 
+        /* --8<-- [start: filter2] */
         PreferenceScreen(
             modifier = Modifier.weight(1f).fillMaxWidth(),
             settings = settings,
             filter = filter,
             state = state
-        ) {
+        )
+        /* --8<-- [end: filter2] */
+        {
             if (state.countCurrentLevel() > 0) {
                 Row(
                     modifier = Modifier.padding(horizontal = 16.dp).fillMaxWidth(),
@@ -169,7 +180,7 @@ fun PrefScreenDemoFilter(
                 }
             }
 
-            PreferenceSectionHeader(
+            PreferenceSection(
                 title = "Section 1-3"
             ) {
 
@@ -178,7 +189,7 @@ fun PrefScreenDemoFilter(
                     PreferenceSubScreen(title = "Pref 1.2 - NESTING") {
                         PreferenceInfo(title = "Pref 1.2.1")
                         PreferenceInfo(title = "Pref 1.2.2")
-                        PreferenceSectionHeader(title = "Region 1.2.3") {
+                        PreferenceSection(title = "Region 1.2.3") {
                             PreferenceInfo(title = "Pref 1.2.3.1")
                             PreferenceInfo(title = "Pref 1.2.3.2")
                             PreferenceInfo(title = "Pref 1.2.3.3")
@@ -189,12 +200,12 @@ fun PrefScreenDemoFilter(
                         }
                         PreferenceInfo(title = "Pref 1.2.5")
                     }
-                    PreferenceSectionHeader(title = "Pref 1.3 - Section") {
+                    PreferenceSection(title = "Pref 1.3 - Section") {
                         PreferenceInfo(title = "Pref 1.3.1")
                         PreferenceInfo(title = "Pref 1.3.2")
                         PreferenceInfo(title = "Pref 1.3.3")
                     }
-                    PreferenceSectionHeader(title = "Pref 1.4 - Section2") {
+                    PreferenceSection(title = "Pref 1.4 - Section2") {
                         PreferenceInfo(title = "Pref 1.4.1")
                         PreferenceInfo(title = "Pref 1.4.2")
                         PreferenceInfo(title = "Pref 1.4.3")
@@ -219,7 +230,7 @@ fun PrefScreenDemoFilter(
                     })
                 }
             }
-            PreferenceSectionHeader(
+            PreferenceSection(
                 title = "Section 4-6"
             ) {
                 PreferenceSubScreen(title = "Pref 4 - Colors") {
@@ -269,7 +280,7 @@ fun PrefScreenDemoFilter(
                     )
                 }
             }
-            PreferenceSectionHeader(
+            PreferenceSection(
                 title = "Section 7+"
             ) {
                 PreferenceSubScreen(title = "Pref 7 - Picker") {

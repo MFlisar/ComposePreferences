@@ -2,25 +2,28 @@ package com.michaelflisar.composepreferences.core.helper
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.AnimatedVisibilityScope
+import androidx.compose.animation.core.MutableTransitionState
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkVertically
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.michaelflisar.composepreferences.core.internal.PreferenceItemState
 
 @Composable
 internal fun AnimatedPreference(
-    visible: Boolean,
+    itemState: PreferenceItemState,
     animate: Boolean,
     modifier: Modifier = Modifier,
     content: @Composable () -> Unit
 ) {
     if (!animate) {
-        if (visible) {
+        if (itemState.visible.value) {
             content()
         }
     } else {
@@ -39,13 +42,12 @@ internal fun AnimatedPreference(
                 shrinkTowards = Alignment.Top,
                 animationSpec = tween()
             ) + fadeOut(
-                // Fade in with the initial alpha of 0.3f.
                 animationSpec = tween()
             )
         }
 
         AnimatedVisibility(
-            visible = visible,
+            visibleState = itemState.visibleTransitionState,
             modifier = modifier,
             enter = enterTransition,
             exit = exitTransition

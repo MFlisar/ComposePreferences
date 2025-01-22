@@ -1,5 +1,6 @@
 package com.michaelflisar.composepreferences.demo.demos
 
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.TextSnippet
 import androidx.compose.material.icons.filled.Check
@@ -8,8 +9,10 @@ import androidx.compose.material.icons.filled.Group
 import androidx.compose.material.icons.filled.Numbers
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import com.michaelflisar.composepreferences.core.PreferenceScreen
-import com.michaelflisar.composepreferences.core.PreferenceSectionHeader
+import com.michaelflisar.composepreferences.core.PreferenceSection
 import com.michaelflisar.composepreferences.core.PreferenceSubScreen
 import com.michaelflisar.composepreferences.core.styles.PreferenceStyleDefaults
 import com.michaelflisar.composepreferences.demo.classes.Demo2Prefs
@@ -27,7 +30,7 @@ fun PrefScreenDemoKotPreferences1() {
 
     PreferenceScreen(
         settings = settings,
-        //modifier = Modifier.padding(16.dp)
+        modifier = Modifier.padding(vertical = 16.dp)
     ) {
 
         // -----------
@@ -42,7 +45,7 @@ fun PrefScreenDemoKotPreferences1() {
             icon = { Icon(Icons.Default.Group, null) },
             itemStyle = PreferenceStyleDefaults.primaryContainer()
         )
-        PreferenceSectionHeader(
+        PreferenceSection(
             title = "Master 1",
             enabled = Demo2Prefs.master1.asDependency { it }
         ) {
@@ -82,7 +85,7 @@ fun PrefScreenDemoKotPreferences1() {
             icon = { Icon(Icons.Default.Group, null) },
             itemStyle = PreferenceStyleDefaults.primaryContainer()
         )
-        PreferenceSectionHeader(
+        PreferenceSection(
             title = "Master 2",
             visible = Demo2Prefs.master2.asDependency { it }
         ) {
@@ -115,26 +118,39 @@ fun PrefScreenDemoKotPreferences1() {
         // Sub Screen
         // -----------
 
-        PreferenceSubScreen(
+        PreferenceSection(
             title = "Sub Screen",
-            subtitle = "Opens a sub screen...",
-            icon = { Icon(Icons.Default.DoubleArrow, null) }
+            visible = Demo2Prefs.master2.asDependency { it }
         ) {
-            PreferenceInputNumber(
-                value = Demo2Prefs.intValue.asMutableState(),
-                title = "Int Value",
-                icon = { Icon(Icons.Default.Numbers, null) }
-            )
             PreferenceSubScreen(
-                title = "Sub Sub Screen",
-                subtitle = "Opens a sub sub screen...",
+                title = "Sub Screen",
+                subtitle = "Opens a sub screen...",
                 icon = { Icon(Icons.Default.DoubleArrow, null) }
             ) {
-                PreferenceInputNumber(
-                    value = Demo2Prefs.intValue.asMutableState(),
-                    title = "Int Value",
-                    icon = { Icon(Icons.Default.Numbers, null) }
-                )
+                PreferenceSection(
+                    title = "Sub Screen"
+                ) {
+                    PreferenceInputNumber(
+                        value = Demo2Prefs.intValue.asMutableState(),
+                        title = "Int Value",
+                        icon = { Icon(Icons.Default.Numbers, null) }
+                    )
+                    PreferenceSubScreen(
+                        title = "Sub Sub Screen",
+                        subtitle = "Opens a sub sub screen...",
+                        icon = { Icon(Icons.Default.DoubleArrow, null) }
+                    ) {
+                        PreferenceSection(
+                            title = "Sub Sub Screen"
+                        ) {
+                            PreferenceInputNumber(
+                                value = Demo2Prefs.intValue.asMutableState(),
+                                title = "Int Value",
+                                icon = { Icon(Icons.Default.Numbers, null) }
+                            )
+                        }
+                    }
+                }
             }
         }
     }
