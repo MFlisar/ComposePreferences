@@ -26,10 +26,13 @@ You just have to define a filter mode...
 
 #### Filter
 
-Afterwards simple adjust the `filter.search` state and the screen will automatically update the list of preferences based on your filter settings.
+Afterwards simple adjust the `filter.search` state in your `TextField` or wherever you want and the screen will automatically update the list of preferences based on your filter settings.
 
 ```kotlin
---8<-- "../demo/desktop/src/jvmMain/kotlin/com/michaelflisar/composepreferences/demo/PrefScreenDemoFilter.kt:filter-input"
+TextField(
+    value = filter.search.value,
+    onValueChange = { filter.search.value = it }
+)
 ```
 
 #### Other customisations
