@@ -95,7 +95,8 @@ fun PreferenceScope.PreferenceBool(
 )
 /* --8<-- [end: constructor] */
 {
-    val onClick = if (LocalPreferenceSettings.current.toggleBooleanOnItemClick) {
+    val stateEnabled = enabled.state()
+    val onClick = if (stateEnabled.value && LocalPreferenceSettings.current.toggleBooleanOnItemClick) {
         {
             val updated = !value
             onValueChange(updated)
@@ -120,13 +121,13 @@ fun PreferenceScope.PreferenceBool(
             PreferenceBool.Style.Checkbox -> {
                 Checkbox(checked = value, onCheckedChange = {
                     onValueChange(it)
-                })
+                }, enabled = stateEnabled.value)
             }
 
             PreferenceBool.Style.Switch -> {
                 Switch(checked = value, onCheckedChange = {
                     onValueChange(it)
-                })
+                }, enabled = stateEnabled.value)
             }
         }
     }

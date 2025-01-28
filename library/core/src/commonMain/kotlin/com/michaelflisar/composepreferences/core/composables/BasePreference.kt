@@ -102,8 +102,6 @@ internal fun PreferenceScope.BasePreference(
     onLongClick: (() -> Unit)? = null,
     itemStyle: PreferenceItemStyle = LocalPreferenceSettings.current.style.defaultItemStyle,
     itemSetup: PreferenceItemSetup = PreferenceItemSetup(),
-    titleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
-    subtitleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
     filterTags: List<String> = emptyList(),
     content: (@Composable ColumnScope.() -> Unit)? = null
 ) {

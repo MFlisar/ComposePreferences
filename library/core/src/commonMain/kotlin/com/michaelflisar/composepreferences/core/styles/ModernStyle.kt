@@ -35,6 +35,7 @@ class ModernStyle internal constructor(
         val DEFAULT_ITEM_SPACING = 4.dp
         val DEFAULT_CORNER_SIZE = 8.dp
 
+        /* --8<-- [start: create] */
         /*
         * Creates a new ModernStyle instance with the given parameters.
         *
@@ -71,7 +72,9 @@ class ModernStyle internal constructor(
             sectionTitleTextStyle: TextStyle = MaterialTheme.typography.labelLarge,
             sectionSubtitleTextStyle: TextStyle = MaterialTheme.typography.bodyMedium,
             spacing: Dp = DEFAULT_ITEM_SPACING
-        ) : ModernStyle {
+        ) : ModernStyle
+        /* --8<-- [end: create] */
+        {
 
             val shape = RoundedCornerShape(cornerSize)
 
@@ -180,6 +183,7 @@ class ModernStyle internal constructor(
         itemStyle: PreferenceItemStyle
     ): PreferenceItemStyleData {
 
+        /*
         val isLastVisibleItem = remember {
             derivedStateOf {
 
@@ -205,7 +209,10 @@ class ModernStyle internal constructor(
                 last
             }
         }
+         */
+
         val isInSection = item.parent is PreferenceItemState.Item && item.parent.type == PreferenceType.Section
+        //println("3 - item = ${item.tags} | isInSection = $isInSection | isLastVisibleItem = ${isLastVisibleItem.value}")
 
         val style =
             if (isInSection) {
@@ -249,8 +256,11 @@ class ModernStyle internal constructor(
                 itemStyle
             } else itemStyle
 
-        val spacerBelow = !isLastVisibleItem.value
-        return PreferenceItemStyleData(style, if (spacerBelow) spacing else 0.dp)
+        //val spacerBelow = !isLastVisibleItem.value
+        //println("4 - item = ${item.tags} | spacerBelow = $spacerBelow")
+
+        return PreferenceItemStyleData(style, spacing)//if (spacerBelow) spacing else 0.dp)
+
     }
 }
 

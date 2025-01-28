@@ -8,6 +8,10 @@ The general usage is already described in the usage region. In the following I s
 
 ## PreferenceInfo
 
+|                                              |                                                  |
+|----------------------------------------------|--------------------------------------------------|
+| ![Screenshot](../screenshots/previews/bool1.jpg) | ![Screenshot](../screenshots/previews/bool2.jpg) |
+
 This shows a simple information preference.
 
 ```kotlin
@@ -24,6 +28,10 @@ This shows a simple divider preference.
 
 ## PreferenceSection
 
+|                                                     |                                                     |
+|-----------------------------------------------------|-----------------------------------------------------|
+| ![Screenshot](../screenshots/previews/section1.jpg) | ![Screenshot](../screenshots/previews/section2.jpg) |
+
 This allows you to wrap a group of preferences in a section. Depending on the style this may also change the visual appearance of the preferences.
 
 === "Inside a `PreferenceRootScope`"
@@ -39,6 +47,10 @@ This allows you to wrap a group of preferences in a section. Depending on the st
     ```
 
 ## PreferenceSubScreen
+
+|                                                       |
+|-------------------------------------------------------|
+| ![Screenshot](../screenshots/previews/subscreen1.jpg) |
 
 This allows you to wrap a group of preferences in a sub screen. This means, that all children will only be visible if the user clicks on the preference. This will then open the sub screen and show it's content.
 

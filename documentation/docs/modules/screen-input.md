@@ -2,6 +2,11 @@
 icon: material/puzzle
 ---
 
+|                                                          |                                                         |
+|----------------------------------------------------------|---------------------------------------------------------|
+| ![Screenshot](../screenshots/previews/input-text1.jpg)   | ![Screenshot](../screenshots/previews/input-number1.jpg) |
+| ![Screenshot](../screenshots/previews/input-number2.jpg) | |
+
 This shows a simple input preference. It allows you to input a `string` or a `numeric` value.
 
 Check out the composable and it's documentation in the code snipplet below.
@@ -50,6 +55,7 @@ Check out the composable and it's documentation in the code snipplet below.
 
 #### Screenshots
 
-|                                              |                                              |
-|----------------------------------------------|----------------------------------------------|
-| ![Screenshot](../screenshots/input/input1.jpg) | ![Screenshot](../screenshots/input/input2.jpg) |
+|                                                       |                                                      |
+|-------------------------------------------------------|------------------------------------------------------|
+| ![Screenshot](../screenshots/input/input default.jpg) | ![Screenshot](../screenshots/input/input modern.jpg) |
+| ![Screenshot](../screenshots/input/input dialog.jpg)  | |

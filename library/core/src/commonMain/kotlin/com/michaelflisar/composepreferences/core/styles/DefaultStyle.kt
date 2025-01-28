@@ -3,6 +3,8 @@ package com.michaelflisar.composepreferences.core.styles
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.TextStyle
@@ -22,6 +24,7 @@ class DefaultStyle internal constructor(
 
     companion object {
 
+        /* --8<-- [start: create] */
         /*
          * Creates a new DefaultStyle instance with the given parameters.
          *
@@ -56,7 +59,9 @@ class DefaultStyle internal constructor(
             sectionTitleTextStyle: TextStyle = MaterialTheme.typography.labelLarge,
             sectionSubtitleTextStyle: TextStyle = MaterialTheme.typography.bodyMedium,
             spacing: Dp = 0.dp
-        ): DefaultStyle {
+        ) : DefaultStyle
+        /* --8<-- [end: create] */
+        {
             val itemStyle = PreferenceStyleDefaults.item(
                 colors = PreferenceItemDefaults.colors(
                     backgroundColor = backgroundColor,

@@ -26,6 +26,8 @@ import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetup
 import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetupDefaults
 import com.michaelflisar.composepreferences.core.scopes.PreferenceScope
 import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
+import kotlin.math.roundToInt
+import kotlin.math.roundToLong
 
 /* --8<-- [start: constructor] */
 /**
@@ -63,11 +65,20 @@ fun <T : Number> PreferenceScope.PreferenceNumber(
     filterTags: List<String> = emptyList(),
     // Dialog
     dialog: @Composable (state: DialogState) -> Unit = { dialogState ->
-        PreferenceNumberDefaults.dialog(dialogState, value.value, { value.value = it }, min, max, stepSize, formatter, title, icon)
+        PreferenceNumberDefaults.dialog(
+            dialogState,
+            value.value,
+            { value.value = it },
+            min,
+            max,
+            stepSize,
+            formatter,
+            title,
+            icon
+        )
     }
 )
-/* --8<-- [end: constructor] */
-{
+        /* --8<-- [end: constructor] */ {
     PreferenceNumber(
         style = style,
         value = value.value,
@@ -128,11 +139,20 @@ fun <T : Number> PreferenceScope.PreferenceNumber(
     filterTags: List<String> = emptyList(),
     // Dialog
     dialog: @Composable (state: DialogState) -> Unit = { dialogState ->
-        PreferenceNumberDefaults.dialog(dialogState, value, onValueChange, min, max, stepSize, formatter, title, icon)
+        PreferenceNumberDefaults.dialog(
+            dialogState,
+            value,
+            onValueChange,
+            min,
+            max,
+            stepSize,
+            formatter,
+            title,
+            icon
+        )
     }
 )
-/* --8<-- [end: constructor2] */
-{
+        /* --8<-- [end: constructor2] */ {
     when (style) {
         PreferenceNumber.Style.Picker -> {
             BasePreferenceDialog(
@@ -166,14 +186,15 @@ fun <T : Number> PreferenceScope.PreferenceNumber(
                 subtitleRenderer = subtitleRenderer,
                 filterTags = filterTags
             ) {
-                ContentSlider(style, value, onValueChange, min, max, stepSize, formatter)
+                ContentSlider(enabled, style, value, onValueChange, min, max, stepSize, formatter)
             }
         }
     }
 }
 
 @Composable
-private fun <T: Number> ColumnScope.ContentSlider(
+private fun <T : Number> ColumnScope.ContentSlider(
+    enabled: Dependency,
     style: PreferenceNumber.Style.Slider,
     value: T,
     onValueChange: (T) -> Unit,
@@ -182,6 +203,7 @@ private fun <T: Number> ColumnScope.ContentSlider(
     stepSize: T,
     formatter: (T) -> String
 ) {
+    val stateEnabled = enabled.state()
     val colors = if (style.showTicks) {
         SliderDefaults.colors()
     } else {
@@ -193,20 +215,24 @@ private fun <T: Number> ColumnScope.ContentSlider(
 
     Slider(
         value = value.toFloat(),
-        onValueChange = {
-            @Suppress("UNCHECKED_CAST")
-            when (value) {
-                is Int -> onValueChange(it.toInt() as T)
-                is Float -> onValueChange(it as T)
-                is Double -> onValueChange(it.toDouble() as T)
-                is Long -> onValueChange(it.toLong() as T)
-            }
-        },
+        onValueChange = { onValueChange(toT(value, it)) },
         colors = colors,
         valueRange = min.toFloat()..max.toFloat(),
-        steps = ((max.toFloat() - min.toFloat()) / stepSize.toFloat() - 1).toInt()
+        steps = ((max.toFloat() - min.toFloat()) / stepSize.toFloat() - 1).toInt(),
+        enabled = stateEnabled.value
     )
     Text(formatter(value), modifier = Modifier.align(Alignment.CenterHorizontally))
+}
+
+@Suppress("UNCHECKED_CAST")
+private fun <T : Number> toT(value: T, v: Float): T {
+    return when (value) {
+        is Int -> v.roundToInt() as T
+        is Float -> v as T
+        is Double -> v.toDouble() as T
+        is Long -> v.roundToLong() as T
+        else -> throw RuntimeException("Type ${value::class} not supported!")
+    }
 }
 
 @Stable

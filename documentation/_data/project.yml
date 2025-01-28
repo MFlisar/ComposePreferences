@@ -16,36 +16,51 @@ library:
   screenshots: 
     - name: core
       images:
-        - ./screenshots/core/1-root.jpg
-        - ./screenshots/core/2 - infos.jpg
-        - ./screenshots/core/custom1.jpg
-        - ./screenshots/core/custom2.jpg
-        - ./screenshots/core/dependencies1.jpg
-        - ./screenshots/core/dependencies2.jpg
+        - ./screenshots/core/info default.jpg
+        - ./screenshots/core/info modern.jpg
+        - ./screenshots/core/root default.jpg
+        - ./screenshots/core/root modern.jpg
     - name: bool
       images:
-        - ./screenshots/bool/bool.jpg
+        - ./screenshots/bool/bool default.jpg
+        - ./screenshots/bool/bool modern.jpg
     - name: button
       images:
-        - ./screenshots/button/button.jpg
+        - ./screenshots/button/button default.jpg
+        - ./screenshots/button/button modern.jpg
     - name: color
       images:
-        - ./screenshots/color/color.jpg
+        - ./screenshots/color/color default.jpg
+        - ./screenshots/color/color dialog.jpg
+        - ./screenshots/color/color dialog2.jpg
+        - ./screenshots/color/color modern.jpg
     - name: date
       images:
-        - ./screenshots/date/date.jpg
+        - ./screenshots/date/date default.jpg
+        - ./screenshots/date/date dialog.jpg
+        - ./screenshots/date/date modern.jpg
     - name: input
       images:
-        - ./screenshots/input/input.jpg
+        - ./screenshots/input/input default.jpg
+        - ./screenshots/input/input dialog.jpg
+        - ./screenshots/input/input modern.jpg
     - name: list
       images:
-        - ./screenshots/list/list.jpg
+        - ./screenshots/list/list default.jpg
+        - ./screenshots/list/list dialog.jpg
+        - ./screenshots/list/list dialog2.jpg
+        - ./screenshots/list/list dropdown.jpg
+        - ./screenshots/list/list modern.jpg
     - name: number
       images:
-        - ./screenshots/number/number.jpg
+        - ./screenshots/number/number default.jpg
+        - ./screenshots/number/number dialog.jpg
+        - ./screenshots/number/number modern.jpg
     - name: time
       images:
-        - ./screenshots/time/time.jpg
+        - ./screenshots/time/time default.jpg
+        - ./screenshots/time/time dialog.jpg
+        - ./screenshots/time/time modern.jpg
   branch: master
   demo: true
 
@@ -91,7 +106,7 @@ modules:
     dependencies:
       - name: ComposeDialogs
         link: https://github.com/MFlisar/ComposeDialogs
-        version: 2.0.1
+        version: 2.0.2
   - name: kotpreferences
     group: extensions
     description: 
@@ -137,7 +152,7 @@ modules:
     dependencies:
       - name: ComposeDialogs
         link: https://github.com/MFlisar/ComposeDialogs
-        version: 2.0.1
+        version: 2.0.2
   - name: screen-date
     group: modules
     description: provides a date picker preference screen
@@ -150,7 +165,7 @@ modules:
     dependencies:
       - name: ComposeDialogs
         link: https://github.com/MFlisar/ComposeDialogs
-        version: 2.0.1
+        version: 2.0.2
   - name: screen-input
     group: modules
     description: provides a input dialog preference screen
@@ -163,7 +178,7 @@ modules:
     dependencies:
       - name: ComposeDialogs
         link: https://github.com/MFlisar/ComposeDialogs
-        version: 2.0.1
+        version: 2.0.2
   - name: screen-list
     group: modules
     description: provides a list preference screen
@@ -176,7 +191,7 @@ modules:
     dependencies:
       - name: ComposeDialogs
         link: https://github.com/MFlisar/ComposeDialogs
-        version: 2.0.1
+        version: 2.0.2
   - name: screen-number
     group: modules
     description: provides a number picker preference screen
@@ -189,7 +204,7 @@ modules:
     dependencies:
       - name: ComposeDialogs
         link: https://github.com/MFlisar/ComposeDialogs
-        version: 2.0.1
+        version: 2.0.2
   - name: screen-time
     group: modules
     description: provides a time picker preference screen
@@ -202,4 +217,4 @@ modules:
     dependencies:
       - name: ComposeDialogs
         link: https://github.com/MFlisar/ComposeDialogs
-        version: 2.0.1
+        version: 2.0.2

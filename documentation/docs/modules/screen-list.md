@@ -2,6 +2,10 @@
 icon: material/puzzle
 ---
 
+|                                                  |                                                  |
+|--------------------------------------------------|--------------------------------------------------|
+| ![Screenshot](../screenshots/previews/list1.jpg) | ![Screenshot](../screenshots/previews/list2.jpg) |
+
 This shows a simple list preference. It allows to select one or multiple items from a list.
 
 Check out the composable and it's documentation in the code snipplet below.
@@ -50,6 +54,8 @@ Check out the composable and it's documentation in the code snipplet below.
 
 #### Screenshots
 
-|                                              |                                              |
-|----------------------------------------------|----------------------------------------------|
-| ![Screenshot](../screenshots/list/list1.jpg) | ![Screenshot](../screenshots/list/list2.jpg) |
+|                                                      |                                                     |
+|------------------------------------------------------|-----------------------------------------------------|
+| ![Screenshot](../screenshots/list/list default.jpg)  | ![Screenshot](../screenshots/list/list modern.jpg)  |
+| ![Screenshot](../screenshots/list/list dialog.jpg)   | ![Screenshot](../screenshots/list/list dialog2.jpg) |
+| ![Screenshot](../screenshots/list/list dropdown.jpg) |  |

@@ -60,7 +60,7 @@ fun <T> StorageSetting<T>.asDependency(
 /* --8<-- [start: collect] */
 /**
  * TODO:
- *  this uses caching (disabled by default) and a blocking read => not optimal
+ * this uses caching (disabled by default) and a blocking read => not optimal
  * this is needed so that a preference screen does initially already know its visible and enabled states =>
  * otherwise each setting would evaluate this data step by step which does not lead to a visually appealing result...
  *

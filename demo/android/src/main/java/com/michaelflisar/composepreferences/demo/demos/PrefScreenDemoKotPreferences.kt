@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import com.michaelflisar.composepreferences.core.PreferenceScreen
 import com.michaelflisar.composepreferences.core.PreferenceSection
 import com.michaelflisar.composepreferences.core.PreferenceSubScreen
+import com.michaelflisar.composepreferences.core.styles.ModernStyle
 import com.michaelflisar.composepreferences.core.styles.PreferenceStyleDefaults
 import com.michaelflisar.composepreferences.demo.classes.Demo2Prefs
 import com.michaelflisar.composepreferences.demo.classes.DemoPrefs
@@ -30,7 +31,12 @@ fun PrefScreenDemoKotPreferences1() {
 
     PreferenceScreen(
         settings = settings,
-        modifier = Modifier.padding(vertical = 16.dp)
+        modifier = Modifier.padding(
+            vertical = when (settings.style) {
+                is ModernStyle -> 16.dp
+                else -> 0.dp
+            }
+        )
     ) {
 
         // -----------

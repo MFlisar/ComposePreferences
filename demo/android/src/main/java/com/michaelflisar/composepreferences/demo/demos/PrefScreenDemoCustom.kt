@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.sp
 import com.michaelflisar.composepreferences.core.PreferenceScreen
 import com.michaelflisar.composepreferences.core.PreferenceSection
 import com.michaelflisar.composepreferences.core.classes.asDependency
+import com.michaelflisar.composepreferences.core.styles.ModernStyle
 import com.michaelflisar.composepreferences.core.styles.PreferenceStyleDefaults
 import com.michaelflisar.composepreferences.demo.classes.DemoPrefs
 import com.michaelflisar.composepreferences.screen.bool.PreferenceBool
@@ -39,7 +40,12 @@ fun PrefScreenCustomDemo() {
 
     PreferenceScreen(
         settings = settings,
-        modifier = Modifier.padding(vertical = 16.dp)
+        modifier = Modifier.padding(
+            vertical = when (settings.style) {
+                is ModernStyle -> 16.dp
+                else -> 0.dp
+            }
+        )
     ) {
 
         // settings are normally persisted, so you should use a database or preferences

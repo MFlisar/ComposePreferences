@@ -62,6 +62,7 @@ import com.michaelflisar.composepreferences.core.composables.BasePreference
 import com.michaelflisar.composepreferences.core.composables.BasePreferenceContainer
 import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetup
 import com.michaelflisar.composepreferences.core.scopes.PreferenceScope
+import com.michaelflisar.composepreferences.core.styles.ModernStyle
 import com.michaelflisar.composepreferences.core.styles.PreferenceStyleDefaults
 import com.michaelflisar.composepreferences.demo.classes.DemoPrefs
 import com.michaelflisar.composepreferences.demo.classes.LocalDataStore
@@ -100,7 +101,12 @@ fun PrefScreenDemo() {
     PreferenceScreen(
         // optional Preferences for this screen...
         settings = settings,
-        modifier = Modifier.padding(vertical = 16.dp)
+        modifier = Modifier.padding(
+            vertical = when (settings.style) {
+                is ModernStyle -> 16.dp
+                else -> 0.dp
+            }
+        )
     ) {
         PreferenceSection(
             title = "Demos Section 1"

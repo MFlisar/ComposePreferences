@@ -2,6 +2,10 @@
 icon: material/puzzle
 ---
 
+|                                                  |                                                  |
+|--------------------------------------------------|--------------------------------------------------|
+| ![Screenshot](../screenshots/previews/bool1.jpg) | ![Screenshot](../screenshots/previews/bool2.jpg) |
+
 This shows a simple boolean preference. It allows to toggle a boolean value.
 
 Check out the composable and it's documentation in the code snipplet below.
@@ -28,6 +32,6 @@ Check out the composable and it's documentation in the code snipplet below.
 
 #### Screenshots
 
-|                                              |                                              |
-|----------------------------------------------|----------------------------------------------|
-| ![Screenshot](../screenshots/bool/bool1.jpg) | ![Screenshot](../screenshots/bool/bool2.jpg) |
+|                                                     |                                                    |
+|-----------------------------------------------------|----------------------------------------------------|
+| ![Screenshot](../screenshots/bool/bool default.jpg) | ![Screenshot](../screenshots/bool/bool modern.jpg) |

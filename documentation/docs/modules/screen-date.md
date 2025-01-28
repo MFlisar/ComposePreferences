@@ -2,6 +2,10 @@
 icon: material/puzzle
 ---
 
+|                                                  |
+|--------------------------------------------------|
+| ![Screenshot](../screenshots/previews/date1.jpg) |
+
 This shows a simple date picker preference.
 
 Check out the composable and it's documentation in the code snipplet below.
@@ -28,6 +32,7 @@ Check out the composable and it's documentation in the code snipplet below.
 
 #### Screenshots
 
-|                                              |                                              |
-|----------------------------------------------|----------------------------------------------|
-| ![Screenshot](../screenshots/date/date1.jpg) | ![Screenshot](../screenshots/date/date2.jpg) |
+|                                                     |                                                    |
+|-----------------------------------------------------|----------------------------------------------------|
+| ![Screenshot](../screenshots/date/date default.jpg) | ![Screenshot](../screenshots/date/date modern.jpg) |
+| ![Screenshot](../screenshots/date/date dialog.jpg)  |  |

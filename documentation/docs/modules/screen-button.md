@@ -2,6 +2,10 @@
 icon: material/puzzle
 ---
 
+|                                                    |
+|----------------------------------------------------|
+| ![Screenshot](../screenshots/previews/button1.jpg) |
+
 This shows a simple button preference. It allows you to handle a click action.
 
 Check out the composable and it's documentation in the code snipplet below.
@@ -20,6 +24,6 @@ Check out the composable and it's documentation in the code snipplet below.
 
 #### Screenshots
 
-|                                                  |                                                  |
-|--------------------------------------------------|--------------------------------------------------|
-| ![Screenshot](../screenshots/button/button1.jpg) | ![Screenshot](../screenshots/button/button2.jpg) |
+|                                                         |                                                        |
+|---------------------------------------------------------|--------------------------------------------------------|
+| ![Screenshot](../screenshots/button/button default.jpg) | ![Screenshot](../screenshots/button/button modern.jpg) |

@@ -13,7 +13,7 @@ import com.michaelflisar.composepreferences.core.composables.PreferenceItemColor
  * see [PreferenceStyleDefaults.item]
  */
 @Stable
-data class PreferenceItemStyle internal constructor(
+class PreferenceItemStyle internal constructor(
     val colors: PreferenceItemColors = PreferenceItemColors(),
     val innerPadding: PaddingValues = PaddingValues(),
     val outerPadding: PaddingValues = PaddingValues(),
@@ -22,5 +22,27 @@ data class PreferenceItemStyle internal constructor(
     val shadowElevation: Dp = 0.dp,
     val titleTextStyle: TextStyle = TextStyle.Default,
     val subtitleTextStyle: TextStyle = TextStyle.Default
-)
+) {
+    fun copy(
+        colors: PreferenceItemColors = this.colors,
+        innerPadding: PaddingValues = this.innerPadding,
+        outerPadding: PaddingValues = this.outerPadding,
+        shape: Shape = this.shape,
+        tonalElevation: Dp = this.tonalElevation,
+        shadowElevation: Dp = this.shadowElevation,
+        titleTextStyle: TextStyle = this.titleTextStyle,
+        subtitleTextStyle: TextStyle = this.subtitleTextStyle
+    ): PreferenceItemStyle {
+        return PreferenceItemStyle(
+            colors = colors,
+            innerPadding = innerPadding,
+            outerPadding = outerPadding,
+            shape = shape,
+            tonalElevation = tonalElevation,
+            shadowElevation = shadowElevation,
+            titleTextStyle = titleTextStyle,
+            subtitleTextStyle = subtitleTextStyle
+        )
+    }
+}
 

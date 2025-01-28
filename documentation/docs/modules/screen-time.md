@@ -2,6 +2,10 @@
 icon: material/puzzle
 ---
 
+|                                                  |
+|--------------------------------------------------|
+| ![Screenshot](../screenshots/previews/time1.jpg) | 
+
 This shows a simple timeean preference. It allows to toggle a timeean value.
 
 Check out the composable and it's documentation in the code snipplet below.
@@ -28,6 +32,7 @@ Check out the composable and it's documentation in the code snipplet below.
 
 #### Screenshots
 
-|                                              |                                              |
-|----------------------------------------------|----------------------------------------------|
-| ![Screenshot](../screenshots/time/time1.jpg) | ![Screenshot](../screenshots/time/time2.jpg) |
+|                                                     |                                                   |
+|-----------------------------------------------------|---------------------------------------------------|
+| ![Screenshot](../screenshots/time/time default.jpg) | ![Screenshot](../screenshots/time/time modern.jpg) |
+| ![Screenshot](../screenshots/time/time dialog.jpg)  | |

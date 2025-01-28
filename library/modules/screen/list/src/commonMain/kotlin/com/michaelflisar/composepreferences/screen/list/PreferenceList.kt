@@ -47,7 +47,7 @@ import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
  * @param items the list of items that this preference can select from
  * @param itemTextProvider a converter to get the text of an item
  * @param itemIconProvider a converter to provide an icon for an item
- * @param filter a lambda for filtering the list - if it is null, filtering is disabled ([PreferenceList.Style.SegmentedButtons] does ignore this value)
+ * @param filter a lambda for filtering the list - if it is null, filtering is disabled (works with [PreferenceList.Style.Dialog] only!)
  */
 @Composable
 fun <T> PreferenceScope.PreferenceList(

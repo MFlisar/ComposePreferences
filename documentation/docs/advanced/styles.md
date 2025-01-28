@@ -2,9 +2,31 @@
 icon: material/palette-swatch
 ---
 
-You can customise how texts are rendered as well as how the preferences are styled. Check out following for more details.
+You can apply two predefined styles with a log of customisations on top of it. `Default` and `Modern`. The *modern style* does group sections and also applies custom edges to the groups whereas the *default style* is a flat and more simply style.
+
+Additionally you can customise how texts are rendered as well as how the preferences are styled. Check out following for more details.
 
 All those customisations are supported by *all* preference composables.
+
+## PreferenceStyle
+
+| Default                                             | Modern                                             |
+|-----------------------------------------------------|----------------------------------------------------|
+| ![Screenshot](../screenshots/core/root default.jpg) | ![Screenshot](../screenshots/core/root modern.jpg) |
+
+=== "Default"
+
+    ```kotlin
+    --8<-- "../library/core/src/commonMain/kotlin/com/michaelflisar/composepreferences/core/styles/DefaultStyle.kt:create"
+    ```
+
+=== "Modern"
+
+    ```kotlin
+    --8<-- "../library/core/src/commonMain/kotlin/com/michaelflisar/composepreferences/core/styles/ModernStyle.kt:create"
+    ```
+
+## Other Styling Options
 
 #### ItemStyle
 
