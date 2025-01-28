@@ -75,10 +75,7 @@ object DemoPrefs : SettingsModel(DataStoreStorage.create(name = "demo1_prefs")) 
                 style = style ?: (data[6] as DemoStyle).let {
                     when (it) {
                         DemoStyle.Default -> DefaultStyle.create()
-                        DemoStyle.Modern -> ModernStyle.create(
-                            //sectionGroupItemBackgroundColor = MaterialTheme.colorScheme.surfaceContainerHighest,
-                            //sectionGroupItemForegroundColor = MaterialTheme.colorScheme.onSurface
-                        )
+                        DemoStyle.Modern -> ModernStyle.create()
                     }
                 },
                 animationSpec = animationSpec

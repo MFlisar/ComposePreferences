@@ -56,14 +56,14 @@ class ModernStyle internal constructor(
         * @param spacing the spacing between preference items
         */
         @Composable
-        fun create( 
+        fun create(
             cornerSize: Dp = DEFAULT_CORNER_SIZE,
             backgroundColor: Color = MaterialTheme.colorScheme.background,
             foregroundColor: Color = MaterialTheme.colorScheme.onBackground,
             sectionBackgroundColor: Color = MaterialTheme.colorScheme.background,
             sectionForegroundColor: Color = MaterialTheme.colorScheme.primary,
-            sectionGroupItemBackgroundColor: Color = MaterialTheme.colorScheme.primaryContainer,
-            sectionGroupItemForegroundColor: Color = MaterialTheme.colorScheme.onPrimaryContainer,
+            sectionGroupItemBackgroundColor: Color = MaterialTheme.colorScheme.surfaceContainerHighest,
+            sectionGroupItemForegroundColor: Color = MaterialTheme.colorScheme.onSurface,
             alphaVariant: Float = PreferenceItemDefaults.DEFAULT_ALPHA_VARIANT,
             innerPadding: PaddingValues = PreferenceStyleDefaults.DEFAULT_INNER_PADDING,
             outerPadding: PaddingValues = DEFAULT_OUTER_PADDING,
