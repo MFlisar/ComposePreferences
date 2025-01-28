@@ -49,7 +49,7 @@ PreferenceScreen(
             value = checked,
             title = "Boolean Preference"
         )
-        val input =  remember { mutableStateOf(false) }
+        val input =  remember { mutableStateOf("") }
         PreferenceInputText(
             value = input,
             title = "Input Preference"
