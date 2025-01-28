@@ -56,7 +56,7 @@ class ModernStyle internal constructor(
         * @param spacing the spacing between preference items
         */
         @Composable
-        fun create(
+        fun create( 
             cornerSize: Dp = DEFAULT_CORNER_SIZE,
             backgroundColor: Color = MaterialTheme.colorScheme.background,
             foregroundColor: Color = MaterialTheme.colorScheme.onBackground,
