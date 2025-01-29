@@ -1,3 +1,12 @@
+public final class com/michaelflisar/composepreferences/screen/color/ComposableSingletons$PreferenceColorKt {
+	public static final field INSTANCE Lcom/michaelflisar/composepreferences/screen/color/ComposableSingletons$PreferenceColorKt;
+	public fun <init> ()V
+	public final fun getLambda-1$color ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda-2$color ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda-3$color ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda-4$color ()Lkotlin/jvm/functions/Function3;
+}
+
 public final class com/michaelflisar/composepreferences/screen/color/PreferenceColorDefaults {
 	public static final field $stable I
 	public static final field INSTANCE Lcom/michaelflisar/composepreferences/screen/color/PreferenceColorDefaults;
@@ -6,7 +15,7 @@ public final class com/michaelflisar/composepreferences/screen/color/PreferenceC
 }
 
 public final class com/michaelflisar/composepreferences/screen/color/PreferenceColorKt {
-	public static final fun PreferenceColor (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;Landroidx/compose/runtime/MutableState;ZLjava/lang/String;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup;Ljava/util/List;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;III)V
-	public static final fun PreferenceColor-XdJUo5Q (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;JLkotlin/jvm/functions/Function1;ZLjava/lang/String;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup;Ljava/util/List;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;III)V
+	public static final fun PreferenceColor (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;Landroidx/compose/runtime/MutableState;ZLjava/lang/String;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Ljava/util/List;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;III)V
+	public static final fun PreferenceColor-R9aVPlw (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;JLkotlin/jvm/functions/Function1;ZLjava/lang/String;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Ljava/util/List;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;III)V
 }
 

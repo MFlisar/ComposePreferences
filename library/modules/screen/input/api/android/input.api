@@ -1,3 +1,21 @@
+public final class com/michaelflisar/composepreferences/screen/input/ComposableSingletons$PreferenceInputNumberKt {
+	public static final field INSTANCE Lcom/michaelflisar/composepreferences/screen/input/ComposableSingletons$PreferenceInputNumberKt;
+	public fun <init> ()V
+	public final fun getLambda-1$input_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda-2$input_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda-3$input_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda-4$input_release ()Lkotlin/jvm/functions/Function3;
+}
+
+public final class com/michaelflisar/composepreferences/screen/input/ComposableSingletons$PreferenceInputTextKt {
+	public static final field INSTANCE Lcom/michaelflisar/composepreferences/screen/input/ComposableSingletons$PreferenceInputTextKt;
+	public fun <init> ()V
+	public final fun getLambda-1$input_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda-2$input_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda-3$input_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda-4$input_release ()Lkotlin/jvm/functions/Function3;
+}
+
 public final class com/michaelflisar/composepreferences/screen/input/ComposableSingletons$PreviewPreferenceInputNumberKt {
 	public static final field INSTANCE Lcom/michaelflisar/composepreferences/screen/input/ComposableSingletons$PreviewPreferenceInputNumberKt;
 	public fun <init> ()V
@@ -22,8 +40,8 @@ public final class com/michaelflisar/composepreferences/screen/input/PreferenceI
 }
 
 public final class com/michaelflisar/composepreferences/screen/input/PreferenceInputNumberKt {
-	public static final fun PreferenceInputNumber (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;Landroidx/compose/runtime/MutableState;Lcom/michaelflisar/composedialogs/dialogs/input/DialogInputValidator;Lkotlin/jvm/functions/Function1;Ljava/lang/String;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup;Ljava/util/List;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;III)V
-	public static final fun PreferenceInputNumber (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;Ljava/lang/Number;Lkotlin/jvm/functions/Function1;Lcom/michaelflisar/composedialogs/dialogs/input/DialogInputValidator;Lkotlin/jvm/functions/Function1;Ljava/lang/String;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup;Ljava/util/List;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;III)V
+	public static final fun PreferenceInputNumber (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;Landroidx/compose/runtime/MutableState;Lcom/michaelflisar/composedialogs/dialogs/input/DialogInputValidator;Lkotlin/jvm/functions/Function1;Ljava/lang/String;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Ljava/util/List;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;III)V
+	public static final fun PreferenceInputNumber (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;Ljava/lang/Number;Lkotlin/jvm/functions/Function1;Lcom/michaelflisar/composedialogs/dialogs/input/DialogInputValidator;Lkotlin/jvm/functions/Function1;Ljava/lang/String;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Ljava/util/List;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;III)V
 }
 
 public final class com/michaelflisar/composepreferences/screen/input/PreferenceInputTextDefaults {
@@ -34,7 +52,7 @@ public final class com/michaelflisar/composepreferences/screen/input/PreferenceI
 }
 
 public final class com/michaelflisar/composepreferences/screen/input/PreferenceInputTextKt {
-	public static final fun PreferenceInputText (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;Landroidx/compose/runtime/MutableState;Lcom/michaelflisar/composedialogs/dialogs/input/DialogInputValidator;Ljava/lang/String;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup;Ljava/util/List;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;III)V
-	public static final fun PreferenceInputText (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lcom/michaelflisar/composedialogs/dialogs/input/DialogInputValidator;Ljava/lang/String;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup;Ljava/util/List;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;III)V
+	public static final fun PreferenceInputText (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;Landroidx/compose/runtime/MutableState;Lcom/michaelflisar/composedialogs/dialogs/input/DialogInputValidator;Ljava/lang/String;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Ljava/util/List;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;III)V
+	public static final fun PreferenceInputText (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lcom/michaelflisar/composedialogs/dialogs/input/DialogInputValidator;Ljava/lang/String;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Ljava/util/List;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;III)V
 }
 

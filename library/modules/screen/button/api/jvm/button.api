@@ -1,4 +1,11 @@
+public final class com/michaelflisar/composepreferences/screen/button/ComposableSingletons$PreferenceButtonKt {
+	public static final field INSTANCE Lcom/michaelflisar/composepreferences/screen/button/ComposableSingletons$PreferenceButtonKt;
+	public fun <init> ()V
+	public final fun getLambda-1$button ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda-2$button ()Lkotlin/jvm/functions/Function3;
+}
+
 public final class com/michaelflisar/composepreferences/screen/button/PreferenceButtonKt {
-	public static final fun PreferenceButton (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;Lkotlin/jvm/functions/Function0;Ljava/lang/String;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Ljava/util/List;Landroidx/compose/runtime/Composer;II)V
+	public static final fun PreferenceButton (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;Lkotlin/jvm/functions/Function0;Ljava/lang/String;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Ljava/util/List;Landroidx/compose/runtime/Composer;III)V
 }
 

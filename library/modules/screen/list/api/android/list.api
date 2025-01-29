@@ -1,7 +1,20 @@
 public final class com/michaelflisar/composepreferences/screen/list/ComposableSingletons$PreferenceListKt {
 	public static final field INSTANCE Lcom/michaelflisar/composepreferences/screen/list/ComposableSingletons$PreferenceListKt;
 	public fun <init> ()V
-	public final fun getLambda-1$list_release ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda-1$list_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda-2$list_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda-3$list_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda-4$list_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda-5$list_release ()Lkotlin/jvm/functions/Function2;
+}
+
+public final class com/michaelflisar/composepreferences/screen/list/ComposableSingletons$PreferenceListMultiKt {
+	public static final field INSTANCE Lcom/michaelflisar/composepreferences/screen/list/ComposableSingletons$PreferenceListMultiKt;
+	public fun <init> ()V
+	public final fun getLambda-1$list_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda-2$list_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda-3$list_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda-4$list_release ()Lkotlin/jvm/functions/Function3;
 }
 
 public final class com/michaelflisar/composepreferences/screen/list/ComposableSingletons$PreviewPreferenceListKt {
@@ -25,30 +38,49 @@ public final class com/michaelflisar/composepreferences/screen/list/PreferenceLi
 	public static final field INSTANCE Lcom/michaelflisar/composepreferences/screen/list/PreferenceList;
 }
 
-public final class com/michaelflisar/composepreferences/screen/list/PreferenceList$Style : java/lang/Enum {
-	public static final field Dialog Lcom/michaelflisar/composepreferences/screen/list/PreferenceList$Style;
-	public static final field SegmentedButtons Lcom/michaelflisar/composepreferences/screen/list/PreferenceList$Style;
-	public static final field Spinner Lcom/michaelflisar/composepreferences/screen/list/PreferenceList$Style;
-	public static fun getEntries ()Lkotlin/enums/EnumEntries;
-	public static fun valueOf (Ljava/lang/String;)Lcom/michaelflisar/composepreferences/screen/list/PreferenceList$Style;
-	public static fun values ()[Lcom/michaelflisar/composepreferences/screen/list/PreferenceList$Style;
+public abstract class com/michaelflisar/composepreferences/screen/list/PreferenceList$Style {
+	public static final field $stable I
+}
+
+public final class com/michaelflisar/composepreferences/screen/list/PreferenceList$Style$Dialog : com/michaelflisar/composepreferences/screen/list/PreferenceList$Style {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun <init> (Z)V
+	public synthetic fun <init> (ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getCloseOnItemClick ()Z
+}
+
+public final class com/michaelflisar/composepreferences/screen/list/PreferenceList$Style$SegmentedButtons : com/michaelflisar/composepreferences/screen/list/PreferenceList$Style {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/michaelflisar/composepreferences/screen/list/PreferenceList$Style$SegmentedButtons;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/michaelflisar/composepreferences/screen/list/PreferenceList$Style$Spinner : com/michaelflisar/composepreferences/screen/list/PreferenceList$Style {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/michaelflisar/composepreferences/screen/list/PreferenceList$Style$Spinner;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class com/michaelflisar/composepreferences/screen/list/PreferenceListDefaults {
 	public static final field $stable I
 	public static final field INSTANCE Lcom/michaelflisar/composepreferences/screen/list/PreferenceListDefaults;
-	public final fun dialog (Lcom/michaelflisar/composedialogs/core/DialogState;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;Ljava/util/List;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composedialogs/dialogs/list/DialogList$Filter;Landroidx/compose/runtime/Composer;II)V
+	public final fun dialog (Lcom/michaelflisar/composepreferences/screen/list/PreferenceList$Style;Lcom/michaelflisar/composedialogs/core/DialogState;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;Ljava/util/List;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composedialogs/dialogs/list/DialogList$Filter;Landroidx/compose/runtime/Composer;III)V
 	public final fun itemSetup (Lcom/michaelflisar/composepreferences/screen/list/PreferenceList$Style;Landroidx/compose/runtime/Composer;I)Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup;
 }
 
 public final class com/michaelflisar/composepreferences/screen/list/PreferenceListKt {
-	public static final fun PreferenceList (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;Lcom/michaelflisar/composepreferences/screen/list/PreferenceList$Style;Landroidx/compose/runtime/MutableState;Ljava/util/List;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function2;Ljava/lang/String;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup;Ljava/util/List;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;III)V
-	public static final fun PreferenceList (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;Lcom/michaelflisar/composepreferences/screen/list/PreferenceList$Style;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;Ljava/util/List;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Ljava/lang/String;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup;Ljava/util/List;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;III)V
+	public static final fun PreferenceList (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;Lcom/michaelflisar/composepreferences/screen/list/PreferenceList$Style;Landroidx/compose/runtime/MutableState;Ljava/util/List;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function2;Ljava/lang/String;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Ljava/util/List;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;III)V
+	public static final fun PreferenceList (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;Lcom/michaelflisar/composepreferences/screen/list/PreferenceList$Style;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;Ljava/util/List;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Ljava/lang/String;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Ljava/util/List;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;III)V
 }
 
 public final class com/michaelflisar/composepreferences/screen/list/PreferenceListMultiKt {
-	public static final fun PreferenceListMulti (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;Landroidx/compose/runtime/MutableState;Ljava/util/List;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Ljava/lang/String;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup;Ljava/util/List;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;III)V
-	public static final fun PreferenceListMulti (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;Ljava/util/List;Lkotlin/jvm/functions/Function1;Ljava/util/List;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Ljava/lang/String;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup;Ljava/util/List;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;III)V
+	public static final fun PreferenceListMulti (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;Landroidx/compose/runtime/MutableState;Ljava/util/List;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Ljava/lang/String;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Ljava/util/List;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;III)V
+	public static final fun PreferenceListMulti (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;Ljava/util/List;Lkotlin/jvm/functions/Function1;Ljava/util/List;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Ljava/lang/String;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Ljava/util/List;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;III)V
 }
 
 public final class com/michaelflisar/composepreferences/screen/list/PreferenceMultiListDefaults {

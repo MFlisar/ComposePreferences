@@ -1,3 +1,12 @@
+public final class com/michaelflisar/composepreferences/screen/bool/ComposableSingletons$PreferenceBoolKt {
+	public static final field INSTANCE Lcom/michaelflisar/composepreferences/screen/bool/ComposableSingletons$PreferenceBoolKt;
+	public fun <init> ()V
+	public final fun getLambda-1$bool ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda-2$bool ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda-3$bool ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda-4$bool ()Lkotlin/jvm/functions/Function3;
+}
+
 public final class com/michaelflisar/composepreferences/screen/bool/PreferenceBool {
 	public static final field $stable I
 	public static final field INSTANCE Lcom/michaelflisar/composepreferences/screen/bool/PreferenceBool;
@@ -18,7 +27,7 @@ public final class com/michaelflisar/composepreferences/screen/bool/PreferenceBo
 }
 
 public final class com/michaelflisar/composepreferences/screen/bool/PreferenceBoolKt {
-	public static final fun PreferenceBool (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;Lcom/michaelflisar/composepreferences/screen/bool/PreferenceBool$Style;Landroidx/compose/runtime/MutableState;Ljava/lang/String;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup;Landroidx/compose/runtime/Composer;II)V
-	public static final fun PreferenceBool (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;Lcom/michaelflisar/composepreferences/screen/bool/PreferenceBool$Style;ZLkotlin/jvm/functions/Function1;Ljava/lang/String;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup;Ljava/util/List;Landroidx/compose/runtime/Composer;III)V
+	public static final fun PreferenceBool (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;Lcom/michaelflisar/composepreferences/screen/bool/PreferenceBool$Style;Landroidx/compose/runtime/MutableState;Ljava/lang/String;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Ljava/util/List;Landroidx/compose/runtime/Composer;III)V
+	public static final fun PreferenceBool (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;Lcom/michaelflisar/composepreferences/screen/bool/PreferenceBool$Style;ZLkotlin/jvm/functions/Function1;Ljava/lang/String;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Ljava/util/List;Landroidx/compose/runtime/Composer;III)V
 }
 

@@ -4,10 +4,30 @@ public final class com/michaelflisar/composepreferences/core/ComposableSingleton
 	public final fun getLambda-1$core ()Lkotlin/jvm/functions/Function3;
 }
 
+public final class com/michaelflisar/composepreferences/core/ComposableSingletons$PreferenceInfoKt {
+	public static final field INSTANCE Lcom/michaelflisar/composepreferences/core/ComposableSingletons$PreferenceInfoKt;
+	public fun <init> ()V
+	public final fun getLambda-1$core ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda-2$core ()Lkotlin/jvm/functions/Function3;
+}
+
+public final class com/michaelflisar/composepreferences/core/ComposableSingletons$PreferenceSectionKt {
+	public static final field INSTANCE Lcom/michaelflisar/composepreferences/core/ComposableSingletons$PreferenceSectionKt;
+	public fun <init> ()V
+	public final fun getLambda-1$core ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda-2$core ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda-3$core ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda-4$core ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda-5$core ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda-6$core ()Lkotlin/jvm/functions/Function3;
+}
+
 public final class com/michaelflisar/composepreferences/core/ComposableSingletons$PreferenceSubScreenKt {
 	public static final field INSTANCE Lcom/michaelflisar/composepreferences/core/ComposableSingletons$PreferenceSubScreenKt;
 	public fun <init> ()V
 	public final fun getLambda-1$core ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda-2$core ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda-3$core ()Lkotlin/jvm/functions/Function3;
 }
 
 public final class com/michaelflisar/composepreferences/core/Platform_jvmKt {
@@ -25,7 +45,7 @@ public final class com/michaelflisar/composepreferences/core/PreferenceCustomKt 
 }
 
 public final class com/michaelflisar/composepreferences/core/PreferenceDividerKt {
-	public static final fun PreferenceDivider (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/util/List;Landroidx/compose/runtime/Composer;II)V
+	public static final fun PreferenceDivider (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Ljava/util/List;Landroidx/compose/runtime/Composer;II)V
 }
 
 public final class com/michaelflisar/composepreferences/core/PreferenceInfoDefaults {
@@ -35,20 +55,20 @@ public final class com/michaelflisar/composepreferences/core/PreferenceInfoDefau
 }
 
 public final class com/michaelflisar/composepreferences/core/PreferenceInfoKt {
-	public static final fun PreferenceInfo (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;Lkotlin/jvm/functions/Function0;Ljava/lang/String;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup;Ljava/util/List;Landroidx/compose/runtime/Composer;II)V
+	public static final fun PreferenceInfo (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;Lkotlin/jvm/functions/Function0;Ljava/lang/String;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Ljava/util/List;Landroidx/compose/runtime/Composer;III)V
 }
 
 public final class com/michaelflisar/composepreferences/core/PreferenceScreenKt {
 	public static final fun PreferenceScreen (Landroidx/compose/ui/Modifier;ZLcom/michaelflisar/composepreferences/core/classes/PreferenceSettings;Lcom/michaelflisar/composepreferences/core/filter/PreferenceFilter;Lcom/michaelflisar/composepreferences/core/classes/PreferenceState;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
 }
 
-public final class com/michaelflisar/composepreferences/core/PreferenceSectionHeaderKt {
-	public static final fun PreferenceSectionHeader (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceGroupScope;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Ljava/util/List;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
-	public static final fun PreferenceSectionHeader (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceRootScope;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Ljava/util/List;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+public final class com/michaelflisar/composepreferences/core/PreferenceSectionKt {
+	public static final fun PreferenceSection (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceGroupScope;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Ljava/util/List;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;III)V
+	public static final fun PreferenceSection (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceRootScope;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Ljava/util/List;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;III)V
 }
 
 public final class com/michaelflisar/composepreferences/core/PreferenceSubScreenKt {
-	public static final fun PreferenceSubScreen (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Ljava/util/List;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+	public static final fun PreferenceSubScreen (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Ljava/util/List;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;III)V
 }
 
 public final class com/michaelflisar/composepreferences/core/classes/ComposableSingletons$PreferenceSettingsKt {
@@ -171,11 +191,25 @@ public final class com/michaelflisar/composepreferences/core/composables/BasePre
 }
 
 public final class com/michaelflisar/composepreferences/core/composables/BasePreferenceDialogKt {
-	public static final fun BasePreferenceDialog (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;Lcom/michaelflisar/composedialogs/core/DialogStateNoData;Lkotlin/jvm/functions/Function3;Ljava/lang/String;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup;Ljava/util/List;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;III)V
+	public static final fun BasePreferenceDialog (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;Lcom/michaelflisar/composedialogs/core/DialogStateNoData;Lkotlin/jvm/functions/Function3;Ljava/lang/String;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Ljava/util/List;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;III)V
 }
 
 public final class com/michaelflisar/composepreferences/core/composables/BasePreferenceKt {
-	public static final fun BasePreference (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;Landroidx/compose/ui/Modifier;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup;Ljava/util/List;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;III)V
+	public static final fun BasePreference (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;Landroidx/compose/ui/Modifier;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Ljava/util/List;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;III)V
+}
+
+public final class com/michaelflisar/composepreferences/core/composables/ComposableSingletons$BasePreferenceDialogKt {
+	public static final field INSTANCE Lcom/michaelflisar/composepreferences/core/composables/ComposableSingletons$BasePreferenceDialogKt;
+	public fun <init> ()V
+	public final fun getLambda-1$core ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda-2$core ()Lkotlin/jvm/functions/Function3;
+}
+
+public final class com/michaelflisar/composepreferences/core/composables/ComposableSingletons$BasePreferenceKt {
+	public static final field INSTANCE Lcom/michaelflisar/composepreferences/core/composables/ComposableSingletons$BasePreferenceKt;
+	public fun <init> ()V
+	public final fun getLambda-1$core ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda-2$core ()Lkotlin/jvm/functions/Function3;
 }
 
 public final class com/michaelflisar/composepreferences/core/composables/PreferenceContentTextKt {
@@ -191,6 +225,7 @@ public final class com/michaelflisar/composepreferences/core/composables/Prefere
 	public static final field $stable I
 	public static final field DEFAULT_ALPHA_VARIANT F
 	public static final field INSTANCE Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemDefaults;
+	public final fun colors-Klgx-Pg (JJFLandroidx/compose/runtime/Composer;II)Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemColors;
 	public final fun colors-zjMxDiM (JJJJJLandroidx/compose/runtime/Composer;II)Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemColors;
 }
 
@@ -204,8 +239,8 @@ public final class com/michaelflisar/composepreferences/core/composables/Prefere
 
 public final class com/michaelflisar/composepreferences/core/composables/PreferenceItemSetup {
 	public static final field $stable I
-	public synthetic fun <init> (Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup$TrailingContentSize;ZFFZLandroidx/compose/ui/Alignment$Vertical;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public synthetic fun <init> (Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup$TrailingContentSize;ZFFZLandroidx/compose/ui/Alignment$Vertical;ZLkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup$TrailingContentSize;ZFFZLandroidx/compose/ui/Alignment$Vertical;ZZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup$TrailingContentSize;ZFFZLandroidx/compose/ui/Alignment$Vertical;ZZLkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup$TrailingContentSize;
 	public final fun component2 ()Z
 	public final fun component3-D9Ej5fM ()F
@@ -213,11 +248,13 @@ public final class com/michaelflisar/composepreferences/core/composables/Prefere
 	public final fun component5 ()Z
 	public final fun component6 ()Landroidx/compose/ui/Alignment$Vertical;
 	public final fun component7 ()Z
-	public final fun copy-UuyPYSY (Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup$TrailingContentSize;ZFFZLandroidx/compose/ui/Alignment$Vertical;Z)Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup;
-	public static synthetic fun copy-UuyPYSY$default (Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup;Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup$TrailingContentSize;ZFFZLandroidx/compose/ui/Alignment$Vertical;ZILjava/lang/Object;)Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup;
+	public final fun component8 ()Z
+	public final fun copy-vz2T9sI (Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup$TrailingContentSize;ZFFZLandroidx/compose/ui/Alignment$Vertical;ZZ)Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup;
+	public static synthetic fun copy-vz2T9sI$default (Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup;Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup$TrailingContentSize;ZFFZLandroidx/compose/ui/Alignment$Vertical;ZZILjava/lang/Object;)Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAlignment ()Landroidx/compose/ui/Alignment$Vertical;
 	public final fun getContentPlacementBottom ()Z
+	public final fun getExcludeFromSectionStyle ()Z
 	public final fun getHideTitle ()Z
 	public final fun getIgnoreForceNoIconInset ()Z
 	public final fun getMinHeight-D9Ej5fM ()F
@@ -244,8 +281,6 @@ public final class com/michaelflisar/composepreferences/core/filter/DefaultPrefe
 	public static final field $stable I
 	public fun filter (Ljava/lang/String;Ljava/util/List;)Z
 	public fun getFlattenResult ()Landroidx/compose/runtime/MutableState;
-	public final fun getHighlightSpan ()Landroidx/compose/ui/text/SpanStyle;
-	public final fun getIgnoreCase ()Landroidx/compose/runtime/MutableState;
 	public final fun getMode ()Landroidx/compose/runtime/MutableState;
 	public fun getSearch ()Landroidx/compose/runtime/MutableState;
 	public fun highlight (Ljava/lang/String;)Landroidx/compose/ui/text/AnnotatedString;
@@ -318,13 +353,7 @@ public final class com/michaelflisar/composepreferences/core/filter/PreferenceFi
 }
 
 public final class com/michaelflisar/composepreferences/core/helper/SearchTextKt {
-	public static final fun SearchText (Ljava/lang/String;Landroidx/compose/runtime/Composer;I)V
-}
-
-public final class com/michaelflisar/composepreferences/core/internal/LocalsKt {
-	public static final fun getLocalItem ()Landroidx/compose/runtime/ProvidableCompositionLocal;
-	public static final fun getLocalParent ()Landroidx/compose/runtime/ProvidableCompositionLocal;
-	public static final fun getLocalState ()Landroidx/compose/runtime/ProvidableCompositionLocal;
+	public static final fun SearchText (Ljava/lang/String;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;I)V
 }
 
 public abstract class com/michaelflisar/composepreferences/core/internal/PreferenceItemState {
@@ -340,11 +369,12 @@ public abstract class com/michaelflisar/composepreferences/core/internal/Prefere
 	public abstract fun getParent ()Lcom/michaelflisar/composepreferences/core/internal/PreferenceItemState;
 	public abstract fun getTags ()Ljava/util/List;
 	public abstract fun getVisible ()Landroidx/compose/runtime/State;
+	public abstract fun getVisibleTransitionState ()Landroidx/compose/animation/core/MutableTransitionState;
 }
 
 public final class com/michaelflisar/composepreferences/core/internal/PreferenceItemState$Item : com/michaelflisar/composepreferences/core/internal/PreferenceItemState {
 	public static final field $stable I
-	public fun <init> (ILcom/michaelflisar/composepreferences/core/internal/PreferenceItemState;Lcom/michaelflisar/composepreferences/core/classes/PreferenceType;Ljava/util/List;Landroidx/compose/runtime/MutableState;Landroidx/compose/runtime/MutableState;Landroidx/compose/runtime/State;)V
+	public fun <init> (ILcom/michaelflisar/composepreferences/core/internal/PreferenceItemState;Lcom/michaelflisar/composepreferences/core/classes/PreferenceType;Ljava/util/List;Landroidx/compose/runtime/MutableState;Landroidx/compose/runtime/MutableState;Landroidx/compose/runtime/State;Landroidx/compose/animation/core/MutableTransitionState;Z)V
 	public final fun component1 ()I
 	public final fun component2 ()Lcom/michaelflisar/composepreferences/core/internal/PreferenceItemState;
 	public final fun component3 ()Lcom/michaelflisar/composepreferences/core/classes/PreferenceType;
@@ -352,16 +382,20 @@ public final class com/michaelflisar/composepreferences/core/internal/Preference
 	public final fun component5 ()Landroidx/compose/runtime/MutableState;
 	public final fun component6 ()Landroidx/compose/runtime/MutableState;
 	public final fun component7 ()Landroidx/compose/runtime/State;
-	public final fun copy (ILcom/michaelflisar/composepreferences/core/internal/PreferenceItemState;Lcom/michaelflisar/composepreferences/core/classes/PreferenceType;Ljava/util/List;Landroidx/compose/runtime/MutableState;Landroidx/compose/runtime/MutableState;Landroidx/compose/runtime/State;)Lcom/michaelflisar/composepreferences/core/internal/PreferenceItemState$Item;
-	public static synthetic fun copy$default (Lcom/michaelflisar/composepreferences/core/internal/PreferenceItemState$Item;ILcom/michaelflisar/composepreferences/core/internal/PreferenceItemState;Lcom/michaelflisar/composepreferences/core/classes/PreferenceType;Ljava/util/List;Landroidx/compose/runtime/MutableState;Landroidx/compose/runtime/MutableState;Landroidx/compose/runtime/State;ILjava/lang/Object;)Lcom/michaelflisar/composepreferences/core/internal/PreferenceItemState$Item;
+	public final fun component8 ()Landroidx/compose/animation/core/MutableTransitionState;
+	public final fun component9 ()Z
+	public final fun copy (ILcom/michaelflisar/composepreferences/core/internal/PreferenceItemState;Lcom/michaelflisar/composepreferences/core/classes/PreferenceType;Ljava/util/List;Landroidx/compose/runtime/MutableState;Landroidx/compose/runtime/MutableState;Landroidx/compose/runtime/State;Landroidx/compose/animation/core/MutableTransitionState;Z)Lcom/michaelflisar/composepreferences/core/internal/PreferenceItemState$Item;
+	public static synthetic fun copy$default (Lcom/michaelflisar/composepreferences/core/internal/PreferenceItemState$Item;ILcom/michaelflisar/composepreferences/core/internal/PreferenceItemState;Lcom/michaelflisar/composepreferences/core/classes/PreferenceType;Ljava/util/List;Landroidx/compose/runtime/MutableState;Landroidx/compose/runtime/MutableState;Landroidx/compose/runtime/State;Landroidx/compose/animation/core/MutableTransitionState;ZILjava/lang/Object;)Lcom/michaelflisar/composepreferences/core/internal/PreferenceItemState$Item;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun getAllTags ()Landroidx/compose/runtime/MutableState;
 	public fun getChildren ()Landroidx/compose/runtime/MutableState;
+	public final fun getExcludeFromSectionStyle ()Z
 	public fun getId ()I
 	public fun getParent ()Lcom/michaelflisar/composepreferences/core/internal/PreferenceItemState;
 	public fun getTags ()Ljava/util/List;
 	public final fun getType ()Lcom/michaelflisar/composepreferences/core/classes/PreferenceType;
 	public fun getVisible ()Landroidx/compose/runtime/State;
+	public fun getVisibleTransitionState ()Landroidx/compose/animation/core/MutableTransitionState;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 }
@@ -382,12 +416,13 @@ public final class com/michaelflisar/composepreferences/core/internal/Preference
 	public fun getParent ()Lcom/michaelflisar/composepreferences/core/internal/PreferenceItemState;
 	public fun getTags ()Ljava/util/List;
 	public fun getVisible ()Landroidx/compose/runtime/State;
+	public fun getVisibleTransitionState ()Landroidx/compose/animation/core/MutableTransitionState;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 }
 
 public final class com/michaelflisar/composepreferences/core/internal/PreferenceItemStateKt {
-	public static final fun rememberPreferenceItemState (Lcom/michaelflisar/composepreferences/core/classes/PreferenceType;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/util/List;Landroidx/compose/runtime/Composer;I)Lcom/michaelflisar/composepreferences/core/internal/PreferenceItemState$Item;
+	public static final fun rememberPreferenceItemState (Lcom/michaelflisar/composepreferences/core/classes/PreferenceType;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/util/List;ZLandroidx/compose/runtime/Composer;I)Lcom/michaelflisar/composepreferences/core/internal/PreferenceItemState$Item;
 }
 
 public final class com/michaelflisar/composepreferences/core/preview/PreviewPreferenceKt {
@@ -420,7 +455,7 @@ public final class com/michaelflisar/composepreferences/core/styles/DefaultStyle
 }
 
 public final class com/michaelflisar/composepreferences/core/styles/DefaultStyle$Companion {
-	public final fun create--jt2gSs (Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;FLandroidx/compose/runtime/Composer;II)Lcom/michaelflisar/composepreferences/core/styles/DefaultStyle;
+	public final fun create-Wts0l6A (JJJJLandroidx/compose/ui/graphics/Shape;FLandroidx/compose/foundation/layout/PaddingValues;Landroidx/compose/foundation/layout/PaddingValues;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;FLandroidx/compose/runtime/Composer;III)Lcom/michaelflisar/composepreferences/core/styles/DefaultStyle;
 }
 
 public final class com/michaelflisar/composepreferences/core/styles/ModernStyle : com/michaelflisar/composepreferences/core/styles/PreferenceStyle {
@@ -434,7 +469,10 @@ public final class com/michaelflisar/composepreferences/core/styles/ModernStyle 
 }
 
 public final class com/michaelflisar/composepreferences/core/styles/ModernStyle$Companion {
-	public final fun create-ONtS3zI (FFFFLcom/michaelflisar/composepreferences/core/composables/PreferenceItemColors;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;FLandroidx/compose/runtime/Composer;II)Lcom/michaelflisar/composepreferences/core/styles/ModernStyle;
+	public final fun create-UcV2Zmc (FJJJJJJFLandroidx/compose/foundation/layout/PaddingValues;Landroidx/compose/foundation/layout/PaddingValues;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;FLandroidx/compose/runtime/Composer;III)Lcom/michaelflisar/composepreferences/core/styles/ModernStyle;
+	public final fun getDEFAULT_CORNER_SIZE-D9Ej5fM ()F
+	public final fun getDEFAULT_ITEM_SPACING-D9Ej5fM ()F
+	public final fun getDEFAULT_OUTER_PADDING ()Landroidx/compose/foundation/layout/PaddingValues;
 }
 
 public final class com/michaelflisar/composepreferences/core/styles/ModernStyle$PreferenceSectionStyle {
@@ -454,17 +492,8 @@ public final class com/michaelflisar/composepreferences/core/styles/ModernStyle$
 public final class com/michaelflisar/composepreferences/core/styles/PreferenceItemStyle {
 	public static final field $stable I
 	public synthetic fun <init> (Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemColors;Landroidx/compose/foundation/layout/PaddingValues;Landroidx/compose/foundation/layout/PaddingValues;Landroidx/compose/ui/graphics/Shape;FFLandroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun component1 ()Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemColors;
-	public final fun component2 ()Landroidx/compose/foundation/layout/PaddingValues;
-	public final fun component3 ()Landroidx/compose/foundation/layout/PaddingValues;
-	public final fun component4 ()Landroidx/compose/ui/graphics/Shape;
-	public final fun component5-D9Ej5fM ()F
-	public final fun component6-D9Ej5fM ()F
-	public final fun component7 ()Landroidx/compose/ui/text/TextStyle;
-	public final fun component8 ()Landroidx/compose/ui/text/TextStyle;
 	public final fun copy-NuRrP5Q (Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemColors;Landroidx/compose/foundation/layout/PaddingValues;Landroidx/compose/foundation/layout/PaddingValues;Landroidx/compose/ui/graphics/Shape;FFLandroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;)Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;
 	public static synthetic fun copy-NuRrP5Q$default (Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemColors;Landroidx/compose/foundation/layout/PaddingValues;Landroidx/compose/foundation/layout/PaddingValues;Landroidx/compose/ui/graphics/Shape;FFLandroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;ILjava/lang/Object;)Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;
-	public fun equals (Ljava/lang/Object;)Z
 	public final fun getColors ()Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemColors;
 	public final fun getInnerPadding ()Landroidx/compose/foundation/layout/PaddingValues;
 	public final fun getOuterPadding ()Landroidx/compose/foundation/layout/PaddingValues;
@@ -473,8 +502,6 @@ public final class com/michaelflisar/composepreferences/core/styles/PreferenceIt
 	public final fun getSubtitleTextStyle ()Landroidx/compose/ui/text/TextStyle;
 	public final fun getTitleTextStyle ()Landroidx/compose/ui/text/TextStyle;
 	public final fun getTonalElevation-D9Ej5fM ()F
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
 }
 
 public abstract interface class com/michaelflisar/composepreferences/core/styles/PreferenceStyle {
@@ -490,6 +517,8 @@ public final class com/michaelflisar/composepreferences/core/styles/PreferenceSt
 	public static final field INSTANCE Lcom/michaelflisar/composepreferences/core/styles/PreferenceStyleDefaults;
 	public final fun error (Landroidx/compose/ui/graphics/Shape;Landroidx/compose/foundation/layout/PaddingValues;Landroidx/compose/foundation/layout/PaddingValues;FLandroidx/compose/runtime/Composer;II)Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;
 	public final fun errorContainer (Landroidx/compose/ui/graphics/Shape;Landroidx/compose/foundation/layout/PaddingValues;Landroidx/compose/foundation/layout/PaddingValues;FLandroidx/compose/runtime/Composer;II)Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;
+	public final fun getDEFAULT_INNER_PADDING ()Landroidx/compose/foundation/layout/PaddingValues;
+	public final fun getDEFAULT_OUTER_PADDING ()Landroidx/compose/foundation/layout/PaddingValues;
 	public final fun header (FLandroidx/compose/ui/graphics/Shape;Landroidx/compose/foundation/layout/PaddingValues;Landroidx/compose/foundation/layout/PaddingValues;Landroidx/compose/runtime/Composer;II)Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;
 	public final fun item-_ZcUaPM (JJFLandroidx/compose/ui/graphics/Shape;Landroidx/compose/foundation/layout/PaddingValues;Landroidx/compose/foundation/layout/PaddingValues;FFLandroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/runtime/Composer;III)Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;
 	public final fun item-tOXsyB8 (Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemColors;Landroidx/compose/foundation/layout/PaddingValues;Landroidx/compose/foundation/layout/PaddingValues;Landroidx/compose/ui/graphics/Shape;FFLandroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/runtime/Composer;II)Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;
