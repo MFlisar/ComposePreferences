@@ -8,14 +8,14 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import com.michaelflisar.composepreferences.core.PreferenceScreen
 import com.michaelflisar.composepreferences.core.classes.PreferenceSettingsDefaults
-import com.michaelflisar.composepreferences.core.scopes.PreferenceRootScope
+import com.michaelflisar.composepreferences.core.scopes.PreferenceGroupScope
 
 /*
  helper function for previews that sets a theme and surface and disables animations (animations via LaunchedEffect do not work in preview!)
  */
 @Composable
 fun PreviewPreference(
-    content: @Composable PreferenceRootScope.() -> Unit
+    content: @Composable PreferenceGroupScope.() -> Unit
 ) {
     val colorScheme = if (isSystemInDarkTheme()) darkColorScheme() else lightColorScheme()
     MaterialTheme(

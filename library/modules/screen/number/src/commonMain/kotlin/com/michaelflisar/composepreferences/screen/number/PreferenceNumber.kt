@@ -1,6 +1,13 @@
 package com.michaelflisar.composepreferences.screen.number
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.Row
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Remove
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Slider
 import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Text
@@ -11,6 +18,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import com.michaelflisar.composedialogs.core.DialogState
 import com.michaelflisar.composedialogs.core.rememberDialogState
 import com.michaelflisar.composedialogs.dialogs.number.DialogNumberPicker
@@ -189,6 +198,23 @@ fun <T : Number> PreferenceScope.PreferenceNumber(
                 ContentSlider(enabled, style, value, onValueChange, min, max, stepSize, formatter)
             }
         }
+
+        is PreferenceNumber.Style.Buttons -> {
+            BasePreference(
+                itemSetup = itemSetup,
+                enabled = enabled,
+                visible = visible,
+                title = title,
+                subtitle = subtitle,
+                icon = icon,
+                itemStyle = itemStyle,
+                titleRenderer = titleRenderer,
+                subtitleRenderer = subtitleRenderer,
+                filterTags = filterTags
+            ) {
+                ContentButtons(enabled, style, value, onValueChange, min, max, stepSize, formatter)
+            }
+        }
     }
 }
 
@@ -213,25 +239,112 @@ private fun <T : Number> ColumnScope.ContentSlider(
         )
     }
 
-    Slider(
-        value = value.toFloat(),
-        onValueChange = { onValueChange(toT(value, it)) },
-        colors = colors,
-        valueRange = min.toFloat()..max.toFloat(),
-        steps = ((max.toFloat() - min.toFloat()) / stepSize.toFloat() - 1).toInt(),
-        enabled = stateEnabled.value
-    )
-    Text(formatter(value), modifier = Modifier.align(Alignment.CenterHorizontally))
+    if (style.showValueBelow) {
+        Slider(
+            value = value.toFloat(),
+            onValueChange = { onValueChange(it.toT(value)) },
+            colors = colors,
+            valueRange = min.toFloat()..max.toFloat(),
+            steps = ((max.toFloat() - min.toFloat()) / stepSize.toFloat() - 1).toInt(),
+            enabled = stateEnabled.value
+        )
+        Text(formatter(value), modifier = Modifier.align(Alignment.CenterHorizontally))
+    } else {
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Slider(
+                modifier = Modifier.weight(1f),
+                value = value.toFloat(),
+                onValueChange = { onValueChange(it.toT(value)) },
+                colors = colors,
+                valueRange = min.toFloat()..max.toFloat(),
+                steps = ((max.toFloat() - min.toFloat()) / stepSize.toFloat() - 1).toInt(),
+                enabled = stateEnabled.value
+            )
+            Text(formatter(value))
+        }
+    }
+
+}
+
+@Composable
+private fun <T : Number> ColumnScope.ContentButtons(
+    enabled: Dependency,
+    style: PreferenceNumber.Style.Buttons,
+    value: T,
+    onValueChange: (T) -> Unit,
+    min: T,
+    max: T,
+    stepSize: T,
+    formatter: (T) -> String
+) {
+    val stateEnabled = enabled.state()
+
+    Row(
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        IconButton(
+            onClick = {
+                val newValue = (value.toFloat() - stepSize.toFloat()).toT(value)
+                    .takeIf { it.greaterThan(min, orEqual = true) } ?: min
+                onValueChange(newValue)
+            },
+            enabled = stateEnabled.value && value.greaterThan(min, orEqual = false)
+        ) {
+            style.decrease()
+        }
+        Text(
+            text = formatter(value),
+            modifier = Modifier.weight(1f),
+            textAlign = TextAlign.Center
+        )
+
+        IconButton(
+            onClick = {
+                val newValue = (value.toFloat() + stepSize.toFloat()).toT(value)
+                    .takeIf { it.smallerThan(max, orEqual = true) } ?: max
+                onValueChange(newValue)
+            },
+            enabled = stateEnabled.value && value.smallerThan(max, orEqual = false)
+        ) {
+            style.increase()
+        }
+    }
 }
 
 @Suppress("UNCHECKED_CAST")
-private fun <T : Number> toT(value: T, v: Float): T {
+private fun <T : Number> Float.toT(value: T): T {
     return when (value) {
-        is Int -> v.roundToInt() as T
-        is Float -> v as T
-        is Double -> v.toDouble() as T
-        is Long -> v.roundToLong() as T
-        else -> throw RuntimeException("Type ${value::class} not supported!")
+        is Int -> this.roundToInt() as T
+        is Float -> this as T
+        is Double -> this.toDouble() as T
+        is Long -> this.roundToLong() as T
+        else -> throw RuntimeException("Type ${this::class} not supported!")
+    }
+}
+
+@Suppress("UNCHECKED_CAST")
+private fun <T : Number> T.greaterThan(other: T, orEqual: Boolean): Boolean {
+    return when (this) {
+        is Int -> if (orEqual) this >= other as Int else this > other as Int
+        is Float -> if (orEqual) this >= other as Float else this > other as Float
+        is Double -> if (orEqual) this >= other as Double else this > other as Double
+        is Long -> if (orEqual) this >= other as Long else this > other as Long
+        else -> throw RuntimeException("Type ${this::class} not supported!")
+    }
+}
+
+@Suppress("UNCHECKED_CAST")
+private fun <T : Number> T.smallerThan(other: T, orEqual: Boolean): Boolean {
+    return when (this) {
+        is Int -> if (orEqual) this <= other as Int else this < other as Int
+        is Float -> if (orEqual) this <= other as Float else this < other as Float
+        is Double -> if (orEqual) this <= other as Double else this < other as Double
+        is Long -> if (orEqual) this <= other as Long else this < other as Long
+        else -> throw RuntimeException("Type ${this::class} not supported!")
     }
 }
 
@@ -239,7 +352,18 @@ private fun <T : Number> toT(value: T, v: Float): T {
 object PreferenceNumber {
     sealed class Style {
         data object Picker : Style()
-        class Slider(val showTicks: Boolean = false) : Style()
+        class Slider(
+            val showTicks: Boolean = false,
+            val showValueBelow: Boolean = false
+        ) : Style()
+        class Buttons(
+            val decrease: @Composable () -> Unit = {
+                Icon(Icons.Default.Remove, null)
+            },
+            val increase: @Composable () -> Unit = {
+                Icon(Icons.Default.Add, null)
+            }
+        ) : Style()
     }
 }
 
@@ -255,9 +379,13 @@ object PreferenceNumberDefaults {
     fun itemSetupSlider() = PreferenceItemSetup(contentPlacementBottom = true)
 
     @Composable
+    fun itemSetupButtons() = PreferenceItemSetup(contentPlacementBottom = true)
+
+    @Composable
     fun itemSetup(style: PreferenceNumber.Style) = when (style) {
         PreferenceNumber.Style.Picker -> itemSetupPicker()
         is PreferenceNumber.Style.Slider -> itemSetupSlider()
+        is PreferenceNumber.Style.Buttons -> itemSetupButtons()
     }
 
     @Composable

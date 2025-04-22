@@ -7,7 +7,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.ArrowLeft
+import androidx.compose.material.icons.filled.ChevronLeft
+import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material.icons.filled.Clear
+import androidx.compose.material.icons.filled.Remove
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
@@ -134,6 +139,7 @@ fun PrefScreenDemoFilter(
         val numberFloat1 = remember { mutableStateOf(0f) }
         val numberInt2 = remember { mutableStateOf(0) }
         val numberFloat2 = remember { mutableStateOf(0f) }
+        val numberFloat3 = remember { mutableStateOf(0f) }
 
         val listItems = List(100) { "Item ${it + 1}" }
         val list1 = remember { mutableStateOf(listItems.first()) }
@@ -145,7 +151,12 @@ fun PrefScreenDemoFilter(
             modifier = Modifier.weight(1f).fillMaxWidth(),
             settings = settings,
             filter = filter,
-            state = state
+            state = state,
+            stickyHeader = {
+                PreferenceSection(title = "Region Root Sticky Header") {
+                    PreferenceInfo(title = "Root Sticky Header")
+                }
+            }
         )
         /* --8<-- [end: filter2] */
         {
@@ -183,8 +194,14 @@ fun PrefScreenDemoFilter(
             PreferenceSection(
                 title = "Section 1-3"
             ) {
-
-                PreferenceSubScreen(title = "Pref 1 - Core") {
+                PreferenceSubScreen(
+                    title = "Pref 1 - Core",
+                    stickyHeader = {
+                        PreferenceSection(title = "Region Sticky Header") {
+                            PreferenceInfo(title = "Sticky Header")
+                        }
+                    }
+                ) {
                     PreferenceInfo(title = "Pref 1.1")
                     PreferenceSubScreen(title = "Pref 1.2 - NESTING") {
                         PreferenceInfo(title = "Pref 1.2.1")
@@ -285,18 +302,30 @@ fun PrefScreenDemoFilter(
             ) {
                 PreferenceSubScreen(title = "Pref 7 - Picker") {
                     PreferenceNumber(
-                        title = "Pref 7.1 - Int",
+                        title = "Pref 7.1 - Int - Dialog",
                         min = 0,
                         max = 100,
                         stepSize = 1,
                         value = numberInt2
                     )
-                    PreferenceNumber(title = "Pref 7.2 - Float",
+                    PreferenceNumber(title = "Pref 7.2 - Float - Slider",
                         min = 0f,
                         max = 10f,
                         stepSize = .5f,
                         value = numberFloat2,
                         style = PreferenceNumber.Style.Slider(showTicks = true),
+                        formatter = { "%.1f".format(it) }
+                    )
+                    PreferenceNumber(
+                        title = "Pref 7.3 - Float - Buttons",
+                        min = 0f,
+                        max = 10f,
+                        stepSize = .5f,
+                        value = numberFloat3,
+                        style = PreferenceNumber.Style.Buttons(
+                            //decrease = { Icon(Icons.Default.ChevronLeft, null) },
+                            //increase = { Icon(Icons.Default.ChevronRight, null) }
+                        ),
                         formatter = { "%.1f".format(it) }
                     )
                 }

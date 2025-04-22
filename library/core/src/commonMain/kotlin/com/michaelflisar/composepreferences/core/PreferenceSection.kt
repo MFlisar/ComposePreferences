@@ -15,54 +15,11 @@ import com.michaelflisar.composepreferences.core.helper.SearchText
 import com.michaelflisar.composepreferences.core.internal.LocalParent
 import com.michaelflisar.composepreferences.core.internal.rememberPreferenceItemState
 import com.michaelflisar.composepreferences.core.scopes.PreferenceGroupScope
-import com.michaelflisar.composepreferences.core.scopes.PreferenceRootScope
-import com.michaelflisar.composepreferences.core.scopes.PreferenceScope
 import com.michaelflisar.composepreferences.core.scopes.PreferenceSectionScope
 import com.michaelflisar.composepreferences.core.scopes.PreferenceSectionScopeInstance
 import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
 
 /* --8<-- [start: constructor] */
-/**
- * A section preference item
- *
- * &nbsp;
- *
- * **Basic Parameters:** all params not described here are derived from [com.michaelflisar.composepreferences.core.composables.BasePreference], check it out for more details
- *
- */
-@Composable
-fun PreferenceRootScope.PreferenceSection(
-    // Special
-    // Base Preference
-    enabled: Dependency = Dependency.Enabled,
-    visible: Dependency = Dependency.Enabled,
-    title: String? = null,
-    subtitle: String? = null,
-    icon: (@Composable () -> Unit)? = null,
-    itemStyle: PreferenceItemStyle = LocalPreferenceSettings.current.style.defaultSectionItemStyle,
-    titleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
-    subtitleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
-    filterTags: List<String> = emptyList(),
-    content: @Composable PreferenceSectionScope.() -> Unit
-)
-/* --8<-- [end: constructor] */
-{
-    PreferenceSectionImpl(
-        enabled,
-        visible,
-        title,
-        subtitle,
-        icon,
-        itemStyle,
-        titleRenderer,
-        subtitleRenderer,
-        filterTags
-    ) {
-        PreferenceSectionScopeInstance.content()
-    }
-}
-
-/* --8<-- [start: constructor2] */
 /**
  * A section preference item
  *
@@ -86,38 +43,8 @@ fun PreferenceGroupScope.PreferenceSection(
     filterTags: List<String> = emptyList(),
     content: @Composable PreferenceSectionScope.() -> Unit
 )
-/* --8<-- [end: constructor2] */
+/* --8<-- [end: constructor] */
 {
-    PreferenceSectionImpl(
-        enabled,
-        visible,
-        title,
-        subtitle,
-        icon,
-        itemStyle,
-        titleRenderer,
-        subtitleRenderer,
-        filterTags
-    ) {
-        PreferenceSectionScopeInstance.content()
-    }
-}
-
-@Composable
-private fun PreferenceScope.PreferenceSectionImpl(
-    // Special
-    // Base Preference
-    enabled: Dependency = Dependency.Enabled,
-    visible: Dependency = Dependency.Enabled,
-    title: String?,
-    subtitle: String? = null,
-    icon: (@Composable () -> Unit)? = null,
-    itemStyle: PreferenceItemStyle = LocalPreferenceSettings.current.style.defaultSectionItemStyle,
-    titleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
-    subtitleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
-    filterTags: List<String> = emptyList(),
-    content: @Composable () -> Unit
-) {
     val tags = filterTags + listOfNotNull(title, subtitle)
     val item = rememberPreferenceItemState(PreferenceType.Section, visible, tags, false)
 
@@ -139,6 +66,6 @@ private fun PreferenceScope.PreferenceSectionImpl(
         )
     }
     CompositionLocalProvider(LocalParent provides item) {
-        content()
+        PreferenceSectionScopeInstance.content()
     }
 }

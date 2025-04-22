@@ -80,6 +80,9 @@ kotlin {
             // Compose
             implementation(libs.compose.material3)
 
+            implementation(libs.compose.material.icons.core)
+            implementation(libs.compose.material.icons.extended)
+
             val useLiveDependencies = providers.gradleProperty("useLiveDependencies").get().toBoolean()
             if (useLiveDependencies) {
                 implementation(deps.composedialogs.core)

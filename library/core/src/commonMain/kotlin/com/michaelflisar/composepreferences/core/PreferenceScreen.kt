@@ -6,6 +6,8 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.listSaver
@@ -18,13 +20,16 @@ import com.michaelflisar.composepreferences.core.classes.PreferenceSettings
 import com.michaelflisar.composepreferences.core.classes.PreferenceSettingsDefaults
 import com.michaelflisar.composepreferences.core.classes.PreferenceState
 import com.michaelflisar.composepreferences.core.classes.rememberPreferenceState
+import com.michaelflisar.composepreferences.core.composables.PreferenceWithStickyHeaderWrapper
 import com.michaelflisar.composepreferences.core.filter.LocalPreferenceFilter
 import com.michaelflisar.composepreferences.core.filter.PreferenceFilter
 import com.michaelflisar.composepreferences.core.internal.LocalParent
 import com.michaelflisar.composepreferences.core.internal.LocalState
 import com.michaelflisar.composepreferences.core.internal.PreferenceItemState
-import com.michaelflisar.composepreferences.core.scopes.PreferenceRootScope
-import com.michaelflisar.composepreferences.core.scopes.PreferenceRootScopeInstance
+import com.michaelflisar.composepreferences.core.scopes.PreferenceGroupScope
+import com.michaelflisar.composepreferences.core.scopes.PreferenceGroupScopeInstance
+
+internal val LocalPreferenceScrollState = compositionLocalOf { mutableStateOf(ScrollState(0)) }
 
 /* --8<-- [start: constructor] */
 /**
@@ -34,6 +39,7 @@ import com.michaelflisar.composepreferences.core.scopes.PreferenceRootScopeInsta
  * @param scrollable if true, this composable does wrap its content inside a scrollable container
  * @param settings the [PreferenceSettings] for this screen - use [PreferenceSettingsDefaults.settings] to provide your own settings
  * @param filter the [PreferenceFilter] for this screen - use [rememberDefaultPreferenceFilter] to use some of the predefined options or provide your own [PreferenceFilter] implementation
+ * @param stickyHeader an optional sticky header for this screen
  * @param content the content of this screen
  */
 @Composable
@@ -43,7 +49,8 @@ fun PreferenceScreen(
     settings: PreferenceSettings = PreferenceSettingsDefaults.settings(),
     filter: PreferenceFilter? = null,
     state: PreferenceState = rememberPreferenceState(),
-    content: @Composable PreferenceRootScope.() -> Unit
+    stickyHeader: @Composable (PreferenceGroupScope.() -> Unit)? = null,
+    content: @Composable PreferenceGroupScope.() -> Unit
 )
 /* --8<-- [end: constructor] */
 {
@@ -71,7 +78,8 @@ fun PreferenceScreen(
         LocalPreferenceSettings provides settings,
         LocalPreferenceFilter provides filter,
         LocalParent provides root,
-        LocalState provides state
+        LocalState provides state,
+        LocalPreferenceScrollState provides scrollState
     ) {
         LaunchedEffect(
             root.getChildren(true).map { it.visible.value }
@@ -125,7 +133,7 @@ fun PreferenceScreen(
                     } else Modifier
                 ).then(modifier)
         ) {
-            PreferenceRootScopeInstance.content()
+            PreferenceWithStickyHeaderWrapper(LocalPreferenceSettings.current.style.defaultGroupItemStyle, stickyHeader, content)
         }
     }
 }
