@@ -34,17 +34,9 @@ This shows a simple divider preference.
 
 This allows you to wrap a group of preferences in a section. Depending on the style this may also change the visual appearance of the preferences.
 
-=== "Inside a `PreferenceRootScope`"
-
-    ```kotlin
-    --8<-- "../library/core/src/commonMain/kotlin/com/michaelflisar/composepreferences/core/PreferenceSection.kt:constructor"
-    ```
-
-=== "Inside a `PreferenceGroupScope`"
-
-    ```kotlin
-    --8<-- "../library/core/src/commonMain/kotlin/com/michaelflisar/composepreferences/core/PreferenceSection.kt:constructor2"
-    ```
+```kotlin
+--8<-- "../library/core/src/commonMain/kotlin/com/michaelflisar/composepreferences/core/PreferenceSection.kt:constructor"
+```
 
 ## PreferenceSubScreen
 

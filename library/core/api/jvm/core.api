@@ -16,10 +16,6 @@ public final class com/michaelflisar/composepreferences/core/ComposableSingleton
 	public fun <init> ()V
 	public final fun getLambda-1$core ()Lkotlin/jvm/functions/Function3;
 	public final fun getLambda-2$core ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-3$core ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-4$core ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-5$core ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-6$core ()Lkotlin/jvm/functions/Function3;
 }
 
 public final class com/michaelflisar/composepreferences/core/ComposableSingletons$PreferenceSubScreenKt {
@@ -59,16 +55,15 @@ public final class com/michaelflisar/composepreferences/core/PreferenceInfoKt {
 }
 
 public final class com/michaelflisar/composepreferences/core/PreferenceScreenKt {
-	public static final fun PreferenceScreen (Landroidx/compose/ui/Modifier;ZLcom/michaelflisar/composepreferences/core/classes/PreferenceSettings;Lcom/michaelflisar/composepreferences/core/filter/PreferenceFilter;Lcom/michaelflisar/composepreferences/core/classes/PreferenceState;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+	public static final fun PreferenceScreen (Landroidx/compose/ui/Modifier;ZLcom/michaelflisar/composepreferences/core/classes/PreferenceSettings;Lcom/michaelflisar/composepreferences/core/filter/PreferenceFilter;Lcom/michaelflisar/composepreferences/core/classes/PreferenceState;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
 }
 
 public final class com/michaelflisar/composepreferences/core/PreferenceSectionKt {
 	public static final fun PreferenceSection (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceGroupScope;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Ljava/util/List;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;III)V
-	public static final fun PreferenceSection (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceRootScope;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Ljava/util/List;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;III)V
 }
 
 public final class com/michaelflisar/composepreferences/core/PreferenceSubScreenKt {
-	public static final fun PreferenceSubScreen (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Ljava/util/List;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;III)V
+	public static final fun PreferenceSubScreen (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;Lkotlin/jvm/functions/Function3;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Ljava/util/List;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;III)V
 }
 
 public final class com/michaelflisar/composepreferences/core/classes/ComposableSingletons$PreferenceSettingsKt {
@@ -430,12 +425,6 @@ public final class com/michaelflisar/composepreferences/core/preview/PreviewPref
 }
 
 public abstract interface class com/michaelflisar/composepreferences/core/scopes/PreferenceGroupScope : com/michaelflisar/composepreferences/core/scopes/PreferenceScope {
-}
-
-public abstract interface class com/michaelflisar/composepreferences/core/scopes/PreferenceItemScope {
-}
-
-public abstract interface class com/michaelflisar/composepreferences/core/scopes/PreferenceRootScope : com/michaelflisar/composepreferences/core/scopes/PreferenceScope {
 }
 
 public abstract interface class com/michaelflisar/composepreferences/core/scopes/PreferenceScope {
