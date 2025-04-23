@@ -30,7 +30,7 @@ import androidx.compose.ui.unit.dp
 import com.michaelflisar.composepreferences.core.PreferenceInfo
 import com.michaelflisar.composepreferences.core.PreferenceSection
 import com.michaelflisar.composepreferences.core.preview.PreviewPreference
-import com.michaelflisar.composepreferences.core.scopes.PreferenceRootScope
+import com.michaelflisar.composepreferences.core.scopes.PreferenceGroupScope
 import com.michaelflisar.composepreferences.screen.bool.PreferenceBool
 import com.michaelflisar.composepreferences.screen.button.PreferenceButton
 import com.michaelflisar.composepreferences.screen.color.PreferenceColor
@@ -270,9 +270,9 @@ private fun RowHeader(
 
 @Composable
 private fun RowPreferences(
-    content1: @Composable PreferenceRootScope.() -> Unit,
-    content2: @Composable (PreferenceRootScope.() -> Unit)? = null,
-    content3: @Composable (PreferenceRootScope.() -> Unit)? = null
+    content1: @Composable PreferenceGroupScope.() -> Unit,
+    content2: @Composable (PreferenceGroupScope.() -> Unit)? = null,
+    content3: @Composable (PreferenceGroupScope.() -> Unit)? = null
 ) {
     Row(
         modifier = Modifier.height(IntrinsicSize.Min),
