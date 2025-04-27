@@ -1,10 +1,12 @@
 package com.michaelflisar.composepreferences.demo.demos
 
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowRight
 import androidx.compose.material.icons.automirrored.filled.List
@@ -21,8 +23,10 @@ import androidx.compose.material.icons.filled.Checklist
 import androidx.compose.material.icons.filled.ColorLens
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Error
+import androidx.compose.material.icons.filled.Expand
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Key
+import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Numbers
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.SmartButton
@@ -58,9 +62,12 @@ import com.michaelflisar.composepreferences.core.PreferenceScreen
 import com.michaelflisar.composepreferences.core.PreferenceSection
 import com.michaelflisar.composepreferences.core.PreferenceSubScreen
 import com.michaelflisar.composepreferences.core.classes.Dependency
+import com.michaelflisar.composepreferences.core.classes.rememberPreferenceState
 import com.michaelflisar.composepreferences.core.composables.BasePreference
 import com.michaelflisar.composepreferences.core.composables.BasePreferenceContainer
 import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetup
+import com.michaelflisar.composepreferences.core.rememberPreferenceSectionExpandedState
+import com.michaelflisar.composepreferences.core.rememberPreferenceSectionSharedExpandedState
 import com.michaelflisar.composepreferences.core.scopes.PreferenceScope
 import com.michaelflisar.composepreferences.core.styles.ModernStyle
 import com.michaelflisar.composepreferences.core.styles.PreferenceStyleDefaults
@@ -98,37 +105,54 @@ fun PrefScreenDemo() {
     // Preferences must be wrapped in a screen
     // => this allows to manage internal hierarchy and screen nesting and everything is managed automatically
     // => this also enables internal scrolling
-    PreferenceScreen(
-        // optional Preferences for this screen...
-        settings = settings,
-        modifier = Modifier.padding(
-            vertical = when (settings.style) {
-                is ModernStyle -> 16.dp
-                else -> 0.dp
-            }
+    val state = rememberPreferenceState()
+
+    Column {
+        Text(
+            text = "Opened Hierarchy: ${state.opened.joinToString(" > ") { it.title }}",
+            modifier = Modifier
+                .padding(8.dp)
+                .horizontalScroll(rememberScrollState())
         )
-    ) {
-        PreferenceSection(
-            title = "Demos Section 1"
+        PreferenceScreen(
+            // optional Preferences for this screen...
+            settings = settings,
+            modifier = Modifier.padding(
+                vertical = when (settings.style) {
+                    is ModernStyle -> 16.dp
+                    else -> 0.dp
+                }
+            ),
+            state = state
         ) {
-            PreferenceInfoExamples()
-            PreferenceBoolExamples()
-            PreferenceButtonExamples()
-            PreferenceColorExamples()
-        }
-        PreferenceSection(
-            title = "Demos Section 2"
-        ) {
-            PreferenceDateExamples()
-            PreferenceInputExamples()
-            PreferenceListExamples()
-            PreferenceNumberExamples()
-            PreferenceTimeExamples()
-            PreferenceDivider()
-            PreferenceDependenciesExamples()
-            PreferenceDivider()
-            PreferenceCustomExamples()
-            PreferenceCustom2Examples()
+            PreferenceSection(
+                title = "Demos Section 1"
+            ) {
+                PreferenceInfoExamples()
+                PreferenceBoolExamples()
+                PreferenceButtonExamples()
+                PreferenceColorExamples()
+            }
+            PreferenceSection(
+                title = "Demos Section 2"
+            ) {
+                PreferenceDateExamples()
+                PreferenceInputExamples()
+                PreferenceListExamples()
+                PreferenceNumberExamples()
+                PreferenceTimeExamples()
+                PreferenceDivider()
+                PreferenceDependenciesExamples()
+                PreferenceDivider()
+                PreferenceCustomExamples()
+                PreferenceCustom2Examples()
+            }
+            PreferenceSection(
+                title = "Demos Section 3"
+            ) {
+                PreferenceHierarchy()
+                PreferenceExpandableSections()
+            }
         }
     }
 }
@@ -1134,6 +1158,137 @@ private fun PreferenceScope.PreferenceCustom2Examples() {
                     icon = { Icon(Icons.Default.Apps, null) }
                 )
             }
+        }
+    }
+}
+
+@Composable
+private fun PreferenceScope.PreferenceHierarchy() {
+
+    val title = "Hierarchical Demo"
+    val subtitle = "Click to see some multi level hierarchical preferences"
+
+    PreferenceSubScreen(
+        title = title,
+        subtitle = subtitle,
+        icon = { Icon(Icons.Default.List, null) }
+    ) {
+        PreferenceInfo(
+            title = "1 Info",
+            icon = { Icon(Icons.Outlined.Info, null) },
+        )
+        PreferenceSubScreen(
+            title = "2 SubScreen",
+        ) {
+            PreferenceInfo(
+                title = "2.1 Info",
+                icon = { Icon(Icons.Outlined.Info, null) },
+            )
+            PreferenceSubScreen(
+                title = "2.2 SubScreen",
+            ) {
+                PreferenceInfo(
+                    title = "2.2.1 Info",
+                    icon = { Icon(Icons.Outlined.Info, null) },
+                )
+                PreferenceSubScreen(
+                    title = "2.2.2 SubScreen",
+                ) {
+                    PreferenceInfo(
+                        title = "2.2.2.1 Info",
+                        icon = { Icon(Icons.Outlined.Info, null) },
+                    )
+                }
+            }
+        }
+        PreferenceSubScreen(
+            title = "3 SubScreen",
+        ) {
+            PreferenceInfo(
+                title = "3.1 Info",
+                icon = { Icon(Icons.Outlined.Info, null) },
+            )
+            PreferenceSubScreen(
+                title = "3.2 SubScreen",
+            ) {
+                PreferenceInfo(
+                    title = "3.2.1 Info",
+                    icon = { Icon(Icons.Outlined.Info, null) },
+                )
+                PreferenceSubScreen(
+                    title = "3.2.2 SubScreen",
+                ) {
+                    PreferenceInfo(
+                        title = "3.2.2.1 Info",
+                        icon = { Icon(Icons.Outlined.Info, null) },
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun PreferenceScope.PreferenceExpandableSections() {
+    val title = "Expandable Section Demo"
+    val subtitle = "Click to see an example with expandable sections"
+
+    // Method 1: use one state per section...
+    val state = rememberPreferenceSectionExpandedState(expanded = true)
+
+    // Method 2: use a shared state for multiple sections...
+    val sharedState = rememberPreferenceSectionSharedExpandedState(
+        expandedIds = listOf(0),
+        expandSingleOnly = true
+    )
+
+    PreferenceSubScreen(
+        title = title,
+        subtitle = subtitle,
+        icon = { Icon(Icons.Default.Expand, null) }
+    ) {
+        PreferenceBool(
+            title = "Expand single section only?",
+            value = sharedState.expandSingleOnly
+        )
+        PreferenceSection(
+            title = "Section 1",
+            expandable = sharedState.toExpandableEnabled(0)
+        ) {
+            PreferenceInfo(
+                title = "Info 1.1",
+                icon = { Icon(Icons.Outlined.Info, null) },
+            )
+            PreferenceInfo(
+                title = "Info 1.2",
+                icon = { Icon(Icons.Outlined.Info, null) },
+            )
+        }
+        PreferenceSection(
+            title = "Section 2",
+            expandable = sharedState.toExpandableEnabled(1)
+        ) {
+            PreferenceInfo(
+                title = "Info 2.1",
+                icon = { Icon(Icons.Outlined.Info, null) },
+            )
+            PreferenceInfo(
+                title = "Info 2.2",
+                icon = { Icon(Icons.Outlined.Info, null) },
+            )
+        }
+        PreferenceSection(
+            title = "Section 3",
+            expandable = sharedState.toExpandableEnabled(2)
+        ) {
+            PreferenceInfo(
+                title = "Info 3.1",
+                icon = { Icon(Icons.Outlined.Info, null) },
+            )
+            PreferenceInfo(
+                title = "Info 3.2",
+                icon = { Icon(Icons.Outlined.Info, null) },
+            )
         }
     }
 }

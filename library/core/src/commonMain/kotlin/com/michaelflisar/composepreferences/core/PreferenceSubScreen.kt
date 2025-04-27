@@ -1,12 +1,5 @@
 package com.michaelflisar.composepreferences.core
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clipScrollableContainer
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material3.Icon
@@ -14,26 +7,15 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clipToBounds
-import androidx.compose.ui.layout.onSizeChanged
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.unit.IntOffset
-import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.zIndex
 import com.michaelflisar.composepreferences.core.classes.Dependency
 import com.michaelflisar.composepreferences.core.classes.LocalPreferenceSettings
+import com.michaelflisar.composepreferences.core.classes.PreferenceState
 import com.michaelflisar.composepreferences.core.classes.PreferenceType
 import com.michaelflisar.composepreferences.core.composables.BasePreference
 import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetup
 import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetupDefaults
-import com.michaelflisar.composepreferences.core.composables.PreferenceWithStickyHeaderWrapper
 import com.michaelflisar.composepreferences.core.helper.SearchText
 import com.michaelflisar.composepreferences.core.internal.LocalParent
 import com.michaelflisar.composepreferences.core.internal.LocalState
@@ -47,8 +29,6 @@ import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
 /**
  * A group preference item
  *
- * @param stickyHeader an optional sticky header for this screen
- *
  * &nbsp;
  *
  * **Basic Parameters:** all params not described here are derived from [com.michaelflisar.composepreferences.core.composables.BasePreference], check it out for more details
@@ -57,7 +37,6 @@ import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
 @Composable
 fun PreferenceScope.PreferenceSubScreen(
     // Special
-    stickyHeader: @Composable (PreferenceGroupScope.() -> Unit)? = null,
     // Base Preference
     enabled: Dependency = Dependency.Enabled,
     visible: Dependency = Dependency.Enabled,
@@ -68,10 +47,9 @@ fun PreferenceScope.PreferenceSubScreen(
     titleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
     subtitleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
     filterTags: List<String> = emptyList(),
-    content: @Composable PreferenceGroupScope.() -> Unit
+    content: @Composable PreferenceGroupScope.() -> Unit,
 )
-/* --8<-- [end: constructor] */
-{
+        /* --8<-- [end: constructor] */ {
     val tags = filterTags + listOfNotNull(title, subtitle)
     val item = rememberPreferenceItemState(PreferenceType.Group, visible, tags, false)
 
@@ -97,7 +75,7 @@ fun PreferenceScope.PreferenceSubScreen(
         itemStyle = itemStyle,
         onClick = {
             //println("openedGroups: add index: ${index.value} | localIndex = $localIndex")
-            state.openedGroups.add(item.id)
+            state.push(PreferenceState.Group(item.id, title))
         },
         item = item,
         content = if (preferenceSettings.subScreenEndIndicator == null) {
@@ -116,6 +94,6 @@ fun PreferenceScope.PreferenceSubScreen(
     CompositionLocalProvider(
         LocalParent provides item
     ) {
-        PreferenceWithStickyHeaderWrapper(itemStyle, stickyHeader, content)
+        PreferenceGroupScopeInstance.content()
     }
 }

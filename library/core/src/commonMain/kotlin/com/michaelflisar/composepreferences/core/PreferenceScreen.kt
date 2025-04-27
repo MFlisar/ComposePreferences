@@ -6,7 +6,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -20,7 +19,6 @@ import com.michaelflisar.composepreferences.core.classes.PreferenceSettings
 import com.michaelflisar.composepreferences.core.classes.PreferenceSettingsDefaults
 import com.michaelflisar.composepreferences.core.classes.PreferenceState
 import com.michaelflisar.composepreferences.core.classes.rememberPreferenceState
-import com.michaelflisar.composepreferences.core.composables.PreferenceWithStickyHeaderWrapper
 import com.michaelflisar.composepreferences.core.filter.LocalPreferenceFilter
 import com.michaelflisar.composepreferences.core.filter.PreferenceFilter
 import com.michaelflisar.composepreferences.core.internal.LocalParent
@@ -39,7 +37,6 @@ internal val LocalPreferenceScrollState = compositionLocalOf { mutableStateOf(Sc
  * @param scrollable if true, this composable does wrap its content inside a scrollable container
  * @param settings the [PreferenceSettings] for this screen - use [PreferenceSettingsDefaults.settings] to provide your own settings
  * @param filter the [PreferenceFilter] for this screen - use [rememberDefaultPreferenceFilter] to use some of the predefined options or provide your own [PreferenceFilter] implementation
- * @param stickyHeader an optional sticky header for this screen
  * @param content the content of this screen
  */
 @Composable
@@ -49,7 +46,6 @@ fun PreferenceScreen(
     settings: PreferenceSettings = PreferenceSettingsDefaults.settings(),
     filter: PreferenceFilter? = null,
     state: PreferenceState = rememberPreferenceState(),
-    stickyHeader: @Composable (PreferenceGroupScope.() -> Unit)? = null,
     content: @Composable PreferenceGroupScope.() -> Unit
 )
 /* --8<-- [end: constructor] */
@@ -57,10 +53,9 @@ fun PreferenceScreen(
     val children = remember { mutableStateOf<List<PreferenceItemState.Item>>(emptyList()) }
     val root = remember { PreferenceItemState.Root(children) }
 
-    BackHandler(state.openedGroups.size > 0) {
+    BackHandler(state.opened.isNotEmpty()) {
         //println("BACK - state.openedGroups = ${state.openedGroups.size}")
-        //state.popLast()
-        state.openedGroups.removeAt(state.openedGroups.lastIndex)
+        state.popLast()
     }
 
     val scrollStates = rememberSaveable(saver = listSaver(
@@ -69,7 +64,7 @@ fun PreferenceScreen(
     )) { listOf(0).toMutableStateList() }
     val scrollStateToUpdate = rememberSaveable { mutableStateOf<Int?>(null) }
     val scrollState = remember { mutableStateOf(ScrollState(0)) }
-    LaunchedEffect(state.openedGroups.size) {
+    LaunchedEffect(state.opened.size) {
         scrollStateToUpdate.value = null
         scrollState.value.animateScrollTo(0)
     }
@@ -94,24 +89,24 @@ fun PreferenceScreen(
                 //if (it.all { it }) {
                 // whenever items change because of the animation we try to restore the scroll state...
                 // this gives us a quite good result
-                var lastOffset = scrollStates.getOrNull(state.openedGroups.size)
+                var lastOffset = scrollStates.getOrNull(state.opened.size)
                 if (lastOffset != null) {
                     scrollState.value.animateScrollTo(lastOffset)
                 }
                 if (it.all { it }) {
                     // just to make sure, maybe something leads to opening levels faster than this is executed...
                     // => we make sure scrollstate for all but the current level exists
-                    while (scrollStates.lastIndex < state.openedGroups.size) {
+                    while (scrollStates.lastIndex < state.opened.size) {
                         scrollStates.add(0)
                     }
                     if (lastOffset == null) {
                         lastOffset = scrollState.value.value
                         scrollStates.add(lastOffset)
                     }
-                    while (scrollStates.lastIndex > state.openedGroups.size) {
+                    while (scrollStates.lastIndex > state.opened.size) {
                         scrollStates.removeAt(scrollStates.lastIndex)
                     }
-                    scrollStateToUpdate.value = state.openedGroups.size
+                    scrollStateToUpdate.value = state.opened.size
                     //println("scroll state reset - level: ${state.openedGroups.size} | items: ${it.size} | scrollstate: ${scrollState.value} - ${scrollState.value.value}")
                 }
             }
@@ -133,7 +128,7 @@ fun PreferenceScreen(
                     } else Modifier
                 ).then(modifier)
         ) {
-            PreferenceWithStickyHeaderWrapper(LocalPreferenceSettings.current.style.defaultGroupItemStyle, stickyHeader, content)
+            PreferenceGroupScopeInstance.content()
         }
     }
 }

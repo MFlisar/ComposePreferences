@@ -211,7 +211,7 @@ class ModernStyle internal constructor(
         }
          */
 
-        val isInSection = item.parent is PreferenceItemState.Item && item.parent.type == PreferenceType.Section
+        val isInSection = item.parent is PreferenceItemState.Item && item.parent.type is PreferenceType.Section
         //println("3 - item = ${item.tags} | isInSection = $isInSection | isLastVisibleItem = ${isLastVisibleItem.value}")
 
         val style =
@@ -252,7 +252,7 @@ class ModernStyle internal constructor(
                         colors = sectionItemStyle.colors
                     )
                 }
-            } else if (item.type == PreferenceType.Section && item.children.value.isNotEmpty()) {
+            } else if (item.type is PreferenceType.Section && item.children.value.isNotEmpty()) {
                 itemStyle
             } else itemStyle
 

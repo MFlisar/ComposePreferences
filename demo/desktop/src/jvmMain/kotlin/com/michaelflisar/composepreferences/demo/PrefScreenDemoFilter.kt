@@ -151,12 +151,7 @@ fun PrefScreenDemoFilter(
             modifier = Modifier.weight(1f).fillMaxWidth(),
             settings = settings,
             filter = filter,
-            state = state,
-            stickyHeader = {
-                PreferenceSection(title = "Region Root Sticky Header") {
-                    PreferenceInfo(title = "Root Sticky Header")
-                }
-            }
+            state = state
         )
         /* --8<-- [end: filter2] */
         {
@@ -195,12 +190,7 @@ fun PrefScreenDemoFilter(
                 title = "Section 1-3"
             ) {
                 PreferenceSubScreen(
-                    title = "Pref 1 - Core",
-                    stickyHeader = {
-                        PreferenceSection(title = "Region Sticky Header") {
-                            PreferenceInfo(title = "Sticky Header")
-                        }
-                    }
+                    title = "Pref 1 - Core"
                 ) {
                     PreferenceInfo(title = "Pref 1.1")
                     PreferenceSubScreen(title = "Pref 1.2 - NESTING") {

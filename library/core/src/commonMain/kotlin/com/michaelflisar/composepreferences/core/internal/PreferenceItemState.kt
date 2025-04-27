@@ -10,6 +10,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import com.michaelflisar.composepreferences.core.PreferenceSection
 import com.michaelflisar.composepreferences.core.classes.Dependency
 import com.michaelflisar.composepreferences.core.filter.LocalPreferenceFilter
 import com.michaelflisar.composepreferences.core.classes.PreferenceType
@@ -109,21 +110,29 @@ fun rememberPreferenceItemState(
 
         val visible = remember {
             derivedStateOf {
+
                 var group: PreferenceItemState? = parent
                 while (group !is PreferenceItemState.Root && (group is PreferenceItemState.Item && group.type != PreferenceType.Group)) {
                     group = group.parent
                 }
                 val groupVisible = if (filter?.isActive() == true && filter.flattenResult.value) {
                     type == PreferenceType.Item
-                } else if (state.openedGroups.size == 0) {
+                } else if (state.opened.isEmpty()) {
                     group is PreferenceItemState.Root
                 } else {
-                    group?.id == state.openedGroups.lastOrNull()
+                    group?.id == state.opened.lastOrNull()?.id
+                }
+
+                val section = (parent as? PreferenceItemState.Item)?.type as? PreferenceType.Section
+                val sectionExpandableState = section?.expandable as? PreferenceSection.Expandable.Enabled
+                var sectionExpanded = true
+                if (sectionExpandableState != null) {
+                    sectionExpanded = sectionExpandableState.state.isExpanded()
                 }
 
                 //println("item = id = $id | groupVisible = $groupVisible | groupVisible = ${stateVisible.value}")
 
-                groupVisible &&
+                groupVisible && sectionExpanded &&
                         (filter?.filter(filter.search.value, allTags.value) ?: true) &&
                         stateVisible.value
             }
