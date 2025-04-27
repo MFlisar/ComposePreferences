@@ -55,15 +55,76 @@ public final class com/michaelflisar/composepreferences/core/PreferenceInfoKt {
 }
 
 public final class com/michaelflisar/composepreferences/core/PreferenceScreenKt {
-	public static final fun PreferenceScreen (Landroidx/compose/ui/Modifier;ZLcom/michaelflisar/composepreferences/core/classes/PreferenceSettings;Lcom/michaelflisar/composepreferences/core/filter/PreferenceFilter;Lcom/michaelflisar/composepreferences/core/classes/PreferenceState;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+	public static final fun PreferenceScreen (Landroidx/compose/ui/Modifier;ZLcom/michaelflisar/composepreferences/core/classes/PreferenceSettings;Lcom/michaelflisar/composepreferences/core/filter/PreferenceFilter;Lcom/michaelflisar/composepreferences/core/classes/PreferenceState;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class com/michaelflisar/composepreferences/core/PreferenceSection {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/michaelflisar/composepreferences/core/PreferenceSection;
+}
+
+public abstract interface class com/michaelflisar/composepreferences/core/PreferenceSection$ExpandState {
+	public abstract fun isExpanded ()Z
+	public abstract fun toggleExpand ()V
+}
+
+public abstract class com/michaelflisar/composepreferences/core/PreferenceSection$Expandable {
+	public static final field $stable I
+}
+
+public final class com/michaelflisar/composepreferences/core/PreferenceSection$Expandable$Disabled : com/michaelflisar/composepreferences/core/PreferenceSection$Expandable {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/michaelflisar/composepreferences/core/PreferenceSection$Expandable$Disabled;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/michaelflisar/composepreferences/core/PreferenceSection$Expandable$Enabled : com/michaelflisar/composepreferences/core/PreferenceSection$Expandable {
+	public static final field $stable I
+	public fun <init> (Lcom/michaelflisar/composepreferences/core/PreferenceSection$ExpandState;)V
+	public final fun component1 ()Lcom/michaelflisar/composepreferences/core/PreferenceSection$ExpandState;
+	public final fun copy (Lcom/michaelflisar/composepreferences/core/PreferenceSection$ExpandState;)Lcom/michaelflisar/composepreferences/core/PreferenceSection$Expandable$Enabled;
+	public static synthetic fun copy$default (Lcom/michaelflisar/composepreferences/core/PreferenceSection$Expandable$Enabled;Lcom/michaelflisar/composepreferences/core/PreferenceSection$ExpandState;ILjava/lang/Object;)Lcom/michaelflisar/composepreferences/core/PreferenceSection$Expandable$Enabled;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getState ()Lcom/michaelflisar/composepreferences/core/PreferenceSection$ExpandState;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/michaelflisar/composepreferences/core/PreferenceSection$ExpandableState : com/michaelflisar/composepreferences/core/PreferenceSection$ExpandState {
+	public static final field $stable I
+	public fun <init> (Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;)V
+	public fun isExpanded ()Z
+	public fun toggleExpand ()V
+}
+
+public final class com/michaelflisar/composepreferences/core/PreferenceSection$SharedExpandState {
+	public static final field $stable I
+	public fun <init> (Landroidx/compose/runtime/snapshots/SnapshotStateList;Landroidx/compose/runtime/MutableState;Lkotlin/jvm/functions/Function1;)V
+	public final fun getExpandSingleOnly ()Landroidx/compose/runtime/MutableState;
+	public final fun getExpanded ()Landroidx/compose/runtime/snapshots/SnapshotStateList;
+	public final fun getToggleExpand ()Lkotlin/jvm/functions/Function1;
+	public final fun toExpandableEnabled (I)Lcom/michaelflisar/composepreferences/core/PreferenceSection$Expandable$Enabled;
+}
+
+public final class com/michaelflisar/composepreferences/core/PreferenceSection$SharedExpandableState : com/michaelflisar/composepreferences/core/PreferenceSection$ExpandState {
+	public static final field $stable I
+	public fun <init> (ILcom/michaelflisar/composepreferences/core/PreferenceSection$SharedExpandState;)V
+	public final fun getId ()I
+	public final fun getState ()Lcom/michaelflisar/composepreferences/core/PreferenceSection$SharedExpandState;
+	public fun isExpanded ()Z
+	public fun toggleExpand ()V
 }
 
 public final class com/michaelflisar/composepreferences/core/PreferenceSectionKt {
-	public static final fun PreferenceSection (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceGroupScope;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Ljava/util/List;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;III)V
+	public static final fun PreferenceSection (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceGroupScope;Lcom/michaelflisar/composepreferences/core/PreferenceSection$Expandable;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Ljava/util/List;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;III)V
+	public static final fun rememberPreferenceSectionExpandedState (ZLandroidx/compose/runtime/Composer;II)Lcom/michaelflisar/composepreferences/core/PreferenceSection$Expandable$Enabled;
+	public static final fun rememberPreferenceSectionSharedExpandedState (Ljava/util/List;ZLandroidx/compose/runtime/Composer;II)Lcom/michaelflisar/composepreferences/core/PreferenceSection$SharedExpandState;
 }
 
 public final class com/michaelflisar/composepreferences/core/PreferenceSubScreenKt {
-	public static final fun PreferenceSubScreen (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;Lkotlin/jvm/functions/Function3;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Ljava/util/List;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;III)V
+	public static final fun PreferenceSubScreen (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Ljava/util/List;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;III)V
 }
 
 public final class com/michaelflisar/composepreferences/core/classes/ComposableSingletons$PreferenceSettingsKt {
@@ -150,9 +211,28 @@ public final class com/michaelflisar/composepreferences/core/classes/PreferenceS
 	public final fun countVisible (ZZ)I
 	public static synthetic fun countVisible$default (Lcom/michaelflisar/composepreferences/core/classes/PreferenceState;ZZILjava/lang/Object;)I
 	public final fun getCurrentLevel ()I
-	public final fun getOpenedGroups ()Landroidx/compose/runtime/snapshots/SnapshotStateList;
+	public final fun getOpened ()Ljava/util/List;
 	public final fun popAll ()V
 	public final fun popLast ()V
+	public final fun push (Lcom/michaelflisar/composepreferences/core/classes/PreferenceState$Group;)V
+}
+
+public final class com/michaelflisar/composepreferences/core/classes/PreferenceState$Group : android/os/Parcelable {
+	public static final field $stable I
+	public static final field CREATOR Landroid/os/Parcelable$Creator;
+	public fun <init> (ILjava/lang/String;)V
+	public final fun describeContents ()I
+	public final fun getId ()I
+	public final fun getTitle ()Ljava/lang/String;
+	public final fun writeToParcel (Landroid/os/Parcel;I)V
+}
+
+public final class com/michaelflisar/composepreferences/core/classes/PreferenceState$Group$Creator : android/os/Parcelable$Creator {
+	public fun <init> ()V
+	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/michaelflisar/composepreferences/core/classes/PreferenceState$Group;
+	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
+	public final fun newArray (I)[Lcom/michaelflisar/composepreferences/core/classes/PreferenceState$Group;
+	public synthetic fun newArray (I)[Ljava/lang/Object;
 }
 
 public final class com/michaelflisar/composepreferences/core/classes/PreferenceState$Item {
@@ -168,13 +248,30 @@ public final class com/michaelflisar/composepreferences/core/classes/PreferenceS
 	public static final fun rememberPreferenceState (Landroidx/compose/runtime/Composer;I)Lcom/michaelflisar/composepreferences/core/classes/PreferenceState;
 }
 
-public final class com/michaelflisar/composepreferences/core/classes/PreferenceType : java/lang/Enum {
-	public static final field Group Lcom/michaelflisar/composepreferences/core/classes/PreferenceType;
-	public static final field Item Lcom/michaelflisar/composepreferences/core/classes/PreferenceType;
-	public static final field Section Lcom/michaelflisar/composepreferences/core/classes/PreferenceType;
-	public static fun getEntries ()Lkotlin/enums/EnumEntries;
-	public static fun valueOf (Ljava/lang/String;)Lcom/michaelflisar/composepreferences/core/classes/PreferenceType;
-	public static fun values ()[Lcom/michaelflisar/composepreferences/core/classes/PreferenceType;
+public abstract class com/michaelflisar/composepreferences/core/classes/PreferenceType {
+	public static final field $stable I
+}
+
+public final class com/michaelflisar/composepreferences/core/classes/PreferenceType$Group : com/michaelflisar/composepreferences/core/classes/PreferenceType {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/michaelflisar/composepreferences/core/classes/PreferenceType$Group;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/michaelflisar/composepreferences/core/classes/PreferenceType$Item : com/michaelflisar/composepreferences/core/classes/PreferenceType {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/michaelflisar/composepreferences/core/classes/PreferenceType$Item;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/michaelflisar/composepreferences/core/classes/PreferenceType$Section : com/michaelflisar/composepreferences/core/classes/PreferenceType {
+	public static final field $stable I
+	public fun <init> (Lcom/michaelflisar/composepreferences/core/PreferenceSection$Expandable;)V
+	public final fun getExpandable ()Lcom/michaelflisar/composepreferences/core/PreferenceSection$Expandable;
 }
 
 public final class com/michaelflisar/composepreferences/core/composables/BasePreferenceContainerKt {
