@@ -23,6 +23,9 @@ import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
  */
 @Composable
 fun PreferenceScope.PreferenceCustom(
+    // Special
+    onClick: (() -> Unit)? = null,
+    onLongClick: (() -> Unit)? = null,
     // Base Preference
     enabled: Dependency = Dependency.Enabled,
     visible: Dependency = Dependency.Enabled,
@@ -36,7 +39,8 @@ fun PreferenceScope.PreferenceCustom(
         itemSetup = itemSetup,
         enabled = enabled,
         visible = visible,
-        onLongClick = null,
+        onClick = onClick,
+        onLongClick = onLongClick,
         itemStyle = itemStyle,
         filterTags = filterTags,
         content = content
