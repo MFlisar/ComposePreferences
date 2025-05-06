@@ -5,8 +5,8 @@ moko-parcelize =            "0.9.0"
 
 # mflisar
 kotpreferences = 		    "0.7.3"
-composedialogs =   		    "2.1.3"
-toolbox =                   "2.5.0-alpha14" # for demo only!
+composedialogs =   		    "2.1.4-alpha03" # todo
+toolbox =                   "2.5.1" # for demo only!
 
 [libraries]
 
