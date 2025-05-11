@@ -15,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
@@ -23,8 +24,6 @@ import androidx.compose.ui.unit.dp
 import com.michaelflisar.composepreferences.core.ExperimentalSettings
 import com.michaelflisar.composepreferences.core.classes.Dependency
 import com.michaelflisar.composepreferences.core.classes.LocalPreferenceSettings
-import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
-import com.michaelflisar.composepreferences.core.styles.PreferenceStyleDefaults
 import com.michaelflisar.composepreferences.core.classes.PreferenceType
 import com.michaelflisar.composepreferences.core.helper.AnimatedPreference
 import com.michaelflisar.composepreferences.core.helper.disableState
@@ -32,6 +31,8 @@ import com.michaelflisar.composepreferences.core.internal.LocalItem
 import com.michaelflisar.composepreferences.core.internal.PreferenceItemState
 import com.michaelflisar.composepreferences.core.internal.rememberPreferenceItemState
 import com.michaelflisar.composepreferences.core.scopes.PreferenceScope
+import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
+import com.michaelflisar.composepreferences.core.styles.PreferenceStyleDefaults
 
 /**
  * this is the root composable that **MUST** be used by all preferences!
@@ -62,7 +63,7 @@ fun PreferenceScope.BasePreferenceContainer(
     onLongClick: (() -> Unit)? = null,
     itemStyle: PreferenceItemStyle = LocalPreferenceSettings.current.style.defaultItemStyle,
     filterTags: List<String> = emptyList(),
-    content: @Composable (modifier: Modifier) -> Unit
+    content: @Composable (modifier: Modifier) -> Unit,
 ) {
     val tags = filterTags
     val item = rememberPreferenceItemState(PreferenceType.Item, visible, tags, false)
@@ -98,7 +99,7 @@ internal fun PreferenceScope.BasePreferenceContainer(
     onLongClick: (() -> Unit)? = null,
     itemStyle: PreferenceItemStyle = LocalPreferenceSettings.current.style.defaultItemStyle,
     filterTags: List<String> = emptyList(),
-    content: @Composable (modifier: Modifier) -> Unit
+    content: @Composable (modifier: Modifier) -> Unit,
 ) {
 
     LocalItem.current.value = item
@@ -112,16 +113,15 @@ internal fun PreferenceScope.BasePreferenceContainer(
     //println("container: item.id = ${item.id} | visible = ${item.visible.value} | filterTags = $filterTags | allTags = ${item.allTags.value}")
 
     // Item
-    val animationFactor = remember {
-        Animatable(1f)
-    }
+    val animationFactor = remember { Animatable(1f) }
     LaunchedEffect(Unit) {
         if (item.visible.value && settings.animationSpec != null) {
             animationFactor.animateTo(
                 0f,
                 animationSpec = settings.animationSpec
             )
-        } else animationFactor.snapTo(0f)
+        } else
+            animationFactor.snapTo(0f)
     }
 
     AnimatedPreference(
@@ -155,35 +155,41 @@ private fun createModifier(
     onClick: (() -> Unit)?,
     onLongClick: (() -> Unit)?,
     itemStyle: PreferenceItemStyle,
-    animationFactor: Animatable<Float, AnimationVector1D>
+    animationFactor: Animatable<Float, AnimationVector1D>,
 ): Modifier {
     val stateEnabled = enabled.state()
-    val animationOffsetY =
-        with(LocalDensity.current) { (animationFactor.value * 8).dp.toPx() }
+    val animationOffsetY = with(LocalDensity.current) { (animationFactor.value * 8).dp.toPx() }
     val animationAlpha = 1f - animationFactor.value
     return modifier
         .clip(itemStyle.shape)
         .then(Modifier.disableState(stateEnabled))
-        .then(if (stateEnabled.value && (onClick != null || onLongClick != null)) {
-            if (onClick != null && onLongClick != null) {
-                Modifier.combinedClickable(
-                    onClick = onClick,
-                    onLongClick = onLongClick
-                )
-            } else if (onClick != null) {
-                Modifier.clickable { onClick() }
-            } else if (onLongClick != null) {
-                Modifier.pointerInput(Unit) {
-                    detectTapGestures(
-                        onLongPress = {
-                            onLongClick()
-                        }
+        .then(
+            if (stateEnabled.value && (onClick != null || onLongClick != null)) {
+                if (onClick != null && onLongClick != null) {
+                    Modifier.combinedClickable(
+                        onClick = onClick,
+                        onLongClick = onLongClick
                     )
+                } else if (onClick != null) {
+                    Modifier.clickable { onClick() }
+                } else if (onLongClick != null) {
+                    Modifier.pointerInput(Unit) {
+                        detectTapGestures(
+                            onLongPress = {
+                                onLongClick()
+                            }
+                        )
+                    }
+                } else Modifier
+            } else Modifier)
+        .then(
+            if (ExperimentalSettings.USE_ALPHA_AND_TRANSLATE_ON_FIRST_SHOW) {
+                Modifier.graphicsLayer {
+                    translationY = animationOffsetY
+                    alpha = animationAlpha
                 }
-            } else Modifier
-        } else Modifier)
-        .graphicsLayer {
-            translationY = animationOffsetY
-            alpha = animationAlpha
-        }
+            } else {
+                Modifier.alpha(animationAlpha)
+            }
+        )
 }

@@ -14,6 +14,15 @@ internal object ExperimentalSettings {
     var useScrollStateRestoration = true
 
     /*
+     * if enables, on android 12 preferences are invisibile in some cases, e.g. with modern style:
+     * - open demo
+     * - click info demos
+     * - go back
+     * ...
+     */
+    const val USE_ALPHA_AND_TRANSLATE_ON_FIRST_SHOW = false
+
+    /*
      * Enable animation for preferences but disabled scrollstate restoration when moving up/down in the hierarchy
      *
      * this is the default setting
