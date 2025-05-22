@@ -10,8 +10,8 @@ internal object ExperimentalSettings {
     //      => ID management must be done for invisible screens so those screens would need to stay
     //      in the composable tree just like the preferences do it now...
     // CURRENT STATE: SOLVED!
-    var useAnimation = true
-    var useScrollStateRestoration = true
+    var USE_ANIMATION = true
+    //var USE_SCROLLSTATE_RESTORATON = true
 
     /*
      * if enables, on android 12 preferences are invisibile in some cases, e.g. with modern style:
@@ -21,22 +21,4 @@ internal object ExperimentalSettings {
      * ...
      */
     const val USE_ALPHA_AND_TRANSLATE_ON_FIRST_SHOW = false
-
-    /*
-     * Enable animation for preferences but disabled scrollstate restoration when moving up/down in the hierarchy
-     *
-     * this is the default setting
-     */
-    fun useAnimation() {
-        useAnimation = true
-        useScrollStateRestoration = false
-    }
-
-    /*
-     * Enable scrollstate restoration when moving up/down in the hierarchy but disable animations for preferences
-     */
-    fun useScrollStateRestoration() {
-        useAnimation = false
-        useScrollStateRestoration = true
-    }
 }

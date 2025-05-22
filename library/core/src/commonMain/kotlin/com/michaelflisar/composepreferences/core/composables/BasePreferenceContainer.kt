@@ -126,7 +126,7 @@ internal fun PreferenceScope.BasePreferenceContainer(
 
     AnimatedPreference(
         itemState = item,
-        animate = if (ExperimentalSettings.useAnimation) {
+        animate = if (ExperimentalSettings.USE_ANIMATION) {
             settings.animationSpec != null
         } else false
     ) {

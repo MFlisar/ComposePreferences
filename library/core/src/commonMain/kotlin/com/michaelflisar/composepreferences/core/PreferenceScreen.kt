@@ -21,6 +21,7 @@ import com.michaelflisar.composepreferences.core.classes.PreferenceState
 import com.michaelflisar.composepreferences.core.classes.rememberPreferenceState
 import com.michaelflisar.composepreferences.core.filter.LocalPreferenceFilter
 import com.michaelflisar.composepreferences.core.filter.PreferenceFilter
+import com.michaelflisar.composepreferences.core.filter.rememberDefaultPreferenceFilter
 import com.michaelflisar.composepreferences.core.internal.LocalParent
 import com.michaelflisar.composepreferences.core.internal.LocalState
 import com.michaelflisar.composepreferences.core.internal.PreferenceItemState
