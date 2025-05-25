@@ -1,17 +1,17 @@
 public final class com/michaelflisar/composepreferences/screen/time/ComposableSingletons$PreferenceTimeKt {
 	public static final field INSTANCE Lcom/michaelflisar/composepreferences/screen/time/ComposableSingletons$PreferenceTimeKt;
 	public fun <init> ()V
-	public final fun getLambda-1$time_release ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-2$time_release ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-3$time_release ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-4$time_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-1246487788$time_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$281174988$time_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$550109036$time_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$582232948$time_release ()Lkotlin/jvm/functions/Function3;
 }
 
 public final class com/michaelflisar/composepreferences/screen/time/ComposableSingletons$PreviewPreferenceTimeKt {
 	public static final field INSTANCE Lcom/michaelflisar/composepreferences/screen/time/ComposableSingletons$PreviewPreferenceTimeKt;
 	public fun <init> ()V
-	public final fun getLambda-1$time_release ()Lkotlin/jvm/functions/Function2;
-	public final fun getLambda-2$time_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$1536688434$time_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$2042544693$time_release ()Lkotlin/jvm/functions/Function2;
 }
 
 public final class com/michaelflisar/composepreferences/screen/time/PreferenceTimeDefaults {

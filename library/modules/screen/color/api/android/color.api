@@ -1,19 +1,19 @@
 public final class com/michaelflisar/composepreferences/screen/color/ComposableSingletons$PreferenceColorKt {
 	public static final field INSTANCE Lcom/michaelflisar/composepreferences/screen/color/ComposableSingletons$PreferenceColorKt;
 	public fun <init> ()V
-	public final fun getLambda-1$color_release ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-2$color_release ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-3$color_release ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-4$color_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-1127463935$color_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-1245283231$color_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-241591912$color_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$724774392$color_release ()Lkotlin/jvm/functions/Function3;
 }
 
 public final class com/michaelflisar/composepreferences/screen/color/ComposableSingletons$PreviewPreferenceColorKt {
 	public static final field INSTANCE Lcom/michaelflisar/composepreferences/screen/color/ComposableSingletons$PreviewPreferenceColorKt;
 	public fun <init> ()V
-	public final fun getLambda-1$color_release ()Lkotlin/jvm/functions/Function2;
-	public final fun getLambda-2$color_release ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-3$color_release ()Lkotlin/jvm/functions/Function2;
-	public final fun getLambda-4$color_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-1968376116$color_release ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$-2050409770$color_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-716905386$color_release ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$1035018636$color_release ()Lkotlin/jvm/functions/Function3;
 }
 
 public final class com/michaelflisar/composepreferences/screen/color/PreferenceColorDefaults {

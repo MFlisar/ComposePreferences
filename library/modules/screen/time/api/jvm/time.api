@@ -1,10 +1,10 @@
 public final class com/michaelflisar/composepreferences/screen/time/ComposableSingletons$PreferenceTimeKt {
 	public static final field INSTANCE Lcom/michaelflisar/composepreferences/screen/time/ComposableSingletons$PreferenceTimeKt;
 	public fun <init> ()V
-	public final fun getLambda-1$time ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-2$time ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-3$time ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-4$time ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-1246487788$time ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$281174988$time ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$550109036$time ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$582232948$time ()Lkotlin/jvm/functions/Function3;
 }
 
 public final class com/michaelflisar/composepreferences/screen/time/PreferenceTimeDefaults {

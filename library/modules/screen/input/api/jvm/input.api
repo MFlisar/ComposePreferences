@@ -1,19 +1,19 @@
 public final class com/michaelflisar/composepreferences/screen/input/ComposableSingletons$PreferenceInputNumberKt {
 	public static final field INSTANCE Lcom/michaelflisar/composepreferences/screen/input/ComposableSingletons$PreferenceInputNumberKt;
 	public fun <init> ()V
-	public final fun getLambda-1$input ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-2$input ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-3$input ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-4$input ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-447869807$input ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-772502231$input ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$128494985$input ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$1713240113$input ()Lkotlin/jvm/functions/Function3;
 }
 
 public final class com/michaelflisar/composepreferences/screen/input/ComposableSingletons$PreferenceInputTextKt {
 	public static final field INSTANCE Lcom/michaelflisar/composepreferences/screen/input/ComposableSingletons$PreferenceInputTextKt;
 	public fun <init> ()V
-	public final fun getLambda-1$input ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-2$input ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-3$input ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-4$input ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-1811127087$input ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-554150204$input ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-650700188$input ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$67131505$input ()Lkotlin/jvm/functions/Function3;
 }
 
 public final class com/michaelflisar/composepreferences/screen/input/PreferenceInputNumberDefaults {

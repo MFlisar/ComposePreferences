@@ -1,10 +1,10 @@
 public final class com/michaelflisar/composepreferences/screen/date/ComposableSingletons$PreferenceDateKt {
 	public static final field INSTANCE Lcom/michaelflisar/composepreferences/screen/date/ComposableSingletons$PreferenceDateKt;
 	public fun <init> ()V
-	public final fun getLambda-1$date ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-2$date ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-3$date ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-4$date ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-1445428845$date ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-414508728$date ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-686425613$date ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$333073640$date ()Lkotlin/jvm/functions/Function3;
 }
 
 public final class com/michaelflisar/composepreferences/screen/date/PreferenceDateDefaults {

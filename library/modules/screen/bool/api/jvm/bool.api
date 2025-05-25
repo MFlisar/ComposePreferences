@@ -1,10 +1,10 @@
 public final class com/michaelflisar/composepreferences/screen/bool/ComposableSingletons$PreferenceBoolKt {
 	public static final field INSTANCE Lcom/michaelflisar/composepreferences/screen/bool/ComposableSingletons$PreferenceBoolKt;
 	public fun <init> ()V
-	public final fun getLambda-1$bool ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-2$bool ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-3$bool ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-4$bool ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-1030022397$bool ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-572244729$bool ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-790805661$bool ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$1032200551$bool ()Lkotlin/jvm/functions/Function3;
 }
 
 public final class com/michaelflisar/composepreferences/screen/bool/PreferenceBool {

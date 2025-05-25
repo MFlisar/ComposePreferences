@@ -106,7 +106,7 @@ modules:
     dependencies:
       - name: ComposeDialogs
         link: https://github.com/MFlisar/ComposeDialogs
-        version: 2.1.3
+        version: 2.1.4
   - name: kotpreferences
     group: extensions
     description: 
@@ -119,7 +119,7 @@ modules:
     dependencies:
       - name: KotPreferences
         link: https://github.com/MFlisar/KotPreferences
-        version: 0.7.2
+        version: 0.8.0
   - name: screen-bool
     group: modules
     description: provides a checkbox/switch preference screen
@@ -152,7 +152,7 @@ modules:
     dependencies:
       - name: ComposeDialogs
         link: https://github.com/MFlisar/ComposeDialogs
-        version: 2.1.3
+        version: 2.1.4
   - name: screen-date
     group: modules
     description: provides a date picker preference screen
@@ -165,7 +165,7 @@ modules:
     dependencies:
       - name: ComposeDialogs
         link: https://github.com/MFlisar/ComposeDialogs
-        version: 2.1.3
+        version: 2.1.4
   - name: screen-input
     group: modules
     description: provides a input dialog preference screen
@@ -178,7 +178,7 @@ modules:
     dependencies:
       - name: ComposeDialogs
         link: https://github.com/MFlisar/ComposeDialogs
-        version: 2.1.3
+        version: 2.1.4
   - name: screen-list
     group: modules
     description: provides a list preference screen
@@ -191,7 +191,7 @@ modules:
     dependencies:
       - name: ComposeDialogs
         link: https://github.com/MFlisar/ComposeDialogs
-        version: 2.1.3
+        version: 2.1.4
   - name: screen-number
     group: modules
     description: provides a number picker preference screen
@@ -204,7 +204,7 @@ modules:
     dependencies:
       - name: ComposeDialogs
         link: https://github.com/MFlisar/ComposeDialogs
-        version: 2.1.3
+        version: 2.1.4
   - name: screen-time
     group: modules
     description: provides a time picker preference screen
@@ -217,4 +217,4 @@ modules:
     dependencies:
       - name: ComposeDialogs
         link: https://github.com/MFlisar/ComposeDialogs
-        version: 2.1.3
+        version: 2.1.4

@@ -1,20 +1,20 @@
 public final class com/michaelflisar/composepreferences/screen/list/ComposableSingletons$PreferenceListKt {
 	public static final field INSTANCE Lcom/michaelflisar/composepreferences/screen/list/ComposableSingletons$PreferenceListKt;
 	public fun <init> ()V
-	public final fun getLambda-1$list ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-2$list ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-3$list ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-4$list ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-5$list ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$-308823097$list ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-497689143$list ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$1543960937$list ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$611343207$list ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$888369243$list ()Lkotlin/jvm/functions/Function2;
 }
 
 public final class com/michaelflisar/composepreferences/screen/list/ComposableSingletons$PreferenceListMultiKt {
 	public static final field INSTANCE Lcom/michaelflisar/composepreferences/screen/list/ComposableSingletons$PreferenceListMultiKt;
 	public fun <init> ()V
-	public final fun getLambda-1$list ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-2$list ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-3$list ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-4$list ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-1072437880$list ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$1311671784$list ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$1370275592$list ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$514164392$list ()Lkotlin/jvm/functions/Function3;
 }
 
 public final class com/michaelflisar/composepreferences/screen/list/PreferenceList {

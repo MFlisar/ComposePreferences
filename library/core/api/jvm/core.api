@@ -1,29 +1,29 @@
 public final class com/michaelflisar/composepreferences/core/ComposableSingletons$PreferenceDividerKt {
 	public static final field INSTANCE Lcom/michaelflisar/composepreferences/core/ComposableSingletons$PreferenceDividerKt;
 	public fun <init> ()V
-	public final fun getLambda-1$core ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-601832102$core ()Lkotlin/jvm/functions/Function3;
 }
 
 public final class com/michaelflisar/composepreferences/core/ComposableSingletons$PreferenceInfoKt {
 	public static final field INSTANCE Lcom/michaelflisar/composepreferences/core/ComposableSingletons$PreferenceInfoKt;
 	public fun <init> ()V
-	public final fun getLambda-1$core ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-2$core ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-1411299060$core ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$841655468$core ()Lkotlin/jvm/functions/Function3;
 }
 
 public final class com/michaelflisar/composepreferences/core/ComposableSingletons$PreferenceSectionKt {
 	public static final field INSTANCE Lcom/michaelflisar/composepreferences/core/ComposableSingletons$PreferenceSectionKt;
 	public fun <init> ()V
-	public final fun getLambda-1$core ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-2$core ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$1905652330$core ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$2006113802$core ()Lkotlin/jvm/functions/Function3;
 }
 
 public final class com/michaelflisar/composepreferences/core/ComposableSingletons$PreferenceSubScreenKt {
 	public static final field INSTANCE Lcom/michaelflisar/composepreferences/core/ComposableSingletons$PreferenceSubScreenKt;
 	public fun <init> ()V
-	public final fun getLambda-1$core ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-2$core ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-3$core ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-1852978029$core ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-1923173165$core ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$399976499$core ()Lkotlin/jvm/functions/Function3;
 }
 
 public final class com/michaelflisar/composepreferences/core/Platform_jvmKt {
@@ -130,8 +130,8 @@ public final class com/michaelflisar/composepreferences/core/PreferenceSubScreen
 public final class com/michaelflisar/composepreferences/core/classes/ComposableSingletons$PreferenceSettingsKt {
 	public static final field INSTANCE Lcom/michaelflisar/composepreferences/core/classes/ComposableSingletons$PreferenceSettingsKt;
 	public fun <init> ()V
-	public final fun getLambda-1$core ()Lkotlin/jvm/functions/Function2;
-	public final fun getLambda-2$core ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$-166595526$core ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$1150370108$core ()Lkotlin/jvm/functions/Function2;
 }
 
 public abstract class com/michaelflisar/composepreferences/core/classes/Dependency {
@@ -282,15 +282,15 @@ public final class com/michaelflisar/composepreferences/core/composables/BasePre
 public final class com/michaelflisar/composepreferences/core/composables/ComposableSingletons$BasePreferenceDialogKt {
 	public static final field INSTANCE Lcom/michaelflisar/composepreferences/core/composables/ComposableSingletons$BasePreferenceDialogKt;
 	public fun <init> ()V
-	public final fun getLambda-1$core ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-2$core ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$498347810$core ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$629861058$core ()Lkotlin/jvm/functions/Function3;
 }
 
 public final class com/michaelflisar/composepreferences/core/composables/ComposableSingletons$BasePreferenceKt {
 	public static final field INSTANCE Lcom/michaelflisar/composepreferences/core/composables/ComposableSingletons$BasePreferenceKt;
 	public fun <init> ()V
-	public final fun getLambda-1$core ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-2$core ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$2039384845$core ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$339167917$core ()Lkotlin/jvm/functions/Function3;
 }
 
 public final class com/michaelflisar/composepreferences/core/composables/PreferenceContentTextKt {

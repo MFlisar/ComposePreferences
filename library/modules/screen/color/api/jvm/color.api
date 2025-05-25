@@ -1,10 +1,10 @@
 public final class com/michaelflisar/composepreferences/screen/color/ComposableSingletons$PreferenceColorKt {
 	public static final field INSTANCE Lcom/michaelflisar/composepreferences/screen/color/ComposableSingletons$PreferenceColorKt;
 	public fun <init> ()V
-	public final fun getLambda-1$color ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-2$color ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-3$color ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-4$color ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-1127463935$color ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-1245283231$color ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-241591912$color ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$724774392$color ()Lkotlin/jvm/functions/Function3;
 }
 
 public final class com/michaelflisar/composepreferences/screen/color/PreferenceColorDefaults {
