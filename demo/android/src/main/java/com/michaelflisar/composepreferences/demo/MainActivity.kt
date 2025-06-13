@@ -44,6 +44,7 @@ import com.michaelflisar.composepreferences.screen.list.PreferenceList
 import com.michaelflisar.composepreferences.screen.number.PreferenceNumber
 import com.michaelflisar.composethemer.ComposeTheme
 import com.michaelflisar.kotpreferences.compose.asMutableState
+import com.michaelflisar.kotpreferences.compose.asMutableStateNotNull
 import com.michaelflisar.toolbox.androiddemoapp.DemoActivity
 import com.michaelflisar.toolbox.androiddemoapp.composables.DemoAppThemeRegion
 import com.michaelflisar.toolbox.androiddemoapp.composables.DemoCollapsibleRegion
@@ -151,13 +152,13 @@ private fun Root(
                 settings = settings
             ) {
                 PreferenceList(
-                    value = DemoPrefs.style.asMutableState(),
+                    value = DemoPrefs.style.asMutableStateNotNull(),
                     title = "Style",
                     items = DemoStyle.entries.toList(),
                     icon = { Icon(Icons.Default.Style, null) },
                 )
                 PreferenceNumber(
-                    value = DemoPrefs.disabledStateAlpha.asMutableState(),
+                    value = DemoPrefs.disabledStateAlpha.asMutableStateNotNull(),
                     title = "Alpha",
                     subtitle = "Alpha value for disabled preferences",
                     icon = { Icon(Icons.Default.Settings, null) },
@@ -173,20 +174,20 @@ private fun Root(
                 )
                 PreferenceBool(
                     style = PreferenceBool.Style.Switch,
-                    value = DemoPrefs.disabledStateGrayscale.asMutableState(),
+                    value = DemoPrefs.disabledStateGrayscale.asMutableStateNotNull(),
                     title = "Grayscale",
                     subtitle = "Grayscale out disabled preferences?",
                     icon = { Icon(Icons.Default.Settings, null) }
                 )
                 PreferenceBool(
                     style = PreferenceBool.Style.Switch,
-                    value = DemoPrefs.toggleBooleanOnItemClick.asMutableState(),
+                    value = DemoPrefs.toggleBooleanOnItemClick.asMutableStateNotNull(),
                     title = "Bool Behaviour",
                     subtitle = "Toggle boolean preferences on item click (or on checkbox/switch click only)?",
                     icon = { Icon(Icons.Default.Settings, null) }
                 )
                 PreferenceNumber(
-                    value = DemoPrefs.maxLinesValue.asMutableState(),
+                    value = DemoPrefs.maxLinesValue.asMutableStateNotNull(),
                     title = "Lines",
                     subtitle = "Maximum number of lines for all preferences that show some text inside their content area.",
                     icon = { Icon(Icons.Default.Settings, null) },
@@ -196,14 +197,14 @@ private fun Root(
                 )
                 PreferenceBool(
                     style = PreferenceBool.Style.Switch,
-                    value = DemoPrefs.showSubScreenEndIndicator.asMutableState(),
+                    value = DemoPrefs.showSubScreenEndIndicator.asMutableStateNotNull(),
                     title = "Sub Screen Indicator",
                     subtitle = "Show an arrow on the right for sub screens?",
                     icon = { Icon(Icons.Default.Settings, null) }
                 )
                 PreferenceBool(
                     style = PreferenceBool.Style.Switch,
-                    value = DemoPrefs.forceNoIconInset.asMutableState(),
+                    value = DemoPrefs.forceNoIconInset.asMutableStateNotNull(),
                     title = "No Icon Inset",
                     subtitle = "Force an inset for preferences without an icon, so that all preferences align beautifully on the left?",
                     icon = { Icon(Icons.Default.Settings, null) }

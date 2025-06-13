@@ -23,6 +23,7 @@ import com.michaelflisar.composepreferences.screen.bool.PreferenceBool
 import com.michaelflisar.composepreferences.screen.input.PreferenceInputNumber
 import com.michaelflisar.composepreferences.screen.input.PreferenceInputText
 import com.michaelflisar.kotpreferences.compose.asMutableState
+import com.michaelflisar.kotpreferences.compose.asMutableStateNotNull
 
 @Composable
 fun PrefScreenDemoKotPreferences1() {
@@ -45,7 +46,7 @@ fun PrefScreenDemoKotPreferences1() {
 
         PreferenceBool(
             style = PreferenceBool.Style.Switch,
-            value = Demo2Prefs.master1.asMutableState(),
+            value = Demo2Prefs.master1.asMutableStateNotNull(),
             title = "Master 1",
             subtitle = "This will enabled/disable all sub items",
             icon = { Icon(Icons.Default.Group, null) },
@@ -57,7 +58,7 @@ fun PrefScreenDemoKotPreferences1() {
         ) {
             //PreferenceDivider(enabled = Demo2Prefs.master1.asDependency { it })
             PreferenceInputNumber(
-                value = Demo2Prefs.node1a.asMutableState(),
+                value = Demo2Prefs.node1a.asMutableStateNotNull(),
                 enabled = Demo2Prefs.master1.asDependency { it },
                 title = "1a) Node",
                 subtitle = "Sub Item Master1",
@@ -65,14 +66,14 @@ fun PrefScreenDemoKotPreferences1() {
             )
             PreferenceBool(
                 style = PreferenceBool.Style.Switch,
-                value = Demo2Prefs.node1b.asMutableState(),
+                value = Demo2Prefs.node1b.asMutableStateNotNull(),
                 enabled = Demo2Prefs.master1.asDependency { it },
                 title = "1b) Node",
                 subtitle = "Sub Item Master1",
                 icon = { Icon(Icons.Default.Check, null) }
             )
             PreferenceInputText(
-                value = Demo2Prefs.node1c.asMutableState(),
+                value = Demo2Prefs.node1c.asMutableStateNotNull(),
                 enabled = Demo2Prefs.master1.asDependency { it },
                 title = "1c) Node",
                 subtitle = "Sub Item Master1",
@@ -85,7 +86,7 @@ fun PrefScreenDemoKotPreferences1() {
 
         PreferenceBool(
             style = PreferenceBool.Style.Checkbox,
-            value = Demo2Prefs.master2.asMutableState(),
+            value = Demo2Prefs.master2.asMutableStateNotNull(),
             title = "Master 2",
             subtitle = "This will show/hide all sub items",
             icon = { Icon(Icons.Default.Group, null) },
@@ -97,7 +98,7 @@ fun PrefScreenDemoKotPreferences1() {
         ) {
             //PreferenceDivider(visible = Demo2Prefs.master2.asDependency { it })
             PreferenceInputNumber(
-                value = Demo2Prefs.node2a.asMutableState(),
+                value = Demo2Prefs.node2a.asMutableStateNotNull(),
                 visible = Demo2Prefs.master2.asDependency { it },
                 title = "2a) Node",
                 subtitle = "Sub Item of Master2",
@@ -105,14 +106,14 @@ fun PrefScreenDemoKotPreferences1() {
             )
             PreferenceBool(
                 style = PreferenceBool.Style.Checkbox,
-                value = Demo2Prefs.node2b.asMutableState(),
+                value = Demo2Prefs.node2b.asMutableStateNotNull(),
                 visible = Demo2Prefs.master2.asDependency { it },
                 title = "2b) Node",
                 subtitle = "Sub Item Master2",
                 icon = { Icon(Icons.Default.Check, null) }
             )
             PreferenceInputText(
-                value = Demo2Prefs.node2c.asMutableState(),
+                value = Demo2Prefs.node2c.asMutableStateNotNull(),
                 visible = Demo2Prefs.master2.asDependency { it },
                 title = "2c) Node",
                 subtitle = "Sub Item Master2",
@@ -137,7 +138,7 @@ fun PrefScreenDemoKotPreferences1() {
                     title = "Sub Screen"
                 ) {
                     PreferenceInputNumber(
-                        value = Demo2Prefs.intValue.asMutableState(),
+                        value = Demo2Prefs.intValue.asMutableStateNotNull(),
                         title = "Int Value",
                         icon = { Icon(Icons.Default.Numbers, null) }
                     )
@@ -150,7 +151,7 @@ fun PrefScreenDemoKotPreferences1() {
                             title = "Sub Sub Screen"
                         ) {
                             PreferenceInputNumber(
-                                value = Demo2Prefs.intValue.asMutableState(),
+                                value = Demo2Prefs.intValue.asMutableStateNotNull(),
                                 title = "Int Value",
                                 icon = { Icon(Icons.Default.Numbers, null) }
                             )
