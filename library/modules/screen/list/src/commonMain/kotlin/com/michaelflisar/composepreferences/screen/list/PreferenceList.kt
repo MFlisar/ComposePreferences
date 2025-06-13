@@ -5,10 +5,11 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.ExposedDropdownMenuDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.SegmentedButton
 import androidx.compose.material3.SegmentedButtonDefaults
 import androidx.compose.material3.SingleChoiceSegmentedButtonRow
@@ -20,6 +21,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
 import com.michaelflisar.composedialogs.core.DialogState
@@ -260,7 +262,6 @@ private fun <T> ColumnScope.ContentDialogMode(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun <T> ContentDialogSpinner(
     value: T,
@@ -286,7 +287,8 @@ private fun <T> ContentDialogSpinner(
                 }
                 PreferenceContentText(text = itemTextProvider(value), itemSetup)
             }
-            ExposedDropdownMenuDefaults.TrailingIcon(expanded.value)
+            Icon(Icons.Filled.ArrowDropDown, null, Modifier.rotate(if (expanded.value) 180f else 0f))
+            //ExposedDropdownMenuDefaults.TrailingIcon(expanded.value)
         }
         if (expanded.value) {
             DropdownMenu(

@@ -147,7 +147,6 @@ internal fun PreferenceScope.BasePreferenceContainer(
     }
 }
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun createModifier(
     modifier: Modifier = Modifier,

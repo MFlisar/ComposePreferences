@@ -3,43 +3,10 @@ package com.michaelflisar.composepreferences.kotpreferences
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.rememberCoroutineScope
 import com.michaelflisar.composepreferences.core.classes.Dependency
+import com.michaelflisar.kotpreferences.core.getValueNotNull
 import com.michaelflisar.kotpreferences.core.interfaces.StorageSetting
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.IO
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-
-/**
- * simple extension function to plug in a setting as preference data provider and updater
- *
- * @param onValueChange the value changed callback of this item (return true to accept the change, false to cancel it)
- */
-/*
-@Composable
-fun <T> StorageSetting<T>.asPreferenceData(
-    onValueChange: (data: T) -> Boolean = { true },
-    onAfterValueChanged: ((data: T) -> Unit)? = null
-): PreferenceData<T> {
-    val scope = rememberCoroutineScope()
-    val state = collectSetting()
-    return PreferenceData(
-        state.value
-    ) { value ->
-        if (onValueChange(value)) {
-            scope.launch(Dispatchers.IO) {
-                update(value)
-                onAfterValueChanged?.let {
-                    withContext(Dispatchers.Main) {
-                        it(value)
-                    }
-                }
-            }
-        }
-    }
-}*/
+import com.michaelflisar.kotpreferences.core.value
 
 /* --8<-- [start: asDependency] */
 /**
@@ -68,7 +35,7 @@ fun <T> StorageSetting<T>.asDependency(
  */
 @Composable
 private fun <T> StorageSetting<T>.collectSetting(
-    initialValue: T = getCached() ?: value
+    initialValue: T = getValueNotNull()
 ): State<T>
 /* --8<-- [end: collect] */
 {
