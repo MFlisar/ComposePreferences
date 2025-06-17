@@ -1,6 +1,8 @@
 package com.michaelflisar.composepreferences.demo
 
-class DemoApp : com.michaelflisar.toolbox.androiddemoapp.DemoApp() {
+import android.app.Application
+
+class DemoApp : Application() {
     override fun onCreate() {
         super.onCreate()
     }

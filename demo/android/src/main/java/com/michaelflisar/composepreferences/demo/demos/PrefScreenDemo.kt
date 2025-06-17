@@ -85,7 +85,6 @@ import com.michaelflisar.composepreferences.screen.list.PreferenceList
 import com.michaelflisar.composepreferences.screen.list.PreferenceListMulti
 import com.michaelflisar.composepreferences.screen.number.PreferenceNumber
 import com.michaelflisar.composepreferences.screen.time.PreferenceTime
-import com.michaelflisar.toolbox.classes.ToastHelper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -96,6 +95,12 @@ import kotlinx.datetime.toKotlinLocalTime
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.LocalTime
+
+object ToastHelper {
+    fun show(context: android.content.Context, message: String) {
+        android.widget.Toast.makeText(context, message, android.widget.Toast.LENGTH_SHORT).show()
+    }
+}
 
 @Composable
 fun PrefScreenDemo() {

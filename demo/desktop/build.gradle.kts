@@ -8,9 +8,7 @@ plugins {
 
 kotlin {
 
-    jvm {
-        withJava()
-    }
+    jvm()
 
     sourceSets {
         val jvmMain by getting {
@@ -41,9 +39,9 @@ kotlin {
                 implementation(deps.kotpreferences.storage.datastore)
                 implementation(deps.kotpreferences.extension.compose)
 
-                implementation(deps.toolbox.core)
-                implementation(deps.toolbox.ui)
-                //implementation(libs.toolbox.windows.app)
+                implementation(deps.kmp.template.open.source.demo)
+
+                //implementation(project(":demo:shared"))
             }
         }
     }

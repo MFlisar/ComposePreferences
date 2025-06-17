@@ -112,8 +112,7 @@ dependencies {
     // Others
     // ------------------------
 
-    // a minimal library that provides some useful composables that I use inside demo activities
-    implementation(deps.toolbox.core)
-    implementation(deps.toolbox.ui)
-    implementation(deps.toolbox.android.demo.app)
+    implementation(deps.kmp.template.open.source.demo)
+
+    //implementation(project(":demo:shared"))
 }

@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowLeft
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
@@ -24,12 +26,9 @@ import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
 import com.michaelflisar.composepreferences.core.classes.PreferenceState
 import com.michaelflisar.composepreferences.core.classes.rememberPreferenceState
-import com.michaelflisar.composepreferences.core.composables.PreferenceItemDefaults
 import com.michaelflisar.composepreferences.core.styles.DefaultStyle
 import com.michaelflisar.composepreferences.core.styles.ModernStyle
 import com.michaelflisar.composepreferences.core.styles.PreferenceStyle
-import com.michaelflisar.toolbox.components.MyIconButton
-import com.michaelflisar.toolbox.components.MyTitle
 
 fun main() {
     application {
@@ -55,7 +54,7 @@ fun main() {
                         modifier = Modifier.weight(1f),
                         verticalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
-                        MyTitle("Default Style")
+                        Text("Default Style", style = MaterialTheme.typography.titleSmall)
                         Preferences(
                             DefaultStyle.create(
                                 //backgroundColor = Color.Green,
@@ -70,7 +69,7 @@ fun main() {
                         modifier = Modifier.weight(1f),
                         verticalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
-                        MyTitle("Modern Style")
+                        Text("Modern Style", style = MaterialTheme.typography.titleSmall)
                         Preferences(
                             ModernStyle.create(
                                 //cornerSize = 16.dp,
@@ -108,11 +107,13 @@ private fun PreferenceNavigationAndInfo(state: PreferenceState) {
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        MyIconButton(
-            icon = Icons.AutoMirrored.Filled.ArrowLeft,
+        IconButton(
+            onClick = {
+                state.popLast()
+            },
             enabled = state.currentLevel != 0
         ) {
-            state.popLast()
+            Icon(imageVector = Icons.AutoMirrored.Filled.ArrowLeft, contentDescription = null)
         }
         Text(text = "state.currentLevel = ${state.currentLevel}", modifier = Modifier.weight(1f))
     }

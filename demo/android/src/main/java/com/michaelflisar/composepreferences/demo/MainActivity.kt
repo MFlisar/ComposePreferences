@@ -1,12 +1,16 @@
 package com.michaelflisar.composepreferences.demo
 
+import android.os.Bundle
+import androidx.activity.ComponentActivity
 import androidx.activity.compose.BackHandler
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -15,19 +19,27 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Style
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.michaelflisar.composepreferences.core.PreferenceScreen
 import com.michaelflisar.composepreferences.core.styles.ModernStyle
@@ -42,52 +54,72 @@ import com.michaelflisar.composepreferences.demo.demos.PrefScreenDemoKotPreferen
 import com.michaelflisar.composepreferences.screen.bool.PreferenceBool
 import com.michaelflisar.composepreferences.screen.list.PreferenceList
 import com.michaelflisar.composepreferences.screen.number.PreferenceNumber
-import com.michaelflisar.composethemer.ComposeTheme
-import com.michaelflisar.kotpreferences.compose.asMutableState
+import com.michaelflisar.kmptemplate.composables.DemoCollapsibleRegion
+import com.michaelflisar.kmptemplate.composables.DemoColumn
+import com.michaelflisar.kmptemplate.composables.rememberDemoExpandedRegions
 import com.michaelflisar.kotpreferences.compose.asMutableStateNotNull
-import com.michaelflisar.toolbox.androiddemoapp.DemoActivity
-import com.michaelflisar.toolbox.androiddemoapp.composables.DemoAppThemeRegion
-import com.michaelflisar.toolbox.androiddemoapp.composables.DemoCollapsibleRegion
-import com.michaelflisar.toolbox.androiddemoapp.composables.rememberDemoExpandedRegions
-import com.michaelflisar.toolbox.components.MyColumn
 import java.text.NumberFormat
 import java.util.Locale
 
-class MainActivity : DemoActivity(
-    scrollableContent = false,
-    contentPadding = 0.dp
-) {
+class MainActivity : ComponentActivity() {
 
-    @Composable
-    override fun ColumnScope.Content(themeState: ComposeTheme.State) {
+    @OptIn(ExperimentalMaterial3Api::class)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            MaterialTheme {
+                val snackbarHostState = remember { SnackbarHostState() }
 
-        // not beautiful but a easy solution good enough for demo purposes
-        val context = LocalContext.current
-        CompositionLocalProvider(
-            LocalDataStore provides DemoDataStore(context)
-        ) {
-            // preload data store
-            val dataStore = LocalDataStore.current
-            LaunchedEffect(Unit) {
-                dataStore.preload()
+                Scaffold(
+                    topBar = {
+                        TopAppBar(
+                            title = { Text(stringResource(R.string.app_name)) },
+                            colors = TopAppBarDefaults.topAppBarColors(
+                                containerColor = MaterialTheme.colorScheme.primary,
+                                titleContentColor = MaterialTheme.colorScheme.onPrimary
+                            )
+                        )
+                    },
+                    snackbarHost = {
+                        SnackbarHost(snackbarHostState)
+                    },
+                    content = { padding ->
+                        Column(
+                            modifier = Modifier
+                                .padding(padding)
+                                .fillMaxSize()
+                        ) {
+                            // not beautiful but a easy solution good enough for demo purposes
+                            val context = LocalContext.current
+                            CompositionLocalProvider(
+                                LocalDataStore provides DemoDataStore(context)
+                            ) {
+                                // preload data store
+                                val dataStore = LocalDataStore.current
+                                LaunchedEffect(Unit) {
+                                    dataStore.preload()
+                                }
+
+                                val page = rememberSaveable {
+                                    mutableIntStateOf(0)
+                                }
+
+                                BackHandler(page.intValue != 0) {
+                                    page.intValue = 0
+                                }
+
+                                Content(
+                                    Modifier,
+                                    page
+                                )
+                            }
+                        }
+                    }
+                )
             }
-
-            val page = rememberSaveable {
-                mutableIntStateOf(0)
-            }
-
-            BackHandler(page.intValue != 0) {
-                page.intValue = 0
-            }
-
-            Content(
-                Modifier,
-                page
-            )
         }
     }
-
-
 }
 
 // ----------------
@@ -126,9 +158,6 @@ private fun Root(
             .verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-
-        // App Theme Settings
-        DemoAppThemeRegion(regionId = 0, state = regionState)
 
         // --------------------
         // App Settings for demos
@@ -217,7 +246,7 @@ private fun Root(
         // --------------------
 
         DemoCollapsibleRegion(title = "Demos", regionId = 2, state = regionState) {
-            MyColumn {
+            DemoColumn {
                 MyInfoLine(
                     label = "INFORMATION",
                     info = "Only the first demo showcases all available preferences - the other demos just showcase the basic usage because everything else just works the same!",

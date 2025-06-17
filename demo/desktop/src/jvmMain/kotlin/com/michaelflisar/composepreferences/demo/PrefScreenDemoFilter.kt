@@ -47,8 +47,8 @@ import com.michaelflisar.composepreferences.screen.list.PreferenceList
 import com.michaelflisar.composepreferences.screen.list.PreferenceListMulti
 import com.michaelflisar.composepreferences.screen.number.PreferenceNumber
 import com.michaelflisar.composepreferences.screen.time.PreferenceTime
-import com.michaelflisar.toolbox.components.MyCheckbox
-import com.michaelflisar.toolbox.components.MyDropdown
+import com.michaelflisar.kmptemplate.composables.DemoCheckbox
+import com.michaelflisar.kmptemplate.composables.DemoDropdown
 import kotlinx.coroutines.launch
 import kotlinx.datetime.DayOfWeek
 import kotlinx.datetime.toKotlinLocalDate
@@ -108,7 +108,7 @@ fun PrefScreenDemoFilter(
         )
         /* --8<-- [end: filter-input] */
         /* --8<-- [start: filter-flat] */
-        MyCheckbox(
+        DemoCheckbox(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 8.dp),
@@ -116,14 +116,14 @@ fun PrefScreenDemoFilter(
             checked = filter.flattenResult
         )
         /* --8<-- [end: filter-flat] */
-        MyDropdown<DefaultPreferenceFilter.Mode>(
+        DemoDropdown<DefaultPreferenceFilter.Mode>(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 8.dp),
             items = filterModes,
-            mapper = { item, dropdown -> item.javaClass.simpleName },
+            itemToString = { item, dropdown -> item.javaClass.simpleName },
             selected = filter.mode,
-            title = "Filter Mode"
+            label = "Filter Mode"
         )
 
         val bool = remember { mutableStateOf(false) }
