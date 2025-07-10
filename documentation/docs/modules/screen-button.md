@@ -19,7 +19,7 @@ Check out the composable and it's documentation in the code snipplet below.
 #### Composable
 
 ```kotlin
---8<-- "../library/modules/screen/button/src/commonMain/kotlin/com/michaelflisar/composepreferences/screen/button/PreferenceButton.kt:constructor"
+--8<-- "../../library/modules/screen/button/src/commonMain/kotlin/com/michaelflisar/composepreferences/screen/button/PreferenceButton.kt:constructor"
 ```
 
 #### Screenshots

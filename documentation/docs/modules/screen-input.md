@@ -30,13 +30,13 @@ Check out the composable and it's documentation in the code snipplet below.
 === "Data as `MutableState`"
 
     ```kotlin
-    --8<-- "../library/modules/screen/input/src/commonMain/kotlin/com/michaelflisar/composepreferences/screen/input/PreferenceInputText.kt:constructor"
+    --8<-- "../../library/modules/screen/input/src/commonMain/kotlin/com/michaelflisar/composepreferences/screen/input/PreferenceInputText.kt:constructor"
     ```
 
 === "Data as `value` + `onValueChange`"
 
     ```kotlin
-    --8<-- "../library/modules/screen/input/src/commonMain/kotlin/com/michaelflisar/composepreferences/screen/input/PreferenceInputText.kt:constructor2"
+    --8<-- "../../library/modules/screen/input/src/commonMain/kotlin/com/michaelflisar/composepreferences/screen/input/PreferenceInputText.kt:constructor2"
     ```
 
 #### Composable Numeric
@@ -44,13 +44,13 @@ Check out the composable and it's documentation in the code snipplet below.
 === "Data as `MutableState`"
 
     ```kotlin
-    --8<-- "../library/modules/screen/input/src/commonMain/kotlin/com/michaelflisar/composepreferences/screen/input/PreferenceInputNumber.kt:constructor"
+    --8<-- "../../library/modules/screen/input/src/commonMain/kotlin/com/michaelflisar/composepreferences/screen/input/PreferenceInputNumber.kt:constructor"
     ```
 
 === "Data as `value` + `onValueChange`"
 
     ```kotlin
-    --8<-- "../library/modules/screen/input/src/commonMain/kotlin/com/michaelflisar/composepreferences/screen/input/PreferenceInputNumber.kt:constructor2"
+    --8<-- "../../library/modules/screen/input/src/commonMain/kotlin/com/michaelflisar/composepreferences/screen/input/PreferenceInputNumber.kt:constructor2"
     ```
 
 #### Screenshots

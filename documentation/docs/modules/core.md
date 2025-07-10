@@ -15,7 +15,7 @@ The general usage is already described in the usage region. In the following I s
 This shows a simple information preference.
 
 ```kotlin
---8<-- "../library/core/src/commonMain/kotlin/com/michaelflisar/composepreferences/core/PreferenceInfo.kt:constructor"
+--8<-- "../../library/core/src/commonMain/kotlin/com/michaelflisar/composepreferences/core/PreferenceInfo.kt:constructor"
 ```
 
 ## PreferenceDivider
@@ -23,7 +23,7 @@ This shows a simple information preference.
 This shows a simple divider preference.
 
 ```kotlin
---8<-- "../library/core/src/commonMain/kotlin/com/michaelflisar/composepreferences/core/PreferenceDivider.kt:constructor"
+--8<-- "../../library/core/src/commonMain/kotlin/com/michaelflisar/composepreferences/core/PreferenceDivider.kt:constructor"
 ```
 
 ## PreferenceSection
@@ -35,7 +35,7 @@ This shows a simple divider preference.
 This allows you to wrap a group of preferences in a section. Depending on the style this may also change the visual appearance of the preferences.
 
 ```kotlin
---8<-- "../library/core/src/commonMain/kotlin/com/michaelflisar/composepreferences/core/PreferenceSection.kt:constructor"
+--8<-- "../../library/core/src/commonMain/kotlin/com/michaelflisar/composepreferences/core/PreferenceSection.kt:constructor"
 ```
 
 ## PreferenceSubScreen
@@ -47,7 +47,7 @@ This allows you to wrap a group of preferences in a section. Depending on the st
 This allows you to wrap a group of preferences in a sub screen. This means, that all children will only be visible if the user clicks on the preference. This will then open the sub screen and show it's content.
 
 ```kotlin
---8<-- "../library/core/src/commonMain/kotlin/com/michaelflisar/composepreferences/core/PreferenceSubScreen.kt:constructor"
+--8<-- "../../library/core/src/commonMain/kotlin/com/michaelflisar/composepreferences/core/PreferenceSubScreen.kt:constructor"
 ```
 
 

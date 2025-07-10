@@ -9,19 +9,19 @@ Filtering is an optional feature. It allows to filter the preferences and render
 You just have to define a filter mode...
 
 ```kotlin
---8<-- "../demo/desktop/src/jvmMain/kotlin/com/michaelflisar/composepreferences/demo/PrefScreenDemoFilter.kt:filter-modes"
+--8<-- "../../demo/desktop/src/jvmMain/kotlin/com/michaelflisar/composepreferences/demo/PrefScreenDemoFilter.kt:filter-modes"
 ```
 
 ... then create a filter setup ...
 
 ```kotlin
---8<-- "../demo/desktop/src/jvmMain/kotlin/com/michaelflisar/composepreferences/demo/PrefScreenDemoFilter.kt:filter"
+--8<-- "../../demo/desktop/src/jvmMain/kotlin/com/michaelflisar/composepreferences/demo/PrefScreenDemoFilter.kt:filter"
 ```
 
 ... and finally pass on the filter to the screen:
 
 ```kotlin
---8<-- "../demo/desktop/src/jvmMain/kotlin/com/michaelflisar/composepreferences/demo/PrefScreenDemoFilter.kt:filter2"
+--8<-- "../../demo/desktop/src/jvmMain/kotlin/com/michaelflisar/composepreferences/demo/PrefScreenDemoFilter.kt:filter2"
 ```
 
 #### Filter
@@ -40,7 +40,7 @@ TextField(
 Additionally the `filter` object does provide some states to make more adjustments if desired.
 
 ```kotlin
---8<-- "../library/core/src/commonMain/kotlin/com/michaelflisar/composepreferences/core/filter/DefaultPreferenceFilter.kt:constructor"
+--8<-- "../../library/core/src/commonMain/kotlin/com/michaelflisar/composepreferences/core/filter/DefaultPreferenceFilter.kt:constructor"
 ```
 
 ### Custom filter

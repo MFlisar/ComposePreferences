@@ -29,13 +29,13 @@ Check out the composable and it's documentation in the code snipplet below.
 === "Data as `MutableState`"
 
     ```kotlin
-    --8<-- "../library/modules/screen/list/src/commonMain/kotlin/com/michaelflisar/composepreferences/screen/list/PreferenceList.kt:constructor"
+    --8<-- "../../library/modules/screen/list/src/commonMain/kotlin/com/michaelflisar/composepreferences/screen/list/PreferenceList.kt:constructor"
     ```
 
 === "Data as `value` + `onValueChange`"
 
     ```kotlin
-    --8<-- "../library/modules/screen/list/src/commonMain/kotlin/com/michaelflisar/composepreferences/screen/list/PreferenceList.kt:constructor2"
+    --8<-- "../../library/modules/screen/list/src/commonMain/kotlin/com/michaelflisar/composepreferences/screen/list/PreferenceList.kt:constructor2"
     ```
 
 #### Composable - Multi Selection List
@@ -43,13 +43,13 @@ Check out the composable and it's documentation in the code snipplet below.
 === "Data as `MutableState`"
 
     ```kotlin
-    --8<-- "../library/modules/screen/list/src/commonMain/kotlin/com/michaelflisar/composepreferences/screen/list/PreferenceListMulti.kt:constructor"
+    --8<-- "../../library/modules/screen/list/src/commonMain/kotlin/com/michaelflisar/composepreferences/screen/list/PreferenceListMulti.kt:constructor"
     ```
 
 === "Data as `value` + `onValueChange`"
 
     ```kotlin
-    --8<-- "../library/modules/screen/list/src/commonMain/kotlin/com/michaelflisar/composepreferences/screen/list/PreferenceListMulti.kt:constructor2"
+    --8<-- "../../library/modules/screen/list/src/commonMain/kotlin/com/michaelflisar/composepreferences/screen/list/PreferenceListMulti.kt:constructor2"
     ```
 
 #### Screenshots

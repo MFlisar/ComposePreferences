@@ -21,13 +21,13 @@ Check out the composable and it's documentation in the code snipplet below.
 === "Data as `MutableState`"
 
     ```kotlin
-    --8<-- "../library/modules/screen/date/src/commonMain/kotlin/com/michaelflisar/composepreferences/screen/date/PreferenceDate.kt:constructor"
+    --8<-- "../../library/modules/screen/date/src/commonMain/kotlin/com/michaelflisar/composepreferences/screen/date/PreferenceDate.kt:constructor"
     ```
 
 === "Data as `value` + `onValueChange`"
 
     ```kotlin
-    --8<-- "../library/modules/screen/date/src/commonMain/kotlin/com/michaelflisar/composepreferences/screen/date/PreferenceDate.kt:constructor2"
+    --8<-- "../../library/modules/screen/date/src/commonMain/kotlin/com/michaelflisar/composepreferences/screen/date/PreferenceDate.kt:constructor2"
     ```
 
 #### Screenshots

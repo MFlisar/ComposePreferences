@@ -17,13 +17,13 @@ All those customisations are supported by *all* preference composables.
 === "Default"
 
     ```kotlin
-    --8<-- "../library/core/src/commonMain/kotlin/com/michaelflisar/composepreferences/core/styles/DefaultStyle.kt:create"
+    --8<-- "../../library/core/src/commonMain/kotlin/com/michaelflisar/composepreferences/core/styles/DefaultStyle.kt:create"
     ```
 
 === "Modern"
 
     ```kotlin
-    --8<-- "../library/core/src/commonMain/kotlin/com/michaelflisar/composepreferences/core/styles/ModernStyle.kt:create"
+    --8<-- "../../library/core/src/commonMain/kotlin/com/michaelflisar/composepreferences/core/styles/ModernStyle.kt:create"
     ```
 
 ## Other Styling Options
@@ -37,7 +37,7 @@ Those functions allow you to change colors, paddings, shapes, text styles and si
 Following is one of those functions.
 
 ```kotlin
---8<-- "../library/core/src/commonMain/kotlin/com/michaelflisar/composepreferences/core/styles/PreferenceStyleDefaults.kt:item"
+--8<-- "../../library/core/src/commonMain/kotlin/com/michaelflisar/composepreferences/core/styles/PreferenceStyleDefaults.kt:item"
 ```
 
 #### Text Styling
@@ -70,5 +70,5 @@ val setup = Preference*Defaults.itemSetup().copy(
 Here's the class that shows you what can be customised:
 
 ```kotlin
---8<-- "../library/core/src/commonMain/kotlin/com/michaelflisar/composepreferences/core/composables/PreferenceItem.kt:constructor"
+--8<-- "../../library/core/src/commonMain/kotlin/com/michaelflisar/composepreferences/core/composables/PreferenceItem.kt:constructor"
 ```
