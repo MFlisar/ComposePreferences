@@ -2,8 +2,10 @@
 
 coroutines = 	    "1.9.0"
 datetime = 	        "0.6.1"
+atomicfu =          "0.29.0"
 
 [libraries]
 
 datetime =			        { module = "org.jetbrains.kotlinx:kotlinx-datetime", 	        version.ref = "datetime" }
 coroutines-core =			{ module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", 	version.ref = "coroutines" }
+atomicfu =			        { module = "org.jetbrains.kotlinx:atomicfu", 	                version.ref = "atomicfu" }

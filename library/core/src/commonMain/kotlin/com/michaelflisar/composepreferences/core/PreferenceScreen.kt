@@ -13,7 +13,9 @@ import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.runtime.toMutableStateList
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.backhandler.BackHandler
 import com.michaelflisar.composepreferences.core.classes.LocalPreferenceSettings
 import com.michaelflisar.composepreferences.core.classes.PreferenceSettings
 import com.michaelflisar.composepreferences.core.classes.PreferenceSettingsDefaults
@@ -40,6 +42,7 @@ internal val LocalPreferenceScrollState = compositionLocalOf { mutableStateOf(Sc
  * @param filter the [PreferenceFilter] for this screen - use [rememberDefaultPreferenceFilter] to use some of the predefined options or provide your own [PreferenceFilter] implementation
  * @param content the content of this screen
  */
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun PreferenceScreen(
     modifier: Modifier = Modifier,

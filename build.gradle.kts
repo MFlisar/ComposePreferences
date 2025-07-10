@@ -11,9 +11,9 @@ plugins {
     alias(libs.plugins.kotlin.parcelize) apply false
     alias(libs.plugins.compose) apply false
     alias(libs.plugins.gradle.maven.publish.plugin) apply false
-    alias(deps.plugins.kmp.template.gradle.plugin) apply false
     alias(libs.plugins.dokka) apply false
     alias(libs.plugins.binary.compatibility.validator) apply false
+    alias(deps.plugins.kmp.gradle.tools.gradle.plugin) apply false
 }
 
 // exclude all demo projects from CI builds
@@ -31,7 +31,7 @@ subprojects {
 
 buildscript {
     dependencies {
-        classpath(deps.kmp.template.docs)
+        classpath(deps.kmp.gradle.tools.docs)
     }
 }
 
@@ -39,8 +39,8 @@ tasks.register("buildDocs") {
     doLast {
         // read env from build-mkdocs.yml
         val generatedDocsDir = project.findProperty("generatedDocsDir") as String? ?: "gen/docs"
-        com.michaelflisar.kmptemplate.scripts.buildDocs(
-            relativePathDocsCustom = "documentation/custom",
+        com.michaelflisar.kmpgradletools.docs.buildDocs(
+            relativePathDocsCustom = "documentation",
             relativePathGeneratedDocsOutput = generatedDocsDir,
             relativeModulesPath = "library",
             relativeDemosPath = "demo",

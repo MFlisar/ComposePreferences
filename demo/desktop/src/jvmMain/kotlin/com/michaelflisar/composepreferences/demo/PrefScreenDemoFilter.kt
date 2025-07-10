@@ -7,12 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.ArrowLeft
-import androidx.compose.material.icons.filled.ChevronLeft
-import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material.icons.filled.Clear
-import androidx.compose.material.icons.filled.Remove
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
@@ -47,8 +42,8 @@ import com.michaelflisar.composepreferences.screen.list.PreferenceList
 import com.michaelflisar.composepreferences.screen.list.PreferenceListMulti
 import com.michaelflisar.composepreferences.screen.number.PreferenceNumber
 import com.michaelflisar.composepreferences.screen.time.PreferenceTime
-import com.michaelflisar.kmptemplate.composables.DemoCheckbox
-import com.michaelflisar.kmptemplate.composables.DemoDropdown
+import com.michaelflisar.toolbox.components.MyCheckbox
+import com.michaelflisar.toolbox.components.MyDropdown
 import kotlinx.coroutines.launch
 import kotlinx.datetime.DayOfWeek
 import kotlinx.datetime.toKotlinLocalDate
@@ -108,7 +103,7 @@ fun PrefScreenDemoFilter(
         )
         /* --8<-- [end: filter-input] */
         /* --8<-- [start: filter-flat] */
-        DemoCheckbox(
+        MyCheckbox(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 8.dp),
@@ -116,14 +111,14 @@ fun PrefScreenDemoFilter(
             checked = filter.flattenResult
         )
         /* --8<-- [end: filter-flat] */
-        DemoDropdown<DefaultPreferenceFilter.Mode>(
+        MyDropdown<DefaultPreferenceFilter.Mode>(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 8.dp),
             items = filterModes,
-            itemToString = { item, dropdown -> item.javaClass.simpleName },
+            mapper = { item, dropdown -> item.javaClass.simpleName },
             selected = filter.mode,
-            label = "Filter Mode"
+            title = "Filter Mode"
         )
 
         val bool = remember { mutableStateOf(false) }
@@ -298,7 +293,8 @@ fun PrefScreenDemoFilter(
                         stepSize = 1,
                         value = numberInt2
                     )
-                    PreferenceNumber(title = "Pref 7.2 - Float - Slider",
+                    PreferenceNumber(
+                        title = "Pref 7.2 - Float - Slider",
                         min = 0f,
                         max = 10f,
                         stepSize = .5f,

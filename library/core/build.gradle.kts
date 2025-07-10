@@ -1,8 +1,6 @@
-import com.vanniktech.maven.publish.JavadocJar
-import com.vanniktech.maven.publish.KotlinMultiplatform
-import com.vanniktech.maven.publish.SonatypeHost
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import com.michaelflisar.kmpgradletools.BuildFilePlugin
+import com.michaelflisar.kmpgradletools.Target
+import com.michaelflisar.kmpgradletools.Targets
 
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
@@ -12,43 +10,28 @@ plugins {
     alias(libs.plugins.dokka)
     alias(libs.plugins.gradle.maven.publish.plugin)
     alias(libs.plugins.binary.compatibility.validator)
+    alias(deps.plugins.kmp.gradle.tools.gradle.plugin)
 }
+
+// get build file plugin
+val buildFilePlugin = project.plugins.getPlugin(BuildFilePlugin::class.java)
 
 // -------------------
 // Informations
 // -------------------
 
-val description = "provides all the basic preference classes and composables"
-
-// Module
-val artifactId = "core"
 val androidNamespace = "com.michaelflisar.composepreferences.core"
 
-// Library
-val libraryName = "ComposePreferences"
-val libraryDescription = "ComposePreferences - $artifactId module - $description"
-val groupID = "io.github.mflisar.composepreferences"
-val release = 2023
-val github = "https://github.com/MFlisar/ComposePreferences"
-val license = "Apache License 2.0"
-val licenseUrl = "$github/blob/main/LICENSE"
-
-// -------------------
-// Variables for Documentation Generator
-// -------------------
-
-// # DEP + GROUP are optional arrays!
-
-// OPTIONAL = "false"               // defines if this module is optional or not
-// GROUP_ID = "core"                // defines the "grouping" in the documentation this module belongs to
-// DEP = "deps.composedialogs.core|ComposeDialogs|https://github.com/MFlisar/ComposeDialogs"
-// PLATFORM_INFO = ""               // defines a comment that will be shown in the documentation for this modules platform support
-
-// GLOBAL DATA
-// BRANCH = "master"        // defines the branch on github (master/main)
-// GROUP = "core|Core|core"
-// GROUP = "modules|Modules|modules"
-// GROUP = "extensions|Extensions|extensions"
+val buildTargets = Targets(
+    // mobile
+    android = true,
+    iOS = true,
+    // desktop
+    windows = true,
+    macOS = false, // macOS is not supported by compose dialogs currently
+    // web
+    wasm = true
+)
 
 // -------------------
 // Setup
@@ -56,24 +39,11 @@ val licenseUrl = "$github/blob/main/LICENSE"
 
 kotlin {
 
-    // Java
-    jvm()
+    //-------------
+    // Targets
+    //-------------
 
-    // Android
-    androidTarget {
-        publishLibraryVariants("release")
-        @OptIn(ExperimentalKotlinGradlePluginApi::class)
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_17)
-        }
-    }
-
-    // iOS
-    //macosX64()
-    //macosArm64()
-    iosArm64()
-    iosX64()
-    iosSimulatorArm64()
+    buildFilePlugin.setupTargetsLibrary(buildTargets)
 
     // -------
     // Sources
@@ -81,17 +51,52 @@ kotlin {
 
     sourceSets {
 
+        // ---------------------
+        // custom shared sources
+        // ---------------------
+
+        // --
+        // e.g.:
+        // val nativeMain by creating { dependsOn(commonMain.get()) }
+
+        // ---------------------
+        // target sources
+        // ---------------------
+
+        // --
+        // e.g.:
+        // buildTargets.updateSourceSetDependencies(sourceSets) { groupMain, target ->
+        //     when (target) {
+        //         Target.ANDROID, Target.WINDOWS -> {
+        //             groupMain.dependsOn(nativeMain)
+        //         }
+        //         Target.IOS, Target.MACOS, Target.WASM -> {
+        //             // --
+        //         }
+        //         Target.LINUX,
+        //         Target.JS -> {
+        //             // not enabled
+        //         }
+        //     }
+        // }
+
+        // ---------------------
+        // dependencies
+        // ---------------------
+
         commonMain.dependencies {
 
             // Kotlin
             implementation(kotlinx.coroutines.core)
+            implementation(kotlinx.atomicfu)
 
             // Compose
             implementation(libs.compose.material3)
             implementation(libs.compose.ui)
+            implementation(libs.compose.ui.backhandler)
             implementation(libs.compose.material.icons.core)
 
-            implementation(deps.moko.parcelize)
+            implementation(deps.kmp.parcelize)
 
             val useLiveDependencies = providers.gradleProperty("useLiveDependencies").get().toBoolean()
             if (useLiveDependencies) {
@@ -117,78 +122,19 @@ kotlin {
     }
 }
 
+// -------------------
+// Configurations
+// -------------------
+
+// android configuration
 android {
-
-    namespace = androidNamespace
-
-    compileSdk = app.versions.compileSdk.get().toInt()
-
-    buildFeatures {
-        compose = true
-    }
-
-    defaultConfig {
-        minSdk = app.versions.minSdk.get().toInt()
-    }
-
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
-            consumerProguardFiles("proguard-rules.pro")
-        }
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
+    buildFilePlugin.setupAndroidLibrary(
+        androidNamespace = androidNamespace,
+        compileSdk = app.versions.compileSdk,
+        minSdk = app.versions.minSdk,
+        buildConfig = false
+    )
 }
 
-mavenPublishing {
-
-    configure(
-        KotlinMultiplatform(
-            javadocJar = JavadocJar.Dokka("dokkaHtml"),
-            sourcesJar = true
-        )
-    )
-
-    coordinates(
-        groupId = groupID,
-        artifactId = artifactId,
-        version = System.getenv("TAG")
-    )
-
-    pom {
-        name.set(libraryName)
-        description.set(libraryDescription)
-        inceptionYear.set("$release")
-        url.set(github)
-
-        licenses {
-            license {
-                name.set(license)
-                url.set(licenseUrl)
-            }
-        }
-
-        developers {
-            developer {
-                id.set("mflisar")
-                name.set("Michael Flisar")
-                email.set("mflisar.development@gmail.com")
-            }
-        }
-
-        scm {
-            url.set(github)
-        }
-    }
-
-    // Configure publishing to Maven Central
-    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL, true)
-
-    // Enable GPG signing for all publications
-    signAllPublications()
-}
+// maven publish configuration
+buildFilePlugin.setupMavenPublish()

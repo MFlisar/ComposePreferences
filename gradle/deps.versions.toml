@@ -1,27 +1,21 @@
 [versions]
 
-accompanist = 			    "0.36.0"
-moko-parcelize =            "0.9.0"
-
 # mflisar
-kmp-template =              "1.2.2" # docu + demo only
-kotpreferences =        	"1.0.1"  # todo
-composedialogs =   		    "2.1.4"
+kotpreferences =        	"1.0.2"
+composedialogs =   		    "2.2.0-alpha01" # todo
+kmp-parcelize =             "1.0.0"
+kmp-gradle-tools =          "1.3.3"
 toolbox =                   "2.5.1" # for demo only!
+
+accompanist = 			    "0.37.3"
 
 [plugins]
 
-kmp-template-gradle-plugin =        { id = "io.github.mflisar.kmp-template.build-plugin",               version.ref = "kmp-template" }
+kmp-gradle-tools-gradle-plugin =    { id = "io.github.mflisar.kmp-gradle-tools.gradle-plugin",              version.ref = "kmp-gradle-tools" }
 
 [libraries]
 
-drawablepainter = 		    	    { module = "com.google.accompanist:accompanist-drawablepainter", 		version.ref = "accompanist" }
-
-moko-parcelize =                    { module = "dev.icerock.moko:parcelize", 		                        version.ref = "moko-parcelize" }
-
 # mflisar
-kmp-template-docs =                 { module = "io.github.mflisar.kmp-template:docs",                       version.ref = "kmp-template" }
-kmp-template-open-source-demo =     { module = "io.github.mflisar.kmp-template:open-source-demo",           version.ref = "kmp-template" }
 kotpreferences-core =			    { module = "io.github.mflisar.kotpreferences:core", 				    version.ref = "kotpreferences" }
 kotpreferences-storage-datastore =  { module = "io.github.mflisar.kotpreferences:storage-datastore", 		version.ref = "kotpreferences" }
 kotpreferences-extension-compose =  { module = "io.github.mflisar.kotpreferences:extension-compose", 		version.ref = "kotpreferences" }
@@ -32,7 +26,13 @@ composedialogs-dialog-date =	    { module = "io.github.mflisar.composedialogs:di
 composedialogs-dialog-input =	    { module = "io.github.mflisar.composedialogs:dialog-input", 		    version.ref = "composedialogs" }
 composedialogs-dialog-number =	    { module = "io.github.mflisar.composedialogs:dialog-number", 		    version.ref = "composedialogs" }
 composedialogs-dialog-time =	    { module = "io.github.mflisar.composedialogs:dialog-time", 		        version.ref = "composedialogs" }
+kmp-parcelize =                     { module = "io.github.mflisar.parcelize:library", 	                    version.ref = "kmp-parcelize" }
+kmp-gradle-tools-scripts =          { module = "io.github.mflisar.kmp-gradle-tools:scripts",                version.ref = "kmp-gradle-tools" }
+kmp-gradle-tools-docs =             { module = "io.github.mflisar.kmp-gradle-tools:docs",                   version.ref = "kmp-gradle-tools" }
+
 toolbox-core =                      { module = "io.github.mflisar.toolbox:core", 			                version.ref = "toolbox" }
 toolbox-ui =                        { module = "io.github.mflisar.toolbox:ui", 			                    version.ref = "toolbox" }
 toolbox-android-demo-app =          { module = "io.github.mflisar.toolbox:android-demo-app", 			    version.ref = "toolbox" }
 toolbox-windows-app =               { module = "io.github.mflisar.toolbox:windows-app", 			        version.ref = "toolbox" }
+
+drawablepainter = 		    	    { module = "com.google.accompanist:accompanist-drawablepainter", 		version.ref = "accompanist" }

@@ -39,7 +39,7 @@ kotlin {
                 implementation(deps.kotpreferences.storage.datastore)
                 implementation(deps.kotpreferences.extension.compose)
 
-                implementation(deps.kmp.template.open.source.demo)
+                implementation(deps.toolbox.ui)
 
                 //implementation(project(":demo:shared"))
             }

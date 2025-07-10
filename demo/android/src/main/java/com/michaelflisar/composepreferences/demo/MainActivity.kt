@@ -54,10 +54,10 @@ import com.michaelflisar.composepreferences.demo.demos.PrefScreenDemoKotPreferen
 import com.michaelflisar.composepreferences.screen.bool.PreferenceBool
 import com.michaelflisar.composepreferences.screen.list.PreferenceList
 import com.michaelflisar.composepreferences.screen.number.PreferenceNumber
-import com.michaelflisar.kmptemplate.composables.DemoCollapsibleRegion
-import com.michaelflisar.kmptemplate.composables.DemoColumn
-import com.michaelflisar.kmptemplate.composables.rememberDemoExpandedRegions
 import com.michaelflisar.kotpreferences.compose.asMutableStateNotNull
+import com.michaelflisar.toolbox.androiddemoapp.composables.DemoCollapsibleRegion
+import com.michaelflisar.toolbox.androiddemoapp.composables.rememberDemoExpandedRegions
+import com.michaelflisar.toolbox.components.MyColumn
 import java.text.NumberFormat
 import java.util.Locale
 
@@ -246,7 +246,7 @@ private fun Root(
         // --------------------
 
         DemoCollapsibleRegion(title = "Demos", regionId = 2, state = regionState) {
-            DemoColumn {
+            MyColumn {
                 MyInfoLine(
                     label = "INFORMATION",
                     info = "Only the first demo showcases all available preferences - the other demos just showcase the basic usage because everything else just works the same!",

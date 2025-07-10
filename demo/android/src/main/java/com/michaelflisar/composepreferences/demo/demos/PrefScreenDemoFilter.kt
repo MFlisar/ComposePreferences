@@ -33,9 +33,9 @@ import com.michaelflisar.composepreferences.core.filter.DefaultPreferenceFilter
 import com.michaelflisar.composepreferences.core.filter.rememberDefaultPreferenceFilter
 import com.michaelflisar.composepreferences.core.scopes.PreferenceScope
 import com.michaelflisar.composepreferences.demo.classes.DemoPrefs
-import com.michaelflisar.kmptemplate.composables.DemoCheckbox
-import com.michaelflisar.kmptemplate.composables.DemoDropdown
 import com.michaelflisar.kotpreferences.core.initialisation.SettingSetup
+import com.michaelflisar.toolbox.components.MyCheckbox
+import com.michaelflisar.toolbox.components.MyDropdown
 
 @Composable
 fun PrefScreenDemoFilter() {
@@ -79,21 +79,21 @@ fun PrefScreenDemoFilter() {
             } else null
         )
 
-        DemoCheckbox(
+        MyCheckbox(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 8.dp),
             title = "Flat Results?",
             checked = filter.flattenResult
         )
-        DemoDropdown<DefaultPreferenceFilter.Mode>(
+        MyDropdown<DefaultPreferenceFilter.Mode>(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 8.dp),
             items = filterModes,
-            itemToString = { item, dropdown -> item.javaClass.simpleName },
+            mapper = { item, dropdown -> item.javaClass.simpleName },
             selected = filter.mode,
-            label = "Filter Mode"
+            title = "Filter Mode"
         )
 
         PreferenceScreen(

@@ -2,7 +2,6 @@ package com.michaelflisar.composepreferences.core.classes
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -10,9 +9,9 @@ import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.runtime.toMutableStateList
-import com.michaelflisar.composepreferences.core.AtomicInt
-import dev.icerock.moko.parcelize.Parcelable
-import dev.icerock.moko.parcelize.Parcelize
+import com.michaelflisar.parcelize.Parcelable
+import com.michaelflisar.parcelize.Parcelize
+import kotlinx.atomicfu.atomic
 
 class PreferenceState internal constructor(
     private val items: MutableState<List<Item>> = mutableStateOf(emptyList()),
@@ -58,7 +57,7 @@ class PreferenceState internal constructor(
     val currentLevel: Int
         get() = openedGroups.size
 
-    private val id = AtomicInt(1)
+    private val id = atomic(1)
     internal fun getNextID() = id.getAndIncrement()
 
     fun push(group: Group) {
@@ -73,7 +72,7 @@ class PreferenceState internal constructor(
     }
 
     fun popAll() {
-        if (openedGroups.size > 0) {
+        if (openedGroups.isNotEmpty()) {
             openedGroups.clear()
         }
     }
@@ -89,9 +88,9 @@ fun rememberPreferenceState() = PreferenceState(
 private fun rememberOpenedGroups(): SnapshotStateList<PreferenceState.Group> {
     return rememberSaveable(
         saver = listSaver(
-        save = { it.toList() },
-        restore = { it.toMutableStateList() }
-    )) {
+            save = { it.toList() },
+            restore = { it.toMutableStateList() }
+        )) {
         mutableStateListOf()
     }
 }

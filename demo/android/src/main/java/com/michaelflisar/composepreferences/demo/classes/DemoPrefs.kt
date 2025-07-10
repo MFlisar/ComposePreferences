@@ -51,8 +51,8 @@ object DemoPrefs : SettingsModel(DataStoreStorage.create(name = "demo1_prefs")) 
             forceNoIconInset,
             this.style
         )
-        val data =
-            combine(settings.map { it.flow }) { it.toList() }.collectAsState(initial = emptyList())
+        val data = combine(settings.map { it.flow }) { it.toList() }
+                .collectAsState(initial = emptyList())
 
         return if (data.value.isEmpty()) {
             PreferenceSettingsDefaults.settings()

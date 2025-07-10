@@ -4,9 +4,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import com.michaelflisar.composepreferences.core.classes.Dependency
+import com.michaelflisar.kotpreferences.core.InternalApi
 import com.michaelflisar.kotpreferences.core.getValueNotNull
 import com.michaelflisar.kotpreferences.core.interfaces.StorageSetting
-import com.michaelflisar.kotpreferences.core.value
 
 /* --8<-- [start: asDependency] */
 /**
@@ -33,6 +33,7 @@ fun <T> StorageSetting<T>.asDependency(
  *
  * Maybe I find a better solution?
  */
+@OptIn(InternalApi::class)
 @Composable
 private fun <T> StorageSetting<T>.collectSetting(
     initialValue: T = getValueNotNull()

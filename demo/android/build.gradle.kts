@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -47,9 +49,11 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
         isCoreLibraryDesugaringEnabled = true
     }
+}
 
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17.toString()
+kotlin {
+    compilerOptions {
+        jvmTarget.set(JvmTarget.JVM_17)
     }
 }
 
@@ -112,7 +116,8 @@ dependencies {
     // Others
     // ------------------------
 
-    implementation(deps.kmp.template.open.source.demo)
+    implementation(deps.toolbox.ui)
+    implementation(deps.toolbox.android.demo.app)
 
     //implementation(project(":demo:shared"))
 }
