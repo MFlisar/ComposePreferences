@@ -16,13 +16,13 @@ Check out the composable and it's documentation in the code snipplet below.
 === "Text"
 
     ```kotlin
-    --8<-- "../demo/android/src/main/java/com/michaelflisar/composepreferences/demo/demos/PrefScreenDemo.kt:demo-input"
+    --8<-- "../../demo/android/src/main/java/com/michaelflisar/composepreferences/demo/demos/PrefScreenDemo.kt:demo-input"
     ```
 
 === "Numeric"
 
     ```kotlin
-    --8<-- "../demo/android/src/main/java/com/michaelflisar/composepreferences/demo/demos/PrefScreenDemo.kt:demo-input2"
+    --8<-- "../../demo/android/src/main/java/com/michaelflisar/composepreferences/demo/demos/PrefScreenDemo.kt:demo-input2"
     ```
 
 #### Composable Text

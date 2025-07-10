@@ -13,7 +13,7 @@ Check out the composable and it's documentation in the code snipplet below.
 #### Example
 
 ```kotlin
---8<-- "../demo/android/src/main/java/com/michaelflisar/composepreferences/demo/demos/PrefScreenDemo.kt:demo-date"
+--8<-- "../../demo/android/src/main/java/com/michaelflisar/composepreferences/demo/demos/PrefScreenDemo.kt:demo-date"
 ```
 
 #### Composable
