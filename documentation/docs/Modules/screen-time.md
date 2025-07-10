@@ -32,7 +32,7 @@ Check out the composable and it's documentation in the code snipplet below.
 
 #### Screenshots
 
-|                                                     |                                                   |
-|-----------------------------------------------------|---------------------------------------------------|
-| ![Screenshot](../screenshots/time/time default.jpg) | ![Screenshot](../screenshots/time/time modern.jpg) |
-| ![Screenshot](../screenshots/time/time dialog.jpg)  | |
+|                                                     |                                                    |
+|-----------------------------------------------------|----------------------------------------------------|
+| ![Screenshot](../screenshots/time/time-default.jpg) | ![Screenshot](../screenshots/time/time-modern.jpg) |
+| ![Screenshot](../screenshots/time/time-dialog.jpg)  |                                                    |

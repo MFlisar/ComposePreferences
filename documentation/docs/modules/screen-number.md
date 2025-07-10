@@ -34,5 +34,5 @@ Check out the composable and it's documentation in the code snipplet below.
 
 |                                                         |                                                        |
 |---------------------------------------------------------|--------------------------------------------------------|
-| ![Screenshot](../screenshots/number/number default.jpg) | ![Screenshot](../screenshots/number/number modern.jpg) |
-| ![Screenshot](../screenshots/number/number dialog.jpg)  |  |
+| ![Screenshot](../screenshots/number/number-default.jpg) | ![Screenshot](../screenshots/number/number-modern.jpg) |
+| ![Screenshot](../screenshots/number/number-dialog.jpg)  |                                                        |

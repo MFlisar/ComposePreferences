@@ -34,5 +34,5 @@ Check out the composable and it's documentation in the code snipplet below.
 
 |                                                       |                                                       |
 |-------------------------------------------------------|-------------------------------------------------------|
-| ![Screenshot](../screenshots/color/color default.jpg) | ![Screenshot](../screenshots/color/color modern.jpg)  |
-| ![Screenshot](../screenshots/color/color dialog.jpg)  | ![Screenshot](../screenshots/color/color dialog2.jpg) |
+| ![Screenshot](../screenshots/color/color-default.jpg) | ![Screenshot](../screenshots/color/color-modern.jpg)  |
+| ![Screenshot](../screenshots/color/color-dialog.jpg)  | ![Screenshot](../screenshots/color/color-dialog2.jpg) |

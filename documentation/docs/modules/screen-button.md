@@ -26,4 +26,4 @@ Check out the composable and it's documentation in the code snipplet below.
 
 |                                                         |                                                        |
 |---------------------------------------------------------|--------------------------------------------------------|
-| ![Screenshot](../screenshots/button/button default.jpg) | ![Screenshot](../screenshots/button/button modern.jpg) |
+| ![Screenshot](../screenshots/button/button-default.jpg) | ![Screenshot](../screenshots/button/button-modern.jpg) |

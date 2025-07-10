@@ -34,4 +34,4 @@ Check out the composable and it's documentation in the code snipplet below.
 
 |                                                     |                                                    |
 |-----------------------------------------------------|----------------------------------------------------|
-| ![Screenshot](../screenshots/bool/bool default.jpg) | ![Screenshot](../screenshots/bool/bool modern.jpg) |
+| ![Screenshot](../screenshots/bool/bool-default.jpg) | ![Screenshot](../screenshots/bool/bool-modern.jpg) |

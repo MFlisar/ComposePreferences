@@ -34,5 +34,5 @@ Check out the composable and it's documentation in the code snipplet below.
 
 |                                                     |                                                    |
 |-----------------------------------------------------|----------------------------------------------------|
-| ![Screenshot](../screenshots/date/date default.jpg) | ![Screenshot](../screenshots/date/date modern.jpg) |
-| ![Screenshot](../screenshots/date/date dialog.jpg)  |  |
+| ![Screenshot](../screenshots/date/date-default.jpg) | ![Screenshot](../screenshots/date/date-modern.jpg) |
+| ![Screenshot](../screenshots/date/date-dialog.jpg)  |                                                    |

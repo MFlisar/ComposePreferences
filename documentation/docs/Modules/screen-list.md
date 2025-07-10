@@ -56,6 +56,6 @@ Check out the composable and it's documentation in the code snipplet below.
 
 |                                                      |                                                     |
 |------------------------------------------------------|-----------------------------------------------------|
-| ![Screenshot](../screenshots/list/list default.jpg)  | ![Screenshot](../screenshots/list/list modern.jpg)  |
-| ![Screenshot](../screenshots/list/list dialog.jpg)   | ![Screenshot](../screenshots/list/list dialog2.jpg) |
-| ![Screenshot](../screenshots/list/list dropdown.jpg) |  |
+| ![Screenshot](../screenshots/list/list-default.jpg)  | ![Screenshot](../screenshots/list/list-modern.jpg)  |
+| ![Screenshot](../screenshots/list/list-dialog.jpg)   | ![Screenshot](../screenshots/list/list-dialog2.jpg) |
+| ![Screenshot](../screenshots/list/list-dropdown.jpg) |                                                     |

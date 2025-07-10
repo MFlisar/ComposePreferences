@@ -57,5 +57,5 @@ Check out the composable and it's documentation in the code snipplet below.
 
 |                                                       |                                                      |
 |-------------------------------------------------------|------------------------------------------------------|
-| ![Screenshot](../screenshots/input/input default.jpg) | ![Screenshot](../screenshots/input/input modern.jpg) |
-| ![Screenshot](../screenshots/input/input dialog.jpg)  | |
+| ![Screenshot](../screenshots/input/input-default.jpg) | ![Screenshot](../screenshots/input/input-modern.jpg) |
+| ![Screenshot](../screenshots/input/input-dialog.jpg)  |                                                      |
