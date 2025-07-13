@@ -61,4 +61,4 @@ include(":composepreferences:modules:kotpreferences")
 project(":composepreferences:modules:kotpreferences").projectDir = file("library/modules/kotpreferences")
 
 include(":demo:android")
-include(":demo:desktop")
+include(":demo:windows")

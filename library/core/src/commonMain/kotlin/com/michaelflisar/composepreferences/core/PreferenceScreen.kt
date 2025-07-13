@@ -40,6 +40,8 @@ internal val LocalPreferenceScrollState = compositionLocalOf { mutableStateOf(Sc
  * @param scrollable if true, this composable does wrap its content inside a scrollable container
  * @param settings the [PreferenceSettings] for this screen - use [PreferenceSettingsDefaults.settings] to provide your own settings
  * @param filter the [PreferenceFilter] for this screen - use [rememberDefaultPreferenceFilter] to use some of the predefined options or provide your own [PreferenceFilter] implementation
+ * @param state the [PreferenceState] for this screen - use [rememberPreferenceState] to create a new state
+ * @param handleBackPress if true, this screen will handle back press events and pop the last opened group from the [PreferenceState] when the back button is pressed
  * @param content the content of this screen
  */
 @OptIn(ExperimentalComposeUiApi::class)
@@ -50,6 +52,7 @@ fun PreferenceScreen(
     settings: PreferenceSettings = PreferenceSettingsDefaults.settings(),
     filter: PreferenceFilter? = null,
     state: PreferenceState = rememberPreferenceState(),
+    handleBackPress: Boolean = true,
     content: @Composable PreferenceGroupScope.() -> Unit
 )
 /* --8<-- [end: constructor] */
@@ -57,7 +60,7 @@ fun PreferenceScreen(
     val children = remember { mutableStateOf<List<PreferenceItemState.Item>>(emptyList()) }
     val root = remember { PreferenceItemState.Root(children) }
 
-    BackHandler(state.opened.isNotEmpty()) {
+    BackHandler(handleBackPress && state.opened.isNotEmpty()) {
         //println("BACK - state.openedGroups = ${state.openedGroups.size}")
         state.popLast()
     }
