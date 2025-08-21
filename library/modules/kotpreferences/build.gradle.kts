@@ -1,6 +1,9 @@
-import com.michaelflisar.kmpgradletools.BuildFilePlugin
-import com.michaelflisar.kmpgradletools.Target
-import com.michaelflisar.kmpgradletools.Targets
+import com.michaelflisar.kmplibrary.BuildFilePlugin
+import com.michaelflisar.kmplibrary.dependencyOf
+import com.michaelflisar.kmplibrary.dependencyOfAll
+import com.michaelflisar.kmplibrary.Target
+import com.michaelflisar.kmplibrary.Targets
+import com.michaelflisar.kmplibrary.api
 
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
@@ -10,7 +13,7 @@ plugins {
     alias(libs.plugins.dokka)
     alias(libs.plugins.gradle.maven.publish.plugin)
     alias(libs.plugins.binary.compatibility.validator)
-    alias(deps.plugins.kmp.gradle.tools.gradle.plugin)
+    alias(deps.plugins.kmplibrary.buildplugin)
 }
 
 // get build file plugin
@@ -52,33 +55,13 @@ kotlin {
     sourceSets {
 
         // ---------------------
-        // custom shared sources
+        // custom source sets
         // ---------------------
 
         // --
         // e.g.:
         // val nativeMain by creating { dependsOn(commonMain.get()) }
-
-        // ---------------------
-        // target sources
-        // ---------------------
-
-        // --
-        // e.g.:
-        // buildTargets.updateSourceSetDependencies(sourceSets) { groupMain, target ->
-        //     when (target) {
-        //         Target.ANDROID, Target.WINDOWS -> {
-        //             groupMain.dependsOn(nativeMain)
-        //         }
-        //         Target.IOS, Target.MACOS, Target.WASM -> {
-        //             // --
-        //         }
-        //         Target.LINUX,
-        //         Target.JS -> {
-        //             // not enabled
-        //         }
-        //     }
-        // }
+        // nativeMain.dependencyOf(sourceSets, buildTargets, listOf(Target.IOS, Target.MACOS))
 
         // ---------------------
         // dependencies
@@ -91,14 +74,7 @@ kotlin {
 
             implementation(project(":composepreferences:core"))
 
-            val useLiveDependencies = providers.gradleProperty("useLiveDependencies").get().toBoolean()
-            if (useLiveDependencies) {
-                api(deps.kotpreferences.core)
-                //api(deps.kotpreferences.storage.datastore)
-            } else {
-                api(project(":kotpreferences:core"))
-                //api(project(":kotpreferences:modules:storage:datastore"))
-            }
+            api(live = deps.kotpreferences.core, project = ":kotpreferences:core", plugin = buildFilePlugin)
 
         }
     }
@@ -119,4 +95,5 @@ android {
 }
 
 // maven publish configuration
-buildFilePlugin.setupMavenPublish()
+if (buildFilePlugin.checkGradleProperty("publishToMaven") != false)
+    buildFilePlugin.setupMavenPublish()

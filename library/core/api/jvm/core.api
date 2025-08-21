@@ -26,10 +26,6 @@ public final class com/michaelflisar/composepreferences/core/ComposableSingleton
 	public final fun getLambda$399976499$core ()Lkotlin/jvm/functions/Function3;
 }
 
-public final class com/michaelflisar/composepreferences/core/Platform_jvmKt {
-	public static final fun BackHandler (ZLkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;I)V
-}
-
 public final class com/michaelflisar/composepreferences/core/PreferenceCustomDefaults {
 	public static final field $stable I
 	public static final field INSTANCE Lcom/michaelflisar/composepreferences/core/PreferenceCustomDefaults;
@@ -55,7 +51,7 @@ public final class com/michaelflisar/composepreferences/core/PreferenceInfoKt {
 }
 
 public final class com/michaelflisar/composepreferences/core/PreferenceScreenKt {
-	public static final fun PreferenceScreen (Landroidx/compose/ui/Modifier;ZLcom/michaelflisar/composepreferences/core/classes/PreferenceSettings;Lcom/michaelflisar/composepreferences/core/filter/PreferenceFilter;Lcom/michaelflisar/composepreferences/core/classes/PreferenceState;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+	public static final fun PreferenceScreen (Landroidx/compose/ui/Modifier;ZLcom/michaelflisar/composepreferences/core/classes/PreferenceSettings;Lcom/michaelflisar/composepreferences/core/filter/PreferenceFilter;Lcom/michaelflisar/composepreferences/core/classes/PreferenceState;ZLkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
 }
 
 public final class com/michaelflisar/composepreferences/core/PreferenceSection {
@@ -217,7 +213,7 @@ public final class com/michaelflisar/composepreferences/core/classes/PreferenceS
 	public final fun push (Lcom/michaelflisar/composepreferences/core/classes/PreferenceState$Group;)V
 }
 
-public final class com/michaelflisar/composepreferences/core/classes/PreferenceState$Group : dev/icerock/moko/parcelize/Parcelable {
+public final class com/michaelflisar/composepreferences/core/classes/PreferenceState$Group : com/michaelflisar/parcelize/Parcelable {
 	public static final field $stable I
 	public fun <init> (ILjava/lang/String;)V
 	public final fun getId ()I
@@ -422,7 +418,7 @@ public abstract interface class com/michaelflisar/composepreferences/core/filter
 	public abstract fun getFlattenResult ()Landroidx/compose/runtime/MutableState;
 	public abstract fun getSearch ()Landroidx/compose/runtime/MutableState;
 	public abstract fun highlight (Ljava/lang/String;)Landroidx/compose/ui/text/AnnotatedString;
-	public abstract fun isActive ()Z
+	public fun isActive ()Z
 }
 
 public final class com/michaelflisar/composepreferences/core/filter/PreferenceFilter$DefaultImpls {

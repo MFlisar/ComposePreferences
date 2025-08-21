@@ -34,31 +34,35 @@ pluginManagement {
 }
 
 // --------------
+// Functions
+// --------------
+
+fun includeModule(path: String, name: String) {
+    include(name)
+    project(name).projectDir = file(path)
+}
+
+// --------------
 // Library
 // --------------
 
-include(":composepreferences:core")
-project(":composepreferences:core").projectDir = file("library/core")
+includeModule("library/core", ":composepreferences:core")
+includeModule("library/modules/screen/info", ":composepreferences:modules:screen:info")
+includeModule("library/modules/screen/bool", ":composepreferences:modules:screen:bool")
+includeModule("library/modules/screen/input", ":composepreferences:modules:screen:input")
+includeModule("library/modules/screen/button", ":composepreferences:modules:screen:button")
+includeModule("library/modules/screen/color", ":composepreferences:modules:screen:color")
+includeModule("library/modules/screen/date", ":composepreferences:modules:screen:date")
+includeModule("library/modules/screen/time", ":composepreferences:modules:screen:time")
+includeModule("library/modules/screen/list", ":composepreferences:modules:screen:list")
+includeModule("library/modules/screen/number", ":composepreferences:modules:screen:number")
 
-include(":composepreferences:modules:screen:bool")
-project(":composepreferences:modules:screen:bool").projectDir = file("library/modules/screen/bool")
-include(":composepreferences:modules:screen:input")
-project(":composepreferences:modules:screen:input").projectDir = file("library/modules/screen/input")
-include(":composepreferences:modules:screen:button")
-project(":composepreferences:modules:screen:button").projectDir = file("library/modules/screen/button")
-include(":composepreferences:modules:screen:color")
-project(":composepreferences:modules:screen:color").projectDir = file("library/modules/screen/color")
-include(":composepreferences:modules:screen:date")
-project(":composepreferences:modules:screen:date").projectDir = file("library/modules/screen/date")
-include(":composepreferences:modules:screen:time")
-project(":composepreferences:modules:screen:time").projectDir = file("library/modules/screen/time")
-include(":composepreferences:modules:screen:list")
-project(":composepreferences:modules:screen:list").projectDir = file("library/modules/screen/list")
-include(":composepreferences:modules:screen:number")
-project(":composepreferences:modules:screen:number").projectDir = file("library/modules/screen/number")
+includeModule("library/modules/kotpreferences", ":composepreferences:modules:kotpreferences")
 
-include(":composepreferences:modules:kotpreferences")
-project(":composepreferences:modules:kotpreferences").projectDir = file("library/modules/kotpreferences")
+// --------------
+// Demo
+// --------------
 
-include(":demo:android")
-include(":demo:windows")
+include(":demo:shared")
+include(":demo:app:windows")
+include(":demo:app:android")

@@ -26,10 +26,6 @@ public final class com/michaelflisar/composepreferences/core/ComposableSingleton
 	public final fun getLambda$399976499$core_release ()Lkotlin/jvm/functions/Function3;
 }
 
-public final class com/michaelflisar/composepreferences/core/Platform_androidKt {
-	public static final fun BackHandler (ZLkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;I)V
-}
-
 public final class com/michaelflisar/composepreferences/core/PreferenceCustomDefaults {
 	public static final field $stable I
 	public static final field INSTANCE Lcom/michaelflisar/composepreferences/core/PreferenceCustomDefaults;
@@ -55,7 +51,7 @@ public final class com/michaelflisar/composepreferences/core/PreferenceInfoKt {
 }
 
 public final class com/michaelflisar/composepreferences/core/PreferenceScreenKt {
-	public static final fun PreferenceScreen (Landroidx/compose/ui/Modifier;ZLcom/michaelflisar/composepreferences/core/classes/PreferenceSettings;Lcom/michaelflisar/composepreferences/core/filter/PreferenceFilter;Lcom/michaelflisar/composepreferences/core/classes/PreferenceState;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+	public static final fun PreferenceScreen (Landroidx/compose/ui/Modifier;ZLcom/michaelflisar/composepreferences/core/classes/PreferenceSettings;Lcom/michaelflisar/composepreferences/core/filter/PreferenceFilter;Lcom/michaelflisar/composepreferences/core/classes/PreferenceState;ZLkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
 }
 
 public final class com/michaelflisar/composepreferences/core/PreferenceSection {
@@ -225,14 +221,6 @@ public final class com/michaelflisar/composepreferences/core/classes/PreferenceS
 	public final fun getId ()I
 	public final fun getTitle ()Ljava/lang/String;
 	public final fun writeToParcel (Landroid/os/Parcel;I)V
-}
-
-public final class com/michaelflisar/composepreferences/core/classes/PreferenceState$Group$Creator : android/os/Parcelable$Creator {
-	public fun <init> ()V
-	public final fun createFromParcel (Landroid/os/Parcel;)Lcom/michaelflisar/composepreferences/core/classes/PreferenceState$Group;
-	public synthetic fun createFromParcel (Landroid/os/Parcel;)Ljava/lang/Object;
-	public final fun newArray (I)[Lcom/michaelflisar/composepreferences/core/classes/PreferenceState$Group;
-	public synthetic fun newArray (I)[Ljava/lang/Object;
 }
 
 public final class com/michaelflisar/composepreferences/core/classes/PreferenceState$Item {
@@ -433,7 +421,7 @@ public abstract interface class com/michaelflisar/composepreferences/core/filter
 	public abstract fun getFlattenResult ()Landroidx/compose/runtime/MutableState;
 	public abstract fun getSearch ()Landroidx/compose/runtime/MutableState;
 	public abstract fun highlight (Ljava/lang/String;)Landroidx/compose/ui/text/AnnotatedString;
-	public abstract fun isActive ()Z
+	public fun isActive ()Z
 }
 
 public final class com/michaelflisar/composepreferences/core/filter/PreferenceFilter$DefaultImpls {
@@ -549,12 +537,12 @@ public final class com/michaelflisar/composepreferences/core/previews/Composable
 public final class com/michaelflisar/composepreferences/core/previews/helper/ComposableSingletons$PreviewSearchTextKt {
 	public static final field INSTANCE Lcom/michaelflisar/composepreferences/core/previews/helper/ComposableSingletons$PreviewSearchTextKt;
 	public fun <init> ()V
+	public final fun getLambda$-1793153538$core_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-2080252043$core_release ()Lkotlin/jvm/functions/Function3;
 	public final fun getLambda$-744524304$core_release ()Lkotlin/jvm/functions/Function2;
 	public final fun getLambda$1330829483$core_release ()Lkotlin/jvm/functions/Function2;
-	public final fun getLambda$200241782$core_release ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda$594645621$core_release ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda$672607421$core_release ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda$989049460$core_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$1425907575$core_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$1820311414$core_release ()Lkotlin/jvm/functions/Function3;
 }
 
 public final class com/michaelflisar/composepreferences/core/previews/helper/PreviewSearchTextKt {
