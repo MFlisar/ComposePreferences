@@ -1,4 +1,4 @@
-package com.michaelflisar.composepreferences.demo
+package com.michaelflisar.composepreferences.demo.demos
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -39,10 +39,14 @@ import com.michaelflisar.composepreferences.screen.list.PreferenceList
 import com.michaelflisar.composepreferences.screen.list.PreferenceListMulti
 import com.michaelflisar.composepreferences.screen.number.PreferenceNumber
 import com.michaelflisar.composepreferences.screen.time.PreferenceTime
-import kotlinx.datetime.Clock
+import kotlinx.datetime.LocalDate
+import kotlinx.datetime.LocalTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
+import kotlin.time.Clock
+import kotlin.time.ExperimentalTime
 
+@OptIn(ExperimentalTime::class)
 @Preview(
     widthDp = 1200
 )
@@ -133,12 +137,12 @@ private fun PreviewAll() {
 
         val now = Clock.System.now()
         val localDateTime = now.toLocalDateTime(TimeZone.currentSystemDefault())
-        val localDate = kotlinx.datetime.LocalDate(
+        val localDate = LocalDate(
             localDateTime.year,
             localDateTime.month,
-            localDateTime.dayOfMonth
+            localDateTime.day
         )
-        val localTime = kotlinx.datetime.LocalTime(
+        val localTime = LocalTime(
             localDateTime.hour,
             localDateTime.minute,
             localDateTime.second,

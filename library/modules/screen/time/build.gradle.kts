@@ -61,9 +61,6 @@ kotlin {
         // ---------------------
 
         // --
-        // e.g.:
-        // val nativeMain by creating { dependsOn(commonMain.get()) }
-        // nativeMain.dependencyOf(sourceSets, buildTargets, listOf(Target.IOS, Target.MACOS))
 
         // ---------------------
         // dependencies

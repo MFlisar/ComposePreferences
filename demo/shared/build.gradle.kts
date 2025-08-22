@@ -52,16 +52,11 @@ kotlin {
         // custom source sets
         // ---------------------
 
-        // --
-        // e.g.:
-        // val nativeMain by creating { dependsOn(commonMain.get()) }
-        // nativeMain.dependencyOf(sourceSets, buildTargets, listOf(Target.IOS, Target.MACOS))
-
         val notAndroidMain by creating { dependsOn(commonMain.get()) }
-        notAndroidMain.dependencyOfAll(sourceSets, buildTargets, exclusions = listOf(Target.ANDROID))
-
         val notWasmJsMain by creating { dependsOn(commonMain.get()) }
-        notWasmJsMain.dependencyOfAll(sourceSets, buildTargets, exclusions = listOf(Target.WASM))
+
+        notAndroidMain.setupDependencies(sourceSets, buildTargets, listOf(Target.ANDROID), targetsNotSupported = true)
+        notWasmJsMain.setupDependencies(sourceSets, buildTargets, listOf(Target.WASM), targetsNotSupported = true)
 
         // ---------------------
         // dependencies
@@ -113,7 +108,11 @@ kotlin {
         }
 
         androidMain.dependencies {
+
             implementation(deps.drawablepainter)
+
+            implementation(libs.compose.ui.tooling)
+            implementation(libs.compose.components.ui.tooling.preview)
         }
 
         wasmJsMain.dependencies {
