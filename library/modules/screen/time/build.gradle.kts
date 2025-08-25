@@ -74,8 +74,7 @@ kotlin {
             // Compose
             implementation(libs.compose.material3)
 
-            val useLiveDependencies = providers.gradleProperty("useLiveDependencies").get().toBoolean()
-            if (useLiveDependencies) {
+            if (buildFilePlugin.useLiveDependencies()) {
                 implementation(deps.composedialogs.core)
                 implementation(deps.composedialogs.dialog.time)
             } else {

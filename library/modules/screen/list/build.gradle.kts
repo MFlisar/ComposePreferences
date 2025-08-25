@@ -68,8 +68,7 @@ kotlin {
             implementation(libs.compose.material3)
             implementation(libs.compose.material.icons.core)
 
-            val useLiveDependencies = providers.gradleProperty("useLiveDependencies").get().toBoolean()
-            if (useLiveDependencies) {
+            if (buildFilePlugin.useLiveDependencies()) {
                 implementation(deps.composedialogs.core)
                 implementation(deps.composedialogs.dialog.list)
             } else {

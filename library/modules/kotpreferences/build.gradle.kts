@@ -2,7 +2,6 @@ import com.michaelflisar.kmplibrary.BuildFilePlugin
 import com.michaelflisar.kmplibrary.setupDependencies
 import com.michaelflisar.kmplibrary.Target
 import com.michaelflisar.kmplibrary.Targets
-import com.michaelflisar.kmplibrary.api
 
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
@@ -70,7 +69,11 @@ kotlin {
 
             implementation(project(":composepreferences:core"))
 
-            api(live = deps.kotpreferences.core, project = ":kotpreferences:core", plugin = buildFilePlugin)
+            if (buildFilePlugin.useLiveDependencies()) {
+                api(deps.kotpreferences.core)
+            } else {
+                api(project(":kotpreferences:core"))
+            }
 
         }
     }

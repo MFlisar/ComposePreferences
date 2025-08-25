@@ -1,10 +1,10 @@
 [versions]
 
 # mflisar
-kotpreferences =        	"1.0.4"
-composedialogs =   		    "2.3.0"
+kotpreferences =        	"2.0.0"
+composedialogs =   		    "3.0.0"
 kmp-parcelize =             "1.0.0"
-kmp-library =               "1.9.0"
+kmp-library =               "1.9.6"
 kmp-democomposables =       "1.0.2"
 accompanist = 			    "0.37.3"
 

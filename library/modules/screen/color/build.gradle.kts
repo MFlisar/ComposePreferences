@@ -69,8 +69,7 @@ kotlin {
 
             implementation(project(":composepreferences:core"))
 
-            val useLiveDependencies = providers.gradleProperty("useLiveDependencies").get().toBoolean()
-            if (useLiveDependencies) {
+            if (buildFilePlugin.useLiveDependencies()) {
                 implementation(deps.composedialogs.core)
                 implementation(deps.composedialogs.dialog.color)
             } else {

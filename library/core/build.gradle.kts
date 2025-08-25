@@ -76,8 +76,7 @@ kotlin {
 
             api(deps.kmp.parcelize) // api needed because some classes are public
 
-            val useLiveDependencies = providers.gradleProperty("useLiveDependencies").get().toBoolean()
-            if (useLiveDependencies) {
+            if (buildFilePlugin.useLiveDependencies()) {
                 implementation(deps.composedialogs.core)
             } else {
                 implementation(project(":composedialogs:core"))
