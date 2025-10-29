@@ -31,6 +31,8 @@ library:
       images:
         - screenshots/overview.jpg
         - screenshots/overview2.jpg
+    - name: Examples
+      images:
         - screenshots/core/root-default.jpg
         - screenshots/core/root-modern.jpg
     - name: Input
