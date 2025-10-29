@@ -74,14 +74,10 @@ kotlin {
             // Compose
             implementation(libs.compose.material3)
 
-            if (buildFilePlugin.useLiveDependencies()) {
-                implementation(deps.composedialogs.core)
-                implementation(deps.composedialogs.dialog.date)
-            } else {
-                implementation(project(":composedialogs:core"))
-                implementation(project(":composedialogs:modules:date"))
-            }
 
+            implementation(deps.composedialogs.core)
+            implementation(deps.composedialogs.dialog.date)
+           
             implementation(project(":composepreferences:core"))
         }
 

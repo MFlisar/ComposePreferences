@@ -74,13 +74,8 @@ kotlin {
             // Compose
             implementation(libs.compose.material3)
 
-            if (buildFilePlugin.useLiveDependencies()) {
-                implementation(deps.composedialogs.core)
-                implementation(deps.composedialogs.dialog.time)
-            } else {
-                implementation(project(":composedialogs:core"))
-                implementation(project(":composedialogs:modules:time"))
-            }
+            implementation(deps.composedialogs.core)
+            implementation(deps.composedialogs.dialog.time)
 
             implementation(project(":composepreferences:core"))
         }

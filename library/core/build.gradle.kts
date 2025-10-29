@@ -76,11 +76,8 @@ kotlin {
 
             api(deps.kmp.parcelize) // api needed because some classes are public
 
-            if (buildFilePlugin.useLiveDependencies()) {
-                implementation(deps.composedialogs.core)
-            } else {
-                implementation(project(":composedialogs:core"))
-            }
+            implementation(deps.composedialogs.core)
+
         }
 
         androidMain.dependencies {

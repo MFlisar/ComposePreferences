@@ -69,11 +69,7 @@ kotlin {
 
             implementation(project(":composepreferences:core"))
 
-            if (buildFilePlugin.useLiveDependencies()) {
-                api(deps.kotpreferences.core)
-            } else {
-                api(project(":kotpreferences:core"))
-            }
+            api(deps.kotpreferences.core)
 
         }
     }

@@ -26,7 +26,45 @@ library:
   license:
     name: Apache License 2.0
     link: https://github.com/MFlisar/ComposePreferences/blob/main/LICENSE
-  screenshots: []
+  screenshots:
+    - name: Overview
+      images:
+        - screenshots/overview.jpg
+        - screenshots/overview2.jpg
+        - screenshots/core/root-default.jpg
+        - screenshots/core/root-modern.jpg
+    - name: Input
+      images:
+        - screenshots/input/input-default.jpg
+        - screenshots/input/input-modern.jpg
+    - name: Number
+      images:
+        - screenshots/number/number-default.jpg
+        - screenshots/number/number-modern.jpg
+    - name: Boolean
+      images:
+        - screenshots/bool/bool-default.jpg
+        - screenshots/bool/bool-modern.jpg
+    - name: Button
+      images:
+        - screenshots/button/button-default.jpg
+        - screenshots/button/button-modern.jpg
+    - name: Color
+      images:
+        - screenshots/coloir/color-default.jpg
+        - screenshots/coloir/color-modern.jpg
+    - name: Date
+      images:
+        - screenshots/date/date-default.jpg
+        - screenshots/date/date-modern.jpg
+    - name: Time
+      images:
+        - screenshots/time/time-default.jpg
+        - screenshots/time/time-modern.jpg
+    - name: List
+      images:
+        - screenshots/list/list-default.jpg
+        - screenshots/list/list-modern.jpg
   about-me: true # set to true if you want to show the about me section on the homepage
 
 maven:

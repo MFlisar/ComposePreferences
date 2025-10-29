@@ -69,13 +69,8 @@ kotlin {
 
             implementation(project(":composepreferences:core"))
 
-            if (buildFilePlugin.useLiveDependencies()) {
-                implementation(deps.composedialogs.core)
-                implementation(deps.composedialogs.dialog.color)
-            } else {
-                implementation(project(":composedialogs:core"))
-                implementation(project(":composedialogs:modules:color"))
-            }
+            implementation(deps.composedialogs.core)
+            implementation(deps.composedialogs.dialog.color)
         }
 
         androidMain.dependencies {

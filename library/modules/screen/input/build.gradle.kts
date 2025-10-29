@@ -67,13 +67,8 @@ kotlin {
             // Compose
             implementation(libs.compose.material3)
 
-            if (buildFilePlugin.useLiveDependencies()) {
-                implementation(deps.composedialogs.core)
-                api(deps.composedialogs.dialog.input)
-            } else {
-                implementation(project(":composedialogs:core"))
-                api(project(":composedialogs:modules:input"))
-            }
+            implementation(deps.composedialogs.core)
+            api(deps.composedialogs.dialog.input)
 
             implementation(project(":composepreferences:core"))
         }

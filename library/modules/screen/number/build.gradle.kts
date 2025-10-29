@@ -70,14 +70,9 @@ kotlin {
             implementation(libs.compose.material.icons.core)
             implementation(libs.compose.material.icons.extended)
 
-            if (buildFilePlugin.useLiveDependencies()) {
-                implementation(deps.composedialogs.core)
-                implementation(deps.composedialogs.dialog.number)
-            } else {
-                implementation(project(":composedialogs:core"))
-                implementation(project(":composedialogs:modules:number"))
-            }
-
+            implementation(deps.composedialogs.core)
+            implementation(deps.composedialogs.dialog.number)
+           
             implementation(project(":composepreferences:core"))
         }
 
