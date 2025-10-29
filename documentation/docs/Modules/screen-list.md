@@ -15,13 +15,13 @@ Check out the composable and it's documentation in the code snipplet below.
 === "Single Selection"
 
     ```kotlin
-    --8<-- "../../demo/android/src/main/java/com/michaelflisar/composepreferences/demo/demos/PrefScreenDemo.kt:demo-list"
+    --8<-- "../../demo/app/android/src/main/java/com/michaelflisar/composepreferences/demo/demos/PrefScreenDemo.kt:demo-list"
     ```
 
 === "Multi Selection"
 
     ```kotlin
-    --8<-- "../../demo/android/src/main/java/com/michaelflisar/composepreferences/demo/demos/PrefScreenDemo.kt:demo-list2"
+    --8<-- "../../demo/app/android/src/main/java/com/michaelflisar/composepreferences/demo/demos/PrefScreenDemo.kt:demo-list2"
     ```
 
 #### Composable - Single Selection List
