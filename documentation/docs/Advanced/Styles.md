@@ -12,7 +12,7 @@ All those customisations are supported by *all* preference composables.
 
 | Default                                             | Modern                                             |
 |-----------------------------------------------------|----------------------------------------------------|
-| ![Screenshot](../screenshots/core/root default.jpg) | ![Screenshot](../screenshots/core/root modern.jpg) |
+| ![Screenshot](../screenshots/core/root-default.jpg) | ![Screenshot](../screenshots/core/root-modern.jpg) |
 
 === "Default"
 

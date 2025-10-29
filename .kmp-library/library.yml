@@ -53,8 +53,8 @@ library:
         - screenshots/button/button-modern.jpg
     - name: Color
       images:
-        - screenshots/coloir/color-default.jpg
-        - screenshots/coloir/color-modern.jpg
+        - screenshots/color/color-default.jpg
+        - screenshots/color/color-modern.jpg
     - name: Date
       images:
         - screenshots/date/date-default.jpg
