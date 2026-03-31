@@ -85,7 +85,7 @@ fun PrefScreenDemoFilter(
 
         DemoRegion("Search")
 
-        /* --8<-- [start: filter-input] */
+        // begin-snippet: filter-input
         OutlinedTextField(
             modifier = Modifier
                 .fillMaxWidth()
@@ -104,7 +104,7 @@ fun PrefScreenDemoFilter(
                 }
             } else null
         )
-        /* --8<-- [end: filter-input] */
+        // end-snippet
 
         DemoRegion("Preferences")
         PreferenceNavigationAndInfo(state)
@@ -145,14 +145,14 @@ fun PrefScreenDemoFilter(
         val list2 = remember { mutableStateOf(listItems.first()) }
         val listMulti1 = remember { mutableStateOf(emptyList<String>()) }
 
-        /* --8<-- [start: filter2] */
+        // begin-snippet: filter2
         PreferenceScreen(
             modifier = Modifier.weight(1f).fillMaxWidth(),
             settings = settings,
             filter = filter,
             state = state
         )
-        /* --8<-- [end: filter2] */
+        // end-snippet
         {
             if (state.countCurrentLevel() > 0) {
                 Row(

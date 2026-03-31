@@ -96,6 +96,7 @@ fun PreferenceScope.PreferenceColor(
  * @param value the color value of this item
  * @param onValueChange the value changed callback of this item
  * @param alphaSupported if true, this preference does support alpha values (ARGB) otherwise it doesn't (RGB only)
+ * @param directEditSupported if true, this preference does allow direct editing of rgba values (in the custom color page)
  */
 @Composable
 fun PreferenceScope.PreferenceColor(
@@ -103,6 +104,7 @@ fun PreferenceScope.PreferenceColor(
     value: Color,
     onValueChange: (value: Color) -> Unit,
     alphaSupported: Boolean = true,
+    directEditSupported: Boolean = false,
     // Base Preference
     title: String,
     enabled: Dependency = Dependency.Enabled,
@@ -116,7 +118,7 @@ fun PreferenceScope.PreferenceColor(
     filterTags: List<String> = emptyList(),
     // Dialog
     dialog: @Composable (state: DialogState) -> Unit = { dialogState ->
-        PreferenceColorDefaults.dialog(dialogState, value, onValueChange, alphaSupported, title, icon)
+        PreferenceColorDefaults.dialog(dialogState, value, onValueChange, alphaSupported, directEditSupported,title, icon)
     }
 )
 // end-snippet
