@@ -4,15 +4,39 @@ Filtering is an optional feature. It allows to filter the preferences and render
 
 You just have to define a filter mode...
 
-snippet: filter-modes
+<!-- snippet: filter-modes -->
+```kt
+val filterModes = listOf(
+    DefaultPreferenceFilter.Mode.ContainsText,
+    DefaultPreferenceFilter.Mode.AllWords(false),
+    DefaultPreferenceFilter.Mode.AnyWord(false)
+)
+```
+<!-- endSnippet -->
 
 ... then create a filter setup ...
 
-snippet: filter
+<!-- snippet: filter -->
+```kt
+val filter = rememberDefaultPreferenceFilter(
+    highlightSpan = SpanStyle(color = Color.Red),
+    mode = filterModes[0]
+)
+```
+<!-- endSnippet -->
 
 ... and finally pass on the filter to the screen:
 
-snippet: filter2
+<!-- snippet: filter2 -->
+```kt
+PreferenceScreen(
+    modifier = Modifier.weight(1f).fillMaxWidth(),
+    settings = settings,
+    filter = filter,
+    state = state
+)
+```
+<!-- endSnippet -->
 
 #### Filter
 
@@ -29,7 +53,26 @@ TextField(
 
 Additionally the `filter` object does provide some states to make more adjustments if desired.
 
-snippet: DefaultPreferenceFilter::constructor
+<!-- snippet: DefaultPreferenceFilter::constructor -->
+```kt
+/**
+ * Remember a DefaultPreferenceFilter with the given parameters.
+ *
+ * @param search the search string to filter by
+ * @param flattenResult Whether to flatten the result of the filter
+ * @param mode the mode to use for the filter
+ * @param ignoreCase whether to ignore the case of the search string
+ * @param highlightSpan the SpanStyle to use for highlighting the search string
+ */
+class DefaultPreferenceFilter internal constructor(
+    override val search: MutableState<String>,
+    override val flattenResult: MutableState<Boolean>,
+    val mode: MutableState<Mode>,
+    private val ignoreCase: MutableState<Boolean>,
+    private val highlightSpan: SpanStyle
+) : PreferenceFilter
+```
+<!-- endSnippet -->
 
 ### Custom filter
 
