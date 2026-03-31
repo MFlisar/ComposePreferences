@@ -36,7 +36,7 @@ import com.michaelflisar.composepreferences.core.scopes.PreferenceSectionScopeIn
 import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
 import kotlin.math.exp
 
-/* --8<-- [start: constructor] */
+// begin-snippet: PreferenceSection::constructor
 /**
  * A section preference item
  *
@@ -61,7 +61,8 @@ fun PreferenceGroupScope.PreferenceSection(
     filterTags: List<String> = emptyList(),
     content: @Composable PreferenceSectionScope.() -> Unit,
 )
-/* --8<-- [end: constructor] */ {
+// end-snippet
+{
     val tags = filterTags + listOfNotNull(title, subtitle)
     val item = rememberPreferenceItemState(PreferenceType.Section(expandable), visible, tags, false)
 

@@ -35,7 +35,7 @@ class ModernStyle internal constructor(
         val DEFAULT_ITEM_SPACING = 4.dp
         val DEFAULT_CORNER_SIZE = 8.dp
 
-        /* --8<-- [start: create] */
+        // begin-snippet: ModernStyle::create
         /*
         * Creates a new ModernStyle instance with the given parameters.
         *
@@ -73,7 +73,7 @@ class ModernStyle internal constructor(
             sectionSubtitleTextStyle: TextStyle = MaterialTheme.typography.bodyMedium,
             spacing: Dp = DEFAULT_ITEM_SPACING
         ) : ModernStyle
-        /* --8<-- [end: create] */
+        // end-snippet
         {
 
             val shape = RoundedCornerShape(cornerSize)

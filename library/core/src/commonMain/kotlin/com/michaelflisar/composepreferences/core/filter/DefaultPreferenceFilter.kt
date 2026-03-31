@@ -10,7 +10,7 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 
-/* --8<-- [start: constructor] */
+// begin-snippet: DefaultPreferenceFilter::constructor
 /**
  * Remember a DefaultPreferenceFilter with the given parameters.
  *
@@ -27,16 +27,16 @@ class DefaultPreferenceFilter internal constructor(
     private val ignoreCase: MutableState<Boolean>,
     private val highlightSpan: SpanStyle
 ) : PreferenceFilter
-/* --8<-- [end: constructor] */
+// end-snippet
 {
-    /* --8<-- [start: modes] */
+    // begin-snippet: DefaultPreferenceFilter::modes
     sealed class Mode {
 
 
         data object ContainsText : Mode()
         data class AllWords(val fullWordsOnly: Boolean = false) : Mode()
         data class AnyWord(val fullWordOnly: Boolean = false) : Mode()
-    /* --8<-- [end: modes] */
+    // end-snippet
 
         companion object {
             val SAVER = Saver<MutableState<Mode>, Int>(
@@ -115,7 +115,7 @@ class DefaultPreferenceFilter internal constructor(
     }
 }
 
-/* --8<-- [start: remember] */
+// begin-snippet: DefaultPreferenceFilter::remember
 /**
  * Remember a DefaultPreferenceFilter with the given parameters.
  *
@@ -139,4 +139,4 @@ fun rememberDefaultPreferenceFilter(
     rememberSaveable { mutableStateOf(ignoreCase) },
     highlightSpan
 )
-/* --8<-- [end: remember] */
+// end-snippet

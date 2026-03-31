@@ -1,27 +1,36 @@
-import com.michaelflisar.kmplibrary.BuildFilePlugin
-import com.michaelflisar.kmplibrary.setupDependencies
-import com.michaelflisar.kmplibrary.Target
-import com.michaelflisar.kmplibrary.Targets
+import com.michaelflisar.kmpdevtools.BuildFileUtil
+import com.michaelflisar.kmpdevtools.Targets
+import com.michaelflisar.kmpdevtools.configs.library.AndroidLibraryConfig
+import com.michaelflisar.kmpdevtools.core.Platform
+import com.michaelflisar.kmpdevtools.core.configs.Config
+import com.michaelflisar.kmpdevtools.core.configs.LibraryConfig
+import com.michaelflisar.kmpdevtools.setupDependencies
 
 plugins {
-    alias(libs.plugins.kotlin.multiplatform)
+    // kmp + app/library
+    alias(libs.plugins.jetbrains.kotlin.multiplatform)
     alias(libs.plugins.android.library)
-    alias(libs.plugins.kotlin.compose)
-    alias(libs.plugins.kotlin.parcelize)
+    // org.jetbrains.kotlin
+    alias(libs.plugins.jetbrains.kotlin.compose)
+    alias(libs.plugins.jetbrains.kotlin.parcelize)
+    // org.jetbrains.compose
+    alias(libs.plugins.jetbrains.compose)
+    // docs, publishing, validation
     alias(libs.plugins.dokka)
-    alias(libs.plugins.gradle.maven.publish.plugin)
+    alias(libs.plugins.vanniktech.maven.publish.base)
     alias(libs.plugins.binary.compatibility.validator)
-    alias(deps.plugins.kmplibrary.buildplugin)
+    // build tools
+    alias(deps.plugins.kmpdevtools.buildplugin)
+    // others
+    // ...
 }
 
-// get build file plugin
-val buildFilePlugin = project.plugins.getPlugin(BuildFilePlugin::class.java)
+// ------------------------
+// Setup
+// ------------------------
 
-// -------------------
-// Informations
-// -------------------
-
-val androidNamespace = "com.michaelflisar.composepreferences.screen.time"
+val config = Config.read(rootProject)
+val libraryConfig = LibraryConfig.read(rootProject)
 
 val buildTargets = Targets(
     // mobile
@@ -34,8 +43,14 @@ val buildTargets = Targets(
     wasm = true
 )
 
+val androidConfig = AndroidLibraryConfig.create(
+    compileSdk = app.versions.compileSdk,
+    minSdk = app.versions.minSdk,
+    enableAndroidResources = false
+)
+
 // -------------------
-// Setup
+// Kotlin
 // -------------------
 
 dependencies {
@@ -48,7 +63,10 @@ kotlin {
     // Targets
     //-------------
 
-    buildFilePlugin.setupTargetsLibrary(buildTargets)
+    buildTargets.setupTargetsLibrary(project)
+    android {
+        buildTargets.setupTargetsAndroidLibrary(project, config, libraryConfig, androidConfig, this)
+    }
 
     // -------
     // Sources
@@ -69,10 +87,10 @@ kotlin {
         commonMain.dependencies {
 
             // Kotlin
-            api(kotlinx.datetime)
+            api(libs.jetbrains.kotlinx.datetime)
 
             // Compose
-            implementation(libs.compose.material3)
+            implementation(libs.jetbrains.compose.material3)
 
             implementation(deps.composedialogs.core)
             implementation(deps.composedialogs.dialog.time)
@@ -81,39 +99,17 @@ kotlin {
         }
 
         androidMain.dependencies {
-            implementation(libs.compose.ui.tooling)
-            implementation(libs.compose.components.ui.tooling.preview)
-        }
-
-        jvmMain.dependencies {
-            implementation(libs.compose.ui.tooling)
-            implementation(libs.compose.components.ui.tooling.preview)
+            implementation(libs.jetbrains.compose.material.icons.core)
+            implementation(libs.jetbrains.compose.ui.tooling)
+            implementation(libs.jetbrains.compose.ui.tooling.preview)
         }
     }
 }
 
 // -------------------
-// Configurations
+// Publish
 // -------------------
-
-// android configuration
-android {
-
-    compileOptions {
-        isCoreLibraryDesugaringEnabled = true
-    }
-
-    buildFilePlugin.setupAndroidLibrary(
-        androidNamespace = androidNamespace,
-        compileSdk = app.versions.compileSdk,
-        minSdk = app.versions.minSdk,
-        buildConfig = false
-    )
-}
 
 // maven publish configuration
-if (buildFilePlugin.checkGradleProperty("publishToMaven") != false)
-    buildFilePlugin.setupMavenPublish()
-
-
-
+if (BuildFileUtil.checkGradleProperty(project, "publishToMaven") != false)
+    BuildFileUtil.setupMavenPublish(project, config, libraryConfig)

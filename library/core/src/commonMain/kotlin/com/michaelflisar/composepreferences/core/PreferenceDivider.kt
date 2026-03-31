@@ -11,7 +11,7 @@ import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetup
 import com.michaelflisar.composepreferences.core.scopes.PreferenceScope
 import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
 
-/* --8<-- [start: constructor] */
+// begin-snippet: PreferenceDivider::constructor
 /**
  * A divider preference item
  *
@@ -29,7 +29,7 @@ fun PreferenceScope.PreferenceDivider(
     itemStyle: PreferenceItemStyle = LocalPreferenceSettings.current.style.defaultItemStyle,
     filterTags: List<String> = emptyList()
 )
-/* --8<-- [end: constructor] */
+// end-snippet
 {
     val itemSetup = PreferenceInfoDefaults.itemSetup().copy(
         hideTitle = true,

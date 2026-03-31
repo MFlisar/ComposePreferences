@@ -5,6 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.text.AnnotatedString
+import com.michaelflisar.composedialogs.core.DialogEventType
 import com.michaelflisar.composedialogs.core.DialogState
 import com.michaelflisar.composedialogs.core.rememberDialogState
 import com.michaelflisar.composedialogs.dialogs.date.DialogDate
@@ -23,7 +24,7 @@ import com.michaelflisar.composepreferences.core.scopes.PreferenceScope
 import kotlinx.datetime.DayOfWeek
 import kotlinx.datetime.LocalDate
 
-/* --8<-- [start: constructor] */
+// begin-snippet: PreferenceDate::constructor
 /**
  * A date preference item - this item provides a date dialog to change this preference
  *
@@ -60,7 +61,7 @@ fun PreferenceScope.PreferenceDate(
         PreferenceDateDefaults.dialog(dialogState, value.value, { value.value = it }, firstDayOfWeek, formatter, title, icon)
     }
 )
-/* --8<-- [end: constructor] */
+// end-snippet
 {
     PreferenceDate(
         value = value.value,
@@ -81,7 +82,7 @@ fun PreferenceScope.PreferenceDate(
     )
 }
 
-/* --8<-- [start: constructor2] */
+// begin-snippet: PreferenceDate::constructor2
 /**
  * A date preference item - this item provides a date dialog to change this preference
  *
@@ -120,7 +121,7 @@ fun PreferenceScope.PreferenceDate(
         PreferenceDateDefaults.dialog(state, value, onValueChange, firstDayOfWeek, formatter, title, icon)
     }
 )
-/* --8<-- [end: constructor2] */
+// end-snippet
 {
     BasePreferenceDialog(
         dialogState = rememberDialogState(),
@@ -173,7 +174,7 @@ object PreferenceDateDefaults {
             title = { Text(title) },
             icon = icon
         ) {
-            if (it.isPositiveButton) {
+            if (it.type == DialogEventType.ButtonPositive) {
                 onValueChange(value.value)
             }
         }

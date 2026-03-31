@@ -14,7 +14,7 @@ import com.michaelflisar.composepreferences.core.helper.SearchText
 import com.michaelflisar.composepreferences.core.internal.rememberPreferenceItemState
 import com.michaelflisar.composepreferences.core.scopes.PreferenceScope
 
-/* --8<-- [start: constructor] */
+// begin-snippet: PreferenceButton::constructor
 /**
  * A button preference item - this item simply executes an action on click
  *
@@ -39,7 +39,7 @@ fun PreferenceScope.PreferenceButton(
     subtitleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
     filterTags: List<String> = emptyList()
 )
-/* --8<-- [start: constructor] */
+// end-snippet
 {
     BasePreference(
         enabled = enabled,

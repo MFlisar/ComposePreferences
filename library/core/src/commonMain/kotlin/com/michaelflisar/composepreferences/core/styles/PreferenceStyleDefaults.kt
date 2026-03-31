@@ -20,7 +20,7 @@ object PreferenceStyleDefaults {
     val DEFAULT_INNER_PADDING = PaddingValues(horizontal = 16.dp, 8.dp)
     val DEFAULT_OUTER_PADDING = PaddingValues()
 
-    /* --8<-- [start: item] */
+    // begin-snippet: PreferenceStyleDefaults::create
     /**
      * this function returns a [PreferenceItemStyle] defining the style of a preference item
      *
@@ -48,7 +48,7 @@ object PreferenceStyleDefaults {
         titleTextStyle: TextStyle = MaterialTheme.typography.labelLarge,
         subtitleTextStyle: TextStyle = MaterialTheme.typography.bodyMedium
     ): PreferenceItemStyle
-    /* --8<-- [end: item] */
+    // end-snippet
     = PreferenceItemStyle(
         colors = colors,
         innerPadding = innerPadding,

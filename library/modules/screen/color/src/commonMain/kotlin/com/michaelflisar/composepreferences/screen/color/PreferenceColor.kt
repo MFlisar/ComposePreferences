@@ -17,6 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
+import com.michaelflisar.composedialogs.core.DialogEventType
 import com.michaelflisar.composedialogs.core.DialogState
 import com.michaelflisar.composedialogs.core.rememberDialogState
 import com.michaelflisar.composedialogs.dialogs.color.DialogColor
@@ -30,7 +31,7 @@ import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetup
 import com.michaelflisar.composepreferences.core.scopes.PreferenceScope
 import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
 
-/* --8<-- [start: constructor] */
+// begin-snippet: PreferenceColor::constructor
 /**
  * A color preference item - this item provides a color dialog to change this preference
  *
@@ -40,12 +41,14 @@ import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
  *
  * @param value the [MutableState] of this item
  * @param alphaSupported if true, this preference does support alpha values (ARGB) otherwise it doesn't (RGB only)
+ * @param directEditSupported if true, this preference does allow direct editing of rgba values (in the custom color page)
  */
 @Composable
 fun PreferenceScope.PreferenceColor(
     // Special
     value: MutableState<Color>,
     alphaSupported: Boolean = true,
+    directEditSupported: Boolean = false,
     // Base Preference
     title: String,
     enabled: Dependency = Dependency.Enabled,
@@ -59,10 +62,10 @@ fun PreferenceScope.PreferenceColor(
     filterTags: List<String> = emptyList(),
     // Dialog
     dialog: @Composable (state: DialogState) -> Unit = { dialogState ->
-        PreferenceColorDefaults.dialog(dialogState, value.value, { value.value = it }, alphaSupported, title, icon)
+        PreferenceColorDefaults.dialog(dialogState, value.value, { value.value = it }, alphaSupported, directEditSupported, title, icon)
     }
 )
-/* --8<-- [end: constructor] */
+// end-snippet
 {
     PreferenceColor(
         value = value.value,
@@ -82,7 +85,7 @@ fun PreferenceScope.PreferenceColor(
     )
 }
 
-/* --8<-- [start: constructor2] */
+// begin-snippet: PreferenceColor::constructor2
 /**
  * A color preference item - this item provides a color dialog to change this preference
  *
@@ -116,7 +119,7 @@ fun PreferenceScope.PreferenceColor(
         PreferenceColorDefaults.dialog(dialogState, value, onValueChange, alphaSupported, title, icon)
     }
 )
-/* --8<-- [end: constructor2] */
+// end-snippet
 {
     BasePreferenceDialog(
         dialogState = rememberDialogState(),
@@ -169,6 +172,7 @@ object PreferenceColorDefaults {
         value: Color,
         onValueChange: (value: Color) -> Unit,
         alphaSupported: Boolean,
+        directEditSupported: Boolean,
         title: String,
         icon: (@Composable () -> Unit)? = null
     ) {
@@ -177,10 +181,11 @@ object PreferenceColorDefaults {
             state = dialogState,
             color = value,
             alphaSupported = alphaSupported,
+            directEditSupported = directEditSupported,
             title = { Text(title) },
             icon = icon
         ) {
-            if (it.isPositiveButton) {
+            if (it.type == DialogEventType.ButtonPositive) {
                 onValueChange(value.value)
             }
         }

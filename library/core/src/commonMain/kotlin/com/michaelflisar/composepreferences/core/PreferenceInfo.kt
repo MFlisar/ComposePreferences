@@ -11,7 +11,7 @@ import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetup
 import com.michaelflisar.composepreferences.core.scopes.PreferenceScope
 import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
 
-/* --8<-- [start: constructor] */
+// begin-snippet: PreferenceInfo::constructor
 /**
  * A info preference item
  *
@@ -37,7 +37,7 @@ fun PreferenceScope.PreferenceInfo(
     subtitleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
     filterTags: List<String> = emptyList()
 )
-/* --8<-- [end: constructor] */
+// end-snippet
 {
     BasePreference(
         itemSetup = itemSetup,

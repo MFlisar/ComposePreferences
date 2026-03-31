@@ -8,7 +8,7 @@ import com.michaelflisar.kotpreferences.core.InternalApi
 import com.michaelflisar.kotpreferences.core.getValueNotNull
 import com.michaelflisar.kotpreferences.core.interfaces.StorageSetting
 
-/* --8<-- [start: asDependency] */
+// begin-snippet: Extensions::asDependency
 /**
  * simple extension function to plug in a setting as a dependency
  *
@@ -18,13 +18,13 @@ import com.michaelflisar.kotpreferences.core.interfaces.StorageSetting
 fun <T> StorageSetting<T>.asDependency(
     enabled: (T) -> Boolean
 ): Dependency.State<T>
-/* --8<-- [end: asDependency] */
+// end-snippet
 {
     val state = collectSetting()
     return Dependency.State(state, enabled)
 }
 
-/* --8<-- [start: collect] */
+// begin-snippet: Extensions::collect
 /**
  * TODO:
  * this uses caching (disabled by default) and a blocking read => not optimal
@@ -38,7 +38,7 @@ fun <T> StorageSetting<T>.asDependency(
 private fun <T> StorageSetting<T>.collectSetting(
     initialValue: T = getValueNotNull()
 ): State<T>
-/* --8<-- [end: collect] */
+// end-snippet
 {
     return flow.collectAsState(initial = initialValue)
 }

@@ -32,7 +32,7 @@ import com.michaelflisar.composepreferences.core.scopes.PreferenceGroupScopeInst
 
 internal val LocalPreferenceScrollState = compositionLocalOf { mutableStateOf(ScrollState(0)) }
 
-/* --8<-- [start: constructor] */
+// begin-snippet: PreferenceScreen::constructor
 /**
  * the **root** screen holding preference items
  *
@@ -55,7 +55,7 @@ fun PreferenceScreen(
     handleBackPress: Boolean = true,
     content: @Composable PreferenceGroupScope.() -> Unit
 )
-/* --8<-- [end: constructor] */
+// end-snippet
 {
     val children = remember { mutableStateOf<List<PreferenceItemState.Item>>(emptyList()) }
     val root = remember { PreferenceItemState.Root(children) }

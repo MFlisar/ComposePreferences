@@ -20,6 +20,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.michaelflisar.composedialogs.core.DialogEventType
 import com.michaelflisar.composedialogs.core.DialogState
 import com.michaelflisar.composedialogs.core.rememberDialogState
 import com.michaelflisar.composedialogs.dialogs.number.DialogNumberPicker
@@ -38,7 +39,7 @@ import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
 import kotlin.math.roundToInt
 import kotlin.math.roundToLong
 
-/* --8<-- [start: constructor] */
+// begin-snippet: PreferenceNumber::constructor
 /**
  * A number preference item - this item provides a number **picker** dialog to change this preference
  *
@@ -87,7 +88,8 @@ fun <T : Number> PreferenceScope.PreferenceNumber(
         )
     }
 )
-        /* --8<-- [end: constructor] */ {
+// end-snippet
+{
     PreferenceNumber(
         style = style,
         value = value.value,
@@ -110,7 +112,7 @@ fun <T : Number> PreferenceScope.PreferenceNumber(
     )
 }
 
-/* --8<-- [start: constructor2] */
+// begin-snippet: PreferenceNumber::constructor2
 /**
  * A number preference item - this item provides a number **picker** dialog to change this preference
  *
@@ -161,7 +163,8 @@ fun <T : Number> PreferenceScope.PreferenceNumber(
         )
     }
 )
-        /* --8<-- [end: constructor2] */ {
+// end-snippet
+{
     when (style) {
         PreferenceNumber.Style.Picker -> {
             BasePreferenceDialog(
@@ -411,7 +414,7 @@ object PreferenceNumberDefaults {
             title = { Text(title) },
             icon = icon
         ) {
-            if (it.isPositiveButton) {
+            if (it.type == DialogEventType.ButtonPositive) {
                 onValueChange(value.value)
             }
         }

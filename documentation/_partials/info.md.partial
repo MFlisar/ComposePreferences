@@ -1,0 +1,4 @@
+This library offers you an easily extendible compose framework for preferences.
+
+> [!NOTE]
+> All features are splitted into separate modules, just include the modules you want to use!

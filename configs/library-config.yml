@@ -1,0 +1,49 @@
+# Github Library
+github:
+  name: ComposePreferences
+  release: 2023
+  namespace: com.michaelflisar.composepreferences
+  license:
+    name: Apache License 2.0
+    path: blob/main/LICENSE
+
+# Maven
+maven:
+  group-id: io.github.mflisar.composepreferences
+  primary-artifact-id: core # used to detect latest release version of the library (dynamically on the published homepage)
+
+# Modules - list of modules [artifact-id, description, path]
+modules:
+  - artifact-id: core
+    description: provides all the basic preference classes and composables
+    path: library/core
+  - artifact-id: screen-bool
+    description: provides a checkbox/switch preference screen
+    path: library/modules/screen/bool
+  - artifact-id: screen-button
+    description: provides a button preference screen
+    path: library/modules/screen/button
+  - artifact-id: screen-color
+    description: provides a color picker preference screen
+    path: library/modules/screen/color
+  - artifact-id: screen-date
+    description: provides a date picker preference screen
+    path: library/modules/screen/date
+  - artifact-id: screen-input
+    description: provides a input dialog preference screen
+    path: library/modules/screen/input
+  - artifact-id: screen-list
+    description: provides a list dialog preference screen
+    path: library/modules/screen/list
+  - artifact-id: screen-number
+    description: provides a number picker preference screen
+    path: library/modules/screen/number
+  - artifact-id: screen-time
+    description: provides a time picker preference screen
+    path: library/modules/screen/time
+  - artifact-id: kotpreferences
+    description: provides extensions to use KotPreferences with ComposePreferences
+    path: library/modules/kotpreferences
+
+# XCFrameworks [name, path, targets (ios, macos)]
+xcframeworks: [ ]

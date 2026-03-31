@@ -5,6 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.text.AnnotatedString
+import com.michaelflisar.composedialogs.core.DialogEventType
 import com.michaelflisar.composedialogs.core.DialogState
 import com.michaelflisar.composedialogs.core.rememberDialogState
 import com.michaelflisar.composedialogs.dialogs.input.DialogInputNumber
@@ -19,7 +20,7 @@ import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetup
 import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetupDefaults
 import com.michaelflisar.composepreferences.core.scopes.PreferenceScope
 
-/* --8<-- [start: constructor] */
+// begin-snippet: PreferenceInputNumber::constructor
 /**
  * A number input preference item - this item provides a input dialog to change this preference
  *
@@ -53,7 +54,7 @@ fun <T : Number> PreferenceScope.PreferenceInputNumber(
         PreferenceInputNumberDefaults.dialog(dialogState, value.value, { value.value = it }, validator, title, icon)
     }
 )
-/* --8<-- [end: constructor] */
+// end-snippet
 {
     PreferenceInputNumber(
         value = value.value,
@@ -74,7 +75,7 @@ fun <T : Number> PreferenceScope.PreferenceInputNumber(
     )
 }
 
-/* --8<-- [start: constructor2] */
+// begin-snippet: PreferenceInputNumber::constructor2
 /**
  * A number input preference item - this item provides a input dialog to change this preference
  *
@@ -110,7 +111,7 @@ fun <T : Number> PreferenceScope.PreferenceInputNumber(
         PreferenceInputNumberDefaults.dialog(dialogState, value, onValueChange, validator, title, icon)
     }
 )
-/* --8<-- [end: constructor2] */
+// end-snippet
 {
     BasePreferenceDialog(
         dialogState = rememberDialogState(),
@@ -155,7 +156,7 @@ object PreferenceInputNumberDefaults {
             icon = icon,
             validator = validator
         ) {
-            if (it.isPositiveButton) {
+            if (it.type == DialogEventType.ButtonPositive) {
                 onValueChange(value.value)
             }
         }

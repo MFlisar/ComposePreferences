@@ -24,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
+import com.michaelflisar.composedialogs.core.DialogEventType
 import com.michaelflisar.composedialogs.core.DialogState
 import com.michaelflisar.composedialogs.core.rememberDialogState
 import com.michaelflisar.composedialogs.dialogs.list.DialogList
@@ -36,7 +37,7 @@ import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetup
 import com.michaelflisar.composepreferences.core.scopes.PreferenceScope
 import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
 
-/* --8<-- [start: constructor] */
+// begin-snippet: PreferenceList::constructor
 /**
  * A list preference item - this item provides a list dialog or a dropdown to change this preference
  *
@@ -92,7 +93,7 @@ fun <T> PreferenceScope.PreferenceList(
         )
     }
 )
-/* --8<-- [end: constructor] */
+// end-snippet
 {
     PreferenceList(
         style = style,
@@ -115,7 +116,7 @@ fun <T> PreferenceScope.PreferenceList(
     )
 }
 
-/* --8<-- [start: constructor2] */
+// begin-snippet: PreferenceList::constructor2
 /**
  * A list preference item - this item provides a list dialog or a dropdown to change this preference
  *
@@ -165,7 +166,7 @@ fun <T> PreferenceScope.PreferenceList(
         )
     }
 )
-/* --8<-- [end: constructor2] */
+// end-snippet
 {
     when (style) {
         is PreferenceList.Style.Dialog -> {
@@ -415,7 +416,7 @@ object PreferenceListDefaults {
             icon = icon,
             filter = filter
         ) {
-            if (it.isPositiveButton) {
+            if (it.type == DialogEventType.ButtonPositive) {
                 val newValue = selected.value?.let { items[it] } ?: value
                 onValueChange(newValue)
             }

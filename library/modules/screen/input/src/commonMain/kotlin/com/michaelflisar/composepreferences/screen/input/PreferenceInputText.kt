@@ -5,6 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.text.AnnotatedString
+import com.michaelflisar.composedialogs.core.DialogEventType
 import com.michaelflisar.composedialogs.core.DialogState
 import com.michaelflisar.composedialogs.core.rememberDialogState
 import com.michaelflisar.composedialogs.dialogs.input.DialogInput
@@ -19,7 +20,7 @@ import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetup
 import com.michaelflisar.composepreferences.core.scopes.PreferenceScope
 import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
 
-/* --8<-- [start: constructor] */
+// begin-snippet: PreferenceInputText::constructor
 /**
  * A text preference item - this item provides a text input dialog to change this preference
  *
@@ -51,7 +52,7 @@ fun PreferenceScope.PreferenceInputText(
         PreferenceInputTextDefaults.dialog(dialogState, value.value, { value.value = it }, validator, title, icon)
     }
 )
-/* --8<-- [end: constructor] */
+// end-snippet
 {
     PreferenceInputText(
         value = value.value,
@@ -71,7 +72,7 @@ fun PreferenceScope.PreferenceInputText(
     )
 }
 
-/* --8<-- [start: constructor2] */
+// begin-snippet: PreferenceInputText::constructor2
 /**
  * A text preference item - this item provides a text input dialog to change this preference
  *
@@ -105,7 +106,7 @@ fun PreferenceScope.PreferenceInputText(
         PreferenceInputTextDefaults.dialog(dialogState, value, onValueChange, validator, title, icon)
     }
 )
-/* --8<-- [end: constructor2] */
+// end-snippet
 {
     BasePreferenceDialog(
         dialogState = rememberDialogState(),
@@ -148,7 +149,7 @@ object PreferenceInputTextDefaults {
             icon = icon,
             validator = validator
         ) {
-            if (it.isPositiveButton) {
+            if (it.type == DialogEventType.ButtonPositive) {
                 onValueChange(value.value)
             }
         }

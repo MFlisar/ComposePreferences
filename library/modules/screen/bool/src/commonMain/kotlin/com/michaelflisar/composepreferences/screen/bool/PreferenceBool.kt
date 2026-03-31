@@ -16,7 +16,7 @@ import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetup
 import com.michaelflisar.composepreferences.core.scopes.PreferenceScope
 import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
 
-/* --8<-- [start: constructor] */
+// begin-snippet: PreferenceBool::constructor
 /**
  * A bool preference item - this item shows a checkbox/switch which reflects the preference state
  *
@@ -44,7 +44,7 @@ fun PreferenceScope.PreferenceBool(
     subtitleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
     filterTags: List<String> = emptyList()
 )
-/* --8<-- [end: constructor] */
+// end-snippet
 {
     PreferenceBool(
         style = style,
@@ -63,7 +63,7 @@ fun PreferenceScope.PreferenceBool(
     )
 }
 
-/* --8<-- [start: constructor2] */
+// begin-snippet: PreferenceBool::constructor2
 /**
  * A bool preference item - this item shows a checkbox/switch which reflects the preference state
  *
@@ -93,7 +93,7 @@ fun PreferenceScope.PreferenceBool(
     subtitleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
     filterTags: List<String> = emptyList()
 )
-/* --8<-- [end: constructor] */
+// end-snippet
 {
     val stateEnabled = enabled.state()
     val onClick = if (stateEnabled.value && LocalPreferenceSettings.current.toggleBooleanOnItemClick) {

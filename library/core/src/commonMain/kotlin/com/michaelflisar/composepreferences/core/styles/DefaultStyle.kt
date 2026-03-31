@@ -24,7 +24,7 @@ class DefaultStyle internal constructor(
 
     companion object {
 
-        /* --8<-- [start: create] */
+        // begin-snippet: DefaultStyle::create
         /*
          * Creates a new DefaultStyle instance with the given parameters.
          *
@@ -60,7 +60,7 @@ class DefaultStyle internal constructor(
             sectionSubtitleTextStyle: TextStyle = MaterialTheme.typography.bodyMedium,
             spacing: Dp = 0.dp
         ) : DefaultStyle
-        /* --8<-- [end: create] */
+        // end-snippet
         {
             val itemStyle = PreferenceStyleDefaults.item(
                 colors = PreferenceItemDefaults.colors(

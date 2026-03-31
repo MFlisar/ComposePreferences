@@ -32,7 +32,7 @@ import com.michaelflisar.composepreferences.core.classes.PreferenceType
 import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetup.TrailingContentSize
 import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
 
-/* --8<-- [start: constructor] */
+// begin-snippet: PreferenceItemSetup::constructor
 /**
  * this provides a class to define some custom setup to customise a preference item
  *
@@ -56,7 +56,7 @@ data class PreferenceItemSetup(
     val hideTitle: Boolean = false,
     val excludeFromSectionStyle: Boolean = false
 )
-/* --8<-- [end: constructor] */
+// end-snippet
 {
 
     /**

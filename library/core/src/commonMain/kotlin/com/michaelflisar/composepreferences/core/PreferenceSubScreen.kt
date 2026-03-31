@@ -25,7 +25,7 @@ import com.michaelflisar.composepreferences.core.scopes.PreferenceGroupScopeInst
 import com.michaelflisar.composepreferences.core.scopes.PreferenceScope
 import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
 
-/* --8<-- [start: constructor] */
+// begin-snippet: PreferenceSubScreen::constructor
 /**
  * A group preference item
  *
@@ -49,7 +49,8 @@ fun PreferenceScope.PreferenceSubScreen(
     filterTags: List<String> = emptyList(),
     content: @Composable PreferenceGroupScope.() -> Unit,
 )
-        /* --8<-- [end: constructor] */ {
+// end-snippet
+{
     val tags = filterTags + listOfNotNull(title, subtitle)
     val item = rememberPreferenceItemState(PreferenceType.Group, visible, tags, false)
 
