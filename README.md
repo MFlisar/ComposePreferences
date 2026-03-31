@@ -22,6 +22,7 @@ This library offers you an easily extendible compose framework for preferences.
 
 # :camera: Screenshots
 
+<<<<<<< HEAD
 |  |  |  |
 |---|---|---|
 | ![overview](documentation/screenshots/overview.jpg) | ![overview2](documentation/screenshots/overview2.jpg) |
@@ -82,6 +83,61 @@ This library offers you an easily extendible compose framework for preferences.
 |  |  |  |
 |---|---|---|
 | ![time-dialog](documentation/screenshots/time/time-dialog.jpg) | ![time-modern](documentation/screenshots/time/time-modern.jpg) |
+=======
+![color-default](documentation/screenshots/color/color-default.jpg)
+![color-dialog2](documentation/screenshots/color/color-dialog2.jpg)
+![color-dialog](documentation/screenshots/color/color-dialog.jpg)
+![color-modern](documentation/screenshots/color/color-modern.jpg)
+![date-default](documentation/screenshots/date/date-default.jpg)
+![date-modern](documentation/screenshots/date/date-modern.jpg)
+![date-dialog](documentation/screenshots/date/date-dialog.jpg)
+![time-default](documentation/screenshots/time/time-default.jpg)
+![time-dialog](documentation/screenshots/time/time-dialog.jpg)
+![time-modern](documentation/screenshots/time/time-modern.jpg)
+![root-default](documentation/screenshots/core/root-default.jpg)
+![info-default](documentation/screenshots/core/info-default.jpg)
+![root-modern](documentation/screenshots/core/root-modern.jpg)
+![info-modern](documentation/screenshots/core/info-modern.jpg)
+![list-dropdown](documentation/screenshots/list/list-dropdown.jpg)
+![list-dialog](documentation/screenshots/list/list-dialog.jpg)
+![list-default](documentation/screenshots/list/list-default.jpg)
+![list-modern](documentation/screenshots/list/list-modern.jpg)
+![list-dialog2](documentation/screenshots/list/list-dialog2.jpg)
+![button-modern](documentation/screenshots/button/button-modern.jpg)
+![button-default](documentation/screenshots/button/button-default.jpg)
+![overview](documentation/screenshots/overview.jpg)
+![overview2](documentation/screenshots/overview2.jpg)
+![time1](documentation/screenshots/previews/time1.jpg)
+![number1](documentation/screenshots/previews/number1.jpg)
+![input-number2](documentation/screenshots/previews/input-number2.jpg)
+![list-multi1](documentation/screenshots/previews/list-multi1.jpg)
+![bool1](documentation/screenshots/previews/bool1.jpg)
+![input-number1](documentation/screenshots/previews/input-number1.jpg)
+![subscreen1](documentation/screenshots/previews/subscreen1.jpg)
+![color1](documentation/screenshots/previews/color1.jpg)
+![date1](documentation/screenshots/previews/date1.jpg)
+![header1](documentation/screenshots/previews/header1.jpg)
+![input-text1](documentation/screenshots/previews/input-text1.jpg)
+![header2](documentation/screenshots/previews/header2.jpg)
+![number2](documentation/screenshots/previews/number2.jpg)
+![color2](documentation/screenshots/previews/color2.jpg)
+![divider1](documentation/screenshots/previews/divider1.jpg)
+![button1](documentation/screenshots/previews/button1.jpg)
+![list1](documentation/screenshots/previews/list1.jpg)
+![section1](documentation/screenshots/previews/section1.jpg)
+![section2](documentation/screenshots/previews/section2.jpg)
+![info1](documentation/screenshots/previews/info1.jpg)
+![bool2](documentation/screenshots/previews/bool2.jpg)
+![list2](documentation/screenshots/previews/list2.jpg)
+![input-default](documentation/screenshots/input/input-default.jpg)
+![input-modern](documentation/screenshots/input/input-modern.jpg)
+![input-dialog](documentation/screenshots/input/input-dialog.jpg)
+![bool-modern](documentation/screenshots/bool/bool-modern.jpg)
+![bool-default](documentation/screenshots/bool/bool-default.jpg)
+![number-dialog](documentation/screenshots/number/number-dialog.jpg)
+![number-modern](documentation/screenshots/number/number-modern.jpg)
+![number-default](documentation/screenshots/number/number-default.jpg)
+>>>>>>> a76b0062b1249386f5d86c5f88d1283e82a22aa6
 
 # :computer: Supported Platforms
 
@@ -109,6 +165,11 @@ This library offers you an easily extendible compose framework for preferences.
 > :warning: Following experimental annotations are used:
 > - **OptIn**
 >   - `androidx.compose.ui.ExperimentalComposeUiApi` (1x)
+<<<<<<< HEAD
+=======
+>   - `com.michaelflisar.kotpreferences.core.InternalApi` (1x)
+>   - `kotlin.time.ExperimentalTime` (2x)
+>>>>>>> a76b0062b1249386f5d86c5f88d1283e82a22aa6
 >
 > I try to use as less experimental features as possible, but in this case the ones above are needed!
 
