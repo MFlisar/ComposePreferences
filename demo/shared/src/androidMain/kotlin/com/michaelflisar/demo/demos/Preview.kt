@@ -44,9 +44,7 @@ import kotlinx.datetime.LocalTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 import kotlin.time.Clock
-import kotlin.time.ExperimentalTime
 
-@OptIn(ExperimentalTime::class)
 @Preview(
     widthDp = 1200
 )
@@ -246,7 +244,7 @@ private fun RowHeader(
     header3: String = "",
     weight1: Float = 1f,
     weight2: Float = 1f,
-    weight3: Float = 1f
+    weight3: Float = 1f,
 ) {
     Row(
         modifier = Modifier.background(MaterialTheme.colorScheme.onBackground),
@@ -276,7 +274,7 @@ private fun RowHeader(
 private fun RowPreferences(
     content1: @Composable PreferenceGroupScope.() -> Unit,
     content2: @Composable (PreferenceGroupScope.() -> Unit)? = null,
-    content3: @Composable (PreferenceGroupScope.() -> Unit)? = null
+    content3: @Composable (PreferenceGroupScope.() -> Unit)? = null,
 ) {
     Row(
         modifier = Modifier.height(IntrinsicSize.Min),

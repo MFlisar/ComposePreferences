@@ -54,7 +54,7 @@ data class PreferenceItemSetup(
     val contentPlacementBottom: Boolean = false,
     val alignment: Alignment.Vertical = Alignment.CenterVertically,
     val hideTitle: Boolean = false,
-    val excludeFromSectionStyle: Boolean = false
+    val excludeFromSectionStyle: Boolean = false,
 )
 // end-snippet
 {
@@ -68,7 +68,7 @@ data class PreferenceItemSetup(
     @Stable
     class TrailingContentSize internal constructor(
         internal val minWidth: Dp,
-        internal val maxWidth: Dp
+        internal val maxWidth: Dp,
     ) {
         internal constructor() : this(
             PreferenceItemSetupDefaults.DEFAULT_WIDTH,
@@ -85,7 +85,7 @@ data class PreferenceItemSetup(
  */
 @Stable
 class PreferenceItemSettings(
-    val type: PreferenceType = PreferenceType.Item
+    val type: PreferenceType = PreferenceType.Item,
 )
 
 internal fun Modifier.trailingContentSize(setup: TrailingContentSize) = this then
@@ -110,7 +110,7 @@ object PreferenceItemSetupDefaults {
      */
     @Composable
     fun trailingContentSize(
-        width: Dp
+        width: Dp,
     ) = TrailingContentSize(width, width)
 
     /**
@@ -122,7 +122,7 @@ object PreferenceItemSetupDefaults {
     @Composable
     fun trailingContentSize(
         minWidth: Dp,
-        maxWidth: Dp
+        maxWidth: Dp,
     ) = TrailingContentSize(minWidth, maxWidth)
 
     /**
@@ -148,7 +148,7 @@ class PreferenceItemColors internal constructor(
     private val headlineColor: Color = Color.Unspecified,
     private val subHeadlineColor: Color = Color.Unspecified,
     private val leadingColor: Color = Color.Unspecified,
-    private val contentColor: Color = Color.Unspecified
+    private val contentColor: Color = Color.Unspecified,
 ) {
     /** The container color of this [PreferenceItem] */
     @Composable
@@ -197,7 +197,7 @@ class PreferenceItemColors internal constructor(
     @Composable
     internal fun DecoratedHeadline(
         preferenceStyle: PreferenceItemStyle,
-        content: @Composable () -> Unit
+        content: @Composable () -> Unit,
     ) {
         val color = headlineColor()
         val textStyle = preferenceStyle.titleTextStyle
@@ -210,7 +210,7 @@ class PreferenceItemColors internal constructor(
     @Composable
     internal fun DecoratedSubHeadlineContent(
         preferenceStyle: PreferenceItemStyle,
-        content: @Composable () -> Unit
+        content: @Composable () -> Unit,
     ) {
         val color = subHeadlineColor()
         val textStyle = preferenceStyle.subtitleTextStyle
@@ -252,7 +252,7 @@ object PreferenceItemDefaults {
         contentColor: Color = MaterialTheme.colorScheme.onBackground.copy(DEFAULT_ALPHA_VARIANT),
         headlineColor: Color = MaterialTheme.colorScheme.onBackground,
         subHeadlineColor: Color = MaterialTheme.colorScheme.onBackground.copy(DEFAULT_ALPHA_VARIANT),
-        leadingColor: Color = MaterialTheme.colorScheme.onBackground.copy(DEFAULT_ALPHA_VARIANT)
+        leadingColor: Color = MaterialTheme.colorScheme.onBackground.copy(DEFAULT_ALPHA_VARIANT),
     ): PreferenceItemColors =
         PreferenceItemColors(
             containerColor = containerColor,
@@ -273,7 +273,7 @@ object PreferenceItemDefaults {
     fun colors(
         backgroundColor: Color = MaterialTheme.colorScheme.background,
         foregroundColor: Color = MaterialTheme.colorScheme.onBackground,
-        alphaVariant: Float = DEFAULT_ALPHA_VARIANT
+        alphaVariant: Float = DEFAULT_ALPHA_VARIANT,
     ): PreferenceItemColors =
         PreferenceItemColors(
             containerColor = backgroundColor,
@@ -292,7 +292,7 @@ internal fun PreferenceItem(
     leading: @Composable (() -> Unit)?,
     content: @Composable (ColumnScope.() -> Unit)?,
     setup: PreferenceItemSetup,
-    preferenceStyle: PreferenceItemStyle
+    preferenceStyle: PreferenceItemStyle,
 ) {
     val settings = LocalPreferenceSettings.current
 
@@ -303,7 +303,8 @@ internal fun PreferenceItem(
     // => I need some fix text area to content area size constraints for some uniform and I don't want to use more colors than necessary
     //    so I simply make a own version based on ListItem myself...
 
-    val minHeight = setup.minHeight + (if (subHeadline == null) 0.dp else setup.minSubTitleExtraHeight)
+    val minHeight =
+        setup.minHeight + (if (subHeadline == null) 0.dp else setup.minSubTitleExtraHeight)
     val rootPaddingValues = preferenceStyle.innerPadding
     val contentPaddingValues = PaddingValues()
     val leadingContentPaddingValues = PaddingValues(end = settings.leadingContentEndPadding)
@@ -391,7 +392,7 @@ internal fun PreferenceItemCustom(
     modifier: Modifier = Modifier,
     content: @Composable ColumnScope.() -> Unit,
     setup: PreferenceItemSetup,
-    preferenceStyle: PreferenceItemStyle
+    preferenceStyle: PreferenceItemStyle,
 ) {
     val settings = LocalPreferenceSettings.current
 

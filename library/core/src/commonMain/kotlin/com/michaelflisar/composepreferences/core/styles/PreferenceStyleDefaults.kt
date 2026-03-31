@@ -5,7 +5,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
@@ -46,10 +45,10 @@ object PreferenceStyleDefaults {
         tonalElevation: Dp = 0.dp,
         shadowElevation: Dp = 0.dp,
         titleTextStyle: TextStyle = MaterialTheme.typography.labelLarge,
-        subtitleTextStyle: TextStyle = MaterialTheme.typography.bodyMedium
+        subtitleTextStyle: TextStyle = MaterialTheme.typography.bodyMedium,
     ): PreferenceItemStyle
     // end-snippet
-    = PreferenceItemStyle(
+            = PreferenceItemStyle(
         colors = colors,
         innerPadding = innerPadding,
         outerPadding = outerPadding,
@@ -87,7 +86,7 @@ object PreferenceStyleDefaults {
         tonalElevation: Dp = 0.dp,
         shadowElevation: Dp = 0.dp,
         titleTextStyle: TextStyle = MaterialTheme.typography.labelLarge,
-        subtitleTextStyle: TextStyle = MaterialTheme.typography.bodyMedium
+        subtitleTextStyle: TextStyle = MaterialTheme.typography.bodyMedium,
     ): PreferenceItemStyle = PreferenceItemStyle(
         colors = PreferenceItemColors(
             containerColor = colorBackground,
@@ -122,7 +121,7 @@ object PreferenceStyleDefaults {
         shape: Shape = LocalPreferenceSettings.current.style.defaultItemStyle.shape,
         innerPadding: PaddingValues = LocalPreferenceSettings.current.style.defaultItemStyle.innerPadding,
         outerPadding: PaddingValues = LocalPreferenceSettings.current.style.defaultItemStyle.outerPadding,
-        alphaVariant: Float = PreferenceItemDefaults.DEFAULT_ALPHA_VARIANT
+        alphaVariant: Float = PreferenceItemDefaults.DEFAULT_ALPHA_VARIANT,
     ) = item(
         colorBackground = MaterialTheme.colorScheme.primary,
         colorForeground = MaterialTheme.colorScheme.onPrimary,
@@ -145,7 +144,7 @@ object PreferenceStyleDefaults {
         shape: Shape = LocalPreferenceSettings.current.style.defaultItemStyle.shape,
         innerPadding: PaddingValues = LocalPreferenceSettings.current.style.defaultItemStyle.innerPadding,
         outerPadding: PaddingValues = LocalPreferenceSettings.current.style.defaultItemStyle.outerPadding,
-        alphaVariant: Float = PreferenceItemDefaults.DEFAULT_ALPHA_VARIANT
+        alphaVariant: Float = PreferenceItemDefaults.DEFAULT_ALPHA_VARIANT,
     ) = item(
         colorBackground = MaterialTheme.colorScheme.primaryContainer,
         colorForeground = MaterialTheme.colorScheme.onPrimaryContainer,
@@ -168,7 +167,7 @@ object PreferenceStyleDefaults {
         shape: Shape = LocalPreferenceSettings.current.style.defaultItemStyle.shape,
         innerPadding: PaddingValues = LocalPreferenceSettings.current.style.defaultItemStyle.innerPadding,
         outerPadding: PaddingValues = LocalPreferenceSettings.current.style.defaultItemStyle.outerPadding,
-        alphaVariant: Float = PreferenceItemDefaults.DEFAULT_ALPHA_VARIANT
+        alphaVariant: Float = PreferenceItemDefaults.DEFAULT_ALPHA_VARIANT,
     ) = item(
         colorBackground = MaterialTheme.colorScheme.error,
         colorForeground = MaterialTheme.colorScheme.onError,
@@ -191,7 +190,7 @@ object PreferenceStyleDefaults {
         shape: Shape = LocalPreferenceSettings.current.style.defaultItemStyle.shape,
         innerPadding: PaddingValues = LocalPreferenceSettings.current.style.defaultItemStyle.innerPadding,
         outerPadding: PaddingValues = LocalPreferenceSettings.current.style.defaultItemStyle.outerPadding,
-        alphaVariant: Float = PreferenceItemDefaults.DEFAULT_ALPHA_VARIANT
+        alphaVariant: Float = PreferenceItemDefaults.DEFAULT_ALPHA_VARIANT,
     ) = item(
         colorBackground = MaterialTheme.colorScheme.errorContainer,
         colorForeground = MaterialTheme.colorScheme.onErrorContainer,
@@ -213,7 +212,7 @@ object PreferenceStyleDefaults {
     fun surfaceVariant(
         shape: Shape = LocalPreferenceSettings.current.style.defaultItemStyle.shape,
         innerPadding: PaddingValues = LocalPreferenceSettings.current.style.defaultItemStyle.innerPadding,
-        outerPadding: PaddingValues = LocalPreferenceSettings.current.style.defaultItemStyle.outerPadding
+        outerPadding: PaddingValues = LocalPreferenceSettings.current.style.defaultItemStyle.outerPadding,
     ): PreferenceItemStyle = item(
         colors = PreferenceItemColors(
             containerColor = MaterialTheme.colorScheme.surfaceVariant,
@@ -239,7 +238,7 @@ object PreferenceStyleDefaults {
         alphaVariant: Float = PreferenceItemDefaults.DEFAULT_ALPHA_VARIANT,
         shape: Shape = LocalPreferenceSettings.current.style.defaultItemStyle.shape,
         innerPadding: PaddingValues = LocalPreferenceSettings.current.style.defaultItemStyle.innerPadding,
-        outerPadding: PaddingValues = LocalPreferenceSettings.current.style.defaultItemStyle.outerPadding
+        outerPadding: PaddingValues = LocalPreferenceSettings.current.style.defaultItemStyle.outerPadding,
     ): PreferenceItemStyle = item(
         colors = PreferenceItemColors(
             containerColor = MaterialTheme.colorScheme.background,

@@ -10,9 +10,7 @@ import com.michaelflisar.composepreferences.core.preview.PreviewPreference
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 import kotlin.time.Clock
-import kotlin.time.ExperimentalTime
 
-@OptIn(ExperimentalTime::class)
 @Preview
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, name = "Dark")
 @Composable

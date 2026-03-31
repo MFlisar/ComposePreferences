@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
-import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
@@ -16,7 +15,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.SpanStyle
@@ -27,13 +25,9 @@ import com.michaelflisar.composepreferences.core.PreferenceScreen
 import com.michaelflisar.composepreferences.core.PreferenceSection
 import com.michaelflisar.composepreferences.core.PreferenceSubScreen
 import com.michaelflisar.composepreferences.core.classes.PreferenceSettings
-import com.michaelflisar.composepreferences.core.classes.PreferenceSettingsDefaults
-import com.michaelflisar.composepreferences.core.classes.PreferenceState
 import com.michaelflisar.composepreferences.core.classes.rememberPreferenceState
 import com.michaelflisar.composepreferences.core.filter.DefaultPreferenceFilter
 import com.michaelflisar.composepreferences.core.filter.rememberDefaultPreferenceFilter
-import com.michaelflisar.composepreferences.core.styles.PreferenceStyle
-import com.michaelflisar.demo.composables.PreferenceNavigationAndInfo
 import com.michaelflisar.composepreferences.screen.bool.PreferenceBool
 import com.michaelflisar.composepreferences.screen.button.PreferenceButton
 import com.michaelflisar.composepreferences.screen.color.PreferenceColor
@@ -44,21 +38,17 @@ import com.michaelflisar.composepreferences.screen.list.PreferenceList
 import com.michaelflisar.composepreferences.screen.list.PreferenceListMulti
 import com.michaelflisar.composepreferences.screen.number.PreferenceNumber
 import com.michaelflisar.composepreferences.screen.time.PreferenceTime
-import com.michaelflisar.democomposables.DemoCheckbox
-import com.michaelflisar.democomposables.DemoSpinner
+import com.michaelflisar.demo.composables.PreferenceNavigationAndInfo
 import com.michaelflisar.democomposables.layout.DemoRegion
-import com.michaelflisar.democomposables.layout.DemoRow
 import kotlinx.datetime.DayOfWeek
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 import kotlin.time.Clock
-import kotlin.time.ExperimentalTime
 
-@OptIn(ExperimentalTime::class)
 @Composable
 fun PrefScreenDemoFilter(
     settings: PreferenceSettings,
-    showInfo: (info: String) -> Unit
+    showInfo: (info: String) -> Unit,
 ) {
     // begin-snippet: filter-modes
     val filterModes = listOf(

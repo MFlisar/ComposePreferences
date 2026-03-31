@@ -5,7 +5,7 @@ kmp-parcelize =             "1.1.0-alpha01"
 kotpreferences =        	"4.0.0-alpha02"
 composedialogs =   		    "4.0.0-alpha03"
 
-kmpdevtools =               "7.4.2" # change via "updateDevToolsVersion" gradle task!
+kmpdevtools =               "7.5.0" # change via "updateDevToolsVersion" gradle task!
 kmp-democomposables =       "1.0.2"
 
 accompanist = 			    "0.37.3"
