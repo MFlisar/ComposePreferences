@@ -20,7 +20,7 @@ object PreferenceStyleDefaults {
     val DEFAULT_INNER_PADDING = PaddingValues(horizontal = 16.dp, 8.dp)
     val DEFAULT_OUTER_PADDING = PaddingValues()
 
-    // begin-snippet: PreferenceStyleDefaults::create
+    // begin-snippet: PreferenceStyleDefaults::item
     /**
      * this function returns a [PreferenceItemStyle] defining the style of a preference item
      *

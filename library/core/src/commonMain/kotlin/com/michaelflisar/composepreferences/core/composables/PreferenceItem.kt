@@ -32,7 +32,7 @@ import com.michaelflisar.composepreferences.core.classes.PreferenceType
 import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetup.TrailingContentSize
 import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
 
-// begin-snippet: PreferenceItemSetup::constructor
+// begin-snippet: PreferenceItem::constructor
 /**
  * this provides a class to define some custom setup to customise a preference item
  *
