@@ -133,7 +133,7 @@ fun item(
     tonalElevation: Dp = 0.dp,
     shadowElevation: Dp = 0.dp,
     titleTextStyle: TextStyle = MaterialTheme.typography.labelLarge,
-    subtitleTextStyle: TextStyle = MaterialTheme.typography.bodyMedium
+    subtitleTextStyle: TextStyle = MaterialTheme.typography.bodyMedium,
 ): PreferenceItemStyle
 ```
 <!-- endSnippet -->
@@ -190,7 +190,7 @@ data class PreferenceItemSetup(
     val contentPlacementBottom: Boolean = false,
     val alignment: Alignment.Vertical = Alignment.CenterVertically,
     val hideTitle: Boolean = false,
-    val excludeFromSectionStyle: Boolean = false
+    val excludeFromSectionStyle: Boolean = false,
 )
 ```
 <!-- endSnippet -->
