@@ -40,6 +40,6 @@ snippet: PreferenceListMulti::constructor2
 
 |                                                      |                                                     |
 |------------------------------------------------------|-----------------------------------------------------|
-| ![Screenshot](../screenshots/list/list-default.jpg)  | ![Screenshot](../../screenshots/list/list-modern.jpg)  |
+| ![Screenshot](../screenshots/list/list-default.jpg)  | ![Screenshot](../screenshots/list/list-modern.jpg)  |
 | ![Screenshot](../screenshots/list/list-dialog.jpg)   | ![Screenshot](../screenshots/list/list-dialog2.jpg) |
 | ![Screenshot](../screenshots/list/list-dropdown.jpg) |                                                     |
