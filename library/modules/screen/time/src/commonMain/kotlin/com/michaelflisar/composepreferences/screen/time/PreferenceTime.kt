@@ -14,12 +14,12 @@ import com.michaelflisar.composedialogs.dialogs.time.is24HourFormat
 import com.michaelflisar.composedialogs.dialogs.time.rememberDialogTime
 import com.michaelflisar.composepreferences.core.classes.Dependency
 import com.michaelflisar.composepreferences.core.classes.LocalPreferenceSettings
-import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
 import com.michaelflisar.composepreferences.core.composables.BasePreferenceDialog
 import com.michaelflisar.composepreferences.core.composables.PreferenceContentText
 import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetup
 import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetupDefaults
 import com.michaelflisar.composepreferences.core.scopes.PreferenceScope
+import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
 import kotlinx.datetime.LocalTime
 import kotlinx.datetime.format.char
 
@@ -40,7 +40,7 @@ fun PreferenceScope.PreferenceTime(
     // Special
     value: MutableState<LocalTime>,
     is24Hours: Boolean = is24HourFormat(), // comes from ComposeDialog
-    formatter: (time: LocalTime) -> String = getDefaultTimeFormatter(is24Hours),
+    formatter: @Composable (time: LocalTime) -> String = { defaultTimeFormat(is24Hours, it) },
     // Base Preference
     title: String,
     enabled: Dependency = Dependency.Enabled,
@@ -54,8 +54,15 @@ fun PreferenceScope.PreferenceTime(
     filterTags: List<String> = emptyList(),
     // Dialog
     dialog: @Composable (state: DialogState) -> Unit = { dialogState ->
-        PreferenceTimeDefaults.dialog(dialogState, value.value, { value.value = it }, is24Hours, title, icon)
-    }
+        PreferenceTimeDefaults.dialog(
+            dialogState,
+            value.value,
+            { value.value = it },
+            is24Hours,
+            title,
+            icon
+        )
+    },
 )
 // end-snippet
 {
@@ -97,7 +104,7 @@ fun PreferenceScope.PreferenceTime(
     value: LocalTime,
     onValueChange: (value: LocalTime) -> Unit,
     is24Hours: Boolean = is24HourFormat(), // comes from ComposeDialog
-    formatter: (time: LocalTime) -> String = getDefaultTimeFormatter(is24Hours),
+    formatter: @Composable (time: LocalTime) -> String = { defaultTimeFormat(is24Hours, it) },
     // Base Preference
     title: String,
     enabled: Dependency = Dependency.Enabled,
@@ -112,7 +119,7 @@ fun PreferenceScope.PreferenceTime(
     // Dialog
     dialog: @Composable (state: DialogState) -> Unit = { dialogState ->
         PreferenceTimeDefaults.dialog(dialogState, value, onValueChange, is24Hours, title, icon)
-    }
+    },
 )
 // end-snippet
 {
@@ -149,7 +156,7 @@ object PreferenceTimeDefaults {
         onValueChange: (value: LocalTime) -> Unit,
         is24Hours: Boolean,
         title: String,
-        icon: (@Composable () -> Unit)? = null
+        icon: (@Composable () -> Unit)? = null,
     ) {
         val value = rememberDialogTime(value)
         val setup = DialogTimeDefaults.setup(
@@ -183,9 +190,8 @@ private val TIME_FORMAT_12H = LocalTime.Format {
     amPmMarker("AM", "PM")
 }
 
-private fun getDefaultTimeFormatter(is24Hours: Boolean): (time: LocalTime) -> String {
-    return {
-        val formatter = if (is24Hours) TIME_FORMAT_24H else TIME_FORMAT_12H
-        formatter.format(it)
-    }
+@Composable
+fun defaultTimeFormat(is24Hours: Boolean, time: LocalTime): String {
+    val formatter = if (is24Hours) TIME_FORMAT_24H else TIME_FORMAT_12H
+    return formatter.format(time)
 }

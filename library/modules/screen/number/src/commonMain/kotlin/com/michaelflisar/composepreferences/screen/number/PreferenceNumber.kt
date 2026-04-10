@@ -61,7 +61,7 @@ fun <T : Number> PreferenceScope.PreferenceNumber(
     min: T,
     max: T,
     stepSize: T,
-    formatter: (value: T) -> String = { it.toString() },
+    formatter: @Composable (value: T) -> String = { it.toString() },
     // Base Preference
     title: String,
     enabled: Dependency = Dependency.Enabled,
@@ -136,7 +136,7 @@ fun <T : Number> PreferenceScope.PreferenceNumber(
     min: T,
     max: T,
     stepSize: T,
-    formatter: (value: T) -> String = { it.toString() },
+    formatter: @Composable (value: T) -> String = { it.toString() },
     // Base Preference
     title: String,
     enabled: Dependency = Dependency.Enabled,
@@ -230,7 +230,7 @@ private fun <T : Number> ColumnScope.ContentSlider(
     min: T,
     max: T,
     stepSize: T,
-    formatter: (T) -> String
+    formatter: @Composable (T) -> String
 ) {
     val stateEnabled = enabled.state()
     val colors = if (style.showTicks) {
@@ -281,7 +281,7 @@ private fun <T : Number> ColumnScope.ContentButtons(
     min: T,
     max: T,
     stepSize: T,
-    formatter: (T) -> String
+    formatter: @Composable (T) -> String
 ) {
     val stateEnabled = enabled.state()
 
@@ -399,7 +399,7 @@ object PreferenceNumberDefaults {
         min: T,
         max: T,
         stepSize: T,
-        formatter: (value: T) -> String = { it.toString() },
+        formatter: @Composable (value: T) -> String = { it.toString() },
         title: String,
         icon: (@Composable () -> Unit)? = null
     ) {

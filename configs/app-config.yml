@@ -1,5 +1,4 @@
 # App
 name: ComposePreferences Demo
-package-name: com.michaelflisar.composepreferences.demo
-version-code: 1
+namespace: com.michaelflisar.composepreferences.demo
 version-name: 1.0.0

@@ -1,21 +1,21 @@
 public final class com/michaelflisar/composepreferences/screen/date/ComposableSingletons$PreferenceDateKt {
 	public static final field INSTANCE Lcom/michaelflisar/composepreferences/screen/date/ComposableSingletons$PreferenceDateKt;
 	public fun <init> ()V
-	public final fun getLambda$-1445428845$date ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda$-414508728$date ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda$-686425613$date ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda$333073640$date ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-1466989189$date ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-428127226$date ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$1290449179$date ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$1963314278$date ()Lkotlin/jvm/functions/Function3;
 }
 
 public final class com/michaelflisar/composepreferences/screen/date/PreferenceDateDefaults {
 	public static final field $stable I
 	public static final field INSTANCE Lcom/michaelflisar/composepreferences/screen/date/PreferenceDateDefaults;
-	public final fun dialog (Lcom/michaelflisar/composedialogs/core/DialogState;Lkotlinx/datetime/LocalDate;Lkotlin/jvm/functions/Function1;Lkotlinx/datetime/DayOfWeek;Lkotlin/jvm/functions/Function1;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)V
+	public final fun dialog (Lcom/michaelflisar/composedialogs/core/DialogState;Lkotlinx/datetime/LocalDate;Lkotlin/jvm/functions/Function1;Lkotlinx/datetime/DayOfWeek;Lkotlin/jvm/functions/Function3;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)V
 	public final fun itemSetup (Landroidx/compose/runtime/Composer;I)Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup;
 }
 
 public final class com/michaelflisar/composepreferences/screen/date/PreferenceDateKt {
-	public static final fun PreferenceDate (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;Landroidx/compose/runtime/MutableState;Lkotlinx/datetime/DayOfWeek;Lkotlin/jvm/functions/Function1;Ljava/lang/String;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Ljava/util/List;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;III)V
-	public static final fun PreferenceDate (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;Lkotlinx/datetime/LocalDate;Lkotlin/jvm/functions/Function1;Lkotlinx/datetime/DayOfWeek;Lkotlin/jvm/functions/Function1;Ljava/lang/String;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Ljava/util/List;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;III)V
+	public static final fun PreferenceDate (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;Landroidx/compose/runtime/MutableState;Lkotlinx/datetime/DayOfWeek;Lkotlin/jvm/functions/Function3;Ljava/lang/String;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Ljava/util/List;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;III)V
+	public static final fun PreferenceDate (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;Lkotlinx/datetime/LocalDate;Lkotlin/jvm/functions/Function1;Lkotlinx/datetime/DayOfWeek;Lkotlin/jvm/functions/Function3;Ljava/lang/String;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Ljava/util/List;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;III)V
 }
 

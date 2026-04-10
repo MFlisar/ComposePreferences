@@ -1,10 +1,10 @@
 public final class com/michaelflisar/composepreferences/screen/time/ComposableSingletons$PreferenceTimeKt {
 	public static final field INSTANCE Lcom/michaelflisar/composepreferences/screen/time/ComposableSingletons$PreferenceTimeKt;
 	public fun <init> ()V
-	public final fun getLambda$-1246487788$time ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda$281174988$time ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda$550109036$time ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda$582232948$time ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-1194669793$time ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-2044431673$time ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-736916697$time ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$1046033791$time ()Lkotlin/jvm/functions/Function3;
 }
 
 public final class com/michaelflisar/composepreferences/screen/time/PreferenceTimeDefaults {
@@ -15,7 +15,8 @@ public final class com/michaelflisar/composepreferences/screen/time/PreferenceTi
 }
 
 public final class com/michaelflisar/composepreferences/screen/time/PreferenceTimeKt {
-	public static final fun PreferenceTime (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;Landroidx/compose/runtime/MutableState;ZLkotlin/jvm/functions/Function1;Ljava/lang/String;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Ljava/util/List;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;III)V
-	public static final fun PreferenceTime (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;Lkotlinx/datetime/LocalTime;Lkotlin/jvm/functions/Function1;ZLkotlin/jvm/functions/Function1;Ljava/lang/String;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Ljava/util/List;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;III)V
+	public static final fun PreferenceTime (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;Landroidx/compose/runtime/MutableState;ZLkotlin/jvm/functions/Function3;Ljava/lang/String;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Ljava/util/List;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;III)V
+	public static final fun PreferenceTime (Lcom/michaelflisar/composepreferences/core/scopes/PreferenceScope;Lkotlinx/datetime/LocalTime;Lkotlin/jvm/functions/Function1;ZLkotlin/jvm/functions/Function3;Ljava/lang/String;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Lcom/michaelflisar/composepreferences/core/classes/Dependency;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lcom/michaelflisar/composepreferences/core/styles/PreferenceItemStyle;Lcom/michaelflisar/composepreferences/core/composables/PreferenceItemSetup;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Ljava/util/List;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;III)V
+	public static final fun defaultTimeFormat (ZLkotlinx/datetime/LocalTime;Landroidx/compose/runtime/Composer;I)Ljava/lang/String;
 }
 
