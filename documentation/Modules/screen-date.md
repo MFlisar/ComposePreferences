@@ -49,7 +49,7 @@ fun PreferenceScope.PreferenceDate(
     // Special
     value: MutableState<LocalDate>,
     firstDayOfWeek: DayOfWeek = DayOfWeek.MONDAY,
-    formatter: (date: LocalDate) -> String = {
+    formatter: @Composable (date: LocalDate) -> String = {
         // comes from the ComposeDialog library
         defaultFormatterSelectedDate(it)
     },
@@ -94,7 +94,7 @@ fun PreferenceScope.PreferenceDate(
     value: LocalDate,
     onValueChange: (date: LocalDate) -> Unit,
     firstDayOfWeek: DayOfWeek = DayOfWeek.MONDAY,
-    formatter: (date: LocalDate) -> String = {
+    formatter: @Composable (date: LocalDate) -> String = {
         // comes from the ComposeDialog library
         defaultFormatterSelectedDate(it)
     },

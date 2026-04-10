@@ -151,7 +151,7 @@ fun <T : Number> PreferenceScope.PreferenceInputNumber(
     // Special
     value: MutableState<T>,
     validator: DialogInputValidator = DialogInputNumber.rememberDefaultValidator(value.value),
-    formatter: (value: T) -> String = { it.toString() },
+    formatter: @Composable (value: T) -> String = { it.toString() },
     // Base Preference
     title: String,
     enabled: Dependency = Dependency.Enabled,
@@ -193,7 +193,7 @@ fun <T : Number> PreferenceScope.PreferenceInputNumber(
     value: T,
     onValueChange: (value: T) -> Unit,
     validator: DialogInputValidator = DialogInputNumber.rememberDefaultValidator(value),
-    formatter: (value: T) -> String = { it.toString() },
+    formatter: @Composable (value: T) -> String = { it.toString() },
     // Base Preference
     title: String,
     enabled: Dependency = Dependency.Enabled,
