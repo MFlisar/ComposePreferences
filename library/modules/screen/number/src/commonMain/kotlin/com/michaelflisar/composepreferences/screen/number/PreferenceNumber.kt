@@ -20,6 +20,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.michaelflisar.composedialogs.core.BaseDialogState
 import com.michaelflisar.composedialogs.core.DialogEventType
 import com.michaelflisar.composedialogs.core.DialogState
 import com.michaelflisar.composedialogs.core.rememberDialogState
@@ -74,7 +75,7 @@ fun <T : Number> PreferenceScope.PreferenceNumber(
     subtitleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
     filterTags: List<String> = emptyList(),
     // Dialog
-    dialog: @Composable (state: DialogState) -> Unit = { dialogState ->
+    dialog: @Composable (state: BaseDialogState) -> Unit = { dialogState ->
         PreferenceNumberDefaults.dialog(
             dialogState,
             value.value,
@@ -149,7 +150,7 @@ fun <T : Number> PreferenceScope.PreferenceNumber(
     subtitleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
     filterTags: List<String> = emptyList(),
     // Dialog
-    dialog: @Composable (state: DialogState) -> Unit = { dialogState ->
+    dialog: @Composable (state: BaseDialogState) -> Unit = { dialogState ->
         PreferenceNumberDefaults.dialog(
             dialogState,
             value,
@@ -393,7 +394,7 @@ object PreferenceNumberDefaults {
 
     @Composable
     fun <T : Number> dialog(
-        dialogState: DialogState,
+        dialogState: BaseDialogState,
         value: T,
         onValueChange: (value: T) -> Unit,
         min: T,

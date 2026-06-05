@@ -4,7 +4,8 @@ import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.AnnotatedString
-import com.michaelflisar.composedialogs.core.DialogStateNoData
+import com.michaelflisar.composedialogs.core.DialogState
+import com.michaelflisar.composedialogs.core.show
 import com.michaelflisar.composepreferences.core.PreferenceInfoDefaults
 import com.michaelflisar.composepreferences.core.classes.Dependency
 import com.michaelflisar.composepreferences.core.classes.LocalPreferenceSettings
@@ -24,8 +25,8 @@ import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
 @Composable
 fun PreferenceScope.BasePreferenceDialog(
     // Special
-    dialogState: DialogStateNoData,
-    dialog: @Composable (state: DialogStateNoData) -> Unit,
+    dialogState: DialogState<Boolean>,
+    dialog: @Composable (state: DialogState<Boolean>) -> Unit,
     // Base Preference
     title: String,
     enabled: Dependency = Dependency.Enabled,

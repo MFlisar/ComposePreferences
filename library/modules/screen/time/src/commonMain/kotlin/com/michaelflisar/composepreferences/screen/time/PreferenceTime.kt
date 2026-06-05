@@ -5,6 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.text.AnnotatedString
+import com.michaelflisar.composedialogs.core.BaseDialogState
 import com.michaelflisar.composedialogs.core.DialogEventType
 import com.michaelflisar.composedialogs.core.DialogState
 import com.michaelflisar.composedialogs.core.rememberDialogState
@@ -53,7 +54,7 @@ fun PreferenceScope.PreferenceTime(
     subtitleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
     filterTags: List<String> = emptyList(),
     // Dialog
-    dialog: @Composable (state: DialogState) -> Unit = { dialogState ->
+    dialog: @Composable (state: BaseDialogState) -> Unit = { dialogState ->
         PreferenceTimeDefaults.dialog(
             dialogState,
             value.value,
@@ -117,7 +118,7 @@ fun PreferenceScope.PreferenceTime(
     subtitleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
     filterTags: List<String> = emptyList(),
     // Dialog
-    dialog: @Composable (state: DialogState) -> Unit = { dialogState ->
+    dialog: @Composable (state: BaseDialogState) -> Unit = { dialogState ->
         PreferenceTimeDefaults.dialog(dialogState, value, onValueChange, is24Hours, title, icon)
     },
 )
@@ -151,7 +152,7 @@ object PreferenceTimeDefaults {
 
     @Composable
     fun dialog(
-        dialogState: DialogState,
+        dialogState: BaseDialogState,
         value: LocalTime,
         onValueChange: (value: LocalTime) -> Unit,
         is24Hours: Boolean,

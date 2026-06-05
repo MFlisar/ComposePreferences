@@ -8,16 +8,16 @@ cachefileprovider =         "1.0.0"
 kotpreferences =        	"4.0.0-alpha02"
 lumberjack =                "10.0.0-alpha03"
 composedebugdrawer =		"3.0.0-alpha01"
-composedialogs =   		    "4.0.0-alpha06"
+composedialogs =   		    "4.0.0-alpha08"
 composechangelog =   		"4.0.0-alpha02"
-composepreferences =   		"3.0.0-alpha01"
+composepreferences =   		"3.0.0-alpha02"
 composethemer =   			"2.0.0-alpha01"
 composecolors =             "1.0.1"
-toolbox =                   "4.0.0-alpha10"
+toolbox =                   "4.0.0-alpha14"
 
 # plugins only
 kmpicon-plugin =            "0.0.1"
-kmpdevtools =               "7.9.2" # use the "devTools" task to change the version
+kmpdevtools =               "7.9.5" # use the "devTools" task to change the version
 
 # demos
 democomposables =           "1.0.2"

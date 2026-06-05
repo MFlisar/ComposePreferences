@@ -5,6 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.text.AnnotatedString
+import com.michaelflisar.composedialogs.core.BaseDialogState
 import com.michaelflisar.composedialogs.core.DialogEventType
 import com.michaelflisar.composedialogs.core.DialogState
 import com.michaelflisar.composedialogs.core.rememberDialogState
@@ -50,7 +51,7 @@ fun <T : Number> PreferenceScope.PreferenceInputNumber(
     subtitleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
     filterTags: List<String> = emptyList(),
     // Dialog
-    dialog: @Composable (state: DialogState) -> Unit = { dialogState ->
+    dialog: @Composable (state: BaseDialogState) -> Unit = { dialogState ->
         PreferenceInputNumberDefaults.dialog(dialogState, value.value, { value.value = it }, validator, title, icon)
     }
 )
@@ -107,7 +108,7 @@ fun <T : Number> PreferenceScope.PreferenceInputNumber(
     subtitleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
     filterTags: List<String> = emptyList(),
     // Dialog
-    dialog: @Composable (state: DialogState) -> Unit = { dialogState ->
+    dialog: @Composable (state: BaseDialogState) -> Unit = { dialogState ->
         PreferenceInputNumberDefaults.dialog(dialogState, value, onValueChange, validator, title, icon)
     }
 )
@@ -141,7 +142,7 @@ object PreferenceInputNumberDefaults {
 
     @Composable
     fun <T : Number> dialog(
-        dialogState: DialogState,
+        dialogState: BaseDialogState,
         value: T,
         onValueChange: (value: T) -> Unit,
         validator: DialogInputValidator = DialogInputNumber.rememberDefaultValidator(value),

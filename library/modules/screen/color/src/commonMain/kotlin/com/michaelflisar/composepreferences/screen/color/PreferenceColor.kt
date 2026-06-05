@@ -17,6 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
+import com.michaelflisar.composedialogs.core.BaseDialogState
 import com.michaelflisar.composedialogs.core.DialogEventType
 import com.michaelflisar.composedialogs.core.DialogState
 import com.michaelflisar.composedialogs.core.rememberDialogState
@@ -61,7 +62,7 @@ fun PreferenceScope.PreferenceColor(
     subtitleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
     filterTags: List<String> = emptyList(),
     // Dialog
-    dialog: @Composable (state: DialogState) -> Unit = { dialogState ->
+    dialog: @Composable (state: BaseDialogState) -> Unit = { dialogState ->
         PreferenceColorDefaults.dialog(dialogState, value.value, { value.value = it }, alphaSupported, directEditSupported, title, icon)
     }
 )
@@ -117,7 +118,7 @@ fun PreferenceScope.PreferenceColor(
     subtitleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
     filterTags: List<String> = emptyList(),
     // Dialog
-    dialog: @Composable (state: DialogState) -> Unit = { dialogState ->
+    dialog: @Composable (state: BaseDialogState) -> Unit = { dialogState ->
         PreferenceColorDefaults.dialog(dialogState, value, onValueChange, alphaSupported, directEditSupported,title, icon)
     }
 )
@@ -170,7 +171,7 @@ object PreferenceColorDefaults {
 
     @Composable
     fun dialog(
-        dialogState: DialogState,
+        dialogState: BaseDialogState,
         value: Color,
         onValueChange: (value: Color) -> Unit,
         alphaSupported: Boolean,

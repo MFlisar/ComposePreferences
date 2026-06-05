@@ -5,6 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.text.AnnotatedString
+import com.michaelflisar.composedialogs.core.BaseDialogState
 import com.michaelflisar.composedialogs.core.DialogEventType
 import com.michaelflisar.composedialogs.core.DialogState
 import com.michaelflisar.composedialogs.core.rememberDialogState
@@ -15,7 +16,6 @@ import com.michaelflisar.composedialogs.dialogs.date.rememberDialogDate
 import com.michaelflisar.composepreferences.core.classes.Dependency
 import com.michaelflisar.composepreferences.core.classes.LocalPreferenceSettings
 import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
-import com.michaelflisar.composepreferences.core.composables.BasePreference
 import com.michaelflisar.composepreferences.core.composables.BasePreferenceDialog
 import com.michaelflisar.composepreferences.core.composables.PreferenceContentText
 import com.michaelflisar.composepreferences.core.composables.PreferenceItemSetup
@@ -57,7 +57,7 @@ fun PreferenceScope.PreferenceDate(
     subtitleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
     filterTags: List<String> = emptyList(),
     // Dialog
-    dialog: @Composable (state: DialogState) -> Unit = { dialogState ->
+    dialog: @Composable (state: BaseDialogState) -> Unit = { dialogState ->
         PreferenceDateDefaults.dialog(dialogState, value.value, { value.value = it }, firstDayOfWeek, formatter, title, icon)
     }
 )
@@ -117,7 +117,7 @@ fun PreferenceScope.PreferenceDate(
     subtitleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
     filterTags: List<String> = emptyList(),
     // Dialog
-    dialog: @Composable (state: DialogState) -> Unit = { state ->
+    dialog: @Composable (state: BaseDialogState) -> Unit = { state ->
         PreferenceDateDefaults.dialog(state, value, onValueChange, firstDayOfWeek, formatter, title, icon)
     }
 )
@@ -151,7 +151,7 @@ object PreferenceDateDefaults {
 
     @Composable
     fun dialog(
-        dialogState: DialogState,
+        dialogState: BaseDialogState,
         value: LocalDate,
         onValueChange: (date: LocalDate) -> Unit,
         firstDayOfWeek: DayOfWeek = DayOfWeek.MONDAY,

@@ -7,6 +7,7 @@ import androidx.compose.runtime.Stable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.text.AnnotatedString
+import com.michaelflisar.composedialogs.core.BaseDialogState
 import com.michaelflisar.composedialogs.core.DialogEventType
 import com.michaelflisar.composedialogs.core.DialogState
 import com.michaelflisar.composedialogs.core.rememberDialogState
@@ -57,7 +58,7 @@ fun <T> PreferenceScope.PreferenceListMulti(
     subtitleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
     filterTags: List<String> = emptyList(),
     // Dialog
-    dialog: @Composable (state: DialogState) -> Unit = { dialogState ->
+    dialog: @Composable (state: BaseDialogState) -> Unit = { dialogState ->
         PreferenceMultiListDefaults.dialog(dialogState, value.value, { value.value = it }, items, itemTextProvider, itemIconProvider, title, icon)
     }
 )
@@ -123,7 +124,7 @@ fun <T> PreferenceScope.PreferenceListMulti(
     subtitleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
     filterTags: List<String> = emptyList(),
     // Dialog
-    dialog: @Composable (state: DialogState) -> Unit = { dialogState ->
+    dialog: @Composable (state: BaseDialogState) -> Unit = { dialogState ->
         PreferenceMultiListDefaults.dialog(dialogState, value, onValueChange, items, itemTextProvider, itemIconProvider, title, icon)
     }
 )
@@ -155,7 +156,7 @@ object PreferenceMultiListDefaults {
 
     @Composable
     fun <T> dialog(
-        dialogState: DialogState,
+        dialogState: BaseDialogState,
         value: List<T>,
         onValueChange: (value: List<T>) -> Unit,
         items: List<T>,

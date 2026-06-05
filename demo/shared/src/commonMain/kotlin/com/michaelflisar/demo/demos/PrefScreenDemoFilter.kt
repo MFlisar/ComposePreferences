@@ -276,7 +276,7 @@ fun PrefScreenDemoFilter(
             PreferenceSection(
                 title = "Section 7+"
             ) {
-                val formatter: (Float) -> String = { value ->
+                val formatter: @Composable (Float) -> String = { value ->
                     ((value * 10).toInt() / 10f).toString()
                 }
                 PreferenceSubScreen(title = "Pref 7 - Picker") {
