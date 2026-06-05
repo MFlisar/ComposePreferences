@@ -50,7 +50,7 @@ fun PreferenceScope.PreferenceTime(
     // Special
     value: MutableState<LocalTime>,
     is24Hours: Boolean = is24HourFormat(), // comes from ComposeDialog
-    formatter: (time: LocalTime) -> String = getDefaultTimeFormatter(is24Hours),
+    formatter: @Composable (time: LocalTime) -> String = { defaultTimeFormat(is24Hours, it) },
     // Base Preference
     title: String,
     enabled: Dependency = Dependency.Enabled,
@@ -63,9 +63,16 @@ fun PreferenceScope.PreferenceTime(
     subtitleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
     filterTags: List<String> = emptyList(),
     // Dialog
-    dialog: @Composable (state: DialogState) -> Unit = { dialogState ->
-        PreferenceTimeDefaults.dialog(dialogState, value.value, { value.value = it }, is24Hours, title, icon)
-    }
+    dialog: @Composable (state: BaseDialogState) -> Unit = { dialogState ->
+        PreferenceTimeDefaults.dialog(
+            dialogState,
+            value.value,
+            { value.value = it },
+            is24Hours,
+            title,
+            icon
+        )
+    },
 )
 ```
 <!-- endSnippet -->
@@ -92,7 +99,7 @@ fun PreferenceScope.PreferenceTime(
     value: LocalTime,
     onValueChange: (value: LocalTime) -> Unit,
     is24Hours: Boolean = is24HourFormat(), // comes from ComposeDialog
-    formatter: (time: LocalTime) -> String = getDefaultTimeFormatter(is24Hours),
+    formatter: @Composable (time: LocalTime) -> String = { defaultTimeFormat(is24Hours, it) },
     // Base Preference
     title: String,
     enabled: Dependency = Dependency.Enabled,
@@ -105,9 +112,9 @@ fun PreferenceScope.PreferenceTime(
     subtitleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
     filterTags: List<String> = emptyList(),
     // Dialog
-    dialog: @Composable (state: DialogState) -> Unit = { dialogState ->
+    dialog: @Composable (state: BaseDialogState) -> Unit = { dialogState ->
         PreferenceTimeDefaults.dialog(dialogState, value, onValueChange, is24Hours, title, icon)
-    }
+    },
 )
 ```
 <!-- endSnippet -->

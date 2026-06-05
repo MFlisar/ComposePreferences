@@ -56,7 +56,7 @@ fun <T : Number> PreferenceScope.PreferenceNumber(
     min: T,
     max: T,
     stepSize: T,
-    formatter: (value: T) -> String = { it.toString() },
+    formatter: @Composable (value: T) -> String = { it.toString() },
     // Base Preference
     title: String,
     enabled: Dependency = Dependency.Enabled,
@@ -69,7 +69,7 @@ fun <T : Number> PreferenceScope.PreferenceNumber(
     subtitleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
     filterTags: List<String> = emptyList(),
     // Dialog
-    dialog: @Composable (state: DialogState) -> Unit = { dialogState ->
+    dialog: @Composable (state: BaseDialogState) -> Unit = { dialogState ->
         PreferenceNumberDefaults.dialog(
             dialogState,
             value.value,
@@ -113,7 +113,7 @@ fun <T : Number> PreferenceScope.PreferenceNumber(
     min: T,
     max: T,
     stepSize: T,
-    formatter: (value: T) -> String = { it.toString() },
+    formatter: @Composable (value: T) -> String = { it.toString() },
     // Base Preference
     title: String,
     enabled: Dependency = Dependency.Enabled,
@@ -126,7 +126,7 @@ fun <T : Number> PreferenceScope.PreferenceNumber(
     subtitleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
     filterTags: List<String> = emptyList(),
     // Dialog
-    dialog: @Composable (state: DialogState) -> Unit = { dialogState ->
+    dialog: @Composable (state: BaseDialogState) -> Unit = { dialogState ->
         PreferenceNumberDefaults.dialog(
             dialogState,
             value,

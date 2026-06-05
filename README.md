@@ -85,25 +85,25 @@ This library offers you an easily extendible compose framework for preferences.
 
 # :computer: Supported Platforms
 
-| Module | android | iOS | windows | wasm |
-|---|---|---|---|---|
-| core | ✅ | ✅ | ✅ | ✅ |
-| screen-bool | ✅ | ✅ | ✅ | ✅ |
-| screen-button | ✅ | ✅ | ✅ | ✅ |
-| screen-color | ✅ | ✅ | ✅ | ✅ |
-| screen-date | ✅ | ✅ | ✅ | ✅ |
-| screen-input | ✅ | ✅ | ✅ | ✅ |
-| screen-list | ✅ | ✅ | ✅ | ✅ |
-| screen-number | ✅ | ✅ | ✅ | ✅ |
-| screen-time | ✅ | ✅ | ✅ | ✅ |
-| kotpreferences | ✅ | ✅ | ✅ | ✅ |
+| Module | android | iOS | windows | wasm | Notes |
+|---|---|---|---|---|---|
+| core | ✅ | ✅ | ✅ | ✅ | provides all the basic preference classes and composables |
+| screen-bool | ✅ | ✅ | ✅ | ✅ | provides a checkbox/switch preference screen |
+| screen-button | ✅ | ✅ | ✅ | ✅ | provides a button preference screen |
+| screen-color | ✅ | ✅ | ✅ | ✅ | provides a color picker preference screen |
+| screen-date | ✅ | ✅ | ✅ | ✅ | provides a date picker preference screen |
+| screen-input | ✅ | ✅ | ✅ | ✅ | provides a input dialog preference screen |
+| screen-list | ✅ | ✅ | ✅ | ✅ | provides a list dialog preference screen |
+| screen-number | ✅ | ✅ | ✅ | ✅ | provides a number picker preference screen |
+| screen-time | ✅ | ✅ | ✅ | ✅ | provides a time picker preference screen |
+| kotpreferences | ✅ | ✅ | ✅ | ✅ | provides extensions to use KotPreferences with ComposePreferences |
 
 # :arrow_right: Versions
 
 | Dependency | Version |
 |---|---|
-| Kotlin | `2.3.20` |
-| Jetbrains Compose | `1.10.3` |
+| Kotlin | `2.4.0` |
+| Jetbrains Compose | `1.11.1` |
 | Jetbrains Compose Material3 | `1.9.0` |
 
 > :warning: Following experimental annotations are used:

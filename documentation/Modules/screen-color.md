@@ -61,7 +61,7 @@ fun PreferenceScope.PreferenceColor(
     subtitleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
     filterTags: List<String> = emptyList(),
     // Dialog
-    dialog: @Composable (state: DialogState) -> Unit = { dialogState ->
+    dialog: @Composable (state: BaseDialogState) -> Unit = { dialogState ->
         PreferenceColorDefaults.dialog(dialogState, value.value, { value.value = it }, alphaSupported, directEditSupported, title, icon)
     }
 )
@@ -103,7 +103,7 @@ fun PreferenceScope.PreferenceColor(
     subtitleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
     filterTags: List<String> = emptyList(),
     // Dialog
-    dialog: @Composable (state: DialogState) -> Unit = { dialogState ->
+    dialog: @Composable (state: BaseDialogState) -> Unit = { dialogState ->
         PreferenceColorDefaults.dialog(dialogState, value, onValueChange, alphaSupported, directEditSupported,title, icon)
     }
 )
