@@ -49,7 +49,7 @@ fun PreferenceScope.PreferenceDate(
     // Special
     value: MutableState<LocalDate>,
     firstDayOfWeek: DayOfWeek = DayOfWeek.MONDAY,
-    formatter: (date: LocalDate) -> String = {
+    formatter: @Composable (date: LocalDate) -> String = {
         // comes from the ComposeDialog library
         defaultFormatterSelectedDate(it)
     },
@@ -65,7 +65,7 @@ fun PreferenceScope.PreferenceDate(
     subtitleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
     filterTags: List<String> = emptyList(),
     // Dialog
-    dialog: @Composable (state: DialogState) -> Unit = { dialogState ->
+    dialog: @Composable (state: BaseDialogState) -> Unit = { dialogState ->
         PreferenceDateDefaults.dialog(dialogState, value.value, { value.value = it }, firstDayOfWeek, formatter, title, icon)
     }
 )
@@ -94,7 +94,7 @@ fun PreferenceScope.PreferenceDate(
     value: LocalDate,
     onValueChange: (date: LocalDate) -> Unit,
     firstDayOfWeek: DayOfWeek = DayOfWeek.MONDAY,
-    formatter: (date: LocalDate) -> String = {
+    formatter: @Composable (date: LocalDate) -> String = {
         // comes from the ComposeDialog library
         defaultFormatterSelectedDate(it)
     },
@@ -110,7 +110,7 @@ fun PreferenceScope.PreferenceDate(
     subtitleRenderer: @Composable (text: AnnotatedString) -> Unit = { Text(it) },
     filterTags: List<String> = emptyList(),
     // Dialog
-    dialog: @Composable (state: DialogState) -> Unit = { state ->
+    dialog: @Composable (state: BaseDialogState) -> Unit = { state ->
         PreferenceDateDefaults.dialog(state, value, onValueChange, firstDayOfWeek, formatter, title, icon)
     }
 )
