@@ -20,8 +20,7 @@ import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
 import com.michaelflisar.composepreferences.core.styles.PreferenceStyleDefaults
 
 /**
- * this is the default root composable that uses a [BasePreferenceContainer] and provides you with
- * a common default layout that consists of an area for an icon, a title, a sub title and some content
+ * this is the default root composable that allows you to create a custom preference with your own content. It takes care of the enabled/visibiltiy state of the preference (depending on the dependencies as well as on the hierarchical position)
  *
  * &nbsp;
  *
@@ -30,9 +29,6 @@ import com.michaelflisar.composepreferences.core.styles.PreferenceStyleDefaults
  * @param modifier the [Modifier] for this composable
  * @param enabled the [Dependency] that from which the enabled state is derived from
  * @param visible the [Dependency] that from which the visibility state is derived from
- * @param title the content of the title area
- * @param subtitle the content of the subtitle area
- * @param icon the content of the icon area
  * @param onClick the optional click listener for this item
  * @param onLongClick the optional long click listener for this item
  * @param itemStyle the [PreferenceItemStyle] of this this item - use [PreferenceStyleDefaults.item] and all the predefined styles in [PreferenceStyleDefaults] to provide your own style

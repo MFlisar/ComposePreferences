@@ -3,7 +3,6 @@ package com.michaelflisar.composepreferences.core.classes
 import androidx.compose.animation.core.AnimationSpec
 import androidx.compose.animation.core.FastOutLinearInEasing
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.ScrollState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material3.Icon
@@ -11,11 +10,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.michaelflisar.composepreferences.core.composables.PreferenceItemDefaults
 import com.michaelflisar.composepreferences.core.styles.DefaultStyle
 import com.michaelflisar.composepreferences.core.styles.PreferenceStyle
 import com.michaelflisar.composepreferences.core.styles.PreferenceItemStyle
-import com.michaelflisar.composepreferences.core.styles.PreferenceStyleDefaults
 
 val LocalPreferenceSettings = compositionLocalOf { PreferenceSettings() }
 
@@ -55,8 +52,8 @@ object PreferenceSettingsDefaults {
      * @param disabledStateGrayscale if true, a disabled preference will grayscale its content
      * @param toggleBooleanOnItemClick if true, clicking a boolean preference will toggle its state, otherwise only clicks on the checkbox/switch will toggle it
      * @param maxLinesValue the maximum lines of texts for the content area of a preference
-     * @param animationSpec a optional [AnimationSpec] that defines the animation for preferences on initial display - use [null] to disable the animation
-     * @param subScreenEndIndicator a optional [Composable] that defines a trailing indicator for sub screen preferences - use [null] to disable it
+     * @param animationSpec a optional [AnimationSpec] that defines the animation for preferences on initial display - use `null` to disable the animation
+     * @param subScreenEndIndicator a optional [Composable] that defines a trailing indicator for sub screen preferences - use `null` to disable it
      * @param style the default [PreferenceStyle] that should be used by all preferences
      * @param forceNoIconInset enable this flag to inset items correctly to align with other items with icons
      * @param minTextAreaWidth minimum width or the text area (the title/subtitle area)

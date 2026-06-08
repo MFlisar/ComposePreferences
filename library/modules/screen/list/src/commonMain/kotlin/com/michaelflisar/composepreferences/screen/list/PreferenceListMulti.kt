@@ -11,6 +11,7 @@ import com.michaelflisar.composedialogs.core.BaseDialogState
 import com.michaelflisar.composedialogs.core.DialogEventType
 import com.michaelflisar.composedialogs.core.rememberDialogState
 import com.michaelflisar.composedialogs.dialogs.list.DialogList
+import com.michaelflisar.composedialogs.dialogs.list.DialogListDefaults
 import com.michaelflisar.composepreferences.core.classes.Dependency
 import com.michaelflisar.composepreferences.core.classes.LocalPreferenceSettings
 import com.michaelflisar.composepreferences.core.composables.BasePreference
@@ -170,12 +171,12 @@ object PreferenceMultiListDefaults {
         DialogList(
             state = dialogState,
             items = items,
-            itemIdProvider = { items.indexOf(it) },
+            key = { items.indexOf(it) },
             selectionMode = DialogList.SelectionMode.MultiSelect<T>(
                 selection
             ),
-            itemContents = DialogList.ItemDefaultContent(
-                text = itemTextProvider,
+            content = DialogListDefaults.itemContent(
+                text = { Text(itemTextProvider(it)) },
                 icon = itemIconProvider
             ),
             title = { Text(title) },

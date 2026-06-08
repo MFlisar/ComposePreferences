@@ -48,7 +48,6 @@ import com.michaelflisar.composepreferences.core.styles.PreferenceStyleDefaults
  * @param visible the [Dependency] that from which the visibility state is derived from
  * @param onClick the optional click listener for this item
  * @param onLongClick the optional long click listener for this item
- * @param type an **internal** flag to decide if this item holds sub items (and what type of sub items) or not (needed for the hierarchical data management)
  * @param itemStyle the [PreferenceItemStyle] of this this item - use [PreferenceStyleDefaults.item] and all the predefined styles in [PreferenceStyleDefaults] to provide your own style
  * @param filterTags the tags for filtering - those MUST contain title and subtitles as well here!
  * @param content the content of this composable
