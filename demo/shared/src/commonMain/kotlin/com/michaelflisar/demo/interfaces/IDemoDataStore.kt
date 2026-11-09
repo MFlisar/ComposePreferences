@@ -4,7 +4,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface IDemoDataStore {
 
-    fun getString(key: String, defaultValue: String = ""): Flow<String>
+    fun getString(key: String, defaultValue: String): Flow<String>
 
     suspend fun update(key: String, value: String)
 
@@ -12,7 +12,7 @@ interface IDemoDataStore {
     // Bool
     // ----------
 
-    fun getBool(key: String, defaultValue: Boolean = true): Flow<Boolean>
+    fun getBool(key: String, defaultValue: Boolean): Flow<Boolean>
 
     suspend fun update(key: String, value: Boolean)
 
@@ -20,7 +20,7 @@ interface IDemoDataStore {
     // Int
     // ----------
 
-    fun getInt(key: String, defaultValue: Int = 0): Flow<Int>
+    fun getInt(key: String, defaultValue: Int): Flow<Int>
 
     suspend fun update(key: String, value: Int)
 
@@ -28,7 +28,7 @@ interface IDemoDataStore {
     // Long
     // ----------
 
-    fun getLong(key: String, defaultValue: Long = 0L): Flow<Long>
+    fun getLong(key: String, defaultValue: Long): Flow<Long>
 
     suspend fun update(key: String, value: Long)
 
@@ -36,7 +36,7 @@ interface IDemoDataStore {
     // Float
     // ----------
 
-    fun getFloat(key: String, defaultValue: Float = 0f): Flow<Float>
+    fun getFloat(key: String, defaultValue: Float): Flow<Float>
 
     suspend fun update(key: String, value: Float)
 
@@ -44,7 +44,7 @@ interface IDemoDataStore {
     // Int
     // ----------
 
-    fun getIntList(key: String, defaultValue: List<Int> = emptyList()): Flow<List<Int>>
+    fun getIntList(key: String, defaultValue: List<Int>): Flow<List<Int>>
 
     suspend fun update(key: String, value: List<Int>)
 }
