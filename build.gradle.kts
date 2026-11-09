@@ -20,5 +20,5 @@ plugins {
     alias(mflisar.plugins.kmpdevtools.buildplugin) // apply, because this plugin does register gradle tasks in the root project!
     alias(libs.plugins.buildkonfig) apply false
     // others
-    // --
+    alias(libs.plugins.launch4j) apply false
 }

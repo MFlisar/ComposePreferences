@@ -1,6 +1,6 @@
 import com.michaelflisar.kmpdevtools.Targets
 import com.michaelflisar.kmpdevtools.BuildFileUtil
-import com.michaelflisar.kmpdevtools.core.Platform
+import com.michaelflisar.kmpdevtools.core.Target
 import com.michaelflisar.kmpdevtools.configs.*
 import com.michaelflisar.kmpdevtools.setupDependencies
 import com.michaelflisar.kmpdevtools.setupBuildKonfig
@@ -27,21 +27,17 @@ plugins {
 // Setup
 // ------------------------
 
-val module = LibraryModuleConfig.readManual(project)
+val module = LibraryModuleConfig.read(project)
 
 // targets
 val buildTargets = Targets(
-    // mobile
-    android = true,
-    iOS = true,
-    // desktop
-    windows = true,
-    macOS = false, // because of compose unstyled dialogs
-    // web
-    wasm = true
+    Target.ANDROID,
+    Target.IOS,
+    Target.JVM,
+    Target.WASM
 )
 
-val androidConfig = AndroidLibraryConfig.createFromPath(
+val androidConfig = AndroidLibraryConfig.create(
     libraryModuleConfig = module,
     compileSdk = app.versions.compileSdk,
     minSdk = app.versions.minSdk,
@@ -53,7 +49,7 @@ val androidConfig = AndroidLibraryConfig.createFromPath(
 // ------------------------
 
 buildkonfig {
-    setupBuildKonfig(module.appConfig)
+    setupBuildKonfig(project = project, config = module.config)
 }
 
 kotlin {
@@ -83,10 +79,10 @@ kotlin {
 
         setupDependencies(module, buildTargets, sourceSets) {
 
-            Platform.IOS addSourceSet iosMain
+            Target.IOS addSourceSet iosMain
 
-            notAndroidMain supportedBy !Platform.ANDROID
-            notWasmJsMain supportedBy !Platform.WASM
+            notAndroidMain supportedBy !Target.ANDROID
+            notWasmJsMain supportedBy !Target.WASM
 
         }
 

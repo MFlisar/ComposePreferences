@@ -1,0 +1,86 @@
+# Publishing
+publish:
+  group-id: io.github.mflisar.composepreferences
+  github:
+    user: MFlisar
+    repo: maven-repository
+    branch: main
+    path: artifacts
+  release-target: maven-central
+  test-target: github
+
+# General
+config:
+  java-version: 17
+  developer:
+    name: Michael Flisar
+    mail: mflisar.development@gmail.com
+    maven-id: mflisar
+    github-user-name: MFlisar
+
+# Project
+project:
+  namespace: com.michaelflisar.composepreferences
+  repo-name: ComposePreferences
+  release: 2023
+  license:
+    name: Apache License 2.0
+    path: blob/main/LICENSE
+
+# Apps
+apps:
+  - name: ComposePreferences Demo
+    namespace: com.michaelflisar.composepreferences.demo
+    version-name: 1.0.0
+    module-paths:
+      - demo/app/android
+      - demo/app/jvm
+      - demo/app/wasm
+      - demo/shared
+    publish:
+      url-path: demo
+      description: Explore the interactive demo
+      module-path: demo/app/wasm
+
+# Library modules
+modules:
+  primary-artifact-id: core
+  modules:
+    - artifact-id: core
+      description: provides all the basic preference classes and composables
+      path: library/core
+    - artifact-id: screen-bool
+      description: provides a checkbox/switch preference screen
+      path: library/modules/screen/bool
+    - artifact-id: screen-button
+      description: provides a button preference screen
+      path: library/modules/screen/button
+    - artifact-id: screen-color
+      description: provides a color picker preference screen
+      path: library/modules/screen/color
+    - artifact-id: screen-date
+      description: provides a date picker preference screen
+      path: library/modules/screen/date
+    - artifact-id: screen-input
+      description: provides a input dialog preference screen
+      path: library/modules/screen/input
+    - artifact-id: screen-list
+      description: provides a list dialog preference screen
+      path: library/modules/screen/list
+    - artifact-id: screen-number
+      description: provides a number picker preference screen
+      path: library/modules/screen/number
+    - artifact-id: screen-time
+      description: provides a time picker preference screen
+      path: library/modules/screen/time
+    - artifact-id: kotpreferences
+      description: provides extensions to use KotPreferences with ComposePreferences
+      path: library/modules/kotpreferences
+  xcframeworks: []
+
+# Documentation
+documentation:
+  path: documentation
+  relative-paths:
+    partials: _partials
+    screenshots: screenshots
