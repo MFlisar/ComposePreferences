@@ -73,6 +73,6 @@ SettingsFileUtil.includeDokkaModule(settings)
 // App
 // --------------
 
-if (System.getenv("CI") != "true") {
+if (System.getenv("CI") != "true" || System.getenv("INCLUDE_DEMO_MODULES") == "true") {
     SettingsFileUtil.includeModulesInFolder(settings, "demo")
 }
