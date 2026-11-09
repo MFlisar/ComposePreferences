@@ -2,7 +2,7 @@
 
 # general (local snapshot: "LOCAL-SNAPSHOT")
 kmp-parcelize =             "2.0.0"
-kotpreferences =        	"4.0.0"
+kotpreferences =        	"4.0.1"
 composedialogs =   		    "4.0.0"
 
 # plugins only

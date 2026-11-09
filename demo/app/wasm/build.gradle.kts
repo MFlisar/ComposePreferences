@@ -73,6 +73,6 @@ kotlin {
 // -------------------
 
 // can be removed after upgrading kot preferences to 4.0.1
-configurations.named("wasmJsRuntimeClasspath") {
-    exclude(group = "org.jetbrains.kotlinx", module = "kotlinx-io-core")
-}
+//configurations.named("wasmJsRuntimeClasspath") {
+//    exclude(group = "org.jetbrains.kotlinx", module = "kotlinx-io-core")
+//}
